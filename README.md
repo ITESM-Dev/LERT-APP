@@ -3,6 +3,6 @@
 * Leonardo: Squad Leader
 * Brenda: Front-end
 * Natalia: Documentation
-* Abigail: Diseño
+* Abigail: Design
 * Ulises: Project Manager
 * Rafael: Back-end
