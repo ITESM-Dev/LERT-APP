@@ -1,4 +1,4 @@
-# LERT - ITESM Dev
+# LERT - APP
 ## Roles
 * Leonardo: Squad Leader
 * Brenda: Front-end
