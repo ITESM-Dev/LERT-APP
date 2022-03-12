@@ -6,3 +6,5 @@
 * Abigail: Design
 * Ulises: Project Manager
 * Rafael: Back-end
+
+- Testing JIRA actions
