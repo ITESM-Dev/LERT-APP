@@ -1,4 +1,5 @@
-# LERT-ITESM-Dev
+# LERT - APP
+
 ## Roles
 * Leonardo: Squad Leader
 * Brenda: Front-end
@@ -6,3 +7,9 @@
 * Abigail: Design
 * Ulises: Project Manager
 * Rafael: Back-end
+
+## Releases
+
+### V1 - March/30/2022
+* React Native Project configuration
+
