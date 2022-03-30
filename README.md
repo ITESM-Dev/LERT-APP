@@ -1,4 +1,5 @@
 # LERT - APP
+
 ## Roles
 * Leonardo: Squad Leader
 * Brenda: Front-end
@@ -7,5 +8,8 @@
 * Ulises: Project Manager
 * Rafael: Back-end
 
-- Testing JIRA actions
-- -Hola
+## Releases
+
+### V1 - March/30/2022
+* React Native Project configuration
+
