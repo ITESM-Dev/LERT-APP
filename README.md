@@ -11,5 +11,5 @@
 ## Releases
 
 ### V1 - March/30/2022
-* React Native Project configuration
+* React Project configuration
 
