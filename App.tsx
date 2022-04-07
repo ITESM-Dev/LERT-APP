@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Image } from 'react-native';
 import { NativeBaseProvider, Text, Box } from 'native-base';
 
-import theme from './src/styles/theme';
+import theme from '~styles/theme';
 
 export default function App() {
   return (
