@@ -1,10 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Image } from 'react-native';
 import { NativeBaseProvider, Text, Box } from 'native-base';
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
 
-import theme from '~styles/theme';
+import theme from '~theme/theme';
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    "IBMPlexSans-Bold": require("./assets/fonts/IBMPlexSans-Bold.ttf"),
+    "IBMPlexSans-SemiBold": require("./assets/fonts/IBMPlexSans-SemiBold.ttf"),
+    "IBMPlexSans-Light": require("./assets/fonts/IBMPlexSans-Light.ttf"),
+    "IBMPlexSans-Regular": require("./assets/fonts/IBMPlexSans-Regular.ttf")
+  });
+
+  if(!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <NativeBaseProvider theme={theme}>
       <View style={styles.container}>
