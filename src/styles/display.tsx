@@ -1,4 +1,4 @@
-import { TextType } from "~components/LertText";
+import { TextType } from "~components/atoms/LertText";
 
 const DisplayStyles: { [key: string]: TextType } = {
     display01: {
@@ -26,12 +26,12 @@ const DisplayStyles: { [key: string]: TextType } = {
         letterSpacing: -0.64 //check this one out 
       },
       display04: {
-        fontWeight: "light",
+        fontWeight: "bold",
         fontStyle: "normal",
         fontFamily: "body",
-        fontSize: 54,
-        lineHeight: 64,
-        letterSpacing: 0 
+        fontSize: 92,
+        lineHeight: 102,
+        letterSpacing: 0.64 
     }
 }
 
