@@ -1,5 +1,4 @@
-import React from 'react';
-import { NativeBaseProvider, extendTheme } from 'native-base';
+import { extendTheme } from 'native-base';
 
 export default extendTheme({
     colors: {
@@ -66,7 +65,6 @@ export default extendTheme({
 		}
     },
     config: {
-		// Changing initialColorMode to 'dark'
-		initialColorMode: 'dark',
+		initialColorMode: 'light',
     },
 });
