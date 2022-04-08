@@ -4,7 +4,7 @@ import { NativeBaseProvider, Text, Box } from 'native-base';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 
-import theme from './src/styles/theme';
+import theme from './src/theme/theme';
 import LertText from "./src/components/LertText"
 
 export default function App() {
@@ -33,7 +33,10 @@ export default function App() {
           />
         </View>
         <Box {...box}>
-          <LertText fontWeight="bold" fontSize="25">Welcome to Itesm Dev's LERT prototype</LertText>
+          <LertText 
+            text="Saludos" 
+            type="display03"
+          />
         </Box>
         <StatusBar style="auto" />
       </View>
