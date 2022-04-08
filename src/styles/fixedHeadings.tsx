@@ -1,4 +1,6 @@
-const FixedHeadingStyles = {
+import { TextType } from "~components/LertText";
+
+const FixedHeadingStyles: { [key: string]: TextType } = {
     heading: {
         fontWeight: "regular",
         fontStyle: "normal",
@@ -41,4 +43,5 @@ const FixedHeadingStyles = {
     }
 }
 
+export type FixedHadingTypes = keyof typeof FixedHeadingStyles;
 export default FixedHeadingStyles;

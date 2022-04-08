@@ -1,4 +1,6 @@
-const UtilityStyles = {
+import { TextType } from "~components/LertText";
+
+const UtilityStyles: { [key: string]: TextType } = {
     label: {
         fontWeight: "regular",
         fontStyle: "normal",
@@ -16,5 +18,7 @@ const UtilityStyles = {
         letterSpacing: 0.16 
     }
 }
+
+export type UtilityTypes = keyof typeof UtilityStyles;
 
 export default UtilityStyles;

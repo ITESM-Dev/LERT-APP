@@ -1,4 +1,6 @@
-const BodyStyles = {
+import { TextType } from "~components/LertText";
+
+const BodyStyles: { [key: string]: TextType } = {
     largeParagraph: {
         fontWeight: "light",
         fontStyle: "normal",
@@ -33,4 +35,5 @@ const BodyStyles = {
     },
 }
 
+export type BodyTypes = keyof typeof BodyStyles;
 export default BodyStyles;
