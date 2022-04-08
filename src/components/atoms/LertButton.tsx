@@ -2,7 +2,7 @@
 import { Button } from 'native-base'
 import { ViewStyle } from 'react-native';
 
-import BodyStyles, { BodyStyleTypes } from '~styles/body';
+import BodyStyles from '~styles/body';
 
 type LertButtonPropTypes = {
     title: string;
