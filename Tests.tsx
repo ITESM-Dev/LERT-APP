@@ -2,6 +2,7 @@ import { StyleSheet, View, Image } from 'react-native';
 import { Text, Box } from 'native-base';
 
 import LertButton from '~components/atoms/LertButton';
+import LertText from '~components/atoms/LertText';
 
 const Tests = () => {
     return (
@@ -10,21 +11,83 @@ const Tests = () => {
                 flex: 2, 
                 flexDirection: "row", 
                 justifyContent: "center", 
-                alignItems: "center"
+                alignItems: "center",
+                marginTop: 20,
             }}>
             <Image 
                 style={styles.logo}
                 source={require('./assets/ItesmDev_Transparente.png')}
             />
             <Image 
-                style={{width: 320, height: 128, padding: 10}}
+                style={{width: 320, height: 128, margin: 10}}
                 source={require('./assets/IBM_logo.png')}
             />
             </View>
+
+            <Box {...box} style={{marginVertical: 30}}>
+                <LertText text="Welcome to ItesmDev's LERT Prototypes" type='display02'/>
+            </Box>
+
+            {/* LertText Display*/}
+            <View style={{ 
+                marginVertical: 30,
+                flexDirection: 'row', 
+                width: '100%', 
+                justifyContent: 'space-around'
+            }}>
+                <LertText text='Display 1' type='display01'/>
+                <LertText text='Display 2' type='display02'/>
+                <LertText text='Display 3' type='display03'/>
+                <LertText text='Display 4' type='display04'/>
+            </View>
+
+            {/* LertText Body*/}
+            <View style={{ 
+                marginVertical: 30,
+                flexDirection: 'row', 
+                width: '100%', 
+                justifyContent: 'space-around'
+            }}>
+                <LertText text='Paragraph Components' type='paragraphComponents'/>
+                <LertText text='Short Paragraph' type='shortParagraph'/>
+                <LertText text='Large Paragraph' type='largeParagraph'/>
+                <LertText text='Expresive Long Paragraphs' type='expresiveLongParagraphs'/>
+            </View>
+
+            {/* LertText Fixed Headings*/}
+            <View style={{ 
+                marginVertical: 30,
+                flexDirection: 'row', 
+                width: '100%', 
+                justifyContent: 'space-around'
+            }}>
+                <LertText text='Heading' type='heading'/>
+                <LertText text='Heading Compact' type='headingCompact'/>
+                <LertText text='Body 02 Layout' type='body02Layout'/>
+                <LertText text='Long Layout' type='longLayout'/>
+                <LertText text='Long Layout 2' type='longLayout2'/>
+            </View>
+
+            {/* LertText Utility*/}
+            <View style={{ 
+                marginVertical: 30,
+                flexDirection: 'row', 
+                width: '100%', 
+                justifyContent: 'space-around'
+            }}>
+                <LertText text='Label' type='label'/>
+                <LertText text='Helper Text' type='helperText'/>
+            </View>
+
             {/* LertButton */}
-            <View style={{height: 50, width: '100%', flexDirection: 'row'}}>
+            <View style={{
+                marginVertical: 30,
+                height: 50, 
+                width: '100%', 
+                flexDirection: 'row'
+            }}>
                 <LertButton
-                    title='Hola'
+                    title='Primary'
                     type={'primary'}
                     onPress={() => {}}
                     style={{
@@ -32,7 +95,7 @@ const Tests = () => {
                     }}	
                 />
                 <LertButton
-                    title='Hola'
+                    title='Secondary'
                     type={'secondary'}
                     onPress={() => {}}
                     style={{
@@ -40,7 +103,7 @@ const Tests = () => {
                     }}	
                 />
                 <LertButton
-                    title='Hola'	
+                    title='Terciary'	
                     type={'terciary'}
                     onPress={() => {}}
                     style={{
@@ -48,7 +111,7 @@ const Tests = () => {
                     }}	
                 />
                 <LertButton
-                    title='Hola'	
+                    title='Danger'	
                     type={'danger'}	
                     onPress={() => {}}
                     style={{
@@ -56,7 +119,7 @@ const Tests = () => {
                     }}
                 />
                 <LertButton
-                    title='Hola'	
+                    title='Ghost'	
                     type={'ghost'}
                     onPress={() => {}}	
                     style={{
@@ -64,16 +127,15 @@ const Tests = () => {
                     }}
                 />
             </View>
-            <Box {...box}>
-                <Text style={styles.title}>Welcome to ItesmDev's LERT Prototype</Text>
-            </Box>
+            
         </View>
     )
 }
 
 const box = {
   flex: 1,
-  bg: "#fff",
+  bg: "components.systemGray",
+  width: '90%',
   alignItems: "center",
   justifyContent: "start",
 }
