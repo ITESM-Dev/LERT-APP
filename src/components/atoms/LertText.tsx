@@ -4,7 +4,7 @@ import DisplayStyles, { DisplayTypes } from '~styles/display';
 import FixedHeadingStyles, { FixedHadingTypes } from '~styles/fixedHeadings';
 import UtilityStyles, { UtilityTypes } from '~styles/utilityStyles';
 import BodyStyles, { BodyTypes } from '~styles/body';
-import theme from './../theme/theme';
+import theme from '../../theme/theme';
 
 export type StyleTypes = DisplayTypes | BodyTypes | FixedHadingTypes | UtilityTypes;
 
@@ -40,7 +40,7 @@ const LertText = (props: LertTextPropTypes) => {
         <Text 
             style={props.style} 
             {...Styles[props.type]} 
-            color="#000"
+            color="#14142B"
         >
             {props.text}
         </Text>

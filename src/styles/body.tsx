@@ -1,4 +1,4 @@
-import { TextType } from "~components/LertText";
+import { TextType } from "~components/atoms/LertText";
 
 const BodyStyles: { [key: string]: TextType } = {
     largeParagraph: {
