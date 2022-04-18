@@ -5,6 +5,7 @@ import LertButton from '~components/atoms/LertButton';
 import LertText from '~components/atoms/LertText';
 import LegalMenu from '~components/molecules/LegalMenu';
 import ProfileInfo from '~components/molecules/ProfileInfo';
+import AppTitle from '~components/atoms/molecules/AppTitle';
 
 const Tests = () => {
     return (
@@ -29,6 +30,8 @@ const Tests = () => {
             <ProfileInfo name="Ulises Venegas Gómez" role="CEO" />
 
             </View>
+
+            <AppTitle></AppTitle>
 
             <Box {...box} style={{marginVertical: 30}}>
                 <LertText text="Welcome to ItesmDev's LERT Prototypes" type='display02'/>
