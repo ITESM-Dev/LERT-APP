@@ -28,7 +28,8 @@ type LertTextPropTypes = {
     text: string,
     type: StyleTypes,
     style?: ViewStyle,
-    color?: string
+    color?: string,
+    onPress?: () => void;
 }
 
 /***
@@ -42,6 +43,7 @@ const LertText = (props: LertTextPropTypes) => {
             style={props.style} 
             {...Styles[props.type]} 
             color={props.color ? "#14142B" : props.color}
+            onPress={props.onPress}
         >
             {props.text}
         </Text>
