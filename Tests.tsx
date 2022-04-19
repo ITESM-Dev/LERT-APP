@@ -5,7 +5,7 @@ import LertButton from '~components/atoms/LertButton';
 import LertText from '~components/atoms/LertText';
 import LegalMenu from '~components/molecules/LegalMenu';
 import ProfileInfo from '~components/molecules/ProfileInfo';
-import AppTitle from '~components/atoms/molecules/AppTitle';
+import AppTitle from '~components/molecules/AppTitle';
 
 const Tests = () => {
     return (
