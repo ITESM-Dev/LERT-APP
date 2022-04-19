@@ -27,7 +27,8 @@ export type TextType = {
 type LertTextPropTypes = {
     text: string,
     type: StyleTypes,
-    style?: ViewStyle
+    style?: ViewStyle,
+    color?: string
 }
 
 /***
@@ -40,7 +41,7 @@ const LertText = (props: LertTextPropTypes) => {
         <Text 
             style={props.style} 
             {...Styles[props.type]} 
-            color="#14142B"
+            color={props.color ? "#14142B" : props.color}
         >
             {props.text}
         </Text>
