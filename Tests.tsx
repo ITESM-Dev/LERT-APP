@@ -4,6 +4,7 @@ import { Text, Box } from 'native-base';
 import LertButton from '~components/atoms/LertButton';
 import LertText from '~components/atoms/LertText';
 import LegalMenu from '~components/molecules/LegalMenu';
+import ProfileInfo from '~components/molecules/ProfileInfo';
 
 const Tests = () => {
     return (
@@ -23,6 +24,10 @@ const Tests = () => {
                 style={{width: 320, height: 128, margin: 10}}
                 source={require('./assets/IBM_logo.png')}
             />
+
+            {/* Profile Info */}
+            <ProfileInfo name="Ulises Venegas Gómez" role="CEO" />
+
             </View>
 
             <Box {...box} style={{marginVertical: 30}}>
