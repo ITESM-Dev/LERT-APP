@@ -13,11 +13,11 @@ const ProfileInfo = (props: ProfielInfoPropTypes) => {
             <Image 
                 size={100}
                 borderRadius={100}
-                source={{uri: props.imagePath ? props.imagePath : "https://wallpaperaccess.com/full/317501.jpg"}}
+                source={{uri: props.imagePath ? props.imagePath : "https://wallpaperaccess.com/full/317501.jpg" }}
                 alt="testing"
             />
-            <LertText text={props.name} type="heading"/>
-            <LertText text={props.role} type="body02Layout"/>
+            <LertText text={props.name} type="body02Layout"/>
+            <LertText text={props.role} type="shortParagraph"/>
         </Center>
     );
 };

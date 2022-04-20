@@ -83,6 +83,7 @@ const Tests = () => {
             }}>
                 <LertText text='Label' type='label'/>
                 <LertText text='Helper Text' type='helperText'/>
+                <ProfileInfo name="Ulises Venegas Gómez" role="CEO" />
             </View>
 
             {/* LertButton */}
