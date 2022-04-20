@@ -7,6 +7,11 @@ type ProfielInfoPropTypes = {
     role: string;
 }
 
+/**
+ * @param imagePath (optional) Path or link to the image, it has a default path
+ * @param name Input for the name of the person to be shown as text
+ * @param role Input for the role to be shown as text
+ */
 const ProfileInfo = (props: ProfielInfoPropTypes) => {
     return (
         <Center>
