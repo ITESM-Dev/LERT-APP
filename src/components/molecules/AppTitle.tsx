@@ -10,7 +10,7 @@ const AppTitle = () => {
             alignContent={"flex-start"}
             padding={10}
         >
-            <LertText text="LERT - LABOR EXPENSES RECOVERY TOOL" type="display02" color="components.selectedState"/>
+            <LertText text="LERT - LABOR EXPENSES RECOVERY TOOL" type="longLayout2" color="components.selectedState"/>
         </Box>
     );
 };

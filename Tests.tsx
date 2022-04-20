@@ -17,21 +17,20 @@ const Tests = () => {
                 alignItems: "center",
                 marginTop: 20,
             }}>
-            <Image 
-                style={styles.logo}
-                source={require('./assets/ItesmDev_Transparente.png')}
-            />
-            <Image 
-                style={{width: 320, height: 128, margin: 10}}
-                source={require('./assets/IBM_logo.png')}
-            />
+                <Image 
+                    style={styles.logo}
+                    source={require('./assets/ItesmDev_Transparente.png')}
+                />
+                <Image 
+                    style={{width: 320, height: 128, margin: 10}}
+                    source={require('./assets/IBM_logo.png')}
+                />
 
-            {/* Profile Info */}
-            <ProfileInfo name="Ulises Venegas Gómez" role="CEO" />
-
+                {/* Profile Info */}
+                <ProfileInfo name="Ulises Venegas Gómez" role="CEO" />
+                <AppTitle />
             </View>
 
-            <AppTitle></AppTitle>
 
             <Box {...box} style={{marginVertical: 30}}>
                 <LertText text="Welcome to ItesmDev's LERT Prototypes" type='display02'/>
