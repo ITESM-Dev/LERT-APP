@@ -17,6 +17,12 @@ export default extendTheme({
 			primaryLDark: "#F4F4F4",
 			secondayDark: "#C6C6C6"
 		},
+		text: {
+			primary: '#161616',
+			inputLabels: '#525252',
+			placeholder: '#A8A8A8',
+			onColor: '#FFFFFF '
+		},
 		components: {
 			activeState: "#C6C6C6",
 			systemGray: "#D3D3D6",
