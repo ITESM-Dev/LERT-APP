@@ -5,6 +5,7 @@ import LertButton from '~components/atoms/LertButton';
 import LertText from '~components/atoms/LertText';
 import LegalMenu from '~components/molecules/LegalMenu';
 import ProfileInfo from '~components/molecules/ProfileInfo';
+import LertInput from '~components/molecules/LertInput';
 
 const Tests = () => {
     return (
@@ -27,6 +28,14 @@ const Tests = () => {
 
             {/* Profile Info */}
             <ProfileInfo name="Ulises Venegas Gómez" role="CEO" />
+
+            {/* Lert Input */}
+            <LertInput 
+                placeholder="Input" 
+                style={{
+                    width: '50%'
+                }}
+            />
 
             </View>
 
@@ -130,7 +139,7 @@ const Tests = () => {
                     type={'ghost'}
                     onPress={() => {}}	
                     style={{
-                        width: '20%'
+                        flex: 1
                     }}
                 />
             </View>
