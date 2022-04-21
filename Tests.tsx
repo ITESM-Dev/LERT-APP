@@ -7,6 +7,7 @@ import LegalMenu from '~components/molecules/LegalMenu';
 import ProfileInfo from '~components/molecules/ProfileInfo';
 import AppTitle from '~components/molecules/AppTitle';
 import Dropdown from '~components/molecules/Dropdown';
+import Notification from '~components/molecules/Notification';
 
 const dropdownItems = [
     { label: 'Item 1', value: 'item1' },
@@ -41,6 +42,13 @@ const Tests = () => {
                 <AppTitle />
             </View>
 
+            <View style={{
+                height:80,
+                width: '100%',
+                alignItems: 'flex-end',
+            }}>
+                <Notification type='success' />
+            </View>
 
             <Box {...box} style={{marginVertical: 30}}>
                 <LertText text="Welcome to ItesmDev's LERT Prototypes" type='display02'/>
