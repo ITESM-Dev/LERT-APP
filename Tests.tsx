@@ -5,6 +5,7 @@ import LertButton from '~components/atoms/LertButton';
 import LertText from '~components/atoms/LertText';
 import LegalMenu from '~components/molecules/LegalMenu';
 import ProfileInfo from '~components/molecules/ProfileInfo';
+import AppTitle from '~components/molecules/AppTitle';
 
 const Tests = () => {
     return (
@@ -16,19 +17,11 @@ const Tests = () => {
                 alignItems: "center",
                 marginTop: 20,
             }}>
-            <Image 
-                style={styles.logo}
-                source={require('./assets/ItesmDev_Transparente.png')}
-            />
-            <Image 
-                style={{width: 320, height: 128, margin: 10}}
-                source={require('./assets/IBM_logo.png')}
-            />
-
-            {/* Profile Info */}
-            <ProfileInfo name="Ulises Venegas Gómez" role="CEO" />
-
+                {/* Profile Info */}
+                <ProfileInfo name="Ulises Venegas Gómez" role="CEO" />
+                <AppTitle />
             </View>
+
 
             <Box {...box} style={{marginVertical: 30}}>
                 <LertText text="Welcome to ItesmDev's LERT Prototypes" type='display02'/>
