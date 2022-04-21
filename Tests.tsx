@@ -1,5 +1,5 @@
-import { StyleSheet, View, Image } from 'react-native';
-import { Text, Box } from 'native-base';
+import { StyleSheet, View, Image, Alert } from 'react-native';
+import { Text, Box, } from 'native-base';
 
 import LertButton from '~components/atoms/LertButton';
 import LertText from '~components/atoms/LertText';
@@ -7,6 +7,7 @@ import LegalMenu from '~components/molecules/LegalMenu';
 import ProfileInfo from '~components/molecules/ProfileInfo';
 import AppTitle from '~components/molecules/AppTitle';
 import Dropdown from '~components/molecules/Dropdown';
+import Notification from '~components/molecules/Notification';
 
 const dropdownItems = [
     { label: 'Item 1', value: 'item1' },
@@ -41,6 +42,16 @@ const Tests = () => {
                 <AppTitle />
             </View>
 
+            <View style={{
+                height:300,
+                width: '100%',
+                alignItems: 'flex-end',
+            }}>
+                {/* Notifications / Alerts */}
+                <Notification type='error' title='ERROR' body='This is a test alert' />
+                <Notification type='warning' title='WARNING' body='This is a test alert' />
+                <Notification type='success' title='SUCCESS' body='This is a test alert' />
+            </View>
 
             <Box {...box} style={{marginVertical: 30}}>
                 <LertText text="Welcome to ItesmDev's LERT Prototypes" type='display02'/>
