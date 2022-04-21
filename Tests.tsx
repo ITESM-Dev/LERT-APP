@@ -1,5 +1,5 @@
 import { StyleSheet, View, Image, Alert } from 'react-native';
-import { Text, Box, } from 'native-base';
+import { Box, useTheme } from 'native-base';
 
 import LertButton from '~components/atoms/LertButton';
 import LertText from '~components/atoms/LertText';
@@ -8,6 +8,8 @@ import ProfileInfo from '~components/molecules/ProfileInfo';
 import AppTitle from '~components/molecules/AppTitle';
 import Dropdown from '~components/molecules/Dropdown';
 import Notification from '~components/molecules/Notification';
+
+import containerStyles from '~styles/containers';
 
 const dropdownItems = [
     { label: 'Item 1', value: 'item1' },
@@ -27,9 +29,15 @@ const dropdownFood = [
     { label: 'Taco', value: 'taco' },
 ]
 
+
+
 const Tests = () => {
+
+    const theme = useTheme()
+    const colorMode = theme.config.initialColorMode;
+
     return (
-        <View style={styles.container}>
+        <View style={containerStyles[`screen_${colorMode}`]}>
             <View style={{
                 flex: 2, 
                 flexDirection: "row", 
@@ -187,12 +195,6 @@ const box = {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     logo: {
         width: 320,
         height: 160,

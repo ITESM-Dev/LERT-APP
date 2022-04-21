@@ -1,11 +1,13 @@
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 
 import { NativeBaseProvider } from 'native-base';
 
+import containerStyles from '~styles/containers';
 import theme from '~theme/theme';
+
 import Tests from 'Tests';
 
 export default function App() {
@@ -23,17 +25,10 @@ export default function App() {
 	
 	return (
 		<NativeBaseProvider theme={theme}>
-			<View style={styles.container}>
+			<View style={containerStyles.app}>
 				<Tests/>
 			</View>
 		</NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  }
-});
 
