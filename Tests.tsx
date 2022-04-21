@@ -8,7 +8,7 @@ import ProfileInfo from '~components/molecules/ProfileInfo';
 import AppTitle from '~components/molecules/AppTitle';
 import Dropdown from '~components/molecules/Dropdown';
 import Notification from '~components/molecules/Notification';
-
+import LertInput from '~components/molecules/LertInput';
 import containerStyles from '~styles/containers';
 
 const dropdownItems = [
@@ -28,8 +28,6 @@ const dropdownFood = [
     { label: 'Tortilla', value: 'tortilla' },
     { label: 'Taco', value: 'taco' },
 ]
-
-
 
 const Tests = () => {
 
@@ -59,6 +57,14 @@ const Tests = () => {
                 <Notification type='error' title='ERROR' body='This is a test alert' />
                 <Notification type='warning' title='WARNING' body='This is a test alert' />
                 <Notification type='success' title='SUCCESS' body='This is a test alert' />
+                {/* Lert Input */}
+                <LertInput 
+                    placeholder="Input" 
+                    style={{
+                        width: '50%'
+                    }}
+                />
+
             </View>
 
             <Box {...box} style={{marginVertical: 30}}>
@@ -161,7 +167,7 @@ const Tests = () => {
                     type={'ghost'}
                     onPress={() => {}}	
                     style={{
-                        width: '20%'
+                        flex: 1
                     }}
                 />
             </View>
