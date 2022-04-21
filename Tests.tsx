@@ -1,5 +1,6 @@
 import { StyleSheet, View, Image, Alert } from 'react-native';
-import { Box, useTheme } from 'native-base';
+import { Box, useTheme, Text } from 'native-base';
+import { useState } from 'react';
 
 import LertButton from '~components/atoms/LertButton';
 import LertText from '~components/atoms/LertText';
@@ -33,11 +34,12 @@ const Tests = () => {
 
     const theme = useTheme()
     const colorMode = theme.config.initialColorMode;
+    const [text, setText] = useState("");
 
     return (
         <View style={containerStyles[`screen_${colorMode}`]}>
             <View style={{
-                flex: 2, 
+                flex: 1, 
                 flexDirection: "row", 
                 justifyContent: "center", 
                 alignItems: "center",
@@ -65,6 +67,24 @@ const Tests = () => {
                     }}
                 />
 
+                {/* Profile Info */}
+                <ProfileInfo name="Ulises Venegas Gómez" role="CEO" />
+
+            </View>
+
+            {/* Lert Input */}
+            <View style={{
+                flex: 1,
+                width: "100%"
+            }}>
+                <LertInput 
+                    placeholder="Input" 
+                    style={{
+                        width: '50%'
+                    }}
+                    text={text}
+                    setText={setText}
+                />
             </View>
 
             <Box {...box} style={{marginVertical: 30}}>
