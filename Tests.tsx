@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Text, Box } from 'native-base';
 
@@ -8,35 +9,45 @@ import ProfileInfo from '~components/molecules/ProfileInfo';
 import LertInput from '~components/molecules/LertInput';
 
 const Tests = () => {
+
+    const [text, setText] = useState("");
+
     return (
         <View style={styles.container}>
             <View style={{
-                flex: 2, 
+                flex: 1, 
                 flexDirection: "row", 
                 justifyContent: "center", 
                 alignItems: "center",
                 marginTop: 20,
             }}>
-            <Image 
-                style={styles.logo}
-                source={require('./assets/ItesmDev_Transparente.png')}
-            />
-            <Image 
-                style={{width: 320, height: 128, margin: 10}}
-                source={require('./assets/IBM_logo.png')}
-            />
+                <Image 
+                    style={styles.logo}
+                    source={require('./assets/ItesmDev_Transparente.png')}
+                />
+                <Image 
+                    style={{width: 320, height: 128, margin: 10}}
+                    source={require('./assets/IBM_logo.png')}
+                />
 
-            {/* Profile Info */}
-            <ProfileInfo name="Ulises Venegas Gómez" role="CEO" />
+                {/* Profile Info */}
+                <ProfileInfo name="Ulises Venegas Gómez" role="CEO" />
+
+            </View>
 
             {/* Lert Input */}
-            <LertInput 
-                placeholder="Input" 
-                style={{
-                    width: '50%'
-                }}
-            />
-
+            <View style={{
+                flex: 1,
+                width: "100%"
+            }}>
+                <LertInput 
+                    placeholder="Input" 
+                    style={{
+                        width: '50%'
+                    }}
+                    text={text}
+                    setText={setText}
+                />
             </View>
 
             <Box {...box} style={{marginVertical: 30}}>
