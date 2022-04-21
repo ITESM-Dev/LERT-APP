@@ -1,5 +1,5 @@
-import { StyleSheet, View, Image } from 'react-native';
-import { Text, Box } from 'native-base';
+import { StyleSheet, View, Image, Alert } from 'react-native';
+import { Text, Box, } from 'native-base';
 
 import LertButton from '~components/atoms/LertButton';
 import LertText from '~components/atoms/LertText';
@@ -43,11 +43,14 @@ const Tests = () => {
             </View>
 
             <View style={{
-                height:80,
+                height:300,
                 width: '100%',
                 alignItems: 'flex-end',
             }}>
-                <Notification type='success' />
+                {/* Notifications / Alerts */}
+                <Notification type='error' title='ERROR' body='This is a test alert' />
+                <Notification type='warning' title='WARNING' body='This is a test alert' />
+                <Notification type='success' title='SUCCESS' body='This is a test alert' />
             </View>
 
             <Box {...box} style={{marginVertical: 30}}>
