@@ -6,6 +6,25 @@ import LertText from '~components/atoms/LertText';
 import LegalMenu from '~components/molecules/LegalMenu';
 import ProfileInfo from '~components/molecules/ProfileInfo';
 import AppTitle from '~components/molecules/AppTitle';
+import Dropdown from '~components/molecules/Dropdown';
+
+const dropdownItems = [
+    { label: 'Item 1', value: 'item1' },
+    { label: 'Item 2', value: 'item2' },
+    { label: 'Item 3', value: 'item3' },
+]
+
+const dropdownAnimals = [
+    { label: 'Dog', value: 'dog' },
+    { label: 'Parrot', value: 'parrot' },
+    { label: 'Jirafe', value: 'jirafe' },
+]
+
+const dropdownFood = [
+    { label: 'Cheetos', value: 'cheetos' },
+    { label: 'Tortilla', value: 'tortilla' },
+    { label: 'Taco', value: 'taco' },
+]
 
 const Tests = () => {
     return (
@@ -126,6 +145,19 @@ const Tests = () => {
                         width: '20%'
                     }}
                 />
+            </View>
+
+            {/* Dropdowns */}
+            <View style={{
+                    flex: 1, 
+                    width: '100%',
+                    flexDirection: 'row', 
+                    justifyContent: 'space-around'
+                }}
+            >    
+                <Dropdown placeholder='Items' items={dropdownItems}/>
+                <Dropdown placeholder='Animals' items={dropdownAnimals}/>
+                <Dropdown placeholder='Food' items={dropdownFood}/>
             </View>
 
             {/* LegalMenu */}
