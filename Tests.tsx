@@ -65,6 +65,8 @@ const Tests = () => {
                     style={{
                         width: '50%'
                     }}
+                    text={text}
+                    setText={setText}
                 />
 
                 {/* Profile Info */}
