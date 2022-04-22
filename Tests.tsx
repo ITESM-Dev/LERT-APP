@@ -89,6 +89,21 @@ const Tests = () => {
                 />
             </View>
 
+            {/* Lert Input */}
+            <View style={{
+                flex: 1,
+                width: "100%"
+            }}>
+                <LertInput 
+                    placeholder="Input"
+                    style={{
+                        width: '50%'
+                    }}
+                    text={text}
+                    setText={setText}
+                />
+            </View>
+
             <Box {...box} style={{marginVertical: 30}}>
                 <LertText text="Welcome to ItesmDev's LERT Prototypes" type='display02'/>
             </Box>
