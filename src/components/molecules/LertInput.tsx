@@ -6,12 +6,20 @@ import Theme from '~theme/theme';
 import BodyStyles from '~styles/body';
 
 type LertInputPropTypes = {
-    placeholder: string;
+    placeholder?: string;
     style?: ViewStyle;
     text: string;
     setText: Dispatch<SetStateAction<string>>;
 }
 
+/**
+ * 
+ * @param placeholder (optional) Placeholder text 
+ * @param style (optional) ViewStyle
+ * @param text The variable in which the input is stored
+ * @param setText The function to update the text variable
+ * 
+ */
 const LertInput = (props: LertInputPropTypes) => {
     return (
         <Input 
