@@ -41,7 +41,7 @@ const Tests = () => {
                 width: "100%"
             }}>
                 <LertInput 
-                    placeholder="Input" 
+                    placeholder="Input"
                     style={{
                         width: '50%'
                     }}

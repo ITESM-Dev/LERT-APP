@@ -23,9 +23,8 @@ const LertInput = (props: LertInputPropTypes) => {
             borderTopColor={"rgba(0, 0, 0, 0.0)"}
             borderBottomColor={Theme.colors.dark.backdrop1}
             variant={"outline"}
-            style={props.style}
+            {...props.style}
             placeholder={props.placeholder}
-            width='50%'
             onChangeText={props.setText}
             value={props.text}
             _focus={{
