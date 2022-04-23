@@ -1,5 +1,6 @@
 import { StyleSheet, View, Image, Alert } from 'react-native';
-import { Box, useTheme } from 'native-base';
+import { Box, useTheme, Text } from 'native-base';
+import { useState } from 'react';
 
 import LertButton from '~components/atoms/LertButton';
 import LertText from '~components/atoms/LertText';
@@ -8,7 +9,7 @@ import ProfileInfo from '~components/molecules/ProfileInfo';
 import AppTitle from '~components/molecules/AppTitle';
 import Dropdown from '~components/molecules/Dropdown';
 import Notification from '~components/molecules/Notification';
-
+import LertInput from '~components/molecules/LertInput';
 import containerStyles from '~styles/containers';
 
 const dropdownItems = [
@@ -29,17 +30,16 @@ const dropdownFood = [
     { label: 'Taco', value: 'taco' },
 ]
 
-
-
 const Tests = () => {
 
     const theme = useTheme()
     const colorMode = theme.config.initialColorMode;
+    const [text, setText] = useState("");
 
     return (
         <View style={containerStyles[`screen_${colorMode}`]}>
             <View style={{
-                flex: 2, 
+                flex: 1, 
                 flexDirection: "row", 
                 justifyContent: "center", 
                 alignItems: "center",
@@ -59,6 +59,49 @@ const Tests = () => {
                 <Notification type='error' title='ERROR' body='This is a test alert' />
                 <Notification type='warning' title='WARNING' body='This is a test alert' />
                 <Notification type='success' title='SUCCESS' body='This is a test alert' />
+                {/* Lert Input */}
+                <LertInput 
+                    placeholder="Input" 
+                    style={{
+                        width: '50%'
+                    }}
+                    text={text}
+                    setText={setText}
+                />
+
+                {/* Profile Info */}
+                <ProfileInfo name="Ulises Venegas Gómez" role="CEO" />
+
+            </View>
+
+            {/* Lert Input */}
+            <View style={{
+                flex: 1,
+                width: "100%"
+            }}>
+                <LertInput 
+                    placeholder="Input"
+                    style={{
+                        width: '50%'
+                    }}
+                    text={text}
+                    setText={setText}
+                />
+            </View>
+
+            {/* Lert Input */}
+            <View style={{
+                flex: 1,
+                width: "100%"
+            }}>
+                <LertInput 
+                    placeholder="Input"
+                    style={{
+                        width: '50%'
+                    }}
+                    text={text}
+                    setText={setText}
+                />
             </View>
 
             <Box {...box} style={{marginVertical: 30}}>
@@ -161,7 +204,7 @@ const Tests = () => {
                     type={'ghost'}
                     onPress={() => {}}	
                     style={{
-                        width: '20%'
+                        flex: 1
                     }}
                 />
             </View>
