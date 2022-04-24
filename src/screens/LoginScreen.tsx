@@ -120,8 +120,14 @@ const LoginScreen = () => {
                         }}
                     />
 
+                    <Box
+                        borderBottomColor={"rgba(22, 22, 22, 0.3)"} //Icons.Primary Not in palette
+                        borderBottomWidth={1}
+                        marginTop={"10%"}
+                    />
+
                     <LertText
-                        style={{marginTop:"15%"}}
+                        style={{marginTop:"5%"}}
                         text="Don't have an account? Create an IBMid"
                         type="headingCompact"
                         color={Theme.colors.actions.actionPrimary}
