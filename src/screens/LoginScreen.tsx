@@ -5,6 +5,7 @@ import Theme from '~theme/theme';
 
 import LertInput from '~components/molecules/LertInput';
 import LertText  from '~components/atoms/LertText';
+import LertButton from '~components/atoms/LertButton'
 
 type BgBoxPropTypes = {
     text: string;
@@ -15,12 +16,12 @@ const BgBox = (props: BgBoxPropTypes) => {
     return (
         <Box
             {...props.style}
-            bgColor={Theme.colors.icons.primary}
+            bgColor={"rgba(22, 22, 22, 0.8)"} //Icons.Primary Not in palette 
             alignItems="center"
         >
             <LertText 
                 text={props.text} 
-                type="display01" 
+                type="largeParagraph" 
                 color={Theme.colors.light.backdrop1}
             />
         </Box>
@@ -35,9 +36,11 @@ const LoginScreen = () => {
     const screenHeight = useWindowDimensions().height;
 
     return (
-        <Box>
+        <Box
+            flexDirection="row"
+        >
+            {/*Left Side*/}
             <Box>
-                {/*Left Side*/}
                 <ImageBackground 
                     style={{width: screenWidth/10.0 * 6, height: screenHeight, justifyContent:"center", alignItems:"start"}}
                     source={require("~../assets/bgLogin.jpg")}
@@ -54,17 +57,86 @@ const LoginScreen = () => {
 
                 </ImageBackground>
             </Box>
+
+            {/*Right Side*/}
+            <Box
+                flex={1}
+                flexDirection="row"
+                alignContent="flex-end"
+                justifyContent="center"
+            >
+                <Box
+                    bgColor={Theme.colors.light.backdrop1}
+                    justifyContent="center"
+                    alignSelf="center"
+                    padding="5%"
+                    marginVertical="15%"
+                >
+                    <LertText
+                        text="Log in to LERT"
+                        type="longLayout2"
+                    />
+
+                    <LertText
+                        style={{marginTop:"8%"}}
+                        text="IBMid"
+                        type="headingCompact"
+                        color={Theme.colors.text.inputLabels}
+                    />
+                    <LertInput
+                        placeholder="IBM ID"
+                        style={{width: "100%"}}
+                        text={text}
+                        setText={setText}
+                    />
+
+                    <LertText
+                        style={{marginTop:"8%"}}
+                        text="Password"
+                        type="headingCompact"
+                        color={Theme.colors.text.inputLabels}
+                    />
+                    <LertInput
+                        placeholder="Password"
+                        style={{width: "100%"}}
+                        text={text}
+                        setText={setText}
+                    />
+
+                    <LertText
+                        style={{alignSelf:"flex-end", marginTop:"5%"}}
+                        text="Forgot password?"
+                        type="headingCompact"
+                        color={Theme.colors.actions.actionPrimary}
+                    />
+
+                    <LertButton 
+                        title="Continue"
+                        type={"primary"}
+                        onPress={() => {}}
+                        style={{
+                            width: "35%",
+                            marginTop: "10%"
+                        }}
+                    />
+
+                    <LertText
+                        style={{marginTop:"15%"}}
+                        text="Don't have an account? Create an IBMid"
+                        type="headingCompact"
+                        color={Theme.colors.actions.actionPrimary}
+                    />
+                    <LertText
+                        style={{marginTop:"4%"}}
+                        text="Need help? Contact the IBMid help desk"
+                        type="headingCompact"
+                        color={Theme.colors.actions.actionPrimary}
+                    />
+
+                </Box>
+            </Box>
         </Box>
     );
 };
-
-/*
-<LertInput
-                            placeholder="IBM ID"
-                            style={{width: "10%"}}
-                            text={text}
-                            setText={setText}
-                        />
-*/
 
 export default LoginScreen
