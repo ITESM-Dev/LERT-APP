@@ -8,7 +8,7 @@ import { NativeBaseProvider } from 'native-base';
 import containerStyles from '~styles/containers';
 import theme from '~theme/theme';
 
-import Tests from 'Tests';
+import Main from 'Main';
 
 export default function App() {
 
@@ -26,7 +26,7 @@ export default function App() {
 	return (
 		<NativeBaseProvider theme={theme}>
 			<View style={containerStyles.app}>
-				<Tests/>
+				<Main/>
 			</View>
 		</NativeBaseProvider>
   );
