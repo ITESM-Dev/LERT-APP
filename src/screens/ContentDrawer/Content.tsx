@@ -1,10 +1,10 @@
 import { Text, View } from "react-native";
-const Logout = () => {
+const Content = () => {
     return (
         <View>
-            <Text>Logout</Text>
+            <Text>Content</Text>
         </View>
     )
 };
 
-export default Logout;
+export default Content;
