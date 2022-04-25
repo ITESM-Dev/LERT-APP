@@ -11,7 +11,7 @@ import theme from '~theme/theme';
 import Main from 'Main';
 
 //Importing LoginScreen to test it
-import LoginScreen from '~screens/LoginScreen'
+import LoginScreen from '~screens/AppStack/LoginScreen'
 
 export default function App() {
 
