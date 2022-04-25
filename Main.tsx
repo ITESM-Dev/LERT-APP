@@ -3,7 +3,7 @@ import ContentDrawer from "~navigators/ContentDrawer";
 
 const Main = () => {
     return (
-        <NavigationContainer>
+        <NavigationContainer linking={{ enabled: true }} >
             <ContentDrawer/>
         </NavigationContainer>
     )

@@ -3,7 +3,7 @@ import LoginStack from "~navigators/LoginStack";
 
 const Login = () => {
     return (
-        <NavigationContainer>
+        <NavigationContainer linking={{ enabled: true }}>
             <LoginStack/>
         </NavigationContainer>
     )
