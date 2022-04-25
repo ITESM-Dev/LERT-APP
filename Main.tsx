@@ -1,10 +1,10 @@
 import { NavigationContainer } from "@react-navigation/native";
-import AppStack from "~navigators/AppStack";
+import ContentDrawer from "~navigators/ContentDrawer";
 
 const Main = () => {
     return (
         <NavigationContainer>
-            <AppStack/>
+            <ContentDrawer/>
         </NavigationContainer>
     )
 };
