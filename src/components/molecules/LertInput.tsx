@@ -10,6 +10,7 @@ type LertInputPropTypes = {
     style?: ViewStyle;
     text: string;
     setText: Dispatch<SetStateAction<string>>;
+    password?: boolean;
 }
 
 /**
@@ -18,12 +19,13 @@ type LertInputPropTypes = {
  * @param style (optional) ViewStyle
  * @param text The variable in which the input is stored
  * @param setText The function to update the text variable
+ * @param password (optional) Hides text if true
  * 
  */
 const LertInput = (props: LertInputPropTypes) => {
     return (
-        <Input 
-            bgColor={Theme.colors.light.backdrop1}
+        <Input
+            type={props.password ? "password" : "text"} 
             borderRadius={0}
             borderWidth={0}
             borderBottomWidth={1}
@@ -39,7 +41,8 @@ const LertInput = (props: LertInputPropTypes) => {
                 borderWidth: 1,
                 borderColor: Theme.colors.actions.actionPrimary,
                 borderBottomColor: Theme.colors.actions.actionPrimary,
-                borderTopColor: Theme.colors.actions.actionPrimary
+                borderTopColor: Theme.colors.actions.actionPrimary,
+                bgColor: Theme.colors.components.background
             }}
             _text={{
                 ...BodyStyles.paragraphComponents
