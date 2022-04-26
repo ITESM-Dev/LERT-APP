@@ -5,7 +5,7 @@ const UtilityStyles: { [key: string]: TextType } = {
         fontWeight: "regular",
         fontStyle: "normal",
         fontFamily: "body",
-        fontSize: 14,
+        fontSize: 12,
         lineHeight: 16,
         letterSpacing: 0.32 
     },

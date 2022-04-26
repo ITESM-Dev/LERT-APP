@@ -2,43 +2,31 @@ import { extendTheme } from 'native-base';
 
 export default extendTheme({
     colors: {
-		// Add new color
 		light: {
-			backdrop1: '#F4F4F4',
-			backdrop2: '#FFF',
-		},
-		dark: {
-			backdrop1: "#000",
-			backdrop2: "#262626"
+			background: '#F4F4F4',
 		},
 		icons: {
-			primary: "#161616",
-			secondary: "#525252",
-			primaryDark: "#F4F4F4",
-			secondaryDark: "#C6C6C6"
+			primary: "#C6C6C6",
+			secondary: "#525252"
 		},
 		text: {
-			primary: '#161616',
-			inputLabels: '#525252',
+			primary: '#000',
 			placeholder: '#A8A8A8',
 			onColor: '#FFFFFF ',
 			bg: "rgba(22, 22, 22, 0.8)"
 		},
 		components: {
-			activeState: "#C6C6C6",
-			systemGray: "#D3D3D6",
 			selectedState: "#E0E0E0",
 			placeholderActive: "#4D4D4D",
 			background: "#F7F7FC",
-			offWhite: "#FCFCFC"
+			offWhite: "#FCFCFC",
+			highContrast: "#262626"
 		},
 		actions: {
 			actionPrimary: "#0F62FE",
 			actionShade0: "#D0E2FF",
 			actionShade1: "#4589FF",
 			actionShade2: "#0043CE",
-			visitedLinks: "#8A3FFC",
-			highContrast: "#262626"
 		},
 		alerts: {
 			errorPrimary: "#FA4D56",
