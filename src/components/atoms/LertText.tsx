@@ -6,8 +6,7 @@ import DisplayStyles, { DisplayTypes } from '~styles/display';
 import FixedHeadingStyles, { FixedHadingTypes } from '~styles/fixedHeadings';
 import UtilityStyles, { UtilityTypes } from '~styles/utilityStyles';
 import BodyStyles, { BodyTypes } from '~styles/body';
-
-import theme from '../../theme/theme';
+import Theme from '../../theme/theme';
 
 export type StyleTypes = DisplayTypes | BodyTypes | FixedHadingTypes | UtilityTypes;
 
@@ -32,6 +31,8 @@ type LertTextPropTypes = {
     type: StyleTypes,
     style?: ViewStyle,
     color?: string,
+    bold?: string,
+    underline?: string
     onPress?: () => void;
 }
 
@@ -39,6 +40,9 @@ type LertTextPropTypes = {
  * @param text The text to display
  * @param type The Type Style
  * @param style (optionl) ViewStyle to add more style
+ * @param color (optional) Change text color
+ * @param bold (optional) Fontweight bold
+ * @param underline (optionL) TextDecorationLine underline
  */
 const LertText = (props: LertTextPropTypes) => {
 
@@ -46,9 +50,11 @@ const LertText = (props: LertTextPropTypes) => {
 
     return (
         <Text 
-            style={props.style} 
             {...Styles[props.type]} 
-            color={props.color ? props.color : Colors.dark.backdrop1}
+            fontWeight={props.bold}
+            textDecorationLine={props.underline}
+            style={props.style} 
+            color={props.color ? props.color  : Theme.colors.text.primary}
             onPress={props.onPress}
         >
             {props.text}
