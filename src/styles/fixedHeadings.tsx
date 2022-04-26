@@ -9,12 +9,12 @@ const FixedHeadingStyles: { [key: string]: TextType } = {
         lineHeight: 18,
         letterSpacing: 0.16 
     },
-    headingCompact: {
-        fontWeight: "regular",
+    heading2: {
+        fontWeight: "semi-bold",
         fontStyle: "normal",
         fontFamily: "body",
-        fontSize: 14,
-        lineHeight: 18,
+        fontSize: 16,
+        lineHeight: 24,
         letterSpacing: 0.16
     },
     body02Layout: {
@@ -35,6 +35,14 @@ const FixedHeadingStyles: { [key: string]: TextType } = {
     },
     longLayout2: {
         fontWeight: "regular",
+        fontStyle: "normal",
+        fontFamily: "body",
+        fontSize: 32,
+        lineHeight: 40,
+        letterSpacing: 0
+    },
+    boldLongLayout2: {
+        fontWeight: "bold",
         fontStyle: "normal",
         fontFamily: "body",
         fontSize: 32,
