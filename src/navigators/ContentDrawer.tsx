@@ -23,14 +23,14 @@ import LertText from "~components/atoms/LertText";
 
 
 const LABELS_STYLE = {
-    ...FixedHeadingStyles.body02Layout,
+    ...FixedHeadingStyles.heading,
     color: theme.colors.icons.secondary,
     fontFamily: theme.fonts.body, 
 };
 
 const ICONS_STYLE = {
     size: LABELS_STYLE.fontSize,
-    color: LABELS_STYLE.fontSize,
+    color: LABELS_STYLE.color,
 }
 
 const Drawer = createDrawerNavigator()
@@ -55,6 +55,7 @@ const ContentDrawer = () => {
                         fontWeight: LABELS_STYLE.fontWeight,
                         lineHeight: LABELS_STYLE.lineHeight,
                         letterSpacing: LABELS_STYLE.letterSpacing,
+                        margin: 0
                     },
                     drawerActiveBackgroundColor: theme.colors.components.selectedState,
                     drawerActiveTintColor: LABELS_STYLE.color,
@@ -130,7 +131,7 @@ const ContentDrawer = () => {
                                 drawerIcon: () => 
                                     <Ionicons 
                                         {...ICONS_STYLE}
-                                        name="people-sharp" 
+                                        name="people-outline" 
                                     />
                             }}
                         />
@@ -141,7 +142,7 @@ const ContentDrawer = () => {
                                 drawerIcon: () => 
                                     <Ionicons 
                                         {...ICONS_STYLE}
-                                        name="pencil-sharp" 
+                                        name="pencil-outline" 
                                     />
                             }}
                         />
@@ -153,14 +154,36 @@ const ContentDrawer = () => {
                         <Drawer.Screen 
                             name="Delegate"
                             component={Delegate}
+                            options={{
+                                drawerIcon: () => 
+                                    <Ionicons 
+                                        {...ICONS_STYLE}
+                                        name="people-outline" 
+                                    />
+                            }}
+                            
                         />
                         <Drawer.Screen 
                             name="Employee"
                             component={Employee}
+                            options={{
+                                drawerIcon: () => 
+                                    <Ionicons 
+                                        {...ICONS_STYLE}
+                                        name="person-outline" 
+                                    />
+                            }}
                         />
                         <Drawer.Screen 
                             name="Expenses"
                             component={Expenses}
+                            options={{
+                                drawerIcon: () => 
+                                    <Ionicons 
+                                        {...ICONS_STYLE}
+                                        name="cart-outline" 
+                                    />
+                            }}
                         />
                         <Drawer.Screen 
                             name="Recovery"
@@ -176,6 +199,13 @@ const ContentDrawer = () => {
                         <Drawer.Screen 
                             name="Reports"
                             component={Reports}
+                            options={{
+                                drawerIcon: () => 
+                                    <Ionicons 
+                                        {...ICONS_STYLE}
+                                        name="documents-outline" 
+                                    />
+                            }}
                         />
                     </Drawer.Group>
                 }
@@ -185,6 +215,13 @@ const ContentDrawer = () => {
                         <Drawer.Screen 
                             name="Delegate"
                             component={Delegate}
+                            options={{
+                                drawerIcon: () => 
+                                    <Ionicons 
+                                        {...ICONS_STYLE}
+                                        name="people-outline" 
+                                    />
+                            }}
                         />
                     </Drawer.Group>
                 }

@@ -14,8 +14,8 @@ export default extendTheme({
 		icons: {
 			primary: "#161616",
 			secondary: "#525252",
-			primaryLDark: "#F4F4F4",
-			secondayDark: "#C6C6C6"
+			primaryDark: "#F4F4F4",
+			secondaryDark: "#C6C6C6"
 		},
 		text: {
 			primary: '#161616',
