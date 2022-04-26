@@ -21,7 +21,8 @@ export default extendTheme({
 			primary: '#161616',
 			inputLabels: '#525252',
 			placeholder: '#A8A8A8',
-			onColor: '#FFFFFF '
+			onColor: '#FFFFFF ',
+			bg: "rgba(22, 22, 22, 0.8)"
 		},
 		components: {
 			activeState: "#C6C6C6",

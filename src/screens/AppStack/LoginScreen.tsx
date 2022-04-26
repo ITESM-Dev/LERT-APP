@@ -1,4 +1,4 @@
-import { View, ImageBackground, useWindowDimensions } from 'react-native';
+import { View, ImageBackground, useWindowDimensions, Linking } from 'react-native';
 import { Box } from 'native-base';
 import { useState, ViewStyle } from 'react';
 import Theme from '~theme/theme';
@@ -16,7 +16,7 @@ const BgBox = (props: BgBoxPropTypes) => {
     return (
         <Box
             {...props.style}
-            bgColor={"rgba(22, 22, 22, 0.8)"} //Icons.Primary Not in palette 
+            bgColor={Theme.colors.text.bg} //Icons.Primary Not in palette 
             alignItems="center"
         >
             <LertText 
@@ -30,10 +30,13 @@ const BgBox = (props: BgBoxPropTypes) => {
 
 const LoginScreen = () => {
 
-    const [text, setText] = useState("");
+    const [IBMid, setIBMid] = useState("");
+    const [password, setPassword] = useState("");
 
     const screenWidth = useWindowDimensions().width;
     const screenHeight = useWindowDimensions().height;
+
+    const IBMidHelp = "https://www.ibm.com/ibmid/myibm/help/us/helpdesk.html";
 
     return (
         <Box
@@ -86,8 +89,8 @@ const LoginScreen = () => {
                     <LertInput
                         placeholder="IBM ID"
                         style={{width: "100%"}}
-                        text={text}
-                        setText={setText}
+                        text={IBMid}
+                        setText={setIBMid}
                     />
 
                     <LertText
@@ -99,8 +102,8 @@ const LoginScreen = () => {
                     <LertInput
                         placeholder="Password"
                         style={{width: "100%"}}
-                        text={text}
-                        setText={setText}
+                        text={password}
+                        setText={setPassword}
                     />
 
                     <LertText
@@ -126,18 +129,38 @@ const LoginScreen = () => {
                         marginTop={"10%"}
                     />
 
-                    <LertText
-                        style={{marginTop:"5%"}}
-                        text="Don't have an account? Create an IBMid"
-                        type="headingCompact"
-                        color={Theme.colors.actions.actionPrimary}
-                    />
-                    <LertText
-                        style={{marginTop:"4%"}}
-                        text="Need help? Contact the IBMid help desk"
-                        type="headingCompact"
-                        color={Theme.colors.actions.actionPrimary}
-                    />
+                    <Box
+                        flexDirection={"row"}
+                    >
+                        <LertText
+                            style={{marginTop:"5%"}}
+                            text="Don't have an account? "
+                            type="headingCompact"
+                        />
+                        <LertText
+                            style={{marginTop:"5%"}}
+                            text="Create an IBMid"
+                            type="headingCompact"
+                            color={Theme.colors.actions.actionPrimary}
+                        />
+                    </Box>
+
+                    <Box
+                        flexDirection={"row"}
+                    >
+                        <LertText
+                            style={{marginTop:"5%"}}
+                            text="Need help?"
+                            type="headingCompact "
+                        />
+                        <LertText
+                            style={{marginTop:"6%"}}
+                            text=" Contact the IBMid help desk"
+                            type="headingCompact"
+                            onPress={()=>{ Linking.openURL( IBMidHelp )}}
+                            color={Theme.colors.actions.actionPrimary}
+                        />
+                    </Box>
 
                 </Box>
             </Box>
