@@ -5,33 +5,49 @@ const DisplayStyles: { [key: string]: TextType } = {
         fontWeight: "light",
         fontStyle: "normal",
         fontFamily: "body",
+        fontSize: 24,
+        lineHeight: 34,
+        letterSpacing: 0 
+    },
+    display02: {
+      fontWeight: "semibold",
+      fontStyle: "normal",
+      fontFamily: "body",
+      fontSize: 24,
+      lineHeight: 34,
+      letterSpacing: 0 
+    },
+    display03: {
+        fontWeight: "light",
+        fontStyle: "normal",
+        fontFamily: "body",
         fontSize: 54,
         lineHeight: 64,
         letterSpacing: 0 
     },
-    display02: {
+    display04: {
         fontWeight: "semibold",
         fontStyle: "normal",
         fontFamily: "body",
         fontSize: 54,
         lineHeight: 64,
         letterSpacing: 0 
-      },
-      display03: {
+    },
+    display05: {
         fontWeight: "light",
         fontStyle: "normal",
         fontFamily: "body",
         fontSize: 92,
         lineHeight: 102,
-        letterSpacing: -0.64 //check this one out 
-      },
-      display04: {
-        fontWeight: "bold",
+        letterSpacing: -0.64
+    },
+    display06: {
+        fontWeight: "semibold",
         fontStyle: "normal",
         fontFamily: "body",
         fontSize: 92,
         lineHeight: 102,
-        letterSpacing: 0.64 
+        letterSpacing: -0.64 
     }
 }
 

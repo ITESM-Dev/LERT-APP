@@ -1,19 +1,11 @@
 import { TextType } from "~components/atoms/LertText";
 
 const BodyStyles: { [key: string]: TextType } = {
-    largeParagraph: {
-        fontWeight: "light",
-        fontStyle: "normal",
-        fontFamily: "body",
-        fontSize: 28,
-        lineHeight: 36,
-        letterSpacing: 0 
-    },
     paragraphComponents: {
         fontWeight: "regular",
         fontStyle: "normal",
         fontFamily: "body",
-        fontSize: 14,
+        fontSize: 12,
         lineHeight: 18,
         letterSpacing: 0.16 
     },
@@ -25,13 +17,21 @@ const BodyStyles: { [key: string]: TextType } = {
         lineHeight: 22,
         letterSpacing: 0 
     },
-    expresiveLongParagraph: {
+    body01: {
         fontWeight: "regular",
         fontStyle: "normal",
         fontFamily: "body",
-        fontSize: 19,
-        lineHeight: 22,
-        letterSpacing: 0.75 
+        fontSize: 14,
+        lineHeight: 20,
+        letterSpacing: 0.16 
+    },
+    body02: {
+        fontWeight: "regular",
+        fontStyle: "normal",
+        fontFamily: "body",
+        fontSize: 14,
+        lineHeight: 18,
+        letterSpacing: 0.16 
     },
 }
 
