@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import { View } from 'react-native';
 
 import { NativeBaseProvider } from 'native-base';
+import 'react-native-gesture-handler';
 
 import containerStyles from '~styles/containers';
 import theme from '~theme/theme';
