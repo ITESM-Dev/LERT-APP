@@ -1,16 +1,32 @@
 import { StyleSheet } from 'react-native';
+
+import { Box, Image } from 'native-base';
+
 import LertText from '~components/atoms/LertText';
-import { Box } from 'native-base';
+import theme from '~theme/theme';
 
 const AppTitle = () => {
+
+    const colors = theme.colors
+
     return (
         <Box 
-            backgroundColor={"dark.backdrop1"} 
-            alignSelf={"flex-end"}
-            alignContent={"flex-start"}
-            padding={10}
+            flex={1}
+            padding={3}
+            backgroundColor={colors.light.backdrop2}
+            flexDirection='row' 
+            justifyContent="flex-start"
         >
-            <LertText text="LERT - LABOR EXPENSES RECOVERY TOOL" type="longLayout2" color="components.selectedState"/>
+            <LertText 
+                text="LERT " 
+                type="boldLongLayout2" 
+                color={colors.text.primary}
+            />
+            <LertText 
+                text="LABOR EXPENSES RECOVERY TOOL" 
+                type="longLayout2" 
+                color={colors.text.primary}
+            />
         </Box>
     );
 };
