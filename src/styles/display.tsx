@@ -48,6 +48,14 @@ const DisplayStyles: { [key: string]: TextType } = {
         fontSize: 92,
         lineHeight: 102,
         letterSpacing: -0.64 
+    },
+    displayParagraph: {
+        fontWeight: "light",
+        fontStyle: "normal",
+        fontFamily: "body",
+        fontSize: 28,
+        lineHeight: 36,
+        letterSpacing: 0 
     }
 }
 

@@ -46,7 +46,7 @@ type LertTextPropTypes = {
  */
 const LertText = (props: LertTextPropTypes) => {
 
-    const Colors = theme.colors
+    const Colors = Theme.colors
 
     return (
         <Text 
