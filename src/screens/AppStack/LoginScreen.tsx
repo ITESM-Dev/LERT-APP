@@ -4,25 +4,28 @@ import { useState, ViewStyle } from 'react';
 import Theme from '~theme/theme';
 
 import LertInput from '~components/molecules/LertInput';
-import LertText  from '~components/atoms/LertText';
+import LertText, { StyleTypes }  from '~components/atoms/LertText';
 import LertButton from '~components/atoms/LertButton'
+
+import * as textTypes from '~styles/constants/textTypes';
 
 type BgBoxPropTypes = {
     text: string;
     style?: ViewStyle;
+    textType: string;
 }
 
 const BgBox = (props: BgBoxPropTypes) => {
     return (
         <Box
             {...props.style}
-            bgColor={Theme.colors.text.bg} //Icons.Primary Not in palette 
+            bgColor={Theme.colors.text.bg} 
             alignItems="center"
         >
             <LertText 
                 text={props.text} 
-                type="largeParagraph" 
-                color={Theme.colors.light.backdrop1}
+                type={props.textType} 
+                color={Theme.colors.text.white}
             />
         </Box>
     );
@@ -49,14 +52,12 @@ const LoginScreen = () => {
                     source={require("~../assets/bgLogin.jpg")}
                     alt="testing"
                 >
-                    <BgBox text="Welcome to LERT" style={{marginLeft:"18%"}}>
-                    </BgBox>
+                    <BgBox text="Welcome to" style={{marginLeft:"18%", paddingRight:"5%"}} textType={textTypes.heading5} />
+                    <BgBox text="LERT" style={{marginLeft:"18%"}} textType={textTypes.display06} />
 
-                    <BgBox text="Labor Expenses Recovery Tool" style={{marginLeft:"18%"}}>
-                    </BgBox>
+                    <BgBox text="Labor Expenses Recovery Tool" style={{marginLeft:"18%"}} textType={textTypes.displayParagraph} /> 
 
-                    <BgBox text="Making the expense recvery process faster and easier" style={{marginLeft:"18%", marginTop:"8%"}}>
-                    </BgBox>
+                    <BgBox text="Making the expense recovery process faster and easier." style={{marginLeft:"18%", marginTop:"8%", marginRight:"30%"}} textType={textTypes.heading5} />
 
                 </ImageBackground>
             </Box>
@@ -69,22 +70,22 @@ const LoginScreen = () => {
                 justifyContent="center"
             >
                 <Box
-                    bgColor={Theme.colors.light.backdrop1}
+                    bgColor={Theme.colors.components.offWhite}
                     justifyContent="center"
                     alignSelf="center"
-                    padding="5%"
+                    padding="15%"
                     marginVertical="15%"
                 >
                     <LertText
                         text="Log in to LERT"
-                        type="longLayout2"
+                        type={textTypes.heading4}
                     />
 
                     <LertText
                         style={{marginTop:"8%"}}
                         text="IBMid"
-                        type="headingCompact"
-                        color={Theme.colors.text.inputLabels}
+                        type={textTypes.label}
+                        color={Theme.colors.components.placeholderActive}
                     />
                     <LertInput
                         placeholder="IBM ID"
@@ -96,21 +97,23 @@ const LoginScreen = () => {
                     <LertText
                         style={{marginTop:"8%"}}
                         text="Password"
-                        type="headingCompact"
-                        color={Theme.colors.text.inputLabels}
+                        type={textTypes.label}
+                        color={Theme.colors.components.placeholderActive}
                     />
                     <LertInput
                         placeholder="Password"
                         style={{width: "100%"}}
                         text={password}
                         setText={setPassword}
+                        password={true}
                     />
 
                     <LertText
                         style={{alignSelf:"flex-end", marginTop:"5%"}}
                         text="Forgot password?"
-                        type="headingCompact"
+                        type={textTypes.label}
                         color={Theme.colors.actions.actionPrimary}
+                        underline="underline"
                     />
 
                     <LertButton 
@@ -135,13 +138,14 @@ const LoginScreen = () => {
                         <LertText
                             style={{marginTop:"5%"}}
                             text="Don't have an account? "
-                            type="headingCompact"
+                            type={textTypes.label}
                         />
                         <LertText
                             style={{marginTop:"5%"}}
                             text="Create an IBMid"
-                            type="headingCompact"
+                            type={textTypes.label}
                             color={Theme.colors.actions.actionPrimary}
+                            underline="underline"
                         />
                     </Box>
 
@@ -150,15 +154,16 @@ const LoginScreen = () => {
                     >
                         <LertText
                             style={{marginTop:"5%"}}
-                            text="Need help?"
-                            type="headingCompact "
+                            text="Need help? "
+                            type={textTypes.label}
                         />
                         <LertText
-                            style={{marginTop:"6%"}}
-                            text=" Contact the IBMid help desk"
-                            type="headingCompact"
+                            style={{marginTop:"5%"}}
+                            text="Contact the IBMid help desk"
+                            type={textTypes.label}
                             onPress={()=>{ Linking.openURL( IBMidHelp )}}
                             color={Theme.colors.actions.actionPrimary}
+                            underline="underline"
                         />
                     </Box>
 

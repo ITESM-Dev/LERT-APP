@@ -12,8 +12,8 @@ export default extendTheme({
 		text: {
 			primary: '#000',
 			placeholder: '#A8A8A8',
-			onColor: '#FFFFFF ',
-			bg: "rgba(22, 22, 22, 0.8)"
+			white: "#FFFFFF",
+			bg: "rgba(0, 0, 0, 0.7)"
 		},
 		components: {
 			selectedState: "#E0E0E0",
