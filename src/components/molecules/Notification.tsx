@@ -1,6 +1,8 @@
 import { Alert, Box, CloseIcon, HStack, IconButton, VStack } from "native-base"
 import LertText from "~components/atoms/LertText";
 
+import * as textTypes from '~styles/constants/textTypes';
+
 type NotificationPropTypes = {
     title:string;
     body:string;
@@ -24,7 +26,7 @@ const Notification = (props:NotificationPropTypes) =>{
                 <HStack space={2} alignItems="center" justifyContent="space-between">
                     <HStack space={2} alignItems="center">
                         <Alert.Icon/>
-                        <LertText text={props.title} type="body02Layout" color='light.backdrop1'/>
+                        <LertText text={props.title} type={textTypes.body02} color='light.backdrop1'/>
                     </HStack>
                     <IconButton 
                         icon={<CloseIcon size="3" color="icons.primaryLDark" />} 
@@ -33,7 +35,7 @@ const Notification = (props:NotificationPropTypes) =>{
                 <Box 
                     paddingLeft={'8%'}
                 >
-                    <LertText text={props.body} type="shortParagraph" color= 'light.backdrop1'/>
+                    <LertText text={props.body} type={textTypes.shortParagraph} color= 'light.backdrop1'/>
                 </Box>
             </VStack>
         </Alert>

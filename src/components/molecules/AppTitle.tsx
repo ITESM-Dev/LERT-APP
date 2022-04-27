@@ -5,6 +5,8 @@ import { Box, Image } from 'native-base';
 import LertText from '~components/atoms/LertText';
 import theme from '~theme/theme';
 
+import * as textTypes from '~styles/constants/textTypes';
+
 const AppTitle = () => {
 
     const colors = theme.colors
@@ -13,18 +15,19 @@ const AppTitle = () => {
         <Box 
             flex={1}
             padding={3}
-            backgroundColor={colors.light.backdrop2}
+            backgroundColor={colors.text.white}
             flexDirection='row' 
             justifyContent="flex-start"
         >
             <LertText 
                 text="LERT " 
-                type="boldLongLayout2" 
+                type={textTypes.display02} 
                 color={colors.text.primary}
+                bold="bold"
             />
             <LertText 
                 text="LABOR EXPENSES RECOVERY TOOL" 
-                type="longLayout2" 
+                type={textTypes.display01} 
                 color={colors.text.primary}
             />
         </Box>
