@@ -1,11 +1,14 @@
 import { Box, Tooltip } from "native-base";
+import { ViewStyle } from "react-native";
 import LertText from "~components/atoms/LertText";
 
-import * as textTypes from '~styles/constants/textTypes'
+import * as textTypes from '~styles/constants/textTypes';
+import Theme from '~theme/theme';
 
 type TableItemPropTypes = {
     items: Array<string>;
     flexValues: Array<number>;
+    styles?: ViewStyle;
 }
 
 /**
@@ -20,16 +23,23 @@ type TableItemPropTypes = {
  * ['Item 1'  'Item 2'       'Item 3'           ]
  * 
  */
-const TableItem = ({ items, flexValues }: TableItemPropTypes) => {
+const TableItem = ({ items, flexValues, styles }: TableItemPropTypes) => {
 
     return (
         <Box
+            marginX={"10%"}
+            borderWidth={0.1}
+            borderColor={Theme.colors.icons.primary}
+            height={10}
+            {...styles}
             flexDirection='row'
             alignItems={'center'}
+
         >
             { items.map( (item, index) => {
                 return(
                     <LertText
+                        key={ index }
                         text={ item }
                         type={ textTypes.paragraphComponents }
                         tooltipDisabled={false}
