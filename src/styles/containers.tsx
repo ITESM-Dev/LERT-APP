@@ -8,15 +8,19 @@ const containerStyles: { [key: string]:any } = {
     },
     screen_light: {
         flex: 1,
-        backgroundColor: Theme.colors.light.backdrop2,
+        backgroundColor: Theme.colors.text.white,
         alignItems: 'center',
         justifyContent: 'center',
     },
     screen_drak: {
         flex: 1,
-        backgroundColor: Theme.colors.dark.backdrop1,
+        backgroundColor: Theme.colors.text.primary,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    contentScreen: {
+        flex: 1,
+        backgroundColor: Theme.colors.components.background,
     },
 
 };
