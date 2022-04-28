@@ -46,7 +46,7 @@ const ContentDrawer = () => {
                 screenOptions={{
                     drawerType: 'permanent',
                     headerShown: false,
-                    sceneContainerStyle: containerStyles.screen_light,
+                    sceneContainerStyle: containerStyles.contentScreen,
 
                     // @ts-ignore
                     drawerLabelStyle: { 
