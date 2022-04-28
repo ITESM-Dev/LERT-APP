@@ -31,7 +31,7 @@ const LertInput = (props: LertInputPropTypes) => {
             borderBottomWidth={1}
             borderTopWidth={1}
             borderTopColor={"rgba(0, 0, 0, 0.0)"}
-            borderBottomColor={Theme.colors.dark.backdrop1}
+            borderBottomColor={Theme.colors.text.primary}
             variant={"outline"}
             {...props.style}
             placeholder={props.placeholder}

@@ -8,6 +8,8 @@ import LertText from '~components/atoms/LertText';
 import { TouchableOpacity } from 'react-native';
 import theme from '~theme/theme';
 
+import * as textTypes from '~styles/constants/textTypes';
+
 type ProfielInfoPropTypes = {
     imagePath?: string;
     name: string;
@@ -51,13 +53,13 @@ const ProfileInfo = (props: ProfielInfoPropTypes) => {
             >
                 <LertText 
                     text={props.name} 
-                    color={theme.colors.actions.highContrast}
-                    type="heading2"
+                    color={theme.colors.components.highContrast}
+                    type={textTypes.heading2}
                 />
                 <LertText 
                     text={props.role}
                     color={theme.colors.components.placeholderActive} 
-                    type="paragraphComponents"
+                    type={textTypes.heading}
                 />
             </Box>
 
@@ -73,13 +75,13 @@ const ProfileInfo = (props: ProfielInfoPropTypes) => {
                 
                     <LertText 
                         text='Logout' 
-                        type={'heading'}
-                        color={theme.colors.actions.highContrast}
+                        type={textTypes.heading}
+                        color={theme.colors.components.highContrast}
                     />
                     <Ionicons 
                         name='arrow-forward-outline' 
                         size={14}
-                        color={theme.colors.actions.highContrast}
+                        color={theme.colors.components.highContrast}
                     />
 
             </Pressable>

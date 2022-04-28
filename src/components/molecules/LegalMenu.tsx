@@ -1,4 +1,4 @@
-import { Box, View } from 'native-base'
+import { Box } from 'native-base'
 
 import LertText from '~components/atoms/LertText'
 

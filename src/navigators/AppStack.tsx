@@ -55,7 +55,7 @@ const AppStack = () => {
                 options={{ 
                     header: ContentHeader,
                     headerShown: true, 
-                    headerStyle: { backgroundColor: theme.colors.dark.backdrop1 }
+                    headerStyle: { backgroundColor: theme.colors.text.primary }
                 }}
             />
 
