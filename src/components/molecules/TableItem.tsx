@@ -31,9 +31,9 @@ const TableItem = ({ items, flexValues, styles }: TableItemPropTypes) => {
             borderWidth={0.1}
             borderColor={Theme.colors.icons.primary}
             height={10}
-            {...styles}
             flexDirection='row'
             alignItems={'center'}
+            {...styles}
 
         >
             { items.map( (item, index) => {
