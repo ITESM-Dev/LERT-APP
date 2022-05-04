@@ -36,7 +36,7 @@ const ExtraHours = () => {
 
             <LertText text="Extra Hours" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
 
-            <Overlay maxWidth={"50%"} maxHeight={"50%"}> 
+            <Overlay maxWidth={"50%"} maxHeight={"50%"} buttonTitle="Add Extra Hour"> 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
                         <VStack alignItems={"flex-start"}>

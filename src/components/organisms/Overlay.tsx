@@ -12,12 +12,14 @@ type OverlayPropTypes = {
     children: JSX.Element;
     maxWidth: string | number;
     maxHeight: string | number;
+    buttonTitle: string;
 }
 
 /**
  * @param children The components that go inside the Modal window
  * @param maxWidth String or number to give the maxWidth of the Modal
  * @param maxHeight String or number to give the maxHeight of the Modal
+ * @param buttonTitle String that will be the title of the button
  */
 const Overlay = (props: OverlayPropTypes) => {
 
@@ -26,7 +28,7 @@ const Overlay = (props: OverlayPropTypes) => {
 
     return (
         <Box alignSelf={"flex-end"} paddingRight="10%">
-            <LertButton title="Add extra hour" type="primary" onPress={() => setIsOpen(true)} />;
+            <LertButton title={props.buttonTitle} type="primary" onPress={() => setIsOpen(true)} />
             <Modal initialFocusRef={initialFocusRef} isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
                 <Modal.Content maxWidth={props.maxWidth} maxHeight={props.maxHeight} style={{backgroundColor:theme.colors.text.white}}>
                     <Modal.CloseButton onPress={() => setIsOpen(false)} />

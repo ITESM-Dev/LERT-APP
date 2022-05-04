@@ -28,9 +28,9 @@ const Types = () => {
     return (
         <View>
             
-            <LertText text="Extra Hours" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
+            <LertText text="Types" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
 
-            <Overlay maxWidth={"50%"} maxHeight={"50%"}> 
+            <Overlay maxWidth={"50%"} maxHeight={"50%"} buttonTitle="Create Expense"> 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
                         <VStack alignItems={"flex-start"}>
@@ -52,7 +52,7 @@ const Types = () => {
 
             </Overlay>
 
-            <LertText text="Extra Hours List" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
+            <LertText text="Types List" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
 
             <Table headers={["Type", "Country", "Band", "Rate", "Date of Start", "Date of Finish"]} items={example} flexValues={[1, 1, 1, 1, 2, 2]}/>
 
