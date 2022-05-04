@@ -26,12 +26,6 @@ const Overlay = (props: OverlayPropTypes) => {
 
     return (
         <Box alignSelf={"flex-end"} paddingRight="10%">
-            {/** 
-             * <Modal initialFocusRef={initialFocusRef} trigger={triggerProps => {
-            return <LertButton {...triggerProps} title="Add extra hour" type="primary" onPress={() => setIsOpen(true)} />;
-            }} isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
-            */}
-
             <LertButton title="Add extra hour" type="primary" onPress={() => setIsOpen(true)} />;
             <Modal initialFocusRef={initialFocusRef} isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
                 <Modal.Content maxWidth={props.maxWidth} maxHeight={props.maxHeight} style={{backgroundColor:theme.colors.text.white}}>
