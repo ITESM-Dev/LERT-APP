@@ -1,8 +1,9 @@
 
-import { Button } from 'native-base'
+import { Actionsheet, Button } from 'native-base'
 import { ViewStyle } from 'react-native';
 
 import BodyStyles from '~styles/body';
+import theme from '~theme/theme';
 
 type LertButtonPropTypes = {
     title: string;
@@ -63,43 +64,43 @@ type StyleType = {
 // Button Styles
 const LertButtonStyles: { [name: string]: StyleType} = {
     primary: {
-        backgroundColor: "actions.actionPrimary",
+        backgroundColor: theme.colors.actions.actionPrimary,
     },
     primaryHover: {
-        backgroundColor: "actions.actionShade2"
+        backgroundColor: theme.colors.actions.actionShade2
     },
     primaryPressed: {
-        borderColor: 'light.backdrop2',
+        borderColor: theme.colors.text.white,
         borderWidth: 2,
     },
     secondary: {
-        backgroundColor: "dark.backdrop1",
+        backgroundColor: theme.colors.icons.secondary,
     },
     secondaryHover: {
-        backgroundColor: "dark.backdrop2"
+        backgroundColor: theme.colors.icons.primary
     },
     secondaryPressed: {
-        borderColor: 'light.backdrop2',
+        borderColor: theme.colors.text.white,
         borderWidth: 2,
     },
     terciary: {
-        borderColor: "actions.actionPrimary",
-        backgroundColor: "light.backdrop2",
+        borderColor: theme.colors.actions.actionPrimary,
+        backgroundColor: theme.colors.text.white,
         variant: 'outline',
         _text: {
-            _light: { color: 'actions.actionPrimary' }
+            _light: { color: theme.colors.actions.actionPrimary }
         }
     },
     terciaryHover: {
         variant: 'solid',
-        backgroundColor: "actions.actionPrimary",
+        backgroundColor: theme.colors.actions.actionPrimary,
         _text: {
-            _light: { color: 'light.backdrop2' }
+            _light: { color: theme.colors.text.white }
         }
         
     },
     terciaryPressed: {
-        borderColor: 'light.backdrop1',
+        borderColor: theme.colors.text.white,
         borderWidth: 2
     },
     danger: {
@@ -109,18 +110,18 @@ const LertButtonStyles: { [name: string]: StyleType} = {
         backgroundColor: "alerts.errorPrimary"
     },
     dangerPressed: {
-        borderColor: 'light.backdrop1',
+        borderColor: theme.colors.text.white,
         borderWidth: 2
     },
     ghost: {
         variant: 'ghost',
-        backgroundColor: 'light.background2',
+        backgroundColor: theme.colors.text.white,
         _text: {
             _light:  { color: 'actions.actionPrimary'}
         }
     },
     ghostHover: {
-        backgroundColor: 'light.backdrop1'
+        backgroundColor: theme.colors.text.white
     },
     ghostPressed: {
         borderColor: 'actions.actionPrimary',
