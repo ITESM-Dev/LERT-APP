@@ -9,7 +9,7 @@ import BodyStyles from '~styles/body';
 
 const COLORS = Theme.colors
 const BG_COLOR = COLORS.components.offWhite
-const BODERD_COLOR = COLORS.components.activeState
+const BODERD_COLOR = COLORS.components.highContrast
 
 type DropdownPropTypes = {
     placeholder: string;
@@ -44,7 +44,13 @@ const Dropdown = (props: DropdownPropTypes) => {
                 
                 containerStyle={ styles.container }
 
-                textStyle={ styles.text }
+                textStyle={[ 
+                    styles.text, 
+                    { color: value ? 
+                        COLORS.text.primary : 
+                        COLORS.text.placeholder,
+                    } 
+                ]}
                 
                 arrowIconStyle={ styles.arrowIcon }
                 arrowIconContainerStyle={ styles.arrowContainer }
@@ -79,12 +85,12 @@ const styles = StyleSheet.create({
     },
     dropdownContainer: { 
         borderColor: BODERD_COLOR,
+        borderRadius: 0,
     },
     container: {
         backgroundColor: BG_COLOR,
         borderColor: BODERD_COLOR,
-        borderWidth: 1,
-        borderRadius: 5,
+        borderBottomWidth: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
@@ -98,7 +104,6 @@ const styles = StyleSheet.create({
     text: {
         ...BodyStyles.paragraphComponents ,
         fontFamily: Theme.fonts.body,
-        color: COLORS.text.inputLabels,
         tintColor: COLORS.icons.secondary,
     },
     itemContainer: {
