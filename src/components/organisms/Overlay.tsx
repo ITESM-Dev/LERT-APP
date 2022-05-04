@@ -14,6 +14,11 @@ type OverlayPropTypes = {
     maxHeight: string | number;
 }
 
+/**
+ * @param children The components that go inside the Modal window
+ * @param maxWidth String or number to give the maxWidth of the Modal
+ * @param maxHeight String or number to give the maxHeight of the Modal
+ */
 const Overlay = (props: OverlayPropTypes) => {
 
     const [isOpen, setIsOpen] = useState(false);
