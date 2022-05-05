@@ -39,7 +39,7 @@ const Home = () => {
     return (
         <ScrollView h="500">    
             <View style={{
-                    width: 1150, height: 150,flexDirection: 'column', marginHorizontal: 70
+                    width: '100%', flexDirection: 'column', marginHorizontal: 70
                 }}>
 
                 <Box style={{marginTop: 80, marginBottom: 20}}>
@@ -67,8 +67,8 @@ const Home = () => {
                         />
                 </Box>
                 
-                <View  style={{ width: 1150, height: 500,flexDirection: 'column'}}>
-                    <View style={{ width: 1150,marginBottom:30, flexDirection: 'row'}}>
+                <View  style={{ flexDirection: 'column' }}>
+                    <View style={{ flexDirection: 'row', marginBottom: 30 }}>
                         <BgBox 
                             text="Reduction of time invested by managers" 
                             style={{width:"55%"}}/>
@@ -77,7 +77,7 @@ const Home = () => {
                             text="Reduction of time invested by managers" 
                             style={{width:"30%"}}/>
                     </View>
-                    <View style={{ width: 1150,flexDirection: 'row', marginBottom: 30}}>
+                    <View style={{ width: 1150, flexDirection: 'row', marginBottom: 30}}>
                         <BgBox 
                             text="Reduction of time invested by managers" 
                             style={{width:"30%"}}/>

@@ -97,7 +97,7 @@ const LoginScreen = () => {
                             backgroundColor: theme.colors.text.bg,
                             marginLeft:"18%", 
                             marginTop:"8%", 
-                            marginRight:"60%"
+                            marginRight:"10%"
                         }}
                         type={textTypes.heading5}
                     />
