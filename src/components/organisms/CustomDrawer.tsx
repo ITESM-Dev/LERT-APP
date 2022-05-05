@@ -14,7 +14,7 @@ const CustomDrawer = (props: any) => {
     /** @todo replace this with Redux State */
 	const user = {
 		name: 'Rafael Gómez',
-		role: "CEO"
+		role: "OP Manager"
 	}
 
     const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
@@ -50,7 +50,7 @@ const CustomDrawer = (props: any) => {
             <View 
                 style={{
                     height: '50%',
-                    margin: 1,
+                    marginHorizontal: 1,
                     width: 3,
                     alignItems: 'center',
                     borderRadius: 2,
@@ -59,7 +59,7 @@ const CustomDrawer = (props: any) => {
             >
                 <Animated.View
                     style={{
-                        height: scrollIndicatorSize,
+                        height: scrollIndicatorSize * 0.96,
                         width: 3,
                         borderRadius: 2,
                         backgroundColor: theme.colors.components.selectedState,
@@ -79,7 +79,7 @@ const CustomDrawer = (props: any) => {
         />
 
         {/* Options List */}
-        <View style={{ flex: 1,     flexDirection: 'row'}}>
+        <View style={{ flex: 1, flexDirection: 'row'}}>
             <DrawerContentScrollView 
                 {...props}
 

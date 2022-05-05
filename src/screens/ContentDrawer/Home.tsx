@@ -51,7 +51,7 @@ const Home = () => {
 
                 <Box style={{width:"90%", marginBottom:100 }}>
                     <LertText
-                        text="This is an aid in the finances of the manager,it 
+                        text="This is an aid in the finances of the manager, it
                                 manages squad, employees and create the fall plan planning
                                 expenses and financial recoveries."
                         type={textTypes.display03}

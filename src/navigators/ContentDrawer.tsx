@@ -226,14 +226,6 @@ const ContentDrawer = () => {
                     </Drawer.Group>
                 }
 
-                <Drawer.Screen 
-                    name="Logout"
-                    component={Logout}
-                    options={{
-                        drawerItemStyle: { height: 0 }
-                    }}
-                />
-
             </Drawer.Navigator>
         </>
 
