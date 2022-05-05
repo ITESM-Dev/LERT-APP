@@ -40,7 +40,7 @@ const LertButton = (props: LertButtonPropTypes) => {
             }}
             // Text Style
             _text={{
-                ...BodyStyles, 
+                ...BodyStyles.paragraphComponents, 
                 ...LertButtonStyles[type]._text
             }}
             disabled={disabled}

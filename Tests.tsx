@@ -12,6 +12,8 @@ import Notification from '~components/molecules/Notification';
 import LertInput from '~components/molecules/LertInput';
 import containerStyles from '~styles/containers';
 
+import * as textTypes from '~styles/constants/textTypes';
+
 const dropdownItems = [
     { label: 'Item 1', value: 'item1' },
     { label: 'Item 2', value: 'item2' },
@@ -105,7 +107,7 @@ const Tests = () => {
             </View>
 
             <Box {...box} style={{marginVertical: 30}}>
-                <LertText text="Welcome to ItesmDev's LERT Prototypes" type='display02'/>
+                <LertText text="Welcome to ItesmDev's LERT Prototypes" type={textTypes.display02}/>
             </Box>
 
             {/* LertText Display*/}
@@ -115,10 +117,12 @@ const Tests = () => {
                 width: '100%', 
                 justifyContent: 'space-around'
             }}>
-                <LertText text='Display 1' type='display01'/>
-                <LertText text='Display 2' type='display02'/>
-                <LertText text='Display 3' type='display03'/>
-                <LertText text='Display 4' type='display04'/>
+                <LertText text='Display 1' type={textTypes.display01}/>
+                <LertText text='Display 2' type={textTypes.display02}/>
+                <LertText text='Display 3' type={textTypes.display03}/>
+                <LertText text='Display 4' type={textTypes.display04}/>
+                <LertText text='Display 5' type={textTypes.display05}/>
+                <LertText text='Display 6' type={textTypes.display06}/>
             </View>
 
             {/* LertText Body*/}
@@ -128,10 +132,9 @@ const Tests = () => {
                 width: '100%', 
                 justifyContent: 'space-around'
             }}>
-                <LertText text='Paragraph Components' type='paragraphComponents'/>
-                <LertText text='Short Paragraph' type='shortParagraph'/>
-                <LertText text='Large Paragraph' type='largeParagraph'/>
-                <LertText text='Expresive Long Paragraphs' type='expresiveLongParagraphs'/>
+                <LertText text='Paragraph Components' type={textTypes.paragraphComponents}/>
+                <LertText text='Short Paragraph' type={textTypes.shortParagraph}/>
+                <LertText text='Large Paragraph' type={textTypes.displayParagraph}/>
             </View>
 
             {/* LertText Fixed Headings*/}
@@ -141,11 +144,11 @@ const Tests = () => {
                 width: '100%', 
                 justifyContent: 'space-around'
             }}>
-                <LertText text='Heading' type='heading'/>
-                <LertText text='Heading Compact' type='headingCompact'/>
-                <LertText text='Body 02 Layout' type='body02Layout'/>
-                <LertText text='Long Layout' type='longLayout'/>
-                <LertText text='Long Layout 2' type='longLayout2'/>
+                <LertText text='Heading' type={textTypes.heading}/>
+                <LertText text='Heading Compact' type={textTypes.heading2}/>
+                <LertText text='Body 02 Layout' type={textTypes.heading3}/>
+                <LertText text='Long Layout' type={textTypes.heading4}/>
+                <LertText text='Long Layout 2' type={textTypes.heading5}/>
             </View>
 
             {/* LertText Utility*/}
@@ -155,8 +158,8 @@ const Tests = () => {
                 width: '100%', 
                 justifyContent: 'space-around'
             }}>
-                <LertText text='Label' type='label'/>
-                <LertText text='Helper Text' type='helperText'/>
+                <LertText text='Label' type={textTypes.label}/>
+                <LertText text='Helper Text' type={textTypes.helperText}/>
                 <ProfileInfo name="Ulises Venegas Gómez" role="CEO" />
             </View>
 

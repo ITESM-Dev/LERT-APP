@@ -37,6 +37,8 @@ const Dropdown = (props: DropdownPropTypes) => {
     const [value, setValue] = useState(null)
     const [items, setItems] = useState(props.items)
 
+    {console.log("Dropdowns")}
+    
     return (
         <View style={ props.style }>
             <DropDownPicker
@@ -44,13 +46,12 @@ const Dropdown = (props: DropdownPropTypes) => {
                 
                 containerStyle={ styles.container }
 
-                textStyle={[ 
-                    styles.text, 
-                    { color: value ? 
+                textStyle={{ 
+                    ...styles.text, 
+                    color: value ? 
                         COLORS.text.primary : 
                         COLORS.text.placeholder,
-                    } 
-                ]}
+                }}
                 
                 arrowIconStyle={ styles.arrowIcon }
                 arrowIconContainerStyle={ styles.arrowContainer }
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
     },
     text: {
         ...BodyStyles.paragraphComponents ,
-        fontFamily: Theme.fonts.body,
+        fontFamily: 'body',
         tintColor: COLORS.icons.secondary,
     },
     itemContainer: {
