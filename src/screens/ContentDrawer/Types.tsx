@@ -11,6 +11,11 @@ import Theme from '../../theme/theme';
 import { useState } from "react";
 import { HStack, VStack } from "native-base";
 
+const dropdownTypes = [
+    { label: 'First', value: 'first' },
+    { label: 'Secondary', value: 'secondary' },
+]
+
 const Types = () => {
 
     let example = [
@@ -35,7 +40,7 @@ const Types = () => {
                     <HStack space={2} justifyContent="space-evenly">
                         <VStack alignItems={"flex-start"}>
                             <LertText text="Type" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                            <LertInput text={type} setText={setType} placeholder={"Country"}/>
+                            <Dropdown placeholder="Type" items={dropdownTypes}/>
                             <LertText text="Band" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={band} setText={setBand} placeholder={"Band Number"}/>
                             <LertText text="Rate" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>

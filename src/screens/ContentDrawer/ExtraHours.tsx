@@ -11,10 +11,14 @@ import { useState } from "react";
 import { HStack, VStack } from "native-base";
 import Dropdown from "~components/molecules/Dropdown";
 
-const dropdownItems = [
+const dropdownCountries = [
     { label: 'México', value: 'mexico' },
-    { label: 'USA', value: 'usa' },
     { label: 'India', value: 'india' },
+]
+
+const dropdownTypes = [
+    { label: 'First', value: 'first' },
+    { label: 'Secondary', value: 'secondary' },
 ]
 
 const ExtraHours = () => {
@@ -41,11 +45,11 @@ const ExtraHours = () => {
                     <HStack space={2} justifyContent="space-evenly">
                         <VStack alignItems={"flex-start"}>
                             <LertText text="Country" type={textTypes.heading} color={Theme.colors.text.primary}/>
-                            <LertInput text={type} setText={setType} placeholder={"Country"}/>
+                            <Dropdown placeholder="Country" items={dropdownCountries}/>
                             <LertText text="Rate" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={rate} setText={setRate} placeholder={"Rate"}/>
                             <LertText text="Type" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                            <Dropdown placeholder="Type" items={dropdownItems}/>
+                            <Dropdown placeholder="Type" items={dropdownTypes}/>
                         </VStack>
                         <VStack alignItems={"flex-start"}>
                             <LertText text="Band" type={textTypes.heading} color={Theme.colors.text.primary}/>
