@@ -14,7 +14,8 @@ import Dropdown from "~components/molecules/Dropdown";
 const ExpensesTypes = () => {
 
     let example = [
-        {Name: "Billy"}
+        {Name: "Main"},
+        {Name: "Secondary"}
     ]
 
     const [name, setName] = useState("");
@@ -24,12 +25,12 @@ const ExpensesTypes = () => {
             
             <LertText text="New Type of Expense" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
 
-            <Overlay maxWidth={"50%"} maxHeight={"50%"}> 
+            <Overlay maxWidth={"50%"} maxHeight={"50%"} buttonTitle="Create expense"> 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
                         <VStack alignItems={"flex-start"}>
                             <LertText text="Name" type={textTypes.heading} color={Theme.colors.text.primary}/>
-                            <LertInput text={name} setText={setName} placeholder={"Country"}/>
+                            <LertInput text={name} setText={setName} placeholder={"Name"}/>
                         </VStack>
                     </HStack>
                 </>
