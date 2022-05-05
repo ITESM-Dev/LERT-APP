@@ -8,6 +8,7 @@ import LertText, { StyleTypes }  from '~components/atoms/LertText';
 import LertButton from '~components/atoms/LertButton'
 
 import * as textTypes from '~styles/constants/textTypes';
+import Main from 'Main';
 
 type BgBoxPropTypes = {
     text: string;
@@ -40,6 +41,7 @@ const LoginScreen = () => {
     const screenHeight = useWindowDimensions().height;
 
     const IBMidHelp = "https://www.ibm.com/ibmid/myibm/help/us/helpdesk.html";
+    
 
     return (
         <Box
@@ -119,7 +121,9 @@ const LoginScreen = () => {
                     <LertButton 
                         title="Continue"
                         type={"primary"}
-                        onPress={() => {}}
+                        onPress={() => {
+                            
+                        }}
                         style={{
                             width: "35%",
                             marginTop: "10%"

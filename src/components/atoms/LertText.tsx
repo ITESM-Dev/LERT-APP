@@ -34,6 +34,7 @@ type LertTextPropTypes = {
     bold?: string,
     underline?: string,
     tooltipDisabled?: boolean,
+    numberOfLines?: number,
     onPress?: () => void;
 }
 
@@ -45,6 +46,7 @@ type LertTextPropTypes = {
  * @param bold (optional) Fontweight bold
  * @param underline (optional) TextDecorationLine underline
  * @param tooltipDisabled (optional) Whether to show the tooltip on Hover / Default is true
+ * @param numberOfLines (optional) text lines
  */
 const LertText = (props: LertTextPropTypes) => {
 
@@ -60,6 +62,7 @@ const LertText = (props: LertTextPropTypes) => {
                 fontWeight={props.bold}
                 textDecorationLine={props.underline}
                 isTruncated
+                numberOfLines={props.numberOfLines}
                 style={props.style} 
                 color={props.color ? props.color  : Theme.colors.text.primary}
                 onPress={props.onPress}
