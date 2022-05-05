@@ -24,7 +24,7 @@ const ContentHeader = () => {
 const AppStack = () => {
     
     /** @todo add Redux State */
-    const userIsLogged = true;
+    const userIsLogged = false;
 
     return (
         <Stack.Navigator

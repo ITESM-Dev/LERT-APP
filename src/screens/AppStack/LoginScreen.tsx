@@ -9,6 +9,8 @@ import LertButton from '~components/atoms/LertButton'
 
 import * as textTypes from '~styles/constants/textTypes';
 import Main from 'Main';
+import { useNavigation } from '@react-navigation/native';
+import theme from '~theme/theme';
 
 type BgBoxPropTypes = {
     text: string;
@@ -43,6 +45,8 @@ const LoginScreen = () => {
     const IBMidHelp = "https://www.ibm.com/ibmid/myibm/help/us/helpdesk.html";
     
 
+    const navigation = useNavigation()
+
     return (
         <Box
             flexDirection="row"
@@ -52,14 +56,51 @@ const LoginScreen = () => {
                 <ImageBackground 
                     style={{width: screenWidth/10.0 * 6, height: screenHeight, justifyContent:"center", alignItems:"start"}}
                     source={require("~../assets/bgLogin.jpg")}
-                    alt="testing"
+                    alt="Login Background"
                 >
-                    <BgBox text="Welcome to" style={{marginLeft:"18%", paddingRight:"5%"}} textType={textTypes.heading5} />
-                    <BgBox text="LERT" style={{marginLeft:"18%"}} textType={textTypes.display06} />
 
-                    <BgBox text="Labor Expenses Recovery Tool" style={{marginLeft:"18%"}} textType={textTypes.displayParagraph} /> 
-
-                    <BgBox text="Making the expense recovery process faster and easier." style={{marginLeft:"18%", marginTop:"8%", marginRight:"30%"}} textType={textTypes.heading5} />
+                    <LertText
+                        text="Welcome to"
+                        numberOfLines={2}
+                        color={theme.colors.text.white}
+                        style={{
+                            backgroundColor: theme.colors.text.bg,
+                            marginLeft: '18%'
+                        }}
+                        type={textTypes.heading5}
+                    />
+                    <LertText
+                        text="LERT"
+                        numberOfLines={2}
+                        color={theme.colors.text.white}
+                        style={{
+                            backgroundColor: theme.colors.text.bg,
+                            marginLeft: '18%'
+                        }}
+                        type={textTypes.display06}
+                    />
+                    <LertText
+                        text="Labor Expenses Recovery Tool"
+                        numberOfLines={2}
+                        color={theme.colors.text.white}
+                        style={{
+                            backgroundColor: theme.colors.text.bg,
+                            marginLeft: '18%'
+                        }}
+                        type={textTypes.displayParagraph}
+                    />
+                    <LertText
+                        text="Making the expense recovery process faster and easier."
+                        numberOfLines={2}
+                        color={theme.colors.text.white}
+                        style={{
+                            backgroundColor: theme.colors.text.bg,
+                            marginLeft:"18%", 
+                            marginTop:"8%", 
+                            marginRight:"60%"
+                        }}
+                        type={textTypes.heading5}
+                    />
 
                 </ImageBackground>
             </Box>
@@ -122,7 +163,7 @@ const LoginScreen = () => {
                         title="Continue"
                         type={"primary"}
                         onPress={() => {
-                            
+                            navigation.navigate("Content")
                         }}
                         style={{
                             width: "35%",
