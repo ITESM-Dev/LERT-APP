@@ -39,7 +39,7 @@ const ExpensesTypes = () => {
 
             <LertText text="All Expenses Types" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
 
-            <Table headers={["Name"]} items={example} flexValues={[1, 1, 2, 1, 2, 2]}/>
+            <Table headers={["Name"]} items={example} flexValues={[1]}/>
 
         </View>
     )
