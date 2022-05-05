@@ -18,7 +18,7 @@ const Styles = {
 }
 
 export type TextType = {
-    fontWeight: string,
+    fontWeight: "light" | "regular" | "semibold" | "bold",
     fontStyle: string,
     fontFamily: string,
     fontSize: number,
@@ -31,7 +31,7 @@ type LertTextPropTypes = {
     type: StyleTypes,
     style?: ViewStyle,
     color?: string,
-    bold?: string,
+    bold?: "light" | "regular" | "semibold" | "bold",
     underline?: string,
     tooltipDisabled?: boolean,
     onPress?: () => void;
@@ -42,12 +42,13 @@ type LertTextPropTypes = {
  * @param type The Type Style
  * @param style (optionl) ViewStyle to add more style
  * @param color (optional) Change text color
- * @param bold (optional) Fontweight bold
+ * @param bold (optional) "light" | "regular" | "semibold" | "bold"
  * @param underline (optional) TextDecorationLine underline
  * @param tooltipDisabled (optional) Whether to show the tooltip on Hover / Default is true
  */
 const LertText = (props: LertTextPropTypes) => {
 
+    console.log(Styles[props.type])
     return (
         <Tooltip 
             label={props.text} 
@@ -57,7 +58,10 @@ const LertText = (props: LertTextPropTypes) => {
         > 
             <Text 
                 {...Styles[props.type]} 
-                fontWeight={props.bold}
+                fontWeight={props.bold !== undefined ? props.bold : 
+                    Styles[props.type] !== undefined ? 
+                        Styles[props.type].fontWeight : 'light'
+                }
                 textDecorationLine={props.underline}
                 isTruncated
                 style={props.style} 
