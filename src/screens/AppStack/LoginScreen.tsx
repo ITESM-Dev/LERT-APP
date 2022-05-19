@@ -56,13 +56,13 @@ const LoginScreen = () => {
     
     const dispatch: AppDispatch = useDispatch();
     
-    const catFacts = allCatFacts();
+    //const catFacts = allCatFacts();
 
     const { data } = useGetFactsQuery()
 
     useEffect(() => {
         if (data !== undefined) dispatch(addFacts(data));
-        console.log(catFacts)
+        //console.log(catFacts)
     }, [data])
 
     return (
