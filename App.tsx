@@ -13,6 +13,9 @@ import Main from 'Main';
 
 //Importing LoginScreen to test it
 import LoginScreen from '~screens/AppStack/LoginScreen'
+import { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { store } from '~store/store';
 
 export default function App() {
 
@@ -26,13 +29,17 @@ export default function App() {
 	if(!fontsLoaded) {
 		return <AppLoading />;
 	}
+
+	
 	
 	return (
-		<NativeBaseProvider theme={theme}>
-			<View style={containerStyles.app}>
-				<Main/>
-			</View>
-		</NativeBaseProvider>
+		<Provider store={store}>
+			<NativeBaseProvider theme={theme}>
+				<View style={containerStyles.app}>
+					<Main/>
+				</View>
+			</NativeBaseProvider>
+		</Provider>
   );
 }
 

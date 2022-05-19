@@ -50,7 +50,6 @@ type LertTextPropTypes = {
  */
 const LertText = (props: LertTextPropTypes) => {
 
-    console.log(Styles[props.type])
     return (
         <Tooltip 
             label={props.text} 
