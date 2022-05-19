@@ -27,13 +27,13 @@ const TableItem = ({ items, flexValues, styles }: TableItemPropTypes) => {
 
     return (
         <Box
+            {...styles}
             marginX={"10%"}
             borderWidth={0.1}
             borderColor={Theme.colors.icons.primary}
             height={10}
             flexDirection='row'
             alignItems={'center'}
-            {...styles}
 
         >
             { items.map( (item, index) => {

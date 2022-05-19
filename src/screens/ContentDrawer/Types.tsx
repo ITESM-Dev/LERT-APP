@@ -57,8 +57,6 @@ const Types = () => {
 
             </Overlay>
 
-            <LertText text="Types List" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
-
             <Table headers={["Type", "Country", "Band", "Rate", "Date of Start", "Date of Finish"]} items={example} flexValues={[1, 1, 1, 1, 2, 2]}/>
 
         </View>
