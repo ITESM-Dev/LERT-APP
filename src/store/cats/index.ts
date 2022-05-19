@@ -8,7 +8,7 @@ import {
 
 // Selectors
 import {
-    allCatFacts
+    
 } from './selectors'
 
 // Types
@@ -19,6 +19,5 @@ import {
 export {
     CatsReducer,
     catsAdapter,
-    allCatFacts,
     CatFactType,
 }
