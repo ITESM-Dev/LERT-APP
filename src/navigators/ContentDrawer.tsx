@@ -38,7 +38,7 @@ const Drawer = createDrawerNavigator()
 const ContentDrawer = () => {
 
     /** Change this to use Redux */
-    const role = 'OPManager';
+    const role = 'Manager';
 
     return (
         <>

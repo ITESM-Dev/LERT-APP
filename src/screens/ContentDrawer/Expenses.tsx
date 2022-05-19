@@ -1,4 +1,11 @@
+import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { HStack, VStack } from "native-base";
+
+import { AppDispatch, store } from "~store/store";
+import { setAllExpenses } from "~store/expenses";
+import { allExpenses } from "~store/expenses/selectors";
 
 import Table from "~components/organisms/Table";
 import LertText from '~components/atoms/LertText';
@@ -8,8 +15,6 @@ import * as textTypes from '~styles/constants/textTypes';
 import Dropdown from "~components/molecules/Dropdown";
 
 import Theme from '../../theme/theme';
-import { useState } from "react";
-import { HStack, VStack } from "native-base";
 
 const dropdownTypes = [
     { label: 'First', value: 'first' },
@@ -29,6 +34,23 @@ const Expenses = () => {
     const [comment, setComment] = useState("");
     const [ica, setIca] = useState("");
     const [type, setType] = useState("");
+
+    // Store Dispatcher
+    const dispatch: AppDispatch = useDispatch()
+    // Expenses - State
+    const expenses = useSelector(allExpenses)
+
+    useEffect(() => {
+        if (expenses.length === 0) {
+            dispatch(setAllExpenses([
+                { id: '1', type: "Device"},
+                { id: '2', type: "Health" }
+            ]))
+        }
+        else {
+            console.log(expenses) 
+        }
+    }, [expenses])
 
     return (
         <View>

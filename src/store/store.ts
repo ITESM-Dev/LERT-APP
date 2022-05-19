@@ -2,13 +2,14 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
 import { api } from './api/slice'
+import { expensesReducer } from './expenses'
+import { CatsReducer } from "./cats";
 
 export const store = configureStore({
     reducer: combineReducers({
         [api.reducerPath]: api.reducer,
-        // ICAS: , 
-        // BandTypes: ,
-        // Employees: ,
+        expenses: expensesReducer, 
+        cats: CatsReducer
     }),
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware().concat(api.middleware),

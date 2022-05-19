@@ -15,9 +15,9 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
 import { useGetFactsQuery } from '~store/api/slice'
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '~store/store';
+import { AppDispatch, store } from '~store/store';
 import { addFacts } from '~store/cats/slice';
-import { allCatFacts } from '~store/cats/selectors';
+import { catFactsSelectors } from '~store/cats/selectors';
 
 type BgBoxPropTypes = {
     text: string;
