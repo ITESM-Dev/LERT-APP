@@ -1,6 +1,6 @@
-import { View, ImageBackground, useWindowDimensions, Linking, ViewStyle } from 'react-native';
+import { View, ImageBackground, useWindowDimensions, Linking } from 'react-native';
 import { Box } from 'native-base';
-import { useState } from 'react';
+import { useState, ViewStyle } from 'react';
 import Theme from '~theme/theme';
 
 import LertInput from '~components/molecules/LertInput';
@@ -11,7 +11,6 @@ import * as textTypes from '~styles/constants/textTypes';
 import Main from 'Main';
 import { useNavigation } from '@react-navigation/native';
 import theme from '~theme/theme';
-import { render } from '@testing-library/react-native';
 
 type BgBoxPropTypes = {
     text: string;
@@ -19,24 +18,21 @@ type BgBoxPropTypes = {
     textType: string;
 }
 
-const BgBox = (props: BgBoxPropTypes) => (
-    <Box
-        style={props.style}
-        bgColor={Theme.colors.text.bg}
-        alignItems="center"
-    >
-        <LertText
-            text={props.text}
-            type={props.textType}
-            color={Theme.colors.text.white} />
-    </Box>
-);
-
-test("Login UI", () => {
-    const { getByText, getAllByText } = render(
-        <LoginScreen/>
+const BgBox = (props: BgBoxPropTypes) => {
+    return (
+        <Box
+            {...props.style}
+            bgColor={Theme.colors.text.bg} 
+            alignItems="center"
+        >
+            <LertText 
+                text={props.text} 
+                type={props.textType} 
+                color={Theme.colors.text.white}
+            />
+        </Box>
     );
-})
+};
 
 const LoginScreen = () => {
 
@@ -58,13 +54,9 @@ const LoginScreen = () => {
             {/*Left Side*/}
             <Box>
                 <ImageBackground 
-                    style={{
-                        width: screenWidth/10.0 * 6, 
-                        height: screenHeight, 
-                        justifyContent:"center", 
-                        alignItems:"flex-start"
-                    }}
+                    style={{width: screenWidth/10.0 * 6, height: screenHeight, justifyContent:"center", alignItems:"start"}}
                     source={require("~../assets/bgLogin.jpg")}
+                    alt="Login Background"
                 >
 
                     <LertText
@@ -125,7 +117,7 @@ const LoginScreen = () => {
                     justifyContent="center"
                     alignSelf="center"
                     padding="15%"
-                    marginY="15%"
+                    marginVertical="15%"
                 >
                     <LertText
                         text="Log in to LERT"
@@ -171,7 +163,7 @@ const LoginScreen = () => {
                         title="Continue"
                         type={"primary"}
                         onPress={() => {
-                            navigation.navigate({ key: "Content" })
+                            navigation.navigate("Content")
                         }}
                         style={{
                             width: "35%",

@@ -8,6 +8,5 @@
       "~*": ["./src/*"]
     }
   },
-  "exclude": ["node_modules"],
-  "allowSyntheticDefaultImports": true
+  "exclude": ["node_modules"]
 }
