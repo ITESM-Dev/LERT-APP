@@ -1,6 +1,6 @@
-import { View, ImageBackground, useWindowDimensions, Linking } from 'react-native';
+import { View, ImageBackground, useWindowDimensions, Linking, ViewStyle  } from 'react-native';
 import { Box } from 'native-base';
-import { useState, ViewStyle } from 'react';
+import { useEffect, useState } from 'react';
 import Theme from '~theme/theme';
 
 import LertInput from '~components/molecules/LertInput';
@@ -11,6 +11,13 @@ import * as textTypes from '~styles/constants/textTypes';
 import Main from 'Main';
 import { useNavigation } from '@react-navigation/native';
 import theme from '~theme/theme';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+
+import { useGetFactsQuery } from '~store/api/slice'
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '~store/store';
+import { addFacts } from '~store/cats/slice';
+import { allCatFacts } from '~store/cats/selectors';
 
 type BgBoxPropTypes = {
     text: string;
@@ -46,6 +53,17 @@ const LoginScreen = () => {
     
 
     const navigation = useNavigation()
+    
+    const dispatch: AppDispatch = useDispatch();
+    
+    const catFacts = allCatFacts();
+
+    const { data } = useGetFactsQuery()
+
+    useEffect(() => {
+        if (data !== undefined) dispatch(addFacts(data));
+        console.log(catFacts)
+    }, [data])
 
     return (
         <Box
