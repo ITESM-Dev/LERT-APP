@@ -11,10 +11,6 @@ import theme from '~theme/theme';
 
 import Main from 'Main';
 
-
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-
 //Importing LoginScreen to test it
 import LoginScreen from '~screens/AppStack/LoginScreen'
 
