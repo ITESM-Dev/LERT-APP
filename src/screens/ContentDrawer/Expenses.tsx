@@ -22,10 +22,29 @@ const dropdownTypes = [
 ]
 
 const Expenses = () => {
-
     let example = [
-        {employeeMail: "user@ibm.com", Type: "Course", Cost:"1000", Date: "2022-02-10", ICA: "13D2L2", ICAManager: "manager@ibm.com", Administrator: "admin@ibm.com", Comment: "lent123"},
-        {employeeMail: "user2@ibm.com", Type: "Course", Cost:"1500", Date: "2022-02-10", ICA: "96D5L3", ICAManager: "manager2@ibm.com", Administrator: "admin2@ibm.com", Comment: "lent321"},
+        { 
+            employeeMail: "user@ibm.com", 
+            type: "Course", 
+            cost:"1000", 
+            date: "2022-02-10", 
+            ICA: "13D2L2", 
+            ICAManager: "manager@ibm.com", 
+            administrator: "admin@ibm.com", 
+            comment: "lent123",
+            id: '1',
+        },
+        {
+            employeeMail: "user2@ibm.com", 
+            type: "Course", 
+            cost:"1500", 
+            date: "2022-02-10", 
+            ICA: "96D5L3", 
+            ICAManager: "manager2@ibm.com", 
+            administrator: "admin2@ibm.com", 
+            comment: "lent321",
+            id: 2,
+        },
     ]
 
     const [employeeMail, setEmployeeMail] = useState("");
@@ -42,10 +61,7 @@ const Expenses = () => {
 
     useEffect(() => {
         if (expenses.length === 0) {
-            dispatch(setAllExpenses([
-                { id: '1', type: "Device"},
-                { id: '2', type: "Health" }
-            ]))
+            dispatch(setAllExpenses(example))
         }
         else {
             console.log(expenses) 
@@ -83,7 +99,7 @@ const Expenses = () => {
 
             <LertText text="All Expenses" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
 
-            <Table headers={["Employee Mail", "Type", "Cost", "Date", "ICA", "ICA Manager", "Administrator", "Comment"]} items={example} flexValues={[3, 1, 1, 1, 1, 2, 2, 2]}/>
+            <Table headers={["Employee Mail", "Type", "Cost", "Date", "ICA", "ICA Manager", "Administrator", "Comment"]} items={expenses} flexValues={[3, 1, 1, 1, 1, 2, 2, 2]}/>
 
         </View>
     )
