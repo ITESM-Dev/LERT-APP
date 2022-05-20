@@ -14,10 +14,11 @@ import theme from '~theme/theme';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
 import { useGetFactsQuery } from '~store/api/slice'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, store } from '~store/store';
 import { addFacts } from '~store/cats/slice';
-import { catFactsSelectors } from '~store/cats/selectors';
+import { allCatFacts } from '~store/cats/selectors';
+import { saveCatFacts } from '~store/cats/thunks';
 
 type BgBoxPropTypes = {
     text: string;
@@ -56,15 +57,15 @@ const LoginScreen = () => {
     
     const dispatch: AppDispatch = useDispatch();
     
-    //const catFacts = allCatFacts();
+    const catFacts = useSelector(allCatFacts);
 
     //const { data } = useGetFactsQuery()
- /*
+ 
     useEffect(() => {
-        if (data !== undefined) dispatch(addFacts(data));
+        dispatch(saveCatFacts());
         //console.log(catFacts)
-    }, [data])
-*/
+    }, [catFacts])
+
 
     return (
         <Box
