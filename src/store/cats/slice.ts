@@ -1,4 +1,5 @@
 import { createEntityAdapter, createReducer, createSlice } from "@reduxjs/toolkit";
+import { saveCatFacts } from "./thunks";
 import { CatFactType } from "./types";
 
 export const catsAdapter = createEntityAdapter({
@@ -12,6 +13,13 @@ const catsSlice = createSlice({
         addFacts: (state, action) => {
             catsAdapter.addMany(state, action.payload)
         }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(saveCatFacts.fulfilled, (state, action) => {
+                catsAdapter.addMany(state, action.payload.data)
+                return state;
+            })
     }
 })
 
