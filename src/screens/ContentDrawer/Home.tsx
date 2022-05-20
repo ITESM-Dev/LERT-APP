@@ -105,7 +105,10 @@ const Home = () => {
 
                 
                 </View>
+                
             </View>
+
+            <LegalMenu/>
         </ScrollView>
         
         
