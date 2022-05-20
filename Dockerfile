@@ -3,21 +3,16 @@ FROM node:16.14.2
 ARG PORT=19006
 ENV PORT $PORT
 
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-ENV PATH /home/node/.npm-global/bin:$PATH
 RUN npm i --unsafe-perm -g npm@latest expo-cli@latest
 
-RUN mkdir /opt/lert && chown node:node /opt/lert
-WORKDIR /opt/lert
-ENV PATH /opt/lert/.bin:$PATH
+WORKDIR /app
 
-COPY --chown=node:node ./package.json ./
-COPY --chown=node:node ./package-lock.json ./
-USER node
-RUN npm install
-RUN 
+COPY package.json .
+RUN npm install serve --force
+RUN npm install --force
+COPY . .
 
-WORKDIR /opt/lert/app
+EXPOSE 19006
 
-ENTRYPOINT ["npm", "serve", "web-build"]
-CMD ["web"]
+ENTRYPOINT ["expo"]
+CMD ["start", "--web"]

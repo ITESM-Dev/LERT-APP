@@ -1,0 +1,7 @@
+apps:
+- name: Lert
+  host: lert-react-native-05042022
+  port: $PORT
+  random-route: true
+  memory: 128M
+  buildpacks: nodejs_buildpack
