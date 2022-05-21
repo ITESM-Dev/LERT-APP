@@ -1,14 +1,16 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
-import { api } from './api/slice'
+import { api } from './api'
 import { expensesReducer } from './expenses'
+import { ManagersReducer } from "./managers";
 import { CatsReducer } from "./cats";
 
 export const store = configureStore({
     reducer: combineReducers({
         [api.reducerPath]: api.reducer,
         expenses: expensesReducer, 
+        managers: ManagersReducer,
         cats: CatsReducer
     }),
     middleware: (getDefaultMiddleware) => 
