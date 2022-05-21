@@ -3,7 +3,7 @@ import produce from "immer";
 
 import { ExpenseType } from "./types";
 
-export const expensesAdapter = createEntityAdapter({
+export const expensesAdapter = createEntityAdapter<ExpenseType>({
     selectId: (expense: ExpenseType) => expense.id,
 })
 
@@ -19,13 +19,12 @@ export const expensesAdapter = createEntityAdapter({
 
 const expensesSlice = createSlice({
     name: "expenses",
-    initialState: expensesAdapter.getInitialState({ loading: false }),
+    initialState: expensesAdapter.getInitialState(),
     reducers: {
         setAllExpenses: (state, action) => {
             expensesAdapter.addMany(state, action.payload)
         },
         addExpense: (state, action) => {
-            state.loading = true
             expensesAdapter.addOne(state, action.payload);
         },
         updateExpense: (state, action) => {
