@@ -1,6 +1,15 @@
 // Reducer
 import employeesReducer, { employeesAdapter } from './slice';
 
+// Actions
+import {
+    setEmployees,
+    addEmployee,
+    updateEmployee,
+    removeEmployee,
+    clearEmployees,
+} from './slice'
+
 // Types
 import {
     EmployeeType
@@ -16,6 +25,11 @@ import {
 export {
     employeesReducer,
     employeesAdapter,
+    setEmployees,
+    addEmployee,
+    updateEmployee,
+    removeEmployee,
+    clearEmployees,
     EmployeeType,
     allEmployees,
     employeesEntities,
