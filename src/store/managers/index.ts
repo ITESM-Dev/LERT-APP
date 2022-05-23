@@ -1,5 +1,5 @@
 // Reducer & Adapter
-import ManagersReducer, { managersAdapter } from './slice'
+import managersReducer, { managersAdapter } from './slice'
 
 // Actions
 import {
@@ -23,7 +23,7 @@ import {
 // Thunks
 
 export {
-    ManagersReducer,
+    managersReducer,
     managersAdapter,
     setAllManagers,
     addManager,
