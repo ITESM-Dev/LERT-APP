@@ -3,12 +3,21 @@ import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
 import { api } from './api/slice'
 import { expensesReducer } from './expenses'
+import { employeesReducer } from "./employees";
+
 import { CatsReducer } from "./cats";
 
 export const store = configureStore({
     reducer: combineReducers({
+        // API Handler
         [api.reducerPath]: api.reducer,
+
+        // Common Reducers
         expenses: expensesReducer, 
+        employees: employeesReducer,
+
+        // Dummy example reducer 
+        /** @todo erase at the end of the project */
         cats: CatsReducer
     }),
     middleware: (getDefaultMiddleware) => 
