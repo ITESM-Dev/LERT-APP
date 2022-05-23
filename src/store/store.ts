@@ -1,9 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
-import { api } from './api/slice'
+import { api } from './api'
 import { expensesReducer } from './expenses'
 import { employeesReducer } from "./employees";
+import { managersReducer } from "./managers";
 
 import { CatsReducer } from "./cats";
 
@@ -15,6 +16,7 @@ export const store = configureStore({
         // Common Reducers
         expenses: expensesReducer, 
         employees: employeesReducer,
+        managers: managersReducer,
 
         // Dummy example reducer 
         /** @todo erase at the end of the project */
