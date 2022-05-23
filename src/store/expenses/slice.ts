@@ -1,4 +1,4 @@
-import { createAction, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { createAction, createEntityAdapter, createSlice, EntityId, PayloadAction } from "@reduxjs/toolkit";
 import produce from "immer";
 
 import { ExpenseType } from "./types";
@@ -21,19 +21,19 @@ const expensesSlice = createSlice({
     name: "expenses",
     initialState: expensesAdapter.getInitialState(),
     reducers: {
-        setAllExpenses: (state, action) => {
+        setAllExpenses: (state, action: PayloadAction<ExpenseType[]>) => {
             expensesAdapter.addMany(state, action.payload)
         },
-        addExpense: (state, action) => {
+        addExpense: (state, action: PayloadAction<ExpenseType>) => {
             expensesAdapter.addOne(state, action.payload);
         },
-        updateExpense: (state, action) => {
-            expensesAdapter.setOne(state, action.payload);
+        updateExpense: (state, action: PayloadAction<ExpenseType>) => {
+            expensesAdapter.upsertOne(state, action.payload);
         },
-        removeExpense: (state, action) => {
+        removeExpense: (state, action: PayloadAction<EntityId>) => {
             expensesAdapter.removeOne(state, action.payload);
         },
-        clearExpenses: (state, action) => {
+        clearExpenses: (state, _) => {
             expensesAdapter.removeAll(state);
         }
     },
