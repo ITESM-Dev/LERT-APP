@@ -5,6 +5,7 @@ import { api } from './api'
 import { expensesReducer } from './expenses'
 import { employeesReducer } from "./employees";
 import { managersReducer } from "./managers";
+import { ICAsReducer } from "./ICAs";
 
 import { CatsReducer } from "./cats";
 
@@ -17,6 +18,7 @@ export const store = configureStore({
         expenses: expensesReducer, 
         employees: employeesReducer,
         managers: managersReducer,
+        ICAs: ICAsReducer,
 
         // Dummy example reducer 
         /** @todo erase at the end of the project */
