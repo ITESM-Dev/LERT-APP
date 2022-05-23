@@ -1,11 +1,11 @@
 export type ExpenseType = {
     id: string;
     type: string;
-    const: number;
+    cost: number;
     date: string;
     comment: string;
-    ICA: string;
-    idICA?: string;
+    idICA: string;
+    idEmployee?: string;
     employeeMail: string;
     idICAManager?: string;
     ICAManager: string;
