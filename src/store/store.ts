@@ -8,6 +8,8 @@ import { managersReducer } from "./managers";
 import { ICAsReducer } from "./ICAs";
 import { userReducer } from "./user";
 import { expenseTypesReducer } from "./expenseTypes";
+import { bandTypesReducer } from "./bandTypes";
+import { extraHoursReducer } from "./extraHours";
 
 import { CatsReducer } from "./cats";
 
@@ -23,6 +25,8 @@ export const store = configureStore({
         ICAs: ICAsReducer,
         user: userReducer,
         expenseTypes: expenseTypesReducer,
+        bandTypes: bandTypesReducer,
+        extraHours: extraHoursReducer,
 
         // Dummy example reducer 
         /** @todo erase at the end of the project */
