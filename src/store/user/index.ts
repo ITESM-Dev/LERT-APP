@@ -8,7 +8,10 @@ import {
 
 import { UserType } from "./types";
 
+import { userSelector } from "./selectors";
+
 export {
+    userSelector,
     userReducer,
     UserType,
 };
