@@ -10,6 +10,8 @@ import {
     clearExpenses,
 } from './slice'
 
+import { ExpenseType } from "./types";
+
 export {
     expensesReducer,
     expensesAdapter,
@@ -18,4 +20,5 @@ export {
     updateExpense,
     removeExpense,
     clearExpenses,
+    ExpenseType,
 }
