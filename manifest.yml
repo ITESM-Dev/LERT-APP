@@ -1,7 +1,9 @@
-apps:
-- name: Lert
-  host: lert-react-native-05042022
-  port: $PORT
+---
+applications:
+- name: LERT-Web
   random-route: true
+  disk_quota: 2G
   memory: 128M
-  buildpacks: nodejs_buildpack
+  path: web-build
+  buildpacks: 
+    - https://github.com/cloudfoundry/staticfile-buildpack/#v1.5.30
