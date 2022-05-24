@@ -1,0 +1,28 @@
+{
+  "files": {
+    "app.js": "/static/js/app.b4721fe1.chunk.js",
+    "app.js.map": "/static/js/app.b4721fe1.chunk.js.map",
+    "runtime~app.js": "/static/js/runtime~app.2e9f1821.js",
+    "runtime~app.js.map": "/static/js/runtime~app.2e9f1821.js.map",
+    "static/js/2.9f2a9d31.chunk.js": "/static/js/2.9f2a9d31.chunk.js",
+    "static/js/2.9f2a9d31.chunk.js.map": "/static/js/2.9f2a9d31.chunk.js.map",
+    "fonts/IBMPlexSans-Bold.ttf": "/./fonts/IBMPlexSans-Bold.ttf",
+    "fonts/IBMPlexSans-Light.ttf": "/./fonts/IBMPlexSans-Light.ttf",
+    "fonts/IBMPlexSans-Regular.ttf": "/./fonts/IBMPlexSans-Regular.ttf",
+    "fonts/IBMPlexSans-SemiBold.ttf": "/./fonts/IBMPlexSans-SemiBold.ttf",
+    "favicon-16.png": "/favicon-16.png",
+    "favicon-32.png": "/favicon-32.png",
+    "favicon.ico": "/favicon.ico",
+    "index.html": "/index.html",
+    "manifest.json": "/manifest.json",
+    "serve.json": "/serve.json",
+    "static/js/2.9f2a9d31.chunk.js.LICENSE.txt": "/static/js/2.9f2a9d31.chunk.js.LICENSE.txt",
+    "static/media/IBM_logo.png": "/static/media/IBM_logo.5382d557.png",
+    "static/media/ItesmDev_Transparente.png": "/static/media/ItesmDev_Transparente.8dce4f77.png"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.2e9f1821.js",
+    "static/js/2.9f2a9d31.chunk.js",
+    "static/js/app.b4721fe1.chunk.js"
+  ]
+}
