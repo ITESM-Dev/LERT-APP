@@ -1,6 +1,6 @@
 
 import { Actionsheet, Button } from 'native-base'
-import { ViewStyle } from 'react-native';
+import { ViewStyle, Text } from 'react-native';
 
 import BodyStyles from '~styles/body';
 import theme from '~theme/theme';
@@ -11,6 +11,7 @@ type LertButtonPropTypes = {
     disabled?: boolean;
     onPress: () => void;
     style?: ViewStyle; 
+    testID?: string;
 }
 
 /**
@@ -20,10 +21,11 @@ type LertButtonPropTypes = {
  */
 const LertButton = (props: LertButtonPropTypes) => {
     
-    const { title, type, disabled, onPress, style } = props
+    const { title, type, disabled, onPress, style, testID } = props
     
     return (
-        <Button 
+        <Button
+            testID={testID}
             // Rectangle-like shape
             borderRadius={0}
             // Button Type Style
