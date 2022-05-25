@@ -1,0 +1,22 @@
+name: Deploy to Cloud Foundry
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Packages
+        run: npm install --global expo-cli
+      - name: Create build expo
+        run: expo build:web
+      - uses: jhunt/cf-push@v1
+        with:
+          api:      http://api.us-south.cf.cloud.ibm.com
+          space:    Production
+          org:      ${{ secrets.CF_ORG }}
+          username: ${{ secrets.CF_USERNAME }}
+          password: ${{ secrets.CF_PASSWORD }}
+          manifest: manifest.yml
+          validate: false
