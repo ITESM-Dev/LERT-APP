@@ -17,6 +17,6 @@ jobs:
     # Runs a single command using the runners shell
     - uses: actions/checkout@v2
     - name: Install Dependencies
-      run: npm install
+      run: npm install --force
     - name: Run Tests
       run: npm test
