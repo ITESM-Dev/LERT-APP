@@ -12,7 +12,7 @@ const extraHourSlice = createSlice({
     initialState: extraHoursAdapter.getInitialState(),
     reducers: {
         setExtraHours: (state, action: PayloadAction<ExtraHourType[]>) => {
-            extraHoursAdapter.addMany(state, action.payload)
+            extraHoursAdapter.setMany(state, action.payload)
         },
         addExtraHour: (state, action: PayloadAction<ExtraHourType>) => {
             extraHoursAdapter.addOne(state, action.payload)

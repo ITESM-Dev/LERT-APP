@@ -11,7 +11,7 @@ const expenseTypesSlice = createSlice({
     initialState: expenseTypesAdapter.getInitialState(),
     reducers: {
         setAllExpenseTypes: (state, action: PayloadAction<ExpenseTypesType[]>) => {
-            expenseTypesAdapter.addMany(state, action.payload)
+            expenseTypesAdapter.setMany(state, action.payload)
         },
         addExpenseType: (state, action: PayloadAction<ExpenseTypesType>) => {
             expenseTypesAdapter.addOne(state, action.payload);
