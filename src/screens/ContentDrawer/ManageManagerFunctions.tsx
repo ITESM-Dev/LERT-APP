@@ -46,7 +46,7 @@ const ManageManagerFunctions = () => {
 
             <LertText text="Extra Hours List" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
 
-            <Table headers={["Manager", "Status", "Last Update"]} items={example} flexValues={[1, 1, 1]}/>
+            <Table headers={["Manager", "Status", "Last Update"]} items={example} flexValues={[1, 1, 1]} amount={3}/>
 
         </View>
     )

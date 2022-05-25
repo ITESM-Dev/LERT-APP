@@ -99,7 +99,7 @@ const Expenses = () => {
 
             <LertText text="All Expenses" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
 
-            <Table headers={["Employee Mail", "Type", "Cost", "Date", "ICA", "ICA Manager", "Administrator", "Comment"]} items={expenses} flexValues={[3, 1, 1, 1, 1, 2, 2, 2]}/>
+            <Table headers={["Employee Mail", "Type", "Cost", "Date", "ICA", "ICA Manager", "Administrator", "Comment"]} items={expenses} flexValues={[3, 1, 1, 1, 1, 2, 2, 2]} amount={8}/>
 
         </View>
     )

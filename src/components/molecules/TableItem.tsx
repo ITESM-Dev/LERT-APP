@@ -9,6 +9,7 @@ type TableItemPropTypes = {
     items: Array<string>;
     flexValues: Array<number>;
     styles?: ViewStyle;
+    amount: number;
 }
 
 /**
@@ -23,7 +24,7 @@ type TableItemPropTypes = {
  * ['Item 1'  'Item 2'       'Item 3'           ]
  * 
  */
-const TableItem = ({ items, flexValues, styles }: TableItemPropTypes) => {
+const TableItem = ({ items, flexValues, styles, amount }: TableItemPropTypes) => {
 
     return (
         <Box
@@ -37,19 +38,21 @@ const TableItem = ({ items, flexValues, styles }: TableItemPropTypes) => {
 
         >
             { items.map( (item, index) => {
-                return(
-                    <LertText
-                        key={ index }
-                        text={ item }
-                        type={ textTypes.paragraphComponents }
-                        tooltipDisabled={false}
-                        style={{
-                            marginHorizontal: 5,
-                            marginVertical: 2,
-                            flex: flexValues[index],
-                        }}
-                    />  
-                )
+                if(index < amount){
+                    return(
+                        <LertText
+                            key={ index }
+                            text={ item }
+                            type={ textTypes.paragraphComponents }
+                            tooltipDisabled={false}
+                            style={{
+                                marginHorizontal: 5,
+                                marginVertical: 2,
+                                flex: flexValues[index],
+                            }}
+                        />  
+                    )
+                }
             } )}
         </Box>
     )

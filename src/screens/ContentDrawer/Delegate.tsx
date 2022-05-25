@@ -52,7 +52,7 @@ const Delegate = () => {
 
             <LertText text="Delegates:" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
 
-            <Table headers={["Admin Mail", "Manager Mail", "Status"]} items={example} flexValues={[2, 2, 3]}/>
+            <Table headers={["Admin Mail", "Manager Mail", "Status"]} items={example} flexValues={[2, 2, 3]} amount={3}/>
 
         </View>
     )

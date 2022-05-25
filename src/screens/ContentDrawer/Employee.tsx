@@ -51,7 +51,7 @@ const Employee = () => {
 
             <LertText text="Employees List" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
 
-            <Table headers={["Num. Empleado", "Nombre", "Gerente", "Num. de ICA", "Banda"]} items={example} flexValues={[1, 2, 2, 1, 1]}/>
+            <Table headers={["Num. Empleado", "Nombre", "Gerente", "Num. de ICA", "Banda"]} items={example} flexValues={[1, 2, 2, 1, 1]} amount={5}/>
 
         </View>
     )
