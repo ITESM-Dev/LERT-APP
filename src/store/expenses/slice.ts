@@ -22,7 +22,7 @@ const expensesSlice = createSlice({
     initialState: expensesAdapter.getInitialState(),
     reducers: {
         setAllExpenses: (state, action: PayloadAction<ExpenseType[]>) => {
-            expensesAdapter.addMany(state, action.payload)
+            expensesAdapter.setMany(state, action.payload)
         },
         addExpense: (state, action: PayloadAction<ExpenseType>) => {
             expensesAdapter.addOne(state, action.payload);

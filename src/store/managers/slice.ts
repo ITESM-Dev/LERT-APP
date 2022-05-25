@@ -10,7 +10,7 @@ const managersSlice = createSlice({
     initialState: managersAdapter.getInitialState(),
     reducers: {
         setAllManagers: (state, action: PayloadAction<ManagerType[]>) => {
-            managersAdapter.addMany(state, action.payload)
+            managersAdapter.setMany(state, action.payload)
         },
         addManager: (state, action: PayloadAction<ManagerType>) => {
             managersAdapter.addOne(state, action.payload);

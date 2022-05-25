@@ -11,7 +11,7 @@ const bandTypesSlice = createSlice({
     initialState: bandTypesAdapter.getInitialState(),
     reducers: {
         setBandTypes: (state, action: PayloadAction<BandTypesType[]>) => {
-            bandTypesAdapter.addMany(state, action.payload)
+            bandTypesAdapter.setMany(state, action.payload)
         },
         addBandType: (state, action: PayloadAction<BandTypesType>) => {
             bandTypesAdapter.addOne(state, action.payload)
