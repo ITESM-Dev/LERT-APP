@@ -1,5 +1,5 @@
 // Reducer & Adapter
-import extraHourReducer, { extraHoursAdapter } from "./slice";
+import extraHoursReducer, { extraHoursAdapter } from "./slice";
 
 // Actions
 import {
@@ -13,7 +13,7 @@ import {
 import { ExtraHourType } from "./types";
 
 export {
-    extraHourReducer,
+    extraHoursReducer,
     extraHoursAdapter,
     setExtraHours,
     addExtraHour,
