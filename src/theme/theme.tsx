@@ -38,6 +38,9 @@ export default extendTheme({
 
 		}
     },
+	fontWeights: {
+		regular: 400,
+	},
     fontConfig: {
 		IBMPlexSans: {
 			light: {
