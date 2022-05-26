@@ -1,22 +1,21 @@
-import { useState } from "react";
-import { View } from "react-native";
+import { useState, useEffect, useRef } from "react";
+import { View, Animated } from "react-native";
 
-import { Animated } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer";
 
 import ProfileInfo from "~components/molecules/ProfileInfo";
 import theme from "~theme/theme";
-import { useRef } from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
+import { AppDispatch } from "~store/store";
 import { userSelector } from "~store/user";
 import { getUserInfoThunk } from "~store/user/thunks";
 
 const CustomDrawer = (props: any) => {
 
     const user = useSelector(userSelector);
-    const dispatch = useDispatch()
+    const dispatch: AppDispatch = useDispatch()
 
     useEffect(() => {
         // This is valid while using postman
