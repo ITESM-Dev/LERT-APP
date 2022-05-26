@@ -10,6 +10,10 @@ import Theme from '../../theme/theme';
 import { useState } from "react";
 import { HStack, VStack } from "native-base";
 import Dropdown from "~components/molecules/Dropdown";
+import { AppDispatch } from "~store/store";
+import { useDispatch, useSelector } from "react-redux";
+
+import { allExtraHours } from "~store/extraHours/selectors";
 
 const dropdownCountries = [
     { label: 'México', value: 'mexico' },
@@ -34,6 +38,12 @@ const ExtraHours = () => {
     const [rate, setRate] = useState("");
     const [dateStart, setDateStart] = useState("");
     const [dateFinish, setDateFinish] = useState("");
+
+    // Store Dispatcher
+    const dispatch: AppDispatch = useDispatch();
+
+    // Extra Hours - State
+    const expenses = useSelector(allExtraHours);
 
     return (
         <View>
