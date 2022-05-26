@@ -1,9 +1,12 @@
+import { useSelector } from "react-redux";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-
 import Ionicons from '@expo/vector-icons/Ionicons';
 
+import { userSelector } from "~store/user";
+
+import CustomDrawer from "~components/organisms/CustomDrawer";
+
 import Home from "~screens/ContentDrawer/Home";
-import Logout from "~screens/ContentDrawer/Logout";
 import Types from "~screens/ContentDrawer/Types";
 import ICAS from "~screens/ContentDrawer/ICAS";
 import Delegate from "~screens/ContentDrawer/Delegate";
@@ -14,15 +17,12 @@ import EditManagerInformation from "~screens/ContentDrawer/EditManagerInformatio
 import Expenses from "~screens/ContentDrawer/Expenses";
 import Recovery from "~screens/ContentDrawer/Recovery";
 import Reports from "~screens/ContentDrawer/Reports";
-import CustomDrawer from "~components/organisms/CustomDrawer";
-import containerStyles from "~styles/containers";
 import ExpensesTypes from "~screens/ContentDrawer/ExpensesTypes";
+import CurrentPeriod from "~screens/ContentDrawer/CurrentPeriod";
+
+import containerStyles from "~styles/containers";
 import FixedHeadingStyles from "~styles/fixedHeadings";
 import theme from "~theme/theme";
-import LertText from "~components/atoms/LertText";
-import CurrentPeriod from "~screens/ContentDrawer/CurrentPeriod";
-import { useSelector } from "react-redux";
-import { userSelector } from "~store/user";
 
 
 const LABELS_STYLE = {
