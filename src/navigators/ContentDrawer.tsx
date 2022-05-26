@@ -20,6 +20,7 @@ import ExpensesTypes from "~screens/ContentDrawer/ExpensesTypes";
 import FixedHeadingStyles from "~styles/fixedHeadings";
 import theme from "~theme/theme";
 import LertText from "~components/atoms/LertText";
+import CurrentPeriod from "~screens/ContentDrawer/CurrentPeriod";
 
 
 const LABELS_STYLE = {
@@ -188,6 +189,17 @@ const ContentDrawer = () => {
                         <Drawer.Screen 
                             name="Recovery"
                             component={Recovery}
+                            options={{
+                                drawerIcon: () => 
+                                    <Ionicons
+                                        {...ICONS_STYLE} 
+                                        name="sync-outline"
+                                    />
+                            }}
+                        />
+                        <Drawer.Screen 
+                            name="CurrentPeriod"
+                            component={CurrentPeriod}
                             options={{
                                 drawerIcon: () => 
                                     <Ionicons
