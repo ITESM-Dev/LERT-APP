@@ -12,8 +12,6 @@ import theme from '~theme/theme';
 import Main from 'Main';
 
 //Importing LoginScreen to test it
-import LoginScreen from '~screens/AppStack/LoginScreen'
-import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { store } from '~store/store';
 
