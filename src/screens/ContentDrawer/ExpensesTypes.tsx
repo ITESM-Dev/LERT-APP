@@ -7,9 +7,14 @@ import LertInput from '~components/molecules/LertInput';
 import * as textTypes from '~styles/constants/textTypes';
 
 import Theme from '../../theme/theme';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HStack, VStack } from "native-base";
 import Dropdown from "~components/molecules/Dropdown";
+import { AppDispatch } from "~store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { allExpenseTypes } from "~store/expenseTypes/selectors";
+
+
 
 const ExpensesTypes = () => {
 
@@ -19,6 +24,12 @@ const ExpensesTypes = () => {
     ]
 
     const [name, setName] = useState("");
+
+    // Store Dispatcher
+    const dispatch: AppDispatch = useDispatch();
+    // Expenses - State
+    const expenseTypes = useSelector(allExpenseTypes);
+
 
     return (
         <View>
