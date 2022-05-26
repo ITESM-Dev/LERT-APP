@@ -36,8 +36,8 @@ const Delegate = () => {
                 
                 <VStack flex={2}/>
 
-                <VStack flex={2}>
-                    <Dropdown placeholder="Profile              " items={dropdownProfiles}/>
+                <VStack flex={2} marginX={"15%"}>
+                    <Dropdown placeholder="Profile" items={dropdownProfiles}/>
                 </VStack>
 
                 <VStack flex={1}/>

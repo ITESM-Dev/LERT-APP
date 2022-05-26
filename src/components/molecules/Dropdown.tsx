@@ -46,11 +46,13 @@ const Dropdown = (props: DropdownPropTypes) => {
                 
                 containerStyle={ styles.container }
 
+                listItemLabelStyle={{
+                    color: COLORS.text.bg,
+                }}
+
                 textStyle={{ 
                     ...styles.text, 
-                    color: value ? 
-                        COLORS.text.primary : 
-                        COLORS.text.placeholder,
+                    color: COLORS.text.bg,
                 }}
                 
                 arrowIconStyle={ styles.arrowIcon }
@@ -65,6 +67,10 @@ const Dropdown = (props: DropdownPropTypes) => {
                 listItemContainerStyle={ styles.itemContainer }
 
                 placeholder={props.placeholder}
+
+                placeholderStyle={{
+                    color: COLORS.text.placeholder,
+                }}
 
                 value={value}
                 setValue={setValue}
@@ -94,10 +100,11 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     arrowContainer: {
         marginStart: 20,
+        alignSelf: "flex-end"
     },
     arrowIcon: {
         tintColor: COLORS.icons.secondary,
@@ -105,7 +112,7 @@ const styles = StyleSheet.create({
     text: {
         ...BodyStyles.paragraphComponents ,
         fontFamily: 'body',
-        tintColor: COLORS.icons.secondary,
+        tintColor: COLORS.text.bg,
     },
     itemContainer: {
         backgroundColor: BG_COLOR,
