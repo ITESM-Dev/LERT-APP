@@ -1,4 +1,4 @@
-import AppLoading from 'expo-app-loading';
+
 import { useFonts } from 'expo-font';
 
 import { View } from 'react-native';
@@ -27,10 +27,8 @@ export default function App() {
 	});
 
 	if(!fontsLoaded) {
-		return <AppLoading />;
+		return <></>;
 	}
-
-	
 	
 	return (
 		<Provider store={store}>
