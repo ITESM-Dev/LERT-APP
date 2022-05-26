@@ -13,15 +13,7 @@
     "test": "jest --passWithNoTests"
   },
   "jest": {
-    "preset": "jest-expo",
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "**/*.{js,jsx,ts,tsx}",
-      "!**/coverage/**",
-      "!**/node_modules/**",
-      "!**/babel.config.js",
-      "!**/jest.setup.js"
-    ]
+    "preset": "jest-expo"
   },
   "husky": {
     "hooks": {
@@ -30,7 +22,6 @@
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.2.2",
-    "@expo/webpack-config": "~0.16.2",
     "@react-navigation/drawer": "^6.4.1",
     "@react-navigation/native-stack": "^6.6.2",
     "@react-stately/collections": "^3.3.8",
@@ -62,6 +53,7 @@
     "@babel/core": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-typescript": "^7.17.12",
+    "@expo/webpack-config": "^0.16.24",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/jest-native": "^4.0.5",
     "@testing-library/react": "^13.2.0",
