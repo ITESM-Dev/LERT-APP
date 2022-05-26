@@ -26,7 +26,7 @@ const extractValues = (myData: any) => {
 const Table = (props: TablePropTypes) => {
     
     return (
-        <Box>
+        <Box zIndex={-1}>
             <TableItem items={props.headers} flexValues={props.flexValues} styles={{bgColor: Theme.colors.components.selectedState}} amount={props.amount}/>
             <FlatList 
                 data={props.items}
