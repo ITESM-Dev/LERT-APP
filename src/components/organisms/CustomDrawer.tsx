@@ -8,14 +8,19 @@ import { DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawe
 import ProfileInfo from "~components/molecules/ProfileInfo";
 import theme from "~theme/theme";
 import { useRef } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { userSelector } from "~store/user";
+import { getUserInfoThunk } from "~store/user/thunks";
 
 const CustomDrawer = (props: any) => {
 
-    /** @todo replace this with Redux State */
-	const user = {
-		name: 'Rafael Gómez',
-		role: "OP Manager"
-	}
+    const user = useSelector(userSelector);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getUserInfoThunk("123abc%23"))
+    }, [])
 
     const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
     const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);

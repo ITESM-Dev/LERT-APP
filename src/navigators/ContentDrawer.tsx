@@ -21,6 +21,8 @@ import FixedHeadingStyles from "~styles/fixedHeadings";
 import theme from "~theme/theme";
 import LertText from "~components/atoms/LertText";
 import CurrentPeriod from "~screens/ContentDrawer/CurrentPeriod";
+import { useSelector } from "react-redux";
+import { userSelector } from "~store/user";
 
 
 const LABELS_STYLE = {
@@ -38,8 +40,9 @@ const Drawer = createDrawerNavigator()
 
 const ContentDrawer = () => {
 
-    /** Change this to use Redux */
-    const role = 'Manager';
+    // Get Role from State
+    const user = useSelector(userSelector)
+    const role = user.role;
 
     return (
         <>
