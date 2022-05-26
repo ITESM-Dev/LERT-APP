@@ -19,6 +19,7 @@ const CustomDrawer = (props: any) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        // This is valid while using postman
         dispatch(getUserInfoThunk("123abc%23"))
     }, [])
 
