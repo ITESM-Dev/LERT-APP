@@ -7,8 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install Packages
+      - name: Install Expo CLI
         run: npm install --global expo-cli
+      - name: Install Packages
+        run: npm ci --force
       - name: Create build expo
         run: expo build:web
       - uses: jhunt/cf-push@v1
