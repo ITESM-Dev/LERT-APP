@@ -22,7 +22,7 @@ const DisplayStyles: { [key: string]: TextType } = {
         fontStyle: "normal",
         fontFamily: "body",
         fontSize: 54,
-        lineHeight: 64,
+        lineHeight: 74,
         letterSpacing: 0 
     },
     display04: {
@@ -30,7 +30,7 @@ const DisplayStyles: { [key: string]: TextType } = {
         fontStyle: "normal",
         fontFamily: "body",
         fontSize: 54,
-        lineHeight: 64,
+        lineHeight: 74,
         letterSpacing: 0 
     },
     display05: {

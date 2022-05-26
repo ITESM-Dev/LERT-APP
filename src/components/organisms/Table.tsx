@@ -11,6 +11,7 @@ type TablePropTypes = {
     headers: Array<string>;
     items: Array<any>;
     flexValues: Array<number>;
+    amount: number;
 }
 
 const extractValues = (myData: any) => {
@@ -25,12 +26,12 @@ const extractValues = (myData: any) => {
 const Table = (props: TablePropTypes) => {
     
     return (
-        <Box>
-            <TableItem items={props.headers} flexValues={props.flexValues} styles={{bgColor: Theme.colors.components.selectedState}}/>
+        <Box zIndex={-1}>
+            <TableItem items={props.headers} flexValues={props.flexValues} styles={{bgColor: Theme.colors.components.selectedState}} amount={props.amount}/>
             <FlatList 
                 data={props.items}
                 renderItem={({ item }) => (
-                    <TableItem items={extractValues(item)} flexValues={props.flexValues} styles={{bgColor: Theme.colors.components.offWhite}}/>
+                    <TableItem items={extractValues(item)} flexValues={props.flexValues} styles={{bgColor: Theme.colors.components.offWhite}} amount={props.amount}/>
                 )}
                 keyExtractor={( item, index ) => index.toString()}
             />

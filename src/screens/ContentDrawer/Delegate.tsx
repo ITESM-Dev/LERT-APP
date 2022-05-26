@@ -2,8 +2,7 @@ import { Text, View } from "react-native";
 
 import Table from "~components/organisms/Table";
 import LertText from '~components/atoms/LertText';
-import Overlay from '~components/organisms/Overlay';
-import LertInput from '~components/molecules/LertInput';
+import LertButton from "~components/atoms/LertButton";
 import * as textTypes from '~styles/constants/textTypes';
 
 import Theme from '../../theme/theme';
@@ -11,14 +10,12 @@ import { useState } from "react";
 import { HStack, VStack } from "native-base";
 import Dropdown from "~components/molecules/Dropdown";
 
-const dropdownCountries = [
-    { label: 'México', value: 'mexico' },
-    { label: 'India', value: 'india' },
-]
-
-const dropdownTypes = [
-    { label: 'First', value: 'first' },
-    { label: 'Secondary', value: 'secondary' },
+const dropdownProfiles = [
+    { label: "person1@ibm.com", value: 'person1@ibm.com', id: "123" },
+    { label: "person2@ibm.com", value: 'person2@ibm.com', id: "124" },
+    { label: "person3@ibm.com", value: 'person3@ibm.com', id: "125" },
+    { label: "person4@ibm.com", value: 'person4@ibm.com', id: "126" },
+    { label: "person5@ibm.com", value: 'person5@ibm.com', id: "127" },
 ]
 
 const Delegate = () => {
@@ -36,23 +33,26 @@ const Delegate = () => {
             <LertText text="Delegate Section" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
 
             <HStack alignItems={"center"} justifyContent={"center"} marginTop={"2%"}>
-                <LertInput text={delegate} setText={setDelegate} placeholder={"Select the profile you want to log in"} style={{width:"30%", marginRight:"4%"}}/>
-                <Overlay maxWidth={"50%"} maxHeight={"50%"} buttonTitle="Submit"> 
-                <>
-                    <HStack space={2} justifyContent="space-evenly">
-                        <VStack alignItems={"flex-start"}>
-                            <LertText text="Profile" type={textTypes.heading} color={Theme.colors.text.primary}/>
-                            <LertInput text={delegate} setText={setDelegate} placeholder={"Select the profile you want to log in"}/>
-                        </VStack>
-                    </HStack>
-                </>
+                
+                <VStack flex={2}/>
 
-                </Overlay>
+                <VStack flex={2} marginX={"15%"}>
+                    <Dropdown placeholder="Profile" items={dropdownProfiles}/>
+                </VStack>
+
+                <VStack flex={1}/>
+
+                <VStack flex={2}>
+                    <LertButton title="Select Profile" type="primary" onPress={() => {}}/>
+                </VStack>
+
+                <VStack flex={2}/>
+                
             </HStack>
 
             <LertText text="Delegates:" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
 
-            <Table headers={["Admin Mail", "Manager Mail", "Status"]} items={example} flexValues={[2, 2, 3]}/>
+            <Table headers={["Admin Mail", "Manager Mail", "Status"]} items={example} flexValues={[2, 2, 3]} amount={3}/>
 
         </View>
     )

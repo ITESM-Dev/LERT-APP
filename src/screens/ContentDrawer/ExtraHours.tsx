@@ -66,7 +66,7 @@ const ExtraHours = () => {
 
             <LertText text="Extra Hours List" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
 
-            <Table headers={["Type", "Band", "Country", "Rate", "Date of Start", "Date of Finish"]} items={example} flexValues={[1, 1, 2, 1, 2, 2]}/>
+            <Table headers={["Type", "Band", "Country", "Rate", "Date of Start", "Date of Finish"]} items={example} flexValues={[1, 1, 2, 1, 2, 2]} amount={6}/>
         </View>
     )
 };
