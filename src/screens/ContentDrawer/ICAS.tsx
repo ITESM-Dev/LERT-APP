@@ -54,7 +54,7 @@ const ICAS = () => {
     // Store Dispatcher
     const dispatch: AppDispatch = useDispatch();
 
-    // Extra Hours - State
+    // ICAs - State
     const ICAs = useSelector(allICAs);
 
     return (
