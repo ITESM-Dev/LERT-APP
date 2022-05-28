@@ -30,7 +30,7 @@ const Employee = () => {
     // Store Dispatcher
     const dispatch: AppDispatch = useDispatch();
 
-    // Extra Hours - State
+    // Employees - State
     const employees = useSelector(allEmployees);
 
     return (
