@@ -10,6 +10,10 @@ import Theme from '../../theme/theme';
 import { useState } from "react";
 import { HStack, VStack } from "native-base";
 import Dropdown from "~components/molecules/Dropdown";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "~store/store";
+
+import { allManagers } from "~store/managers/selectors";
 
 const dropdownItems = [
     { label: 'Active', value: 'active' },
@@ -24,6 +28,12 @@ const ManageManagerFunctions = () => {
     ]
 
     const [manager, setManager] = useState("");
+
+    // Store Dispatcher
+    const dispatch: AppDispatch = useDispatch();
+
+    // Managers - State
+    const managers = useSelector(allManagers);
 
     return (
         <View>
