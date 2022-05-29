@@ -9,6 +9,10 @@ import * as textTypes from '~styles/constants/textTypes';
 import Theme from '../../theme/theme';
 import { useState } from "react";
 import { HStack, VStack } from "native-base";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "~store/store";
+
+import { allEmployees } from "~store/employees/selectors";
 
 const Employee = () => {
 
@@ -22,6 +26,12 @@ const Employee = () => {
     const [gerente, setGerente] = useState("");
     const [numICA, setNumeICA] = useState("");
     const [banda, setBanda] = useState("");
+
+    // Store Dispatcher
+    const dispatch: AppDispatch = useDispatch();
+
+    // Employees - State
+    const employees = useSelector(allEmployees);
 
     return (
         <View>
