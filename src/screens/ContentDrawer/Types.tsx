@@ -10,6 +10,9 @@ import Dropdown from "~components/molecules/Dropdown";
 import Theme from '../../theme/theme';
 import { useState } from "react";
 import { HStack, VStack } from "native-base";
+import { AppDispatch } from "~store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { allBandTypes } from "~store/bandTypes/selectors";
 
 const dropdownTypes = [
     { label: 'First', value: 'first' },
@@ -29,6 +32,12 @@ const Types = () => {
     const [rate, setRate] = useState("");
     const [startDate, setStartDate] = useState("");
     const [finishDate, setFinishDate] = useState("");
+
+    // Store Dispatcher
+    const dispatch: AppDispatch = useDispatch();
+
+    // Band Types - State
+    const bandTypes = useSelector(allBandTypes);
 
     return (
         <View>
