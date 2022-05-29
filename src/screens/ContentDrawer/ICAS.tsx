@@ -10,6 +10,10 @@ import Theme from '../../theme/theme';
 import { useState } from "react";
 import { HStack, VStack } from "native-base";
 import Dropdown from "~components/molecules/Dropdown";
+import { useDispatch, useSelector } from "react-redux";
+
+import { allICAs } from "~store/ICAs/selectors";
+import { AppDispatch } from "~store/store";
 
 const ICAS = () => {
 
@@ -46,6 +50,12 @@ const ICAS = () => {
     const [totalPlusTaxes, setTotalPlusTaxes] = useState("");
     const [startDate, setStartDate] = useState("");
     const [finishDate, setFinishDate] = useState("");
+
+    // Store Dispatcher
+    const dispatch: AppDispatch = useDispatch();
+
+    // ICAs - State
+    const ICAs = useSelector(allICAs);
 
     return (
         <View>
