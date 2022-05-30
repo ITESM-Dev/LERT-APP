@@ -1,17 +1,21 @@
+import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
+import { HStack, VStack } from "native-base";
 
-import Table from "~components/organisms/Table";
+import { useDispatch, useSelector } from "react-redux";
+
+import { AppDispatch } from "~store/store";
+import { allDelegates } from "~store/delegates/selectors";
+
 import LertText from '~components/atoms/LertText';
 import LertButton from "~components/atoms/LertButton";
+import Dropdown from "~components/molecules/Dropdown";
+import SearchInput from "~components/molecules/SearchInput";
+import Table from "~components/organisms/Table";
+
 import * as textTypes from '~styles/constants/textTypes';
 
 import Theme from '../../theme/theme';
-import { useEffect, useState } from "react";
-import { HStack, VStack } from "native-base";
-import Dropdown from "~components/molecules/Dropdown";
-import SearchInput from "~components/molecules/SearchInput";
-
-
 
 const Delegate = () => {
 
@@ -21,6 +25,12 @@ const Delegate = () => {
     ]
 
     const [delegate, setDelegate] = useState("")
+
+    // Store Dispatcher
+    const dispatch: AppDispatch = useDispatch();
+
+    // Delegte - State
+    const delegates = useSelector(allDelegates);
 
     return (
         <View style ={{ marginHorizontal: "5%" }} >
