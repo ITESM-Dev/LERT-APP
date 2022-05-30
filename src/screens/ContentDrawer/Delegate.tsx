@@ -50,8 +50,8 @@ const Delegate = () => {
                     <SearchInput 
                         items={example.map(item => item.ManagerMail)}
                         placeholder={"Search Manager..."}
-                        delegate={delegate}
-                        setDelegate={setDelegate}
+                        value={delegate}
+                        setValue={setDelegate}
                     />
                 </VStack>
 
