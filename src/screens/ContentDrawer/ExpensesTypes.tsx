@@ -12,8 +12,9 @@ import { HStack, VStack } from "native-base";
 import { AppDispatch } from "~store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { allExpenseTypes } from "~store/expenseTypes/selectors";
+import LertScreen from "~components/organisms/LertScreen";
 
-
+const TABLE_HEADERS = ["Name"]
 
 const ExpensesTypes = () => {
 
@@ -30,7 +31,7 @@ const ExpensesTypes = () => {
     const expenseTypes = useSelector(allExpenseTypes);
 
     return (
-        <View>
+        <LertScreen>
             
             <LertText text="New Type of Expense" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
 
@@ -48,9 +49,13 @@ const ExpensesTypes = () => {
 
             <LertText text="All Expenses Types" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
 
-            <Table headers={["Name"]} items={example} flexValues={[1]} amount={1}/>
+            <Table 
+                headers={TABLE_HEADERS} 
+                items={example} 
+                flexValues={[1]} 
+            />
 
-        </View>
+        </LertScreen>
     )
 };
 

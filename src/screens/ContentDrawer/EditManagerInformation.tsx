@@ -8,13 +8,14 @@ import Theme from '../../theme/theme';
 import { useState } from "react";
 import { HStack, VStack } from "native-base";
 import LertButton from "~components/atoms/LertButton";
+import LertScreen from "~components/organisms/LertScreen";
 
 const EditManagerInformation = () => {
 
     const [email, setEmail] = useState("");
 
     return (
-        <View>
+        <LertScreen>
             <VStack paddingLeft={"12%"} paddingRight={"12%"}>
             <LertText text="Edit Manager Information" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingTop:"6%"}}/>
                 <HStack paddingTop={"5%"} justifyContent={"space-evenly"}>
@@ -29,7 +30,7 @@ const EditManagerInformation = () => {
                     <LertButton title="Go to the Expenses Section of this Manager" type="terciary" onPress={() => {}}/>
                 </HStack>
             </VStack>
-        </View>
+        </LertScreen>
     )
 };
 

@@ -24,6 +24,7 @@ import containerStyles from "~styles/containers";
 import FixedHeadingStyles from "~styles/fixedHeadings";
 import theme from "~theme/theme";
 import { useEffect } from "react";
+import LegalMenu from "~components/molecules/LegalMenu";
 
 
 const LABELS_STYLE = {
@@ -71,7 +72,11 @@ const ContentDrawer = () => {
                 
                 initialRouteName='Home'
 
-                drawerContent={ (props) => <CustomDrawer {...props} /> }
+                drawerContent={ (props) => 
+                    <>
+                        <CustomDrawer {...props} />
+                    </> 
+                }
             >
 
                 <Drawer.Screen 
@@ -212,17 +217,6 @@ const ContentDrawer = () => {
                                     <Ionicons
                                         {...ICONS_STYLE} 
                                         name="sync-outline"
-                                    />
-                            }}
-                        />
-                        <Drawer.Screen 
-                            name="Reports"
-                            component={Reports}
-                            options={{
-                                drawerIcon: () => 
-                                    <Ionicons 
-                                        {...ICONS_STYLE}
-                                        name="documents-outline" 
                                     />
                             }}
                         />

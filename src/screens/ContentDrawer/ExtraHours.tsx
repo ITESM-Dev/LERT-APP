@@ -14,6 +14,7 @@ import { AppDispatch } from "~store/store";
 import { useDispatch, useSelector } from "react-redux";
 
 import { allExtraHours } from "~store/extraHours/selectors";
+import LertScreen from "~components/organisms/LertScreen";
 
 const dropdownCountries = [
     { label: 'México', value: 'mexico' },
@@ -24,6 +25,8 @@ const dropdownTypes = [
     { label: 'First', value: 'first' },
     { label: 'Secondary', value: 'secondary' },
 ]
+
+const TABLE_HEADERS = ["Type", "Band", "Country", "Rate", "Date of Start", "Date of Finish"]
 
 const ExtraHours = () => {
 
@@ -46,7 +49,7 @@ const ExtraHours = () => {
     const expenses = useSelector(allExtraHours);
 
     return (
-        <View>
+        <LertScreen>
 
             <LertText text="Extra Hours" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
 
@@ -76,8 +79,12 @@ const ExtraHours = () => {
 
             <LertText text="Extra Hours List" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
 
-            <Table headers={["Type", "Band", "Country", "Rate", "Date of Start", "Date of Finish"]} items={example} flexValues={[1, 1, 2, 1, 2, 2]} amount={6}/>
-        </View>
+            <Table 
+                headers={TABLE_HEADERS} 
+                items={example} 
+                flexValues={[1, 1, 2, 1, 2, 2]}
+            />
+        </LertScreen>
     )
 };
 

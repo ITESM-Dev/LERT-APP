@@ -15,11 +15,14 @@ import * as textTypes from '~styles/constants/textTypes';
 import Dropdown from "~components/molecules/Dropdown";
 
 import Theme from '../../theme/theme';
+import LertScreen from "~components/organisms/LertScreen";
 
 const dropdownTypes = [
     { label: 'First', value: 'first' },
     { label: 'Secondary', value: 'secondary' },
 ]
+
+const TABLE_HEADERS = ["Employee Mail", "Type", "Cost", "Date", "ICA", "ICA Manager", "Administrator", "Comment"]
 
 const Expenses = () => {
     let example = [
@@ -62,16 +65,13 @@ const Expenses = () => {
     useEffect(() => {
         if (expenses.length === 0) {
             dispatch(setAllExpenses(example))
-        }
-        else {
-            console.log(expenses) 
-        }
+        }   
     }, [expenses])
 
     return (
-        <View>
+        <LertScreen>
             
-            <LertText text="Expenses" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
+            <LertText text="Expenses" type={textTypes.display04} color={Theme.colors.text.primary}/>
 
             <Overlay maxWidth={"50%"} maxHeight={"50%"} buttonTitle="Create Expense"> 
                 <>
@@ -97,11 +97,13 @@ const Expenses = () => {
 
             </Overlay>
 
-            <LertText text="All Expenses" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
+            <Table 
+                headers={TABLE_HEADERS} 
+                items={expenses} 
+                flexValues={[3, 1, 1, 1, 1, 2, 2, 2]}
+            />
 
-            <Table headers={["Employee Mail", "Type", "Cost", "Date", "ICA", "ICA Manager", "Administrator", "Comment"]} items={expenses} flexValues={[3, 1, 1, 1, 1, 2, 2, 2]} amount={8}/>
-
-        </View>
+        </LertScreen>
     )
 };
 

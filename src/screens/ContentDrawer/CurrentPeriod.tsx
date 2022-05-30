@@ -7,6 +7,10 @@ import LertButton from "~components/atoms/LertButton";
 import Table from "~components/organisms/Table";
 import { useState } from "react";
 import { Box } from "native-base";
+import LertScreen from "~components/organisms/LertScreen";
+
+const TABLE_HEADERS = ["Quarter", "Year", "Key", "Status"]
+
 const CurrentPeriod = () =>{
 
     let periodExample = [
@@ -18,38 +22,23 @@ const CurrentPeriod = () =>{
     const [year, setYear] = useState("");
     const [key, setKey] = useState("");
     const [status, setStatus] = useState("");
+
     return (
-        <ScrollView>
-            <View style={{ flexDirection: "row", marginHorizontal: "5%", marginVertical: "5%" }}>
-                <View style={{ flexDirection: "column", width: "85%" }}>
-                    <LertText
-                        text="Current Period"
-                        type={textTypes.display04} />
-                    <LertText
-                        text="Period List"
-                        type={textTypes.heading4}
-                        style={{ marginTop: "3%" }} />
+        <LertScreen>
+            
+            <LertText
+                text="Current Period"
+                type={textTypes.display04} />
 
-                </View>
-                <LertButton
-                    title="Continue"
-                    type={"primary"}
-                    onPress={() => {
-                        // navigation.navigate("Content")
-                    } }
-                    style={{
-                        width: "10%",
-                        marginTop: "10%"
-                    }} />
-
-
-            </View>
-            <Box style={{marginBottom:"5%", width:"95%"}}>
-                <Table headers={["Quarter", "Year", "Key", "Status"]} items={periodExample} flexValues={[1, 1, 1, 1]}/>
+            <Box style={{ marginTop: "3%" }}>
+                <Table 
+                    headers={TABLE_HEADERS} 
+                    items={periodExample} 
+                    flexValues={[1, 1, 1, 1]}
+                />
             </Box>
-            <LegalMenu />
 
-        </ScrollView>
+        </LertScreen>
     );
 }
 

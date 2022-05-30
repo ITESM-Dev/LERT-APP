@@ -69,7 +69,7 @@ const CustomDrawer = (props: any) => {
             >
                 <Animated.View
                     style={{
-                        height: scrollIndicatorSize * 0.96,
+                        height: scrollIndicatorSize * 0.99,
                         width: 3,
                         borderRadius: 2,
                         backgroundColor: theme.colors.components.selectedState,
