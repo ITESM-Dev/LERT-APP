@@ -20,13 +20,13 @@ const AppTitle = () => {
             justifyContent="flex-start"
         >
             <LertText 
-                text="LERT " 
+                text={"LERT"}
                 type={textTypes.display02} 
                 color={colors.text.primary}
                 bold="bold"
             />
             <LertText 
-                text="LABOR EXPENSES RECOVERY TOOL" 
+                text="-LABOR EXPENSES RECOVERY TOOL" 
                 type={textTypes.display01} 
                 color={colors.text.primary}
             />
