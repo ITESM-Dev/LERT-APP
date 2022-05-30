@@ -22,6 +22,9 @@ const containerStyles: { [key: string]:any } = {
         flex: 1,
         backgroundColor: Theme.colors.components.background,
     },
+    insideScreen: {
+        margin: '5%'
+    }
 
 };
 
