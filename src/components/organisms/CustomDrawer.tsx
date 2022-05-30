@@ -1,15 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { View, Animated } from "react-native";
 
+
 import { useDispatch, useSelector } from "react-redux";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer";
+import { DrawerContentScrollView, DrawerItemList, useDrawerProgress } from "@react-navigation/drawer";
 
 import ProfileInfo from "~components/molecules/ProfileInfo";
 import theme from "~theme/theme";
 
 import { AppDispatch } from "~store/store";
-import { userSelector } from "~store/user";
+import { setUser, userSelector } from "~store/user";
 import { getUserInfoThunk } from "~store/user/thunks";
 
 const CustomDrawer = (props: any) => {
@@ -18,10 +19,15 @@ const CustomDrawer = (props: any) => {
     const dispatch: AppDispatch = useDispatch()
 
     useEffect(() => {
-        // This is valid while using postman
-        dispatch(getUserInfoThunk("123abc%23"))
+        //if (Object.keys(user).length === 0) dispatch(getUserInfoThunk("123abc%23"))
+        dispatch(setUser({
+            "id": "123abc#",
+            "name": "Rafael Gomez",
+            "mail": "rafa@tec.mx",
+            "role": "Manager"
+        }))
     }, [])
-
+    
     const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
     const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
 
@@ -36,7 +42,6 @@ const CustomDrawer = (props: any) => {
         visibleScrollBarHeight > scrollIndicatorSize
             ? visibleScrollBarHeight - scrollIndicatorSize
             : 1;
-
             
     const scrollIndicatorPosition = Animated
         .multiply(
@@ -93,8 +98,9 @@ const CustomDrawer = (props: any) => {
                 onContentSizeChange={height => {
                     setCompleteScrollBarHeight(height);
                 }}
+
                 onLayout={({
-                        nativeEvent: {
+                    nativeEvent: {
                         layout: { height }
                     }
                 }) => {
