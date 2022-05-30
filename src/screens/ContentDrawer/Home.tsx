@@ -36,6 +36,7 @@ const BgBox = (props: BgBoxPropTypes) => {
 };
 
 const Home = () => {
+    // BUG
     return (
         <ScrollView h="500">    
             <View style={{
