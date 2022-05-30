@@ -23,6 +23,7 @@ import CurrentPeriod from "~screens/ContentDrawer/CurrentPeriod";
 import containerStyles from "~styles/containers";
 import FixedHeadingStyles from "~styles/fixedHeadings";
 import theme from "~theme/theme";
+import { useEffect } from "react";
 
 
 const LABELS_STYLE = {
@@ -41,7 +42,7 @@ const Drawer = createDrawerNavigator()
 const ContentDrawer = () => {
 
     // Get Role from State
-    const user = useSelector(userSelector)
+    const user = useSelector(userSelector);
     const role = user.role;
 
     return (
@@ -59,7 +60,10 @@ const ContentDrawer = () => {
                         fontWeight: LABELS_STYLE.fontWeight,
                         lineHeight: LABELS_STYLE.lineHeight,
                         letterSpacing: LABELS_STYLE.letterSpacing,
-                        margin: 0
+                        margin: 0,
+                    },
+                    drawerItemStyle: {
+                        borderRadius: 0,
                     },
                     drawerActiveBackgroundColor: theme.colors.components.selectedState,
                     drawerActiveTintColor: LABELS_STYLE.color,
@@ -78,7 +82,7 @@ const ContentDrawer = () => {
                             <Ionicons 
                                 {...ICONS_STYLE}
                                 name="home-outline" 
-                            />
+                            />,
                     }}
                 />
 

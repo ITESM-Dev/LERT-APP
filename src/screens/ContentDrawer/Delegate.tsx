@@ -6,53 +6,73 @@ import LertButton from "~components/atoms/LertButton";
 import * as textTypes from '~styles/constants/textTypes';
 
 import Theme from '../../theme/theme';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HStack, VStack } from "native-base";
 import Dropdown from "~components/molecules/Dropdown";
+import SearchInput from "~components/molecules/SearchInput";
 
-const dropdownProfiles = [
-    { label: "person1@ibm.com", value: 'person1@ibm.com', id: "123" },
-    { label: "person2@ibm.com", value: 'person2@ibm.com', id: "124" },
-    { label: "person3@ibm.com", value: 'person3@ibm.com', id: "125" },
-    { label: "person4@ibm.com", value: 'person4@ibm.com', id: "126" },
-    { label: "person5@ibm.com", value: 'person5@ibm.com', id: "127" },
-]
+
 
 const Delegate = () => {
 
     let example = [
-        {AdminMail: "admin1@ibmcom", ManagerMail: "manager1@ibmcom", Status: "Active"},
-        {AdminMail: "admin2@ibmcom", ManagerMail: "manager2@ibmcom", Status: "Inactive"},
+        {AdminMail: "admin1@ibm.com", ManagerMail: "manager1@ibm.com", Status: "Active"},
+        {AdminMail: "admin2@ibm.com", ManagerMail: "manager2@ibm.com", Status: "Inactive"},
     ]
 
-    const [delegate, setDelegate] = useState("");
+    const [delegate, setDelegate] = useState("")
 
     return (
-        <View>
-            
-            <LertText text="Delegate Section" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
+        <View style ={{ marginHorizontal: "5%" }} >
+            <LertText 
+                text="Delegate Section" 
+                type={textTypes.display04} 
+                color={Theme.colors.text.primary} 
+                style={{ paddingTop:"6%" }}
+            />
 
-            <HStack alignItems={"center"} justifyContent={"center"} marginTop={"2%"}>
+            <HStack 
+                flex={1}
+                marginTop={"2%"}
+            >
                 
-                <VStack flex={2}/>
-
-                <VStack flex={2} marginX={"15%"}>
-                    <Dropdown placeholder="Profile" items={dropdownProfiles}/>
+                <VStack flex={1}>
+                    <SearchInput 
+                        items={example.map(item => item.ManagerMail)}
+                        placeholder={"Search Manager..."}
+                        delegate={delegate}
+                        setDelegate={setDelegate}
+                    />
                 </VStack>
 
-                <VStack flex={1}/>
-
-                <VStack flex={2}>
-                    <LertButton title="Select Profile" type="primary" onPress={() => {}}/>
+                <VStack style={{ flex: 2 }}/>
+                
+                <VStack flex={1}>
+                    <LertButton 
+                        title="Select Profile" 
+                        type="primary" 
+                        disabled={delegate === ""}
+                        onPress={() => {
+                            alert(`Login as ${delegate}`)
+                        }}
+                    />
                 </VStack>
-
-                <VStack flex={2}/>
                 
             </HStack>
 
-            <LertText text="Delegates:" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
-
-            <Table headers={["Admin Mail", "Manager Mail", "Status"]} items={example} flexValues={[2, 2, 3]} amount={3}/>
+            <View style={{ 
+                    marginTop: "5%", 
+                    position: 'relative', 
+                    zIndex: -1 
+                }}
+            >
+                <Table 
+                    headers={["Admin Mail", "Manager Mail", "Status"]} 
+                    items={example} 
+                    flexValues={[2, 2, 3]} 
+                    amount={3}
+                />
+            </View> 
 
         </View>
     )

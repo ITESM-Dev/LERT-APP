@@ -1,6 +1,6 @@
 
-import { Actionsheet, Button } from 'native-base'
-import { ViewStyle, Text } from 'react-native';
+import { Button } from 'native-base'
+import { ViewStyle } from 'react-native';
 
 import BodyStyles from '~styles/body';
 import theme from '~theme/theme';
@@ -44,6 +44,9 @@ const LertButton = (props: LertButtonPropTypes) => {
             _text={{
                 ...BodyStyles.paragraphComponents, 
                 ...LertButtonStyles[type]._text
+            }}
+            _disabled={{
+                backgroundColor: theme.colors.text.placeholder
             }}
             disabled={disabled}
             onPress={onPress}

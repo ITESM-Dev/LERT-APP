@@ -9,7 +9,7 @@ import BodyStyles from '~styles/body';
 
 const COLORS = Theme.colors
 const BG_COLOR = COLORS.components.offWhite
-const BODERD_COLOR = COLORS.components.highContrast
+const BORDER_COLOR = COLORS.components.highContrast
 
 type DropdownPropTypes = {
     placeholder: string;
@@ -36,35 +36,31 @@ const Dropdown = (props: DropdownPropTypes) => {
     const [isOpen, setIsOpen] = useState(false);
     const [value, setValue] = useState(null)
     const [items, setItems] = useState(props.items)
-
-    {console.log("Dropdowns")}
     
     return (
         <View style={ props.style }>
             <DropDownPicker
-                style={styles.generalStyle}
+                style={dropdownStyles.generalStyle}
                 
-                containerStyle={ styles.container }
+                containerStyle={ dropdownStyles.container }
 
-                listItemLabelStyle={{
-                    color: COLORS.text.bg,
-                }}
+                listItemLabelStyle={ dropdownStyles.listItem }
 
                 textStyle={{ 
-                    ...styles.text, 
+                    ...dropdownStyles.text, 
                     color: COLORS.text.bg,
                 }}
                 
-                arrowIconStyle={ styles.arrowIcon }
-                arrowIconContainerStyle={ styles.arrowContainer }
+                arrowIconStyle={ dropdownStyles.arrowIcon }
+                arrowIconContainerStyle={ dropdownStyles.arrowContainer }
                 
                 listMode='FLATLIST'
                 dropDownDirection='AUTO'
                 bottomOffset={200}
 
-                dropDownContainerStyle={ styles.dropdownContainer }
+                dropDownContainerStyle={ dropdownStyles.dropdownContainer }
 
-                listItemContainerStyle={ styles.itemContainer }
+                listItemContainerStyle={ dropdownStyles.itemContainer }
 
                 placeholder={props.placeholder}
 
@@ -85,18 +81,18 @@ const Dropdown = (props: DropdownPropTypes) => {
     );
 };
 
-const styles = StyleSheet.create({
+export const dropdownStyles = StyleSheet.create({
     generalStyle: {
         flexDirection: 'row', 
         padding: 10,
     },
     dropdownContainer: { 
-        borderColor: BODERD_COLOR,
+        borderColor: BORDER_COLOR,
         borderRadius: 0,
     },
     container: {
         backgroundColor: BG_COLOR,
-        borderColor: BODERD_COLOR,
+        borderColor: BORDER_COLOR,
         borderBottomWidth: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -119,6 +115,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 10
+    },
+    listItem: {
+        color: COLORS.text.bg
     }
 })
 
