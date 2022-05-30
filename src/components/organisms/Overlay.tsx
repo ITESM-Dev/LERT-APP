@@ -27,7 +27,7 @@ const Overlay = (props: OverlayPropTypes) => {
     const initialFocusRef = React.useRef(null);
 
     return (
-        <Box alignSelf={"flex-end"} paddingRight="10%">
+        <Box alignSelf={"flex-end"} >
             <LertButton title={props.buttonTitle} type="primary" onPress={() => setIsOpen(true)} />
             <Modal initialFocusRef={initialFocusRef} isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
                 <Modal.Content maxWidth={props.maxWidth} maxHeight={props.maxHeight} style={{backgroundColor:theme.colors.text.white}}>
