@@ -56,16 +56,6 @@ const LoginScreen = () => {
     const navigation = useNavigation()
     
     const dispatch: AppDispatch = useDispatch();
-    
-    const catFacts = useSelector(allCatFacts);
-
-    //const { data } = useGetFactsQuery()
- 
-    useEffect(() => {
-        dispatch(saveCatFacts());
-        //console.log(catFacts)
-    }, [catFacts])
-
 
     return (
         <Box

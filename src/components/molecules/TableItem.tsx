@@ -28,14 +28,13 @@ const TableItem = ({ items, flexValues, styles, amount }: TableItemPropTypes) =>
 
     return (
         <Box
-            marginX={"5%"}
             borderWidth={0.1}
             borderColor={Theme.colors.icons.primary}
             height={10}
             flexDirection='row'
             alignItems={'center'}
             {...styles}
-            paddingLeft="2%"
+            paddingLeft="1%"
 
         >
             { items.map( (item, index) => {
@@ -55,6 +54,7 @@ const TableItem = ({ items, flexValues, styles, amount }: TableItemPropTypes) =>
                     )
                 }
             } )}
+            
         </Box>
     )
 };

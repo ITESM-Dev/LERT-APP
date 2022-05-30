@@ -27,11 +27,21 @@ const Table = (props: TablePropTypes) => {
     
     return (
         <Box zIndex={-1}>
-            <TableItem items={props.headers} flexValues={props.flexValues} styles={{bgColor: Theme.colors.components.selectedState}} amount={props.amount}/>
+            <TableItem 
+                items={props.headers} 
+                flexValues={props.flexValues} 
+                styles={{ backgroundColor: Theme.colors.components.selectedState}} 
+                amount={props.amount}
+            />
             <FlatList 
                 data={props.items}
                 renderItem={({ item }) => (
-                    <TableItem items={extractValues(item)} flexValues={props.flexValues} styles={{bgColor: Theme.colors.components.offWhite}} amount={props.amount}/>
+                    <TableItem 
+                        items={extractValues(item)} 
+                        flexValues={props.flexValues} 
+                        styles={{ backgroundColor: Theme.colors.components.offWhite }} 
+                        amount={props.amount}
+                    />
                 )}
                 keyExtractor={( item, index ) => index.toString()}
             />
