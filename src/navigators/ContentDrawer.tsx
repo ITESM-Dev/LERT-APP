@@ -25,6 +25,7 @@ import FixedHeadingStyles from "~styles/fixedHeadings";
 import theme from "~theme/theme";
 import { useEffect } from "react";
 import LegalMenu from "~components/molecules/LegalMenu";
+import { CONTENT_DRAWER_SCREENS } from "~utils/screenNames";
 
 
 const LABELS_STYLE = {
@@ -80,7 +81,7 @@ const ContentDrawer = () => {
             >
 
                 <Drawer.Screen 
-                    name="Home"
+                    name={CONTENT_DRAWER_SCREENS.Home}
                     component={Home}
                     options={{
                         drawerIcon: (props) =>
@@ -94,7 +95,7 @@ const ContentDrawer = () => {
                 {role === 'OPManager' &&
                     <Drawer.Group>
                         <Drawer.Screen 
-                            name="Types"
+                            name={CONTENT_DRAWER_SCREENS.Types}
                             component={Types}
                             options={{
                                 drawerIcon: () => 
@@ -105,7 +106,7 @@ const ContentDrawer = () => {
                             }}
                         />
                         <Drawer.Screen 
-                            name="ICAS"
+                            name={CONTENT_DRAWER_SCREENS.ICAS}
                             component={ICAS}
                             options={{
                                 drawerIcon: () => 
@@ -116,7 +117,7 @@ const ContentDrawer = () => {
                             }}
                         />
                         <Drawer.Screen 
-                            name="Expenses Types"
+                            name={CONTENT_DRAWER_SCREENS.ExpensesTypes}
                             component={ExpensesTypes}
                             options={{
                                 drawerIcon: () => 
@@ -127,7 +128,7 @@ const ContentDrawer = () => {
                             }}
                         />
                         <Drawer.Screen 
-                            name="Extra Hours"
+                            name={CONTENT_DRAWER_SCREENS.ExtraHours}
                             component={ExtraHours}
                             options={{
                                 drawerIcon: () => 
@@ -138,7 +139,7 @@ const ContentDrawer = () => {
                             }}
                         />
                         <Drawer.Screen 
-                            name="Manage Manager Functions"
+                            name={CONTENT_DRAWER_SCREENS.ManageManagerFunctions}
                             component={ManageManagerFunctions}
                             options={{
                                 drawerIcon: () => 
@@ -149,7 +150,7 @@ const ContentDrawer = () => {
                             }}
                         />
                         <Drawer.Screen 
-                            name="Edit Manager Information"
+                            name={CONTENT_DRAWER_SCREENS.EditManagerInformation}
                             component={EditManagerInformation}
                             options={{
                                 drawerIcon: () => 
@@ -165,7 +166,7 @@ const ContentDrawer = () => {
                 {role === 'Manager' &&
                     <Drawer.Group>
                         <Drawer.Screen 
-                            name="Delegate"
+                            name={CONTENT_DRAWER_SCREENS.Delegate}
                             component={Delegate}
                             options={{
                                 drawerIcon: () => 
@@ -177,7 +178,7 @@ const ContentDrawer = () => {
                             
                         />
                         <Drawer.Screen 
-                            name="Employee"
+                            name={CONTENT_DRAWER_SCREENS.Employee}
                             component={Employee}
                             options={{
                                 drawerIcon: () => 
@@ -188,7 +189,7 @@ const ContentDrawer = () => {
                             }}
                         />
                         <Drawer.Screen 
-                            name="Expenses"
+                            name={CONTENT_DRAWER_SCREENS.Expenses}
                             component={Expenses}
                             options={{
                                 drawerIcon: () => 
@@ -199,7 +200,7 @@ const ContentDrawer = () => {
                             }}
                         />
                         <Drawer.Screen 
-                            name="Recovery"
+                            name={CONTENT_DRAWER_SCREENS.Recovery}
                             component={Recovery}
                             options={{
                                 drawerIcon: () => 
@@ -210,7 +211,7 @@ const ContentDrawer = () => {
                             }}
                         />
                         <Drawer.Screen 
-                            name="CurrentPeriod"
+                            name={CONTENT_DRAWER_SCREENS.CurrentPeriod}
                             component={CurrentPeriod}
                             options={{
                                 drawerIcon: () => 
@@ -226,7 +227,7 @@ const ContentDrawer = () => {
                 {role === 'Admin' &&
                     <Drawer.Group>
                         <Drawer.Screen 
-                            name="Delegate"
+                            name={CONTENT_DRAWER_SCREENS.Delegate}
                             component={Delegate}
                             options={{
                                 drawerIcon: () => 

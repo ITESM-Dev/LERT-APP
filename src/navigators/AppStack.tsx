@@ -10,6 +10,7 @@ import LoginScreen from '~screens/AppStack/LoginScreen';
 import SignUp from '~screens/AppStack/SignUp';
 import Content from '~../Content';
 import theme from '~theme/theme';
+import { APP_STACK_SCREENS } from '~utils/screenNames';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,23 +35,23 @@ const AppStack = () => {
             }}
         >
             <Stack.Screen 
-                name='LoginScreen'
+                name={APP_STACK_SCREENS.LoginScreen}
                 component={LoginScreen}
             />
 
             <Stack.Screen 
-                name='SignUp'
+                name={APP_STACK_SCREENS.SignUp}
                 component={SignUp}
             />
 
             <Stack.Screen 
-                name='ForgotPassword'
+                name={APP_STACK_SCREENS.ForgotPassword}
                 component={ForgotPassword}
             />
 
             {/* Drawer Navigator */}
             <Stack.Screen 
-                name='Content'
+                name={APP_STACK_SCREENS.Content}
                 component={Content}
                 options={{ 
                     header: ContentHeader,
