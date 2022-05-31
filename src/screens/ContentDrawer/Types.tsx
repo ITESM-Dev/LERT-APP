@@ -13,11 +13,14 @@ import { HStack, VStack } from "native-base";
 import { AppDispatch } from "~store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { allBandTypes } from "~store/bandTypes/selectors";
+import LertScreen from "~components/organisms/LertScreen";
 
 const dropdownTypes = [
     { label: 'First', value: 'first' },
     { label: 'Secondary', value: 'secondary' },
 ]
+
+const TABLE_HEADERS = ["Type", "Country", "Band", "Rate", "Date of Start", "Date of Finish"]
 
 const Types = () => {
 
@@ -40,9 +43,9 @@ const Types = () => {
     const bandTypes = useSelector(allBandTypes);
 
     return (
-        <View>
+        <LertScreen>
             
-            <LertText text="Types" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
+            <LertText text="Types" type={textTypes.display04} color={Theme.colors.text.primary}/>
 
             <Overlay maxWidth={"50%"} maxHeight={"50%"} buttonTitle="Create Expense"> 
                 <>
@@ -66,11 +69,15 @@ const Types = () => {
 
             </Overlay>
 
-            <LertText text="Types List" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
+            <LertText text="Types List" type={textTypes.display01} color={Theme.colors.text.primary}/>
 
-            <Table headers={["Type", "Country", "Band", "Rate", "Date of Start", "Date of Finish"]} items={example} flexValues={[1, 1, 1, 1, 2, 2]}/>
+            <Table 
+                headers={TABLE_HEADERS} 
+                items={example} 
+                flexValues={[1, 1, 1, 1, 2, 2]}
+            />
 
-        </View>
+        </LertScreen>
     )
 };
 

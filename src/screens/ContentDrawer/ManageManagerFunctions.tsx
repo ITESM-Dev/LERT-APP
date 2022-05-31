@@ -14,11 +14,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "~store/store";
 
 import { allManagers } from "~store/managers/selectors";
+import LertScreen from "~components/organisms/LertScreen";
 
 const dropdownItems = [
     { label: 'Active', value: 'active' },
     { label: 'Inactive', value: 'inactive' },
 ]
+
+const TABLE_HEADERS = ["Manager", "Status", "Last Update"]
 
 const ManageManagerFunctions = () => {
 
@@ -36,7 +39,7 @@ const ManageManagerFunctions = () => {
     const managers = useSelector(allManagers);
 
     return (
-        <View>
+        <LertScreen>
             
             <LertText text="Activate/Deactivate Manager Functions" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
 
@@ -56,9 +59,13 @@ const ManageManagerFunctions = () => {
 
             <LertText text="Extra Hours List" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
 
-            <Table headers={["Manager", "Status", "Last Update"]} items={example} flexValues={[1, 1, 1]} amount={3}/>
+            <Table 
+                headers={TABLE_HEADERS} 
+                items={example} 
+                flexValues={[1, 1, 1]} 
+            />
 
-        </View>
+        </LertScreen>
     )
 };
 
