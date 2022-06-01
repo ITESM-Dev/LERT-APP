@@ -16,7 +16,6 @@ import ManageManagerFunctions from "~screens/ContentDrawer/ManageManagerFunction
 import EditManagerInformation from "~screens/ContentDrawer/EditManagerInformation";
 import Expenses from "~screens/ContentDrawer/Expenses";
 import Recovery from "~screens/ContentDrawer/Recovery";
-import Reports from "~screens/ContentDrawer/Reports";
 import ExpensesTypes from "~screens/ContentDrawer/ExpensesTypes";
 import CurrentPeriod from "~screens/ContentDrawer/CurrentPeriod";
 
