@@ -13,6 +13,7 @@ import LertText from '~components/atoms/LertText';
 import theme from '~theme/theme';
 import * as textTypes from '~styles/constants/textTypes';
 import LertButton from '~components/atoms/LertButton';
+import { TouchableOpacity } from 'react-native';
 
 type ProfielInfoPropTypes = {
     imagePath?: string;
@@ -88,12 +89,14 @@ const ProfileInfo = (props: ProfielInfoPropTypes) => {
             </Box>
 
             {/** Logout Button */}
-            <Pressable
-                width='25%'
-                margin={2}
-                justifyContent='space-around'
-                flexDirection='row'
-                alignItems='center'
+            <TouchableOpacity
+                style={{
+                    width: '25%',
+                    margin: 2,
+                    justifyContent: 'space-around',
+                    flexDirection: 'row',
+                    alignItems: 'center'
+                }}
                 onPress={() => {
                     handleLogout()
                 }}
@@ -108,7 +111,7 @@ const ProfileInfo = (props: ProfielInfoPropTypes) => {
                     size={14}
                     color={theme.colors.components.highContrast}
                 />
-            </Pressable>
+            </TouchableOpacity>
         </View>
     );
 };
