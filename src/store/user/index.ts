@@ -7,14 +7,38 @@ import {
     clearUser,
 } from "./slice";
 
-import { UserType } from "./types";
+import { 
+    UserType 
+} from "./types";
 
-import { userSelector } from "./selectors";
+import { 
+    userSelector 
+} from "./selectors";
+
+import {
+    getUserInfoThunk,
+    logUserThunk,
+    signUpUserThunk,
+    logoutUserThunk,
+    saveTokenInStorageThunk,
+    getTokenFromStorageThunk,
+    clearTokenInStorageThunk,
+} from './thunks'
 
 export {
-    setUser,
-    clearUser,
-    userSelector,
     userReducer,
     UserType,
+
+    setUser,
+    clearUser,
+
+    userSelector,
+
+    getUserInfoThunk,
+    logUserThunk,
+    signUpUserThunk,
+    logoutUserThunk,
+    saveTokenInStorageThunk,
+    getTokenFromStorageThunk,
+    clearTokenInStorageThunk,
 };

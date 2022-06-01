@@ -10,7 +10,7 @@ const userSlice = createSlice({
             state = {...state, ...action.payload}
             return state;
         },
-        clearUser: (state, action: PayloadAction<UserType>) => {
+        clearUser: (state) => {
             state = {}
             return state;
         },
