@@ -9,15 +9,7 @@ const FixedHeadingStyles: { [key: string]: TextType } = {
         lineHeight: 18,
         letterSpacing: 0.16 
     },
-    headingCompact: {
-        fontWeight: "regular",
-        fontStyle: "normal",
-        fontFamily: "body",
-        fontSize: 14,
-        lineHeight: 18,
-        letterSpacing: 0.16
-    },
-    body02Layout: {
+    heading2: {
         fontWeight: "semibold",
         fontStyle: "normal",
         fontFamily: "body",
@@ -25,7 +17,7 @@ const FixedHeadingStyles: { [key: string]: TextType } = {
         lineHeight: 24,
         letterSpacing: 0
     },
-    longLayout: {
+    heading3: {
         fontWeight: "regular",
         fontStyle: "normal",
         fontFamily: "body",
@@ -33,7 +25,15 @@ const FixedHeadingStyles: { [key: string]: TextType } = {
         lineHeight: 28,
         letterSpacing: 0
     },
-    longLayout2: {
+    heading4: {
+        fontWeight: "regular",
+        fontStyle: "normal",
+        fontFamily: "body",
+        fontSize: 28,
+        lineHeight: 36,
+        letterSpacing: 0
+    },
+    heading5: {
         fontWeight: "regular",
         fontStyle: "normal",
         fontFamily: "body",

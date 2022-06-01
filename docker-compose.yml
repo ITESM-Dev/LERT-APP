@@ -1,0 +1,15 @@
+version: "2.4"
+
+services: 
+    app:
+        build:
+            context: .
+        tty: true
+        ports:
+            - '19006:19006'
+        volumes:
+            - ./:/opt/lert/app:delegated
+            - ./package.json:/opt/lert/package.json
+            - ./package-lock.json:/opt/lert/package-lock.json
+        healthcheck:
+          disable: true

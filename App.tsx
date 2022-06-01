@@ -1,12 +1,19 @@
-import AppLoading from 'expo-app-loading';
+
 import { useFonts } from 'expo-font';
 
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 
 import { NativeBaseProvider } from 'native-base';
+import 'react-native-gesture-handler';
 
+import containerStyles from '~styles/containers';
 import theme from '~theme/theme';
-import Tests from 'Tests';
+
+import Main from 'Main';
+
+//Importing LoginScreen to test it
+import { Provider } from 'react-redux';
+import { store } from '~store/store';
 
 export default function App() {
 
@@ -18,22 +25,17 @@ export default function App() {
 	});
 
 	if(!fontsLoaded) {
-		return <AppLoading />;
+		return <></>;
 	}
 	
 	return (
-		<NativeBaseProvider theme={theme}>
-			<View style={styles.container}>
-				<Tests/>
-			</View>
-		</NativeBaseProvider>
+		<Provider store={store}>
+			<NativeBaseProvider theme={theme}>
+				<View style={containerStyles.app}>
+					<Main/>
+				</View>
+			</NativeBaseProvider>
+		</Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  }
-});
 
