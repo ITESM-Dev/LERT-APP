@@ -1,24 +1,32 @@
-import { View, ImageBackground, useWindowDimensions, Linking, ViewStyle  } from 'react-native';
-import { Box } from 'native-base';
 import { useEffect, useState } from 'react';
-import Theme from '~theme/theme';
+import { 
+    View, 
+    ImageBackground, 
+    useWindowDimensions, 
+    Linking, 
+    ViewStyle  
+} from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+import { Box } from 'native-base';
+
+import { AppDispatch } from '~store/store';
+import { LoginForm } from '~store/api';
+import { 
+    userSelector, 
+    UserType, 
+    logUserThunk, 
+    saveTokenInStorageThunk 
+} from '~store/user';
 
 import LertInput from '~components/molecules/LertInput';
-import LertText, { StyleTypes }  from '~components/atoms/LertText';
+import LertText from '~components/atoms/LertText';
 import LertButton from '~components/atoms/LertButton'
 
-import * as textTypes from '~styles/constants/textTypes';
-import Main from 'Main';
-import { useNavigation } from '@react-navigation/native';
 import theme from '~theme/theme';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import * as textTypes from '~styles/constants/textTypes';
 
-import { useGetFactsQuery } from '~store/api/slice'
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, store } from '~store/store';
-import { addFacts } from '~store/cats/slice';
-import { allCatFacts } from '~store/cats/selectors';
-import { saveCatFacts } from '~store/cats/thunks';
+import { APP_STACK_SCREENS } from '~utils/screenNames';
 
 type BgBoxPropTypes = {
     text: string;
@@ -28,34 +36,59 @@ type BgBoxPropTypes = {
 
 const BgBox = (props: BgBoxPropTypes) => {
     return (
+        // @ts-ignore
         <Box
             {...props.style}
-            bgColor={Theme.colors.text.bg} 
+            bgColor={theme.colors.text.bg} 
             alignItems="center"
         >
             <LertText 
                 text={props.text} 
                 type={props.textType} 
-                color={Theme.colors.text.white}
+                color={theme.colors.text.white}
             />
         </Box>
     );
 };
 
+const IBMidHelp = "https://www.ibm.com/ibmid/myibm/help/us/helpdesk.html";
+
 const LoginScreen = () => {
+
+    const navigation = useNavigation()
+    const dispatch: AppDispatch = useDispatch();
+
+    const user: UserType = useSelector(userSelector)
 
     const [IBMid, setIBMid] = useState("");
     const [password, setPassword] = useState("");
 
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+
     const screenWidth = useWindowDimensions().width;
     const screenHeight = useWindowDimensions().height;
-
-    const IBMidHelp = "https://www.ibm.com/ibmid/myibm/help/us/helpdesk.html";
     
+    const handleSubmit = () => {
+        // Construct Login Form for API call
+        const loginForm: LoginForm = {
+            mail: IBMid,
+            password: password
+        }
 
-    const navigation = useNavigation()
-    
-    const dispatch: AppDispatch = useDispatch();
+        setLoading(true)
+        // Dispatch thunk Action
+        dispatch(logUserThunk(loginForm))
+            .then((response: any) => {
+                if (response.meta.requestStatus === 'fulfilled') {
+                    dispatch(saveTokenInStorageThunk(user!.token)).then(response => {
+                        if (response.payload) setLoading(false)
+                    })
+                }
+                else if (response.payload.status === 'rejected')
+                    setError(response.payload.error.data)
+            })
+    }
 
     return (
         <Box
@@ -64,6 +97,7 @@ const LoginScreen = () => {
             {/*Left Side*/}
             <Box>
                 <ImageBackground 
+                    // @ts-ignore
                     style={{width: screenWidth/10.0 * 6, height: screenHeight, justifyContent:"center", alignItems:"start"}}
                     source={require("~../assets/bgLogin.jpg")}
                     alt="Login Background"
@@ -123,11 +157,10 @@ const LoginScreen = () => {
                 justifyContent="center"
             >
                 <Box
-                    bgColor={Theme.colors.components.offWhite}
+                    bgColor={theme.colors.components.offWhite}
                     justifyContent="center"
                     alignSelf="center"
                     padding="15%"
-                    marginVertical="15%"
                 >
                     <LertText
                         text="Log in to LERT"
@@ -138,7 +171,7 @@ const LoginScreen = () => {
                         style={{marginTop:"8%"}}
                         text="IBMid"
                         type={textTypes.label}
-                        color={Theme.colors.components.placeholderActive}
+                        color={theme.colors.components.placeholderActive}
                     />
                     <LertInput
                         placeholder="IBM ID"
@@ -151,7 +184,7 @@ const LoginScreen = () => {
                         style={{marginTop:"8%"}}
                         text="Password"
                         type={textTypes.label}
-                        color={Theme.colors.components.placeholderActive}
+                        color={theme.colors.components.placeholderActive}
                     />
                     <LertInput
                         placeholder="Password"
@@ -161,25 +194,31 @@ const LoginScreen = () => {
                         password={true}
                     />
 
-                    <LertText
+                    {/*<LertText
                         style={{alignSelf:"flex-end", marginTop:"5%"}}
                         text="Forgot password?"
                         type={textTypes.label}
                         color={Theme.colors.actions.actionPrimary}
                         underline="underline"
-                    />
+                    />*/}
 
                     <LertButton 
                         title="Continue"
                         type={"primary"}
+                        disabled={loading}
                         onPress={() => {
-                            navigation.navigate("Content")
+                            handleSubmit()
                         }}
                         style={{
                             width: "35%",
                             marginTop: "10%"
                         }}
                     />
+                    {error && <LertText 
+                        text={error}
+                        type={textTypes.label}
+                        color={theme.colors.alerts.errorSecondary}
+                    />}
 
                     <Box
                         borderBottomColor={"rgba(22, 22, 22, 0.3)"} //Icons.Primary Not in palette
@@ -199,8 +238,12 @@ const LoginScreen = () => {
                             style={{marginTop:"5%"}}
                             text="Create an IBMid"
                             type={textTypes.label}
-                            color={Theme.colors.actions.actionPrimary}
+                            color={theme.colors.actions.actionPrimary}
                             underline="underline"
+                            onPress={() => {
+                                // @ts-ignore
+                                navigation.navigate({ name: APP_STACK_SCREENS.SignUp })
+                            }}
                         />
                     </Box>
 
@@ -217,7 +260,7 @@ const LoginScreen = () => {
                             text="Contact the IBMid help desk"
                             type={textTypes.label}
                             onPress={()=>{ Linking.openURL( IBMidHelp )}}
-                            color={Theme.colors.actions.actionPrimary}
+                            color={theme.colors.actions.actionPrimary}
                             underline="underline"
                         />
                     </Box>
