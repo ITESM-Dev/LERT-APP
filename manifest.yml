@@ -1,0 +1,9 @@
+---
+applications:
+- name: LERT-Web
+  random-route: true
+  disk_quota: 2G
+  memory: 128M
+  path: web-build
+  buildpacks: 
+    - https://github.com/cloudfoundry/staticfile-buildpack/#v1.5.30

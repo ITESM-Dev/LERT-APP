@@ -1,0 +1,86 @@
+import { useEffect, useRef, useState } from "react";
+import { View, Animated } from "react-native";
+import { HStack, ScrollView, VStack } from "native-base";
+
+import { useDispatch, useSelector } from "react-redux";
+
+import { AppDispatch } from "~store/store";
+import { allDelegates } from "~store/delegates/selectors";
+
+import LertText from '~components/atoms/LertText';
+import LertButton from "~components/atoms/LertButton";
+import SearchInput from "~components/molecules/SearchInput";
+import Table from "~components/organisms/Table";
+import LegalMenu from "~components/molecules/LegalMenu";
+
+import * as textTypes from '~styles/constants/textTypes';
+
+import Theme from '~theme/theme';
+import LertScreen from "~components/organisms/LertScreen";
+
+const TABLE_HEADERS = ["Admin Mail", "Manager Mail", "Status"]
+
+const Delegate = () => {
+
+    let example = [
+        {AdminMail: "admin1@ibm.com", ManagerMail: "manager1@ibm.com", Status: "Active"},
+        {AdminMail: "admin2@ibm.com", ManagerMail: "manager2@ibm.com", Status: "Inactive"},
+    ]
+
+    const [delegate, setDelegate] = useState("")
+
+    return (
+        <LertScreen>
+            <LertText 
+                text="Delegate Section" 
+                type={textTypes.display04} 
+                color={Theme.colors.text.primary}
+            />
+
+            <HStack 
+                flex={1}
+                marginTop={"5%"}
+            >
+                
+                <VStack flex={1}>
+                    <SearchInput 
+                        items={example.map(item => item.ManagerMail)}
+                        placeholder={"Search Manager"}
+                        value={delegate}
+                        setValue={setDelegate}
+                    />
+                </VStack>
+
+                <VStack style={{ flex: 2 }}/>
+                
+                <VStack flex={1}>
+                    <LertButton 
+                        title="Select Profile" 
+                        type="primary" 
+                        disabled={delegate === ""}
+                        onPress={() => {
+                            alert(`Login as ${delegate}`)
+                        }}
+                    />
+                </VStack>
+                
+            </HStack>
+
+            <View style={{ 
+                    marginTop: "3%", 
+                    position: 'relative', 
+                    zIndex: -1 
+                }}
+            >
+                <Table 
+                    headers={TABLE_HEADERS} 
+                    items={example} 
+                    flexValues={[2, 2, 3]}
+                />
+            </View> 
+
+        </LertScreen>
+    )
+};
+
+export default Delegate;
