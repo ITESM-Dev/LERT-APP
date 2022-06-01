@@ -12,8 +12,6 @@ import { bandTypesReducer } from "./bandTypes";
 import { extraHoursReducer } from "./extraHours";
 import { delegateReducer } from "./delegates";
 
-import { CatsReducer } from "./cats";
-
 export const store = configureStore({
     reducer: combineReducers({
         // API Handler
@@ -29,10 +27,6 @@ export const store = configureStore({
         bandTypes: bandTypesReducer,
         extraHours: extraHoursReducer,
         delegate: delegateReducer,
-
-        // Dummy example reducer 
-        /** @todo erase at the end of the project */
-        cats: CatsReducer
     }),
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware().concat(api.middleware),
