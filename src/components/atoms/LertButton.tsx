@@ -31,13 +31,21 @@ const LertButton = (props: LertButtonPropTypes) => {
             // Button Type Style
             {...LertButtonStyles[type]} 
             // Component Style
-            style={style}
+            style={ disabled 
+                ? { 
+                    ...style,
+                    backgroundColor: theme.colors.text.placeholder 
+                } 
+                : style
+            }
             // Hover Style
-            _hover={
-                LertButtonStyles[`${type}Hover`]
-            } 
+            _hover={{
+                ...style,
+                ...LertButtonStyles[`${type}Hover`]
+            }} 
             // OnPress Style
             _pressed={{
+                ...style,
                 ...LertButtonStyles[`${type}Pressed`],
             }}
             // Text Style
@@ -45,9 +53,12 @@ const LertButton = (props: LertButtonPropTypes) => {
                 ...BodyStyles.paragraphComponents, 
                 ...LertButtonStyles[type]._text
             }}
-            _disabled={{
-                backgroundColor: theme.colors.text.placeholder
+
+            _focus={{
+                ...style,
+                borderColor: LertButtonStyles[`${type}Hover`].borderColor
             }}
+
             disabled={disabled}
             onPress={onPress}
         >
