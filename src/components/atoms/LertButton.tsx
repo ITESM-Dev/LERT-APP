@@ -7,7 +7,7 @@ import theme from '~theme/theme';
 
 type LertButtonPropTypes = {
     title: string;
-    type: string;
+    type: "primary" | "secondary" | "terciary" | "danger" | "ghost";
     disabled?: boolean;
     onPress: () => void;
     style?: ViewStyle; 
