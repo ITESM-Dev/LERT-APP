@@ -87,6 +87,7 @@ const LoginScreen = () => {
                 }
                 else if (response.payload.status === 'rejected')
                     setError(response.payload.error.data)
+                    setLoading(false)
             })
     }
 
@@ -193,14 +194,6 @@ const LoginScreen = () => {
                         setText={setPassword}
                         password={true}
                     />
-
-                    {/*<LertText
-                        style={{alignSelf:"flex-end", marginTop:"5%"}}
-                        text="Forgot password?"
-                        type={textTypes.label}
-                        color={Theme.colors.actions.actionPrimary}
-                        underline="underline"
-                    />*/}
 
                     <LertButton 
                         title="Continue"

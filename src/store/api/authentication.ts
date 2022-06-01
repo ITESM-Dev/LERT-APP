@@ -43,10 +43,7 @@ export const logout = (builder: BuilderType) => (
     builder.query<void, LogoutForm>({
         query: (logoutForm: LogoutForm) => ({
             url: 'logout',
-            headers: {
-                "mail": logoutForm.mail,
-                "token": logoutForm.token
-            },
+            headers: logoutForm,
             responseHandler: async (response) => await JSON.stringify(response),
             validateStatus: (response) => 
                response.status === 200
