@@ -8,7 +8,9 @@ test("Set User Action", () => {
         id: "1",
         name: "Rafael Gomez",
         mail: "rafa@tec.mx",
-        role: "Manager"
+        role: "Manager",
+        country: "Mexico",
+        token: "123456"
     }
     
     store.dispatch(setUser(newUser))
