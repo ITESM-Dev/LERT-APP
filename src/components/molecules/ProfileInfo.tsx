@@ -1,14 +1,18 @@
-
 import { View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { Image, Box, Pressable } from 'native-base';
 
 import Ionicons  from '@expo/vector-icons/Ionicons';
 
-import LertText from '~components/atoms/LertText';
-import { TouchableOpacity } from 'react-native';
-import theme from '~theme/theme';
+import { AppDispatch } from '~store/store';
+import { clearTokenInStorageThunk, logoutUserThunk, userSelector } from '~store/user';
+import { LogoutForm } from '~store/api';
 
+import LertText from '~components/atoms/LertText';
+
+import theme from '~theme/theme';
 import * as textTypes from '~styles/constants/textTypes';
+import LertButton from '~components/atoms/LertButton';
 
 type ProfielInfoPropTypes = {
     imagePath?: string;
@@ -22,6 +26,20 @@ type ProfielInfoPropTypes = {
  * @param role Input for the role to be shown as text
  */
 const ProfileInfo = (props: ProfielInfoPropTypes) => {
+
+    const user = useSelector(userSelector);
+    const dispatch: AppDispatch = useDispatch()
+
+    const handleLogout = () => {
+        const logoutForm: LogoutForm = {
+            token: user.token,
+            mail: user.mail
+        }
+        dispatch(logoutUserThunk(logoutForm)).then(response => {
+            dispatch(clearTokenInStorageThunk())
+        })
+    }
+
     return (
         <View
             style={{
@@ -41,7 +59,13 @@ const ProfileInfo = (props: ProfielInfoPropTypes) => {
             {/** User Profile Picture */}
             <Image 
                 {...profileInfoStyle}
-                source={{uri: props.imagePath ? props.imagePath : "https://wallpaperaccess.com/full/317501.jpg" }}
+                source={
+                    {
+                        uri: props.imagePath ? 
+                            props.imagePath : 
+                            "https://wallpaperaccess.com/full/317501.jpg" 
+                    }
+                }
                 alt="testing"
             />
 
@@ -70,20 +94,20 @@ const ProfileInfo = (props: ProfielInfoPropTypes) => {
                 justifyContent='space-around'
                 flexDirection='row'
                 alignItems='center'
-                onPress={() => {alert('Logout')}}
-            >
-                
-                    <LertText 
-                        text='Logout' 
-                        type={textTypes.heading}
-                        color={theme.colors.components.highContrast}
-                    />
-                    <Ionicons 
-                        name='arrow-forward-outline' 
-                        size={14}
-                        color={theme.colors.components.highContrast}
-                    />
-
+                onPress={() => {
+                    handleLogout()
+                }}
+            >   
+                <LertText 
+                    text='Logout' 
+                    type={textTypes.heading}
+                    color={theme.colors.components.highContrast}
+                />
+                <Ionicons 
+                    name='arrow-forward-outline' 
+                    size={14}
+                    color={theme.colors.components.highContrast}
+                />
             </Pressable>
         </View>
     );
