@@ -6,6 +6,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 import Theme from '~theme/theme'
 import BodyStyles from '~styles/body';
+import { Dispatch } from 'react';
+import { SetStateAction } from 'react';
 
 const COLORS = Theme.colors
 const BG_COLOR = COLORS.components.offWhite
@@ -14,7 +16,9 @@ const BORDER_COLOR = COLORS.components.highContrast
 type DropdownPropTypes = {
     placeholder: string;
     items: { label: string, value: any }[];
-    style?: ViewStyle
+    style?: ViewStyle,
+    value: string;
+    setValue: Dispatch<SetStateAction<string>>
 }
 
 /**
@@ -34,8 +38,9 @@ type DropdownPropTypes = {
 const Dropdown = (props: DropdownPropTypes) => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [value, setValue] = useState(null)
     const [items, setItems] = useState(props.items)
+    
+    const { value, setValue } = props
     
     return (
         <View style={ props.style }>
