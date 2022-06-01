@@ -10,21 +10,39 @@ import {
 } from "@reduxjs/toolkit/dist/query/react"
 
 import { getFacts } from "./cats"
-import { getUserInfo } from "./user"
+
+import { 
+	login, 
+	logout, 
+	signUp 
+} from "./authentication"
+
+import { 
+	getUserInfo 
+} from "./user"
+
+import { API_URL } from "~utils/constants"
+import { RootState } from "~store/store"
 
 export type BuilderType = EndpointBuilder<BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, never, "api">
 
 export const api = createApi({
 	baseQuery: fetchBaseQuery({ 
-		baseUrl: 'https://8d2c5050-cba1-4e25-9d34-f4c69d3a4a02.mock.pstmn.io/',
+		baseUrl: API_URL,
 	}),
 	endpoints: (builder) => ({
 		getFacts: getFacts(builder),
 		getUserInfo: getUserInfo(builder),
-	})
+		login: login(builder),
+		signUp: signUp(builder),
+		logout: logout(builder),
+	}),
 })
 
 export const { 
 	useGetFactsQuery,
 	useGetUserInfoQuery,
+	useLoginQuery,
+	useSignUpQuery,
+	useLogoutQuery,
 } = api
