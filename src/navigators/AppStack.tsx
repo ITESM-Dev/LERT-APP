@@ -1,35 +1,21 @@
-import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { Image } from 'native-base';
-import { Button } from 'react-native';
-import { View } from 'react-native';
-import AppTitle from '~components/molecules/AppTitle';
 
 import ForgotPassword from '~screens/AppStack/ForgotPassword';
 import LoginScreen from '~screens/AppStack/LoginScreen';
 import SignUp from '~screens/AppStack/SignUp';
-import Content from '~../Content';
-import theme from '~theme/theme';
 import { APP_STACK_SCREENS } from '~utils/screenNames';
+import { useSelector } from 'react-redux';
+import { userSelector } from '~store/user';
 
 const Stack = createNativeStackNavigator();
 
-const ContentHeader = () => {
-    return(
-        <View style={{ padding: 0 }}>
-            <AppTitle/>
-        </View>
-    )
-}
-
 const AppStack = () => {
-    
-    /** @todo add Redux State */
-    const userIsLogged = false;
+
+    const user = useSelector(userSelector);
 
     return (
         <Stack.Navigator
-            initialRouteName={userIsLogged ? 'Content': 'LoginScreen'}
+            initialRouteName={APP_STACK_SCREENS.LoginScreen}
             screenOptions={{
                 headerShown: false,
             }}
@@ -47,17 +33,6 @@ const AppStack = () => {
             <Stack.Screen 
                 name={APP_STACK_SCREENS.ForgotPassword}
                 component={ForgotPassword}
-            />
-
-            {/* Drawer Navigator */}
-            <Stack.Screen 
-                name={APP_STACK_SCREENS.Content}
-                component={Content}
-                options={{ 
-                    header: ContentHeader,
-                    headerShown: true, 
-                    headerStyle: { backgroundColor: theme.colors.text.primary }
-                }}
             />
 
         </Stack.Navigator>
