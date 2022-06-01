@@ -1,32 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { View, Animated } from "react-native";
 
-
-import { useDispatch, useSelector } from "react-redux";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { DrawerContentScrollView, DrawerItemList, useDrawerProgress } from "@react-navigation/drawer";
 
 import ProfileInfo from "~components/molecules/ProfileInfo";
 import theme from "~theme/theme";
-
-import { AppDispatch } from "~store/store";
-import { setUser, userSelector } from "~store/user";
-import { getUserInfoThunk } from "~store/user/thunks";
+import { userSelector } from "~store/user";
+import { useSelector } from "react-redux";
 
 const CustomDrawer = (props: any) => {
 
     const user = useSelector(userSelector);
-    const dispatch: AppDispatch = useDispatch()
-
-    useEffect(() => {
-        //if (Object.keys(user).length === 0) dispatch(getUserInfoThunk("123abc%23"))
-        dispatch(setUser({
-            "id": "123abc#",
-            "name": "Rafael Gomez",
-            "mail": "rafa@tec.mx",
-            "role": "Manager"
-        }))
-    }, [])
     
     const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
     const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);

@@ -1,21 +1,27 @@
-import { View, ImageBackground, useWindowDimensions, Linking } from 'react-native';
-import { Box } from 'native-base';
-import { useState, ViewStyle } from 'react';
-import Theme from '~theme/theme';
-
-import LertInput from '~components/molecules/LertInput';
-import LertText, { StyleTypes }  from '~components/atoms/LertText';
-import LertButton from '~components/atoms/LertButton'
-
-import * as textTypes from '~styles/constants/textTypes';
-import Main from 'Main';
+import { useState } from 'react';
+import { View, ImageBackground, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import theme from '~theme/theme';
+import { useDispatch } from 'react-redux';
+import { Box } from 'native-base';
+
+import { AppDispatch } from '~store/store';
+import { SignUpForm } from '~store/api';
+import { signUpUserThunk } from '~store/user';
+
+import LertText from '~components/atoms/LertText';
+import LertButton from '~components/atoms/LertButton'
+import LertInput from '~components/molecules/LertInput';
 import Dropdown from '~components/molecules/Dropdown';
 
+import theme from '~theme/theme';
+import * as textTypes from '~styles/constants/textTypes';
 
+import { APP_STACK_SCREENS } from '~utils/screenNames';
 
 const SignUp = () => {
+
+    const navigation: any = useNavigation()
+    const dispatch: AppDispatch = useDispatch()
     
     const screenWidth = useWindowDimensions().width;
     const screenHeight = useWindowDimensions().height;
@@ -24,16 +30,37 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+    const [country, setCountry] = useState("")
 
     const dropdownCountries = [
-        { label: 'Mexico', value: 'first' },
-        { label: 'India', value: 'secondary' },
-        { label: 'Austrailia', value: 'secondary' },
+        { label: 'México', value: 'Mexico' },
     ]
+
+    const handleSubmit = () => {
+        const signUpForm: SignUpForm = {
+            name: `${firstName} ${lastName}`,
+            mail: email,
+            password: password,
+            role: 'Resource',
+            country: country
+        }
+
+        dispatch(signUpUserThunk(signUpForm))
+            .then((response: any) => {
+                console.log(response)
+                if(response.meta.requestStatus === 'fulfilled') 
+                    navigation.navigate(APP_STACK_SCREENS.LoginScreen)
+            })
+            .catch((error: any) => {
+
+            });
+    }
+
     return (
         <View style={{flexDirection:"row"}}>
             <Box>
                 <ImageBackground 
+                    // @ts-ignore
                     style={{width: screenWidth/10.0 * 5.5, height: screenHeight, justifyContent:"center", alignItems:"start"}}
                     source={require("~../assets/bgLogin.jpg")}
                     alt="Login Background"
@@ -42,7 +69,6 @@ const SignUp = () => {
                 <View  style={{ width: '100%', flexDirection: 'row' }}>
                     <LertText
                         text="Create your "
-                        //numberOfLines={}
                         color={theme.colors.text.white}
                         style={{
                             backgroundColor: theme.colors.text.bg,
@@ -53,7 +79,6 @@ const SignUp = () => {
 
                     <LertText
                         text="IBM"
-                        //numberOfLines={1}
                         color={theme.colors.text.white}
                         style={{
                             backgroundColor: theme.colors.text.bg,
@@ -64,7 +89,6 @@ const SignUp = () => {
                    </View>
                    <LertText
                         text="Account"
-                        //numberOfLines={1}
                         color={theme.colors.text.white}
                         style={{
                             backgroundColor: theme.colors.text.bg,
@@ -92,7 +116,6 @@ const SignUp = () => {
             <Box style={{marginTop:'5%', marginHorizontal:'5%', width: '30%'}}>
                 <LertText
                     text="Sign up for an IBMid"
-                    //numberOfLines={}
                     color={theme.colors.text.primary}
                     type={textTypes.display02}
                     />
@@ -108,8 +131,11 @@ const SignUp = () => {
                         style={{alignSelf:"flex-end", marginTop:"1%"}}
                         text="Log in"
                         type={textTypes.label}
-                        color={Theme.colors.actions.actionPrimary}
+                        color={theme.colors.actions.actionPrimary}
                         underline="underline"
+                        onPress={() => {
+                            navigation.navigate({ name: APP_STACK_SCREENS.LoginScreen })
+                        }}
                     />                
                </Box>
 
@@ -134,6 +160,7 @@ const SignUp = () => {
                 
                 <LertInput
                     placeholder="Password"
+                    password={true}
                     style={{width: "100%", marginTop:"5%", marginBottom:'7%'}}
                     text={password}
                     setText={setPassword}
@@ -161,13 +188,19 @@ const SignUp = () => {
 
                 </Box>
 
-                <Dropdown placeholder="Country" items={dropdownCountries} style={{marginTop:'10%'}}/>    
+                <Dropdown 
+                    placeholder="Country" 
+                    items={dropdownCountries} 
+                    style={{marginTop:'10%'}}
+                    value={country}
+                    setValue={setCountry}
+                />    
                 
                 <LertButton 
                         title="Continue"
                         type={"primary"}
                         onPress={() => {
-                            //navigation.navigate("Content")
+                            handleSubmit()
                         }}
                         style={{
                             width: "35%",
