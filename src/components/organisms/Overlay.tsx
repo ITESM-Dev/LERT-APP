@@ -13,6 +13,7 @@ type OverlayPropTypes = {
     maxWidth: string | number;
     maxHeight: string | number;
     buttonTitle: string;
+    handleSubmit: () => void;
 }
 
 /**
@@ -37,7 +38,14 @@ const Overlay = (props: OverlayPropTypes) => {
                         {props.children}
                     </Modal.Body>
                     <Modal.Footer style={{backgroundColor:theme.colors.text.white, paddingRight:"4%", paddingTop:"4%"}}>
-                        <LertButton title="SUBMIT" type="primary" onPress={() => setIsOpen(false)}/>
+                        <LertButton 
+                            title="SUBMIT" 
+                            type="primary" 
+                            onPress={() => {
+                                props.handleSubmit()
+                                setIsOpen(false)
+                            }}
+                        />
                     </Modal.Footer>
                 </Modal.Content>
             </Modal>
