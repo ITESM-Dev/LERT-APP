@@ -24,7 +24,11 @@ import {
 import { API_URL } from "~utils/constants"
 import { RootState } from "~store/store"
 
-export type BuilderType = EndpointBuilder<BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, never, "api">
+export type BuilderType = EndpointBuilder<
+	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
+	"BandTypes" | "Delegates"| "Employees" | "Expenses" | "ExpenseTypes" | "ExtraHours" | "ICAs" | "Managers", 
+	"api"
+>
 
 export const api = createApi({
 	baseQuery: fetchBaseQuery({ 
