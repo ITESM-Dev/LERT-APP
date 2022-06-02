@@ -17,40 +17,24 @@ import {
 
 const Main = () => {
 
-    const linkingOptions: LinkingOptions<ReactNavigation.RootParamList> = { 
-        enabled: true,
-        prefixes: [ 'lertApp://' ] // Not used for web
-    }
-
     const linking = {
-        /*
-        prefixes: [ // so it looks like the prefixes parte is useless on web :)
-            Linking.createURL('/'), "https://lert-web-exhausted-serval-ki.mybluemix.net"
-        ],
-        maybe this won't be necessary, haven't tested it In case it is necessary add the following import
-        import * as Linking from 'expo-linking';
-        */
         config: {
             screens: {
                 LoginScreen: "LoginScreen",
                 SignUp: "SignUp",
                 ForgotPassword: "ForgotPassword",
-                Content: {
-                    screens: {
-                        Home: "Home",
-                        Types: "Types",
-                        ICAS: "ICAS",
-                        ExpensesTypes: "ExpensesTypes",
-                        ExtraHours: "ExtraHours",
-                        ManageManagerFunctions: "ManageManagerFunctions",
-                        EditManagerInformation: "EditManagerInformation",
-                        Delegate: "Delegate",
-                        Employee: "Employee",
-                        Expenses: "Expenses",
-                        Recovery: "Recovery",
-                        CurrentPeriod: "CurrentPeriod"
-                    },
-                },
+                Home: "Home",
+                Types: "Types",
+                ICAS: "ICAS",
+                ExpensesTypes: "ExpensesTypes",
+                ExtraHours: "ExtraHours",
+                ManageManagerFunctions: "ManageManagerFunctions",
+                EditManagerInformation: "EditManagerInformation",
+                Delegate: "Delegate",
+                Employee: "Employee",
+                Expenses: "Expenses",
+                Recovery: "Recovery",
+                CurrentPeriod: "CurrentPeriod",
                 NotFound: '*',
             }
         }
@@ -69,7 +53,7 @@ const Main = () => {
 
     if (Object.keys(user).length === 0 || user.token === "undefined") 
         return (
-            <NavigationContainer linking={linkingOptions}>
+            <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
                 <AppStack/>
             </NavigationContainer>
         )
