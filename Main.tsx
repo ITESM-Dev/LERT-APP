@@ -9,11 +9,13 @@ import AppStack from "~navigators/AppStack";
 
 import { AppDispatch } from "~store/store";
 import { 
+    clearTokenInStorageThunk,
     getTokenFromStorageThunk, 
     setUser, 
     userSelector, 
     UserType
 } from "~store/user";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Main = () => {
 
@@ -43,15 +45,17 @@ const Main = () => {
     const dispatch: AppDispatch = useDispatch()
     const user = useSelector(userSelector)
 
-    /** @todo Add Token verification to get User Info from API */
     useEffect(() => {
-        dispatch(getTokenFromStorageThunk()).then(({ payload }: any) => {
-            if (payload !== null) 
-                dispatch(setUser({ token: payload } as UserType))
-        })
+        /** @todo Uncomment this and Add Token verification to get User Info from API */
+        /*AsyncStorage.getItem("token")
+            .then(token => {
+                if (token && token != undefined) {
+                    dispatch(setUser({ token: token } as UserType))
+                }
+            })*/
     }, [])
 
-    if (Object.keys(user).length === 0 || user.token === "undefined") 
+    if (!user.token) 
         return (
             <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
                 <AppStack/>

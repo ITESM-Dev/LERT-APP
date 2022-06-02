@@ -16,7 +16,8 @@ import {
     userSelector, 
     UserType, 
     logUserThunk, 
-    saveTokenInStorageThunk 
+    saveTokenInStorageThunk, 
+    setUser
 } from '~store/user';
 
 import LertInput from '~components/molecules/LertInput';
@@ -79,15 +80,12 @@ const LoginScreen = () => {
         setLoading(true)
         // Dispatch thunk Action
         dispatch(logUserThunk(loginForm))
-            .then((response: any) => {
-                if (response.meta.requestStatus === 'fulfilled') {
-                    dispatch(saveTokenInStorageThunk(user!.token)).then(response => {
-                        if (response.payload) setLoading(false)
-                    })
-                }
-                else if (response.payload.status === 'rejected')
-                    setError(response.payload.error.data)
-                    setLoading(false)
+            .then(() => {
+                setLoading(false)
+            })
+            .catch(error => {
+                setError(error)
+                setLoading(false)
             })
     }
 

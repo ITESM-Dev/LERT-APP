@@ -36,9 +36,7 @@ const ProfileInfo = (props: ProfielInfoPropTypes) => {
             token: user.token,
             mail: user.mail
         }
-        dispatch(logoutUserThunk(logoutForm)).then(response => {
-            dispatch(clearTokenInStorageThunk())
-        })
+        dispatch(logoutUserThunk(logoutForm))
     }
 
     return (
