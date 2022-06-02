@@ -23,6 +23,7 @@ import {
 
 import { API_URL } from "~utils/constants"
 import { RootState } from "~store/store"
+import { createBandType } from "./bandTypes"
 
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
@@ -58,6 +59,9 @@ export const api = createApi({
 		login: login(builder),
 		signUp: signUp(builder),
 		logout: logout(builder),
+
+		// Band Types
+		createBandType: createBandType(builder),
 	}),
 })
 
@@ -67,4 +71,7 @@ export const {
 	useLoginQuery,
 	useSignUpQuery,
 	useLogoutQuery,
+
+	// Band Types
+	useCreateBandTypeMutation,
 } = api

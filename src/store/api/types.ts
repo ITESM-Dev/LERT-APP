@@ -21,3 +21,12 @@ export type LogoutForm = {
     token: string;
     mail: string;
 }
+
+export type BandTypeForm = {
+    type: string;
+    band: string;
+    country: string;
+    yearlyRate: string;
+    dateToStart: string;
+    dateToFinish: string;
+}
