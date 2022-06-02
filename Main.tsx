@@ -53,12 +53,14 @@ const Main = () => {
 
     if (!user.token) 
         return (
+            // @ts-ignore
             <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
                 <AppStack/>
             </NavigationContainer>
         )
     
     return (  
+        // @ts-ignore
         <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
             <Content />
         </NavigationContainer>
