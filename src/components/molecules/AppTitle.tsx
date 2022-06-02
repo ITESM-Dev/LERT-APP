@@ -12,9 +12,8 @@ const AppTitle = () => {
     const colors = theme.colors
 
     return (
-        <Box 
-            flex={1}
-            padding={3}
+        <Box
+            padding={2}
             backgroundColor={colors.text.white}
             flexDirection='row' 
             justifyContent="flex-start"

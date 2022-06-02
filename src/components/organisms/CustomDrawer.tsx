@@ -43,8 +43,7 @@ const CustomDrawer = (props: any) => {
     const ScrollBar = () => 
         <>
             <View 
-                style={{
-                    height: '50%',
+                style={{  
                     marginHorizontal: 1,
                     width: 3,
                     alignItems: 'center',
@@ -65,48 +64,51 @@ const CustomDrawer = (props: any) => {
         </>
 
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>
 
-        {/* Top Large Image */}
-        <ProfileInfo
-            name={user.name}
-            role={user.role}
-        />
-
-        {/* Options List */}
-        <View style={{ flex: 1, flexDirection: 'row'}}>
-            <DrawerContentScrollView 
-                {...props}
-
-                showsVerticalScrollIndicator={false}
-
-                onContentSizeChange={height => {
-                    setCompleteScrollBarHeight(height);
-                }}
-
-                onLayout={({
-                    nativeEvent: {
-                        layout: { height }
-                    }
-                }) => {
-                    setVisibleScrollBarHeight(height);
-                }}
-                onScroll={Animated.event(
-                    [{ nativeEvent: { contentOffset: { y: scrollIndicator } } }],
-                    { useNativeDriver: false }
-                )}
-                scrollEventThrottle={16}
-            >
-            
-                <DrawerItemList 
-                    {...props} 
+            {/* Top Large Image */}
+            <View style={{ flex: 1}}>
+                <ProfileInfo
+                    name={user.name}
+                    role={user.role}
                 />
-            </DrawerContentScrollView>
-            
-            <ScrollBar />
-        </View>
+            </View>
 
-      </SafeAreaView>
+            {/* Options List */}
+            <View style={{ flex: 2, flexDirection: 'row'}}>
+                <DrawerContentScrollView 
+                    {...props}
+
+                    showsVerticalScrollIndicator={false}
+
+                    onContentSizeChange={height => {
+                        setCompleteScrollBarHeight(height);
+                    }}
+
+                    onLayout={({
+                        nativeEvent: {
+                            layout: { height }
+                        }
+                    }) => {
+                        setVisibleScrollBarHeight(height);
+                    }}
+                    onScroll={Animated.event(
+                        [{ nativeEvent: { contentOffset: { y: scrollIndicator } } }],
+                        { useNativeDriver: false }
+                    )}
+                    scrollEventThrottle={8}
+                >
+                
+                    <DrawerItemList 
+                        {...props}
+                    
+                    />
+                </DrawerContentScrollView>
+                
+                <ScrollBar />
+            </View>
+
+        </View>
     );
 };
 

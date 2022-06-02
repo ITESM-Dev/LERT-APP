@@ -9,21 +9,22 @@ import { handleOpenUrl } from '~utils/handlers';
 const LegalMenu = () => {
 
     return (
-        <Box style={{flexDirection:"column"}}>
+        <Box style={{ flexDirection:"column" }}>
             <Box
                 bgColor={Theme.colors.icons.secondary}     
-                width={'100%'} 
-                height={'15%'}
+                height={"15%"}
             />
         
             <Box 
-                bgColor={Theme.colors.components.highContrast}     
-                width={'100%'} 
+                bgColor={Theme.colors.components.highContrast}
+                flex={1}
                 display='flex' 
-                flexDirection='column'
-                justifyContent='space-around'
-                paddingTop={'3%'}
-                paddingX={'5%'}
+                flexDirection='row'
+                justifyContent='space-between'
+                alignItems='center'
+                paddingX={'3%'}
+                paddingBottom={'12%'}
+                paddingY={'0.5%'}
             >
                 <LertText 
                     type= 'body02Layout'
@@ -55,14 +56,13 @@ const LegalMenu = () => {
                     text='Contact Support' 
                     onPress={() => handleOpenUrl("https://www.ibm.com/mysupport/s/?language=en_US")}
                 />
-                <Box style={{ width:'100%' }}>
-                    <Image 
-                        resizeMode={"contain"} 
-                        source={require('~../assets/ibm-white-logo.png')}
-                        alt="IBM Logo" size="xs" />
+                <Image 
+                    resizeMode={"center"} 
+                    source={require('~../assets/ibm-white-logo.png')}
+                    alt="IBM Logo" 
+                    size="xs" 
+                />
                      
-                </Box>
-
             </Box>
         </Box>
 

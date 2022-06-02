@@ -25,6 +25,7 @@ import theme from "~theme/theme";
 import { useEffect } from "react";
 import LegalMenu from "~components/molecules/LegalMenu";
 import { CONTENT_DRAWER_SCREENS } from "~utils/screenNames";
+import { Box } from "native-base";
 
 
 const LABELS_STYLE = {
@@ -47,13 +48,15 @@ const ContentDrawer = () => {
     const role = user.role;
 
     return (
-        <>
+        <Box flex={1}>
             <Drawer.Navigator
                 screenOptions={{
                     drawerType: 'permanent',
                     headerShown: false,
+                    
                     sceneContainerStyle: containerStyles.contentScreen,
 
+                    drawerContentStyle: { width: "10%"},
                     // @ts-ignore
                     drawerLabelStyle: { 
                         fontFamily: LABELS_STYLE.fontFamily,
@@ -73,9 +76,7 @@ const ContentDrawer = () => {
                 initialRouteName='Home'
 
                 drawerContent={ (props) => 
-                    <>
-                        <CustomDrawer {...props} />
-                    </> 
+                    <CustomDrawer {...props} />
                 }
             >
 
@@ -240,10 +241,7 @@ const ContentDrawer = () => {
                 }
 
             </Drawer.Navigator>
-        </>
-
-        
-
+        </Box>
     )
 }
 
