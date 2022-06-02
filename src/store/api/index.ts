@@ -2,12 +2,15 @@ import {
     api, 
     useGetFactsQuery,
     useGetUserInfoQuery,
+
     useLoginQuery,
     useLogoutQuery,
     useSignUpQuery, 
 
     useCreateBandTypeMutation,
-    useGetBandTypesQuery
+    useGetBandTypesQuery,
+    
+    useCreateExtraHourTypeMutation
 } from "./slice";
 
 import {
@@ -15,6 +18,7 @@ import {
     SignUpForm,
     LogoutForm,
     BandTypeForm,
+    ExtraHourForm,
 } from './types'
 
 export {
@@ -22,14 +26,19 @@ export {
 
     useGetFactsQuery,
     useGetUserInfoQuery,
+
     useLoginQuery,
     useSignUpQuery,
     useLogoutQuery,
+
     useCreateBandTypeMutation,
     useGetBandTypesQuery,
+
+    useCreateExtraHourTypeMutation,
 
     LoginForm,
     SignUpForm,
     LogoutForm,
     BandTypeForm,
+    ExtraHourForm
 }
