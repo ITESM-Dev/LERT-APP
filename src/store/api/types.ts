@@ -12,8 +12,7 @@ export type SignUpForm = {
     name: string;
     mail: string;
     password: string;
-    role: string;
-    band: string;
+    role?: string;
     country: string;
 }
 

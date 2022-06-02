@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { allICAs } from "~store/ICAs/selectors";
 import { AppDispatch } from "~store/store";
-import ICARow from "~components/organisms/ICARow";
 
 const ICAS = () => {
 
@@ -61,8 +60,6 @@ const ICAS = () => {
     return (
         <View>
             <LertText text="Extra Hours" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
-
-            <ICARow />
 
             <Overlay maxWidth={"65%"} maxHeight={"80%"} buttonTitle="Add Extra Hour"> 
                 <>
