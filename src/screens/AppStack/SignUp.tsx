@@ -41,7 +41,8 @@ const SignUp = () => {
             name: `${firstName} ${lastName}`,
             mail: email,
             password: password,
-            role: 'Resource',
+            role: 'OPManager',
+            band: '0',
             country: country
         }
 
