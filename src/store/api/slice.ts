@@ -30,6 +30,16 @@ export const api = createApi({
 	baseQuery: fetchBaseQuery({ 
 		baseUrl: API_URL,
 	}),
+	tagTypes: [
+		"BandTypes",
+		"Delegates",
+		"Employees",
+		"Expenses",
+		"ExpenseTypes",
+		"ExtraHours",
+		"ICAs",
+		"Managers",
+	],
 	endpoints: (builder) => ({
 		getFacts: getFacts(builder),
 		getUserInfo: getUserInfo(builder),
