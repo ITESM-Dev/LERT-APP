@@ -2,7 +2,8 @@ export enum APP_STACK_SCREENS {
     LoginScreen = "LoginScreen",
     SignUp = "SignUp",
     ForgotPassword = "ForgotPassword",
-    Content = "Content"
+    Content = "Content",
+    NotFound = "NotFound",
 }
 
 export enum CONTENT_DRAWER_SCREENS {
