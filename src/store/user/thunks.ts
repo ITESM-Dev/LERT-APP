@@ -44,11 +44,12 @@ export const signUpUserThunk = createAsyncThunk(
 
 export const logoutUserThunk = createAsyncThunk(
     "user/logoutUser",
-    async (_ = {}, thunkApi) => {
+    async (_, thunkApi) => {
 
         const response = 
             await thunkApi.dispatch(api.endpoints.logout.initiate())
         
+        console.log(response)
         if (response.status === QueryStatus.fulfilled)
             thunkApi.dispatch(clearUser())
         else

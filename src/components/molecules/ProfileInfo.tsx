@@ -5,7 +5,7 @@ import { Image, Box, Pressable } from 'native-base';
 import Ionicons  from '@expo/vector-icons/Ionicons';
 
 import { AppDispatch } from '~store/store';
-import { clearTokenInStorageThunk, logoutUserThunk, userSelector } from '~store/user';
+import { logoutUserThunk, userSelector } from '~store/user';
 import { LogoutForm } from '~store/api';
 
 import LertText from '~components/atoms/LertText';

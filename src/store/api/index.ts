@@ -5,12 +5,15 @@ import {
     useLoginQuery,
     useLogoutQuery,
     useSignUpQuery, 
+
+    useCreateBandTypeMutation,
 } from "./slice";
 
 import {
     LoginForm,
     SignUpForm,
-    LogoutForm
+    LogoutForm,
+    BandTypeForm,
 } from './types'
 
 export {
@@ -21,8 +24,10 @@ export {
     useLoginQuery,
     useSignUpQuery,
     useLogoutQuery,
+    useCreateBandTypeMutation,
 
     LoginForm,
     SignUpForm,
     LogoutForm,
+    BandTypeForm,
 }
