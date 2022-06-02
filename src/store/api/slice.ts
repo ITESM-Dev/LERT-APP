@@ -30,6 +30,9 @@ export type BuilderType = EndpointBuilder<
 	"api"
 >
 
+export const validatePostStatus = (response: Response) => 
+	response.status === 201
+
 export const api = createApi({
 	baseQuery: fetchBaseQuery({ 
 		baseUrl: API_URL,
