@@ -44,10 +44,10 @@ export const signUpUserThunk = createAsyncThunk(
 
 export const logoutUserThunk = createAsyncThunk(
     "user/logoutUser",
-    async (logoutForm: LogoutForm, thunkApi) => {
+    async (_ = {}, thunkApi) => {
 
         const response = 
-            await thunkApi.dispatch(api.endpoints.logout.initiate(logoutForm))
+            await thunkApi.dispatch(api.endpoints.logout.initiate())
         
         if (response.status === QueryStatus.fulfilled)
             thunkApi.dispatch(clearUser())
@@ -57,44 +57,3 @@ export const logoutUserThunk = createAsyncThunk(
         return response;
     }
 )
-
-export const saveTokenInStorageThunk = createAsyncThunk(
-    "user/saveTokenInStorage",
-    async (token: string) => {
-        try {
-            await AsyncStorage.setItem("token", token)
-            return true;
-        }
-        catch (e) {
-            return false
-        }
-    }
-)
-
-export const getTokenFromStorageThunk = createAsyncThunk(
-    "user/getTokenFromStorage",
-    async (_, thunkApi) => {
-        try {
-            const token = await AsyncStorage.getItem("token")
-            if (token !== null)
-                return token;
-        }
-        catch (e) {
-            return null
-        }
-        return null
-    }
-);
-
-export const clearTokenInStorageThunk = createAsyncThunk(
-    "user/clearTokenInStorage",
-    async () => {
-        try {
-            await AsyncStorage.removeItem("token")
-            true
-        }
-        catch (e) {
-            return false
-        }
-    }
-);

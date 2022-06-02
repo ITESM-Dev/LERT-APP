@@ -32,11 +32,7 @@ const ProfileInfo = (props: ProfielInfoPropTypes) => {
     const dispatch: AppDispatch = useDispatch()
 
     const handleLogout = () => {
-        const logoutForm: LogoutForm = {
-            token: user.token,
-            mail: user.mail
-        }
-        dispatch(logoutUserThunk(logoutForm))
+        dispatch(logoutUserThunk())
     }
 
     return (

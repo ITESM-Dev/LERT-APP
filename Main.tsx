@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { LinkingOptions, NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { Text } from "react-native";
 
@@ -9,11 +9,7 @@ import AppStack from "~navigators/AppStack";
 
 import { AppDispatch } from "~store/store";
 import { 
-    clearTokenInStorageThunk,
-    getTokenFromStorageThunk, 
-    setUser, 
     userSelector, 
-    UserType
 } from "~store/user";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 

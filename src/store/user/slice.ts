@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserType } from "./types";
 
@@ -8,10 +9,12 @@ const userSlice = createSlice({
     reducers: {
         setUser: (state, action: PayloadAction<UserType>) => {
             state = {...state, ...action.payload}
+            if (action.payload.token) AsyncStorage.setItem("token", action.payload.token)
             return state;
         },
         clearUser: (state) => {
             state = {}
+            AsyncStorage.removeItem("token")
             return state;
         },
     },
