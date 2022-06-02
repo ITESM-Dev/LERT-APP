@@ -6,6 +6,7 @@ import SignUp from '~screens/AppStack/SignUp';
 import { APP_STACK_SCREENS } from '~utils/screenNames';
 import { useSelector } from 'react-redux';
 import { userSelector } from '~store/user';
+import NotFound from '~screens/AppStack/NotFound';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,11 @@ const AppStack = () => {
             <Stack.Screen 
                 name={APP_STACK_SCREENS.ForgotPassword}
                 component={ForgotPassword}
+            />
+
+            <Stack.Screen 
+                name={APP_STACK_SCREENS.NotFound}
+                component={NotFound}
             />
 
         </Stack.Navigator>
