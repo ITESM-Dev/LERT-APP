@@ -1,16 +1,17 @@
 import { 
     api, 
-    useGetFactsQuery,
+    
     useGetUserInfoQuery,
 
     useLoginQuery,
-    useLogoutQuery,
     useSignUpQuery, 
+    useLogoutQuery,
 
-    useCreateBandTypeMutation,
     useGetBandTypesQuery,
+    useCreateBandTypeMutation,
     
-    useCreateExtraHourTypeMutation
+    useGetExtraHourTypesQuery,
+    useCreateExtraHourTypeMutation,
 } from "./slice";
 
 import {
@@ -24,16 +25,16 @@ import {
 export {
     api,
 
-    useGetFactsQuery,
     useGetUserInfoQuery,
 
     useLoginQuery,
     useSignUpQuery,
     useLogoutQuery,
 
-    useCreateBandTypeMutation,
     useGetBandTypesQuery,
+    useCreateBandTypeMutation,
 
+    useGetExtraHourTypesQuery,
     useCreateExtraHourTypeMutation,
 
     LoginForm,

@@ -9,8 +9,6 @@ import {
 	FetchBaseQueryMeta 
 } from "@reduxjs/toolkit/dist/query/react"
 
-import { getFacts } from "./cats"
-
 import { 
 	login, 
 	logout, 
@@ -24,7 +22,7 @@ import {
 import { API_URL } from "~utils/constants"
 import { RootState } from "~store/store"
 import { createBandType, getBandTypes } from "./bandTypes"
-import { createExtraHourType } from "./extraHours"
+import { createExtraHourType, getExtraHourTypes } from "./extraHours"
 
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
@@ -58,7 +56,9 @@ export const api = createApi({
 		"Managers",
 	],
 	endpoints: (builder) => ({
-		getFacts: getFacts(builder),
+		
+		// User
+		getUserInfo: getUserInfo(builder),
 		
 		// Authentication
 		login: login(builder),
@@ -69,16 +69,17 @@ export const api = createApi({
 		createBandType: createBandType(builder),
 		getBandTypes: getBandTypes(builder),
 		
-		// User
-		getUserInfo: getUserInfo(builder),
 
 		// Extra Hours
-		createExtraHourType: createExtraHourType(builder)
+		getExtraHourTypes: getExtraHourTypes(builder), 
+		createExtraHourType: createExtraHourType(builder),
 	}),
 })
 
-export const { 
-	useGetFactsQuery,
+export const {
+	
+	// User
+	useGetUserInfoQuery,
 	
 	// Authentication
 	useLoginQuery,
@@ -86,13 +87,11 @@ export const {
 	useLogoutQuery,
 
 	// Band Types
-	useCreateBandTypeMutation,
 	useGetBandTypesQuery,
-	
-	// User
-	useGetUserInfoQuery,
+	useCreateBandTypeMutation,
 
 	// Extra Hours
+	useGetExtraHourTypesQuery,
 	useCreateExtraHourTypeMutation,
 	
 } = api

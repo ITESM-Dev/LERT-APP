@@ -1,4 +1,5 @@
 import { createEntityAdapter, createSlice, EntityId, PayloadAction } from "@reduxjs/toolkit";
+import { api } from "~store/api";
 
 import { ExtraHourType } from "./types";
 
@@ -27,6 +28,15 @@ const extraHourSlice = createSlice({
             extraHoursAdapter.removeAll(state)
         },
     },
+    extraReducers: (builder) => {
+        builder
+            .addMatcher(
+                api.endpoints.getExtraHourTypes.matchFulfilled,
+                (state, { payload }) => {
+                    extraHoursAdapter.setMany(state, payload)
+                }
+            )
+    }
 });
 
 export const {
