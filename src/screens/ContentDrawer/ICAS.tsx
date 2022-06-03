@@ -127,7 +127,12 @@ const ICAS = () => {
         <View>
             <LertText text="Extra Hours" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
 
-            <Overlay maxWidth={"65%"} maxHeight={"80%"} buttonTitle="Add Extra Hour" children={undefined} handleSubmit={handleSubmit}> 
+            <Overlay 
+                maxWidth={"65%"} 
+                maxHeight={"80%"} 
+                buttonTitle="Add Extra Hour"
+                handleSubmit={handleSubmit}
+            > 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
                         <VStack alignItems={"flex-start"}>
