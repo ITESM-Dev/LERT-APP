@@ -1,23 +1,25 @@
-import { Text, View } from "react-native";
+import { useState } from "react";
 
-import Table from "~components/organisms/Table";
+import { useDispatch, useSelector } from "react-redux";
+import { Box, HStack, VStack } from "native-base";
+
+import { AppDispatch } from "~store/store";
+import { allExtraHours } from "~store/extraHours/selectors";
+import { 
+    ExtraHourForm, 
+    useCreateExtraHourTypeMutation, 
+    useGetExtraHourTypesQuery 
+} from "~store/api";
+
 import LertText from '~components/atoms/LertText';
-import Overlay from '~components/organisms/Overlay';
 import LertInput from '~components/molecules/LertInput';
-import * as textTypes from '~styles/constants/textTypes';
+import Dropdown from "~components/molecules/Dropdown";
+import Overlay from '~components/organisms/Overlay';
+import Table from "~components/organisms/Table";
+import LertScreen from "~components/organisms/LertScreen";
 
 import Theme from '../../theme/theme';
-import { useState } from "react";
-import { Box, HStack, VStack } from "native-base";
-import Dropdown from "~components/molecules/Dropdown";
-import { AppDispatch } from "~store/store";
-import { useDispatch, useSelector } from "react-redux";
-
-import { allExtraHours } from "~store/extraHours/selectors";
-import LertScreen from "~components/organisms/LertScreen";
-import { ExtraHourForm, useCreateExtraHourTypeMutation } from "~store/api";
-import { useEffect } from "react";
-import { ExtraHourType, setExtraHours } from "~store/extraHours";
+import * as textTypes from '~styles/constants/textTypes';
 
 const dropdownCountries = [
     { label: 'México', value: 'Mexico' },
@@ -26,57 +28,6 @@ const dropdownCountries = [
 const TABLE_HEADERS = ["Type", "Band", "Country", "Rate", "Date of Start", "Date of Finish"]
 
 const ExtraHours = () => {
-
-    let example: ExtraHourType[] = [
-        {
-            id: "1", 
-            band: "2", 
-            country: "México", 
-            rate: 500, 
-            startDate: "22-01-2018", 
-            endDate: "22-01-2018"
-        },
-        {
-            id: "2", 
-            band: "3", 
-            country: "México", 
-            rate: 700, 
-            startDate: "22-01-2018", 
-            endDate: "22-01-2018"
-        },
-        {
-            id: "3", 
-            band: "2", 
-            country: "México", 
-            rate: 500, 
-            startDate: "22-01-2018", 
-            endDate: "22-01-2018"
-        },
-        {
-            id: "4", 
-            band: "3", 
-            country: "México", 
-            rate: 700, 
-            startDate: "22-01-2018", 
-            endDate: "22-01-2018"
-        },
-        {
-            id: "5", 
-            band: "2", 
-            country: "México", 
-            rate: 500, 
-            startDate: "22-01-2018", 
-            endDate: "22-01-2018"
-        },
-        {
-            id: "6", 
-            band: "3", 
-            country: "México", 
-            rate: 700, 
-            startDate: "22-01-2018", 
-            endDate: "22-01-2018"
-        }
-    ]
 
     const [type, setType] = useState("");
     const [band, setBand] = useState("");
@@ -94,25 +45,34 @@ const ExtraHours = () => {
     // API Calls
     const [createExtraHourType, response] = useCreateExtraHourTypeMutation()
 
+    // Auto-fetch data
+    useGetExtraHourTypesQuery()
+
     const handleSubmit = () => {
 
-        const extraHourForm: ExtraHourForm = {
+        /*const extraHourForm: ExtraHourForm = {
             type: type,
             band: band,
             country: country,
             rate: rate,
             dateToStart: dateStart,
             dateToFinish: dateFinish,
+        }*/
+
+        const extraHourForm: ExtraHourForm = {
+            type: "Salary",
+            band: "7",
+            country: "Mexico",
+            rate: "400",
+            dateToStart: "2021-01-30",
+            dateToFinish: "2022-01-30"
         }
 
-        createExtraHourType(extraHourForm).unwrap()
-            .then(payload => alert("Nice"))
-            .catch(error => alert("Error"))
+        createExtraHourType(extraHourForm)
+            .unwrap()
+            .then(response => alert(response))
+            .catch(error => alert(error.data))
     }
-
-    useEffect(() => {
-        dispatch(setExtraHours(example))
-    }, [])
 
     return (
         <LertScreen>
