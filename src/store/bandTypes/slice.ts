@@ -1,4 +1,5 @@
 import { createEntityAdapter, createSlice, EntityId, PayloadAction } from "@reduxjs/toolkit";
+import { api } from "~store/api";
 import { ExpenseType } from "~store/expenses";
 import { BandTypesType } from "./types";
 
@@ -26,6 +27,15 @@ const bandTypesSlice = createSlice({
             bandTypesAdapter.removeAll(state);
         },
     },
+    extraReducers: (builder) => {
+        builder
+            .addMatcher(
+                api.endpoints.getBandTypes.matchFulfilled,
+                (state, { payload }) => {
+                    bandTypesAdapter.setMany(state, payload)
+                }
+            )
+    }
 });
 
 export const {

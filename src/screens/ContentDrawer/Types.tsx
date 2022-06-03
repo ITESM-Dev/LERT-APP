@@ -9,26 +9,21 @@ import Dropdown from "~components/molecules/Dropdown";
 
 import Theme from '../../theme/theme';
 import { useState } from "react";
-import { HStack, VStack } from "native-base";
+import { Box, HStack, VStack } from "native-base";
 import { AppDispatch } from "~store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { allBandTypes } from "~store/bandTypes/selectors";
 import LertScreen from "~components/organisms/LertScreen";
-import { BandTypeForm, useCreateBandTypeMutation } from "~store/api";
+import { BandTypeForm, useCreateBandTypeMutation, useGetBandTypesQuery } from "~store/api";
+import { useEffect } from "react";
 
 const dropdownCountries = [
     { label: 'México', value: 'mexico' },
 ]
 
-
 const TABLE_HEADERS = ["Type", "Country", "Band", "Rate", "Date of Start", "Date of Finish"]
 
 const Types = () => {
-
-    let example = [
-        {Type: 1, Country: "México", Band: 2,  Rate: 5, DateOfStart:"22/01/18", DateOfFinish:"22/01/18"},
-        {Type: 1, Country: "India", Band: 7,  Rate: 8, DateOfStart:"22/02/18", DateOfFinish:"22/04/03"},
-    ]
 
     const [type, setType] = useState("");
     const [country, setCountry] = useState("");
@@ -37,14 +32,14 @@ const Types = () => {
     const [startDate, setStartDate] = useState("");
     const [finishDate, setFinishDate] = useState("");
 
-    // Store Dispatcher
-    const dispatch: AppDispatch = useDispatch();
-
     // Band Types - State
     const bandTypes = useSelector(allBandTypes);
 
     // API Calls
     const [createBandType, response] = useCreateBandTypeMutation()
+
+    // Subscribe to Get BandTypes API Call
+    useGetBandTypesQuery()
 
     const handleSubmit = () => {
 
@@ -57,9 +52,9 @@ const Types = () => {
             yearlyRate: rate
         }
 
-        createBandType(bandTypeForm).unwrap()
-            .then(payload => alert("Nice"))
-            .catch(error => alert(response))
+        createBandType(bandTypeForm)
+            .unwrap()
+            .catch(error => alert(error))
     }
 
     return (
@@ -147,13 +142,13 @@ const Types = () => {
 
             </Overlay>
 
-            <LertText text="Types List" type={textTypes.display01} color={Theme.colors.text.primary}/>
-
-            <Table 
-                headers={TABLE_HEADERS} 
-                items={example} 
-                flexValues={[1, 1, 1, 1, 2, 2]}
-            />
+            <Box marginTop={5} >
+                <Table 
+                    headers={TABLE_HEADERS} 
+                    items={bandTypes} 
+                    flexValues={[1, 1, 1, 1, 2, 2]}
+                />
+            </Box>
 
         </LertScreen>
     )
