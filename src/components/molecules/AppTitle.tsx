@@ -13,19 +13,20 @@ const AppTitle = () => {
 
     return (
         <Box
-            padding={2}
+            padding={3}
             backgroundColor={colors.text.white}
             flexDirection='row' 
             justifyContent="flex-start"
         >
             <LertText 
-                text={"LERT"}
+                text={`LERT `}
+                isTruncated={false}
                 type={textTypes.display02} 
                 color={colors.text.primary}
                 bold="bold"
             />
             <LertText 
-                text="-LABOR EXPENSES RECOVERY TOOL" 
+                text="LABOR EXPENSES RECOVERY TOOL" 
                 type={textTypes.display01} 
                 color={colors.text.primary}
             />

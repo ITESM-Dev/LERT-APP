@@ -35,6 +35,7 @@ type LertTextPropTypes = {
     underline?: string,
     tooltipDisabled?: boolean,
     numberOfLines?: number,
+    isTruncated?: boolean,
     onPress?: () => void;
 }
 
@@ -64,7 +65,7 @@ const LertText = (props: LertTextPropTypes) => {
                         Styles[props.type].fontWeight : 'light'
                 }
                 textDecorationLine={props.underline}
-                isTruncated
+                isTruncated={props.isTruncated !== undefined ? props.isTruncated : true}
                 numberOfLines={props.numberOfLines}
                 style={props.style} 
                 color={props.color ? props.color  : Theme.colors.text.primary}
