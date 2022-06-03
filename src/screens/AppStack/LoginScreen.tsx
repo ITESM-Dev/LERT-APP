@@ -28,6 +28,8 @@ import theme from '~theme/theme';
 import * as textTypes from '~styles/constants/textTypes';
 
 import { APP_STACK_SCREENS } from '~utils/screenNames';
+import { RejectedAction } from '@reduxjs/toolkit/dist/query/core/buildThunks';
+import { SerializedError } from '@reduxjs/toolkit';
 
 type BgBoxPropTypes = {
     text: string;
@@ -59,8 +61,6 @@ const LoginScreen = () => {
     const navigation = useNavigation()
     const dispatch: AppDispatch = useDispatch();
 
-    const user: UserType = useSelector(userSelector)
-
     const [IBMid, setIBMid] = useState("");
     const [password, setPassword] = useState("");
 
@@ -80,11 +80,10 @@ const LoginScreen = () => {
         setLoading(true)
         // Dispatch thunk Action
         dispatch(logUserThunk(loginForm))
-            .then(() => {
-                setLoading(false)
-            })
-            .catch(error => {
-                setError(error)
+            .unwrap()
+            .then(() => setLoading(false))
+            .catch(({ data }) => {
+                setError(data)
                 setLoading(false)
             })
     }

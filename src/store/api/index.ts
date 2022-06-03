@@ -7,6 +7,7 @@ import {
     useSignUpQuery, 
 
     useCreateBandTypeMutation,
+    useGetBandTypesQuery
 } from "./slice";
 
 import {
@@ -25,6 +26,7 @@ export {
     useSignUpQuery,
     useLogoutQuery,
     useCreateBandTypeMutation,
+    useGetBandTypesQuery,
 
     LoginForm,
     SignUpForm,

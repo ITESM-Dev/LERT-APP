@@ -48,9 +48,6 @@ const Main = () => {
         const token = await AsyncStorage.getItem("token")
         const mail = await AsyncStorage.getItem("mail")
 
-        console.log(token)
-        console.log(mail)
-
         if (token && token != undefined && mail && mail != undefined) {
             dispatch(
                 setUser(
