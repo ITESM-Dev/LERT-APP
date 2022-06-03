@@ -24,6 +24,7 @@ import {
 import { API_URL } from "~utils/constants"
 import { RootState } from "~store/store"
 import { createBandType, getBandTypes } from "./bandTypes"
+import { createExtraHourType } from "./extraHours"
 
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
@@ -58,7 +59,8 @@ export const api = createApi({
 	],
 	endpoints: (builder) => ({
 		getFacts: getFacts(builder),
-		getUserInfo: getUserInfo(builder),
+		
+		// Authentication
 		login: login(builder),
 		signUp: signUp(builder),
 		logout: logout(builder),
@@ -66,12 +68,19 @@ export const api = createApi({
 		// Band Types
 		createBandType: createBandType(builder),
 		getBandTypes: getBandTypes(builder),
+		
+		// User
+		getUserInfo: getUserInfo(builder),
+
+		// Extra Hours
+		createExtraHourType: createExtraHourType(builder)
 	}),
 })
 
 export const { 
 	useGetFactsQuery,
-	useGetUserInfoQuery,
+	
+	// Authentication
 	useLoginQuery,
 	useSignUpQuery,
 	useLogoutQuery,
@@ -79,5 +88,11 @@ export const {
 	// Band Types
 	useCreateBandTypeMutation,
 	useGetBandTypesQuery,
+	
+	// User
+	useGetUserInfoQuery,
+
+	// Extra Hours
+	useCreateExtraHourTypeMutation,
 	
 } = api
