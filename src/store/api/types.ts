@@ -32,10 +32,39 @@ export type BandTypeForm = {
 }
 
 export type ExtraHourForm = {
-    type: string;
-    band: string;
-    country: string;
-    rate: string;
-    dateToStart: string;
-    dateToFinish: string;
+    type: string,
+    band: string,
+    country: string,
+    rate: string,
+    dateToStart: string,
+    dateToFinish: string
+}
+
+export type ICAForm = {
+    icaCode: string,
+    icaCore: string,
+    year: string,
+    totalBilling: string,
+    rCtyPerf: string,
+    ctyNamePerf: string,
+    endDate: string,
+    startDate: string,
+    totalPlusTaxes: string,
+    nec: string,
+    type: string,
+    description: string,
+    leru: string,
+    minor: string,
+    major: string,
+    division: string,
+    rCtyReq: string,
+    ctyNameReq: string,
+    cc: string,
+    frequencyBill: string,
+    depto: string,
+    status: string,
+    country: string,
+    budget: string,
+    icaOwner: string,
+    idPlanning: string
 }

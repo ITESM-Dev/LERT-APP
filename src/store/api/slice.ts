@@ -23,6 +23,7 @@ import { API_URL } from "~utils/constants"
 import { RootState } from "~store/store"
 import { createBandType, getBandTypes } from "./bandTypes"
 import { createExtraHourType, getExtraHourTypes } from "./extraHours"
+import { createICA } from "./ICAs"
 
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
@@ -73,6 +74,9 @@ export const api = createApi({
 		// Extra Hours
 		getExtraHourTypes: getExtraHourTypes(builder), 
 		createExtraHourType: createExtraHourType(builder),
+
+		// ICAs
+		createICA: createICA(builder),
 	}),
 })
 
@@ -93,5 +97,8 @@ export const {
 	// Extra Hours
 	useGetExtraHourTypesQuery,
 	useCreateExtraHourTypeMutation,
+
+	// ICAs
+	useCreateICAMutation,
 	
 } = api
