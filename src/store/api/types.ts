@@ -32,10 +32,10 @@ export type BandTypeForm = {
 }
 
 export type ExtraHourForm = {
-    type: string,
-    band: string,
-    country: string,
-    rate: string,
-    dateToStart: string,
-    dateToFinish: string
+    type: string;
+    band: string;
+    country: string;
+    rate: string;
+    dateToStart: string;
+    dateToFinish: string;
 }
