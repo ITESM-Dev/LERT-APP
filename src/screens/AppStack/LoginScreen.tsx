@@ -1,24 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { 
-    View, 
     ImageBackground, 
     useWindowDimensions, 
     Linking, 
-    ViewStyle  
 } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { Box } from 'native-base';
 
 import { AppDispatch } from '~store/store';
 import { LoginForm } from '~store/api';
-import { 
-    userSelector, 
-    UserType, 
-    logUserThunk, 
-    saveTokenInStorageThunk, 
-    setUser
-} from '~store/user';
+import { logUserThunk } from '~store/user';
 
 import LertInput from '~components/molecules/LertInput';
 import LertText from '~components/atoms/LertText';
@@ -28,31 +20,6 @@ import theme from '~theme/theme';
 import * as textTypes from '~styles/constants/textTypes';
 
 import { APP_STACK_SCREENS } from '~utils/screenNames';
-import { RejectedAction } from '@reduxjs/toolkit/dist/query/core/buildThunks';
-import { SerializedError } from '@reduxjs/toolkit';
-
-type BgBoxPropTypes = {
-    text: string;
-    style?: ViewStyle;
-    textType: string;
-}
-
-const BgBox = (props: BgBoxPropTypes) => {
-    return (
-        // @ts-ignore
-        <Box
-            {...props.style}
-            bgColor={theme.colors.text.bg} 
-            alignItems="center"
-        >
-            <LertText 
-                text={props.text} 
-                type={props.textType} 
-                color={theme.colors.text.white}
-            />
-        </Box>
-    );
-};
 
 const IBMidHelp = "https://www.ibm.com/ibmid/myibm/help/us/helpdesk.html";
 
@@ -78,6 +45,7 @@ const LoginScreen = () => {
         }
 
         setLoading(true)
+        
         // Dispatch thunk Action
         dispatch(logUserThunk(loginForm))
             .unwrap()

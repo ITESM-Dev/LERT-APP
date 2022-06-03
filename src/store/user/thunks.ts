@@ -13,6 +13,9 @@ export const getUserInfoThunk = createAsyncThunk(
 
         if (response.status === QueryStatus.fulfilled) 
             thunkApi.dispatch(setUser(response.data))
+        else {
+            throw thunkApi.rejectWithValue("Invalid Token")
+        }
 
         return response
     },

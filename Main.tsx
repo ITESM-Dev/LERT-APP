@@ -9,6 +9,7 @@ import AppStack from "~navigators/AppStack";
 
 import { AppDispatch } from "~store/store";
 import { 
+    clearUser,
     setUser,
     userSelector,
     UserType, 
@@ -54,9 +55,12 @@ const Main = () => {
                     { token: token, mail: mail } as UserType
                 )
             )
-            dispatch(
-                getUserInfoThunk()
-            )
+            dispatch(getUserInfoThunk())
+                .unwrap()
+                .catch((error: string) => {
+                    alert(error)
+                    dispatch(clearUser())
+                })
         }
     }
 
