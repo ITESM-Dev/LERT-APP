@@ -36,10 +36,11 @@ import {
 	getExpenseTypes,
 	createExpenseType, 
 } from "./expenseTypes"
+import { createCurrentPeriod } from "./currentPeriod"
 
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
-	"BandTypes" | "Delegates"| "Employees" | "Expenses" | "ExpenseTypes" | "ExtraHours" | "ICAs" | "Managers", 
+	"BandTypes" | "Delegates"| "Employees" | "Expenses" | "ExpenseTypes" | "ExtraHours" | "ICAs" | "Managers" | "CurrentPeriod", 
 	"api"
 >
 
@@ -67,6 +68,7 @@ export const api = createApi({
 		"ExtraHours",
 		"ICAs",
 		"Managers",
+		"CurrentPeriod"
 	],
 	endpoints: (builder) => ({
 		
@@ -93,6 +95,9 @@ export const api = createApi({
 		// Expense Types
 		getExpenseTypes: getExpenseTypes(builder),
 		createExpenseType: createExpenseType(builder),
+
+		// CurrentPeriod
+		createCurrentPeriod: createCurrentPeriod(builder),
 	}),
 })
 
@@ -121,4 +126,6 @@ export const {
 	useGetExpenseTypesQuery,
 	useCreateExpenseTypeMutation,
 
+	// CurrentPeriod
+	useCreateCurrentPeriodMutation,
 } = api
