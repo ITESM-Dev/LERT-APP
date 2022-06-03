@@ -12,6 +12,8 @@ import {
     
     useGetExtraHourTypesQuery,
     useCreateExtraHourTypeMutation,
+
+    useCreateICAMutation,
 } from "./slice";
 
 import {
@@ -20,6 +22,7 @@ import {
     LogoutForm,
     BandTypeForm,
     ExtraHourForm,
+    ICAForm,
 } from './types'
 
 export {
@@ -37,9 +40,12 @@ export {
     useGetExtraHourTypesQuery,
     useCreateExtraHourTypeMutation,
 
+    useCreateICAMutation,
+
     LoginForm,
     SignUpForm,
     LogoutForm,
     BandTypeForm,
-    ExtraHourForm
+    ExtraHourForm,
+    ICAForm,
 }
