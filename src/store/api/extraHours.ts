@@ -33,8 +33,7 @@ export const createExtraHourType = (builder: BuilderType) => (
             validateStatus: validatePostStatus,
         }),
         invalidatesTags: ["ExtraHours"],
-        transformResponse: (response) => {
-            console.log(response)
+        transformResponse: (response: any) => {
             return response.id
         }
     })
