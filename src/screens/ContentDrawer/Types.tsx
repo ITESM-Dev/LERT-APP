@@ -16,10 +16,7 @@ import { allBandTypes } from "~store/bandTypes/selectors";
 import LertScreen from "~components/organisms/LertScreen";
 import { BandTypeForm, useCreateBandTypeMutation, useGetBandTypesQuery } from "~store/api";
 import { useEffect } from "react";
-
-const dropdownCountries = [
-    { label: 'México', value: 'mexico' },
-]
+import { dropdownCountries } from "~utils/constants";
 
 const TABLE_HEADERS = ["Type", "Country", "Band", "Rate", "Date of Start", "Date of Finish"]
 

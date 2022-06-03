@@ -20,10 +20,7 @@ import LertScreen from "~components/organisms/LertScreen";
 
 import Theme from '../../theme/theme';
 import * as textTypes from '~styles/constants/textTypes';
-
-const dropdownCountries = [
-    { label: 'México', value: 'Mexico' },
-]
+import { dropdownCountries } from "~utils/constants";
 
 const TABLE_HEADERS = ["Type", "Band", "Country", "Rate", "Date of Start", "Date of Finish"]
 
