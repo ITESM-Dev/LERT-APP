@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { allICAs } from "~store/ICAs/selectors";
 import { AppDispatch } from "~store/store";
+import { ICAForm, useCreateICAMutation } from "~store/api";
 
 const ICAS = () => {
 
@@ -51,17 +52,82 @@ const ICAS = () => {
     const [startDate, setStartDate] = useState("");
     const [finishDate, setFinishDate] = useState("");
 
-    // Store Dispatcher
-    const dispatch: AppDispatch = useDispatch();
-
     // ICAs - State
     const ICAs = useSelector(allICAs);
+
+    const [createICA, response] = useCreateICAMutation();
+
+    const handleSubmit = () => {
+        /*
+        const icaForm: ICAForm = {
+            "icaCode": "6",
+            "icaCore": "03",
+            "year": year,
+            "totalBilling": "20000",
+            "rCtyPerf": "1529",
+            "ctyNamePerf": CityNamePerf,
+            "endDate": finishDate,
+            "startDate": startDate,
+            "totalPlusTaxes": totalPlusTaxes,
+            "nec": nec,
+            "type": type,
+            "description": description,
+            "leru": leru,
+            "minor": minor,
+            "major": major,
+            "division": division,
+            "rCtyReq": RCityReq,
+            "ctyNameReq": CityNameReq,
+            "cc": "cc",
+            "frequencyBill": freqBill,
+            "depto": dept,
+            "status": "Active",
+            "country": country,
+            "budget": budget,
+            "icaOwner": ICAOwner,
+            "idPlanning": IDPlanning
+        }
+        */
+
+        const icaForm: ICAForm = {
+            "icaCode": "6",
+            "icaCore": "03",
+            "year": "2022",
+            "totalBilling": "20000",
+            "rCtyPerf": "1529",
+            "ctyNamePerf": "Guadalajara",
+            "endDate": "2021-08-01",
+            "startDate": "2021-12-08",
+            "totalPlusTaxes": "23200",
+            "nec": "2",
+            "type": "1",
+            "description": "ICA with id 2",
+            "leru": "leru",
+            "minor": "minor",
+            "major": "motoko",
+            "division": "3rd Division",
+            "rCtyReq": "rCtyReq",
+            "ctyNameReq": "San Francisco",
+            "cc": "cc",
+            "frequencyBill": "idk",
+            "depto": "Accounting++",
+            "status": "Active",
+            "country": "Mexico",
+            "budget": "50000",
+            "icaOwner": "Felipe",
+            "idPlanning": "142"
+        }
+
+        createICA(icaForm)
+            .unwrap()
+            .catch(error => alert(error))
+    }
 
     return (
         <View>
             <LertText text="Extra Hours" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
 
-            <Overlay maxWidth={"65%"} maxHeight={"80%"} buttonTitle="Add Extra Hour"> 
+            <Overlay maxWidth={"65%"} maxHeight={"80%"} buttonTitle="Add Extra Hour" children={undefined} handleSubmit={handleSubmit}> 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
                         <VStack alignItems={"flex-start"}>
