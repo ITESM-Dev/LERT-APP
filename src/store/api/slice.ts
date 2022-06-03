@@ -23,7 +23,7 @@ import {
 
 import { API_URL } from "~utils/constants"
 import { RootState } from "~store/store"
-import { createBandType } from "./bandTypes"
+import { createBandType, getBandTypes } from "./bandTypes"
 
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
@@ -33,6 +33,9 @@ export type BuilderType = EndpointBuilder<
 
 export const validatePostStatus = (response: Response) => 
 	response.status === 201
+
+export const validateGetStatus = (response: Response) => 
+	response.status === 200
 
 export const api = createApi({
 	baseQuery: fetchBaseQuery({ 
@@ -62,6 +65,7 @@ export const api = createApi({
 
 		// Band Types
 		createBandType: createBandType(builder),
+		getBandTypes: getBandTypes(builder),
 	}),
 })
 
@@ -74,4 +78,6 @@ export const {
 
 	// Band Types
 	useCreateBandTypeMutation,
+	useGetBandTypesQuery,
+	
 } = api
