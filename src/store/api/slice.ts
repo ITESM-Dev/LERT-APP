@@ -36,6 +36,11 @@ export const validatePostStatus = (response: Response) =>
 export const api = createApi({
 	baseQuery: fetchBaseQuery({ 
 		baseUrl: API_URL,
+		prepareHeaders: (headers, { getState }) => {
+			headers.set("token", (getState() as RootState).user.token)
+			headers.set("mail", (getState() as RootState).user.mail)
+			return headers
+		}
 	}),
 	tagTypes: [
 		"BandTypes",

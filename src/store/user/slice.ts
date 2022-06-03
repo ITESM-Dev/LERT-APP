@@ -10,11 +10,13 @@ const userSlice = createSlice({
         setUser: (state, action: PayloadAction<UserType>) => {
             state = {...state, ...action.payload}
             if (action.payload.token) AsyncStorage.setItem("token", action.payload.token)
+            if (action.payload.mail) AsyncStorage.setItem("mail", action.payload.mail)
             return state;
         },
         clearUser: (state) => {
             state = {}
             AsyncStorage.removeItem("token")
+            AsyncStorage.removeItem("mail")
             return state;
         },
     },

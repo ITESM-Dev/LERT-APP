@@ -9,9 +9,12 @@ import AppStack from "~navigators/AppStack";
 
 import { AppDispatch } from "~store/store";
 import { 
-    userSelector, 
+    setUser,
+    userSelector,
+    UserType, 
 } from "~store/user";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getUserInfoThunk } from "~store/user/thunks";
 
 const Main = () => {
 
@@ -41,17 +44,30 @@ const Main = () => {
     const dispatch: AppDispatch = useDispatch()
     const user = useSelector(userSelector)
 
+    const checkIfUserExists = async () => {
+        const token = await AsyncStorage.getItem("token")
+        const mail = await AsyncStorage.getItem("mail")
+
+        console.log(token)
+        console.log(mail)
+
+        if (token && token != undefined && mail && mail != undefined) {
+            dispatch(
+                setUser(
+                    { token: token, mail: mail } as UserType
+                )
+            )
+            dispatch(
+                getUserInfoThunk()
+            )
+        }
+    }
+
     useEffect(() => {
-        /** @todo Uncomment this and Add Token verification to get User Info from API */
-        /*AsyncStorage.getItem("token")
-            .then(token => {
-                if (token && token != undefined) {
-                    dispatch(setUser({ token: token } as UserType))
-                }
-            })*/
+        checkIfUserExists()
     }, [])
 
-    if (!user.token) 
+    if (!user.token || !user.mail) 
         return (
             // @ts-ignore
             <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>

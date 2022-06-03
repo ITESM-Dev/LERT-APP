@@ -9,9 +9,9 @@ import { GetUserInfoForm } from "~store/api/types";
 
 export const getUserInfoThunk = createAsyncThunk(
     "user/getUserInfo",
-    async (getUserInfoForm: GetUserInfoForm, thunkApi) => {
+    async (_, thunkApi) => {
         const response = 
-            await thunkApi.dispatch(api.endpoints.getUserInfo.initiate(getUserInfoForm))
+            await thunkApi.dispatch(api.endpoints.getUserInfo.initiate())
 
         if (response.status === QueryStatus.fulfilled) 
             thunkApi.dispatch(setUser(response.data))
@@ -53,7 +53,7 @@ export const logoutUserThunk = createAsyncThunk(
         if (response.status === QueryStatus.fulfilled)
             thunkApi.dispatch(clearUser())
         else
-            return thunkApi.rejectWithValue(response)
+            throw thunkApi.rejectWithValue(response)
 
         return response;
     }
