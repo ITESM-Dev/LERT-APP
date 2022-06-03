@@ -44,31 +44,25 @@ const ExtraHours = () => {
 
     // Auto-fetch data
     useGetExtraHourTypesQuery()
+    const [error, setError] = useState(null)
 
     const handleSubmit = () => {
 
-        /*const extraHourForm: ExtraHourForm = {
+        const extraHourForm: ExtraHourForm = {
             type: type,
             band: band,
             country: country,
             rate: rate,
             dateToStart: dateStart,
             dateToFinish: dateFinish,
-        }*/
-
-        const extraHourForm: ExtraHourForm = {
-            type: "Salary",
-            band: "7",
-            country: "Mexico",
-            rate: "400",
-            dateToStart: "2021-01-30",
-            dateToFinish: "2022-01-30"
         }
 
         createExtraHourType(extraHourForm)
             .unwrap()
-            .then(response => alert(response))
-            .catch(error => alert(error.data))
+            .then(() => setError(null))
+            .catch(error => setError(
+                "Something went wrong, please try again"
+            ))
     }
 
     return (
@@ -81,8 +75,10 @@ const ExtraHours = () => {
             />
 
             <Overlay 
-                maxWidth={"50%"}
-                maxHeight={"50%"} 
+                maxWidth={"60%"}
+                maxHeight={"60%"} 
+                error={error}
+                setError={setError}
                 buttonTitle="Add Extra Hour"
                 handleSubmit={handleSubmit}
             > 
