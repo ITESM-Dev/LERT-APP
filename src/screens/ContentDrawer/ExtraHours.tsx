@@ -43,7 +43,7 @@ const ExtraHours = () => {
 
     // Auto-fetch data
     useGetExtraHourTypesQuery()
-    const [error, setError] = useState(null)
+    const [error, setError] = useState<string | null>(null)
 
     // Function for clearing out inputs and error state
     const resetForm = () => {
