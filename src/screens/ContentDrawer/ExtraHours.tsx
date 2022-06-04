@@ -24,6 +24,8 @@ import { dropdownCountries } from "~utils/constants";
 
 const TABLE_HEADERS = ["Type", "Band", "Country", "Rate", "Date of Start", "Date of Finish"]
 
+
+
 const ExtraHours = () => {
 
     const [type, setType] = useState("");
@@ -32,9 +34,6 @@ const ExtraHours = () => {
     const [rate, setRate] = useState("");
     const [dateStart, setDateStart] = useState("");
     const [dateFinish, setDateFinish] = useState("");
-
-    // Store Dispatcher
-    const dispatch: AppDispatch = useDispatch();
 
     // Extra Hours - State
     const extraHours = useSelector(allExtraHours);
@@ -45,6 +44,17 @@ const ExtraHours = () => {
     // Auto-fetch data
     useGetExtraHourTypesQuery()
     const [error, setError] = useState(null)
+
+    // Function for clearing out inputs and error state
+    const resetForm = () => {
+        setType("")
+        setBand("")
+        setCountry("")
+        setRate("")
+        setDateStart("")
+        setDateFinish("")
+        setError(null)
+    }
 
     const handleSubmit = () => {
 
@@ -59,7 +69,7 @@ const ExtraHours = () => {
 
         createExtraHourType(extraHourForm)
             .unwrap()
-            .then(() => setError(null))
+            .then(() => resetForm())
             .catch(error => setError(
                 "Something went wrong, please try again"
             ))
