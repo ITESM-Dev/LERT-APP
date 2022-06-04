@@ -13,29 +13,58 @@ import { AppDispatch } from "~store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { allExpenseTypes } from "~store/expenseTypes/selectors";
 import LertScreen from "~components/organisms/LertScreen";
+import { useCreateExpenseTypeMutation, useGetExpenseTypesQuery } from "~store/api";
+import { ExpenseTypeForm } from "~store/api/types";
 
 const TABLE_HEADERS = ["Name"]
 
 const ExpensesTypes = () => {
 
-    let example = [
-        {Name: "Main"},
-        {Name: "Secondary"}
-    ]
-
     const [name, setName] = useState("");
 
-    // Store Dispatcher
-    const dispatch: AppDispatch = useDispatch();
     // Expenses - State
     const expenseTypes = useSelector(allExpenseTypes);
+
+    // Auto refetch
+    useGetExpenseTypesQuery()
+
+    const [createExpenseType, response] = useCreateExpenseTypeMutation()
+
+    const [error, setError] = useState<string | null>(null)
+
+    const resetForm = () => {
+        setName("")
+    }
+
+    const handleSubmit = () => {
+        const expenseTypeForm: ExpenseTypeForm = {
+            type: name
+        }
+        createExpenseType(expenseTypeForm)
+            .unwrap()
+            .then(() => resetForm())
+            .catch(error => setError(
+                "Something went wrong, please try again"
+            ))
+    }
 
     return (
         <LertScreen>
             
-            <LertText text="New Type of Expense" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
+            <LertText 
+                text="Expense Types" 
+                type={textTypes.display04} 
+                color={Theme.colors.text.primary} 
+            />
 
-            <Overlay maxWidth={"50%"} maxHeight={"50%"} buttonTitle="Create expense"> 
+            <Overlay 
+                maxWidth={"30%"} 
+                maxHeight={"30%"} 
+                buttonTitle="Create expense"
+                handleSubmit={handleSubmit}
+                error={error}
+                setError={setError}
+            > 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
                         <VStack alignItems={"flex-start"}>
@@ -47,11 +76,9 @@ const ExpensesTypes = () => {
 
             </Overlay>
 
-            <LertText text="All Expenses Types" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
-
             <Table 
                 headers={TABLE_HEADERS} 
-                items={example} 
+                items={expenseTypes} 
                 flexValues={[1]} 
             />
 

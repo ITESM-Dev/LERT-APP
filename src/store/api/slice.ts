@@ -21,9 +21,21 @@ import {
 
 import { API_URL } from "~utils/constants"
 import { RootState } from "~store/store"
-import { createBandType, getBandTypes } from "./bandTypes"
-import { createExtraHourType, getExtraHourTypes } from "./extraHours"
-import { createICA } from "./ICAs"
+import { 
+	getBandTypes,
+	createBandType, 
+} from "./bandTypes"
+import { 
+	getExtraHourTypes,
+	createExtraHourType, 
+} from "./extraHours"
+import { 
+	createICA,
+} from "./ICAs"
+import { 
+	getExpenseTypes,
+	createExpenseType, 
+} from "./expenseTypes"
 
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
@@ -77,6 +89,10 @@ export const api = createApi({
 
 		// ICAs
 		createICA: createICA(builder),
+
+		// Expense Types
+		getExpenseTypes: getExpenseTypes(builder),
+		createExpenseType: createExpenseType(builder),
 	}),
 })
 
@@ -101,4 +117,8 @@ export const {
 	// ICAs
 	useCreateICAMutation,
 	
+	// Expense Types
+	useGetExpenseTypesQuery,
+	useCreateExpenseTypeMutation,
+
 } = api

@@ -68,3 +68,7 @@ export type ICAForm = {
     icaOwner: string,
     idPlanning: string
 }
+
+export type ExpenseTypeForm = {
+    type: string;
+}
