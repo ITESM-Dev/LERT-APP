@@ -13,8 +13,8 @@ import * as textTypes from '~styles/constants/textTypes';
 
 type OverlayPropTypes = {
     children: JSX.Element;
-    error: string;
-    setError: Dispatch<SetStateAction<string>>;
+    error?: string | null;
+    setError?: Dispatch<SetStateAction<string | null>>;
     maxWidth: string | number;
     maxHeight: string | number;
     buttonTitle: string;
