@@ -55,7 +55,9 @@ const ICAS = () => {
     // ICAs - State
     const ICAs = useSelector(allICAs);
 
+    // Auto fetching for ICAS
     const [createICA, response] = useCreateICAMutation();
+    const [error, setError] = useState(null)
 
     const handleSubmit = () => {
         /*
@@ -128,10 +130,12 @@ const ICAS = () => {
             <LertText text="Extra Hours" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
 
             <Overlay 
-                maxWidth={"65%"} 
-                maxHeight={"80%"} 
+                maxWidth={"65%"}
+                maxHeight={"80%"}
                 buttonTitle="Add Extra Hour"
-                handleSubmit={handleSubmit}
+                handleSubmit={handleSubmit} 
+                error={error} 
+                setError={setError}            
             > 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
