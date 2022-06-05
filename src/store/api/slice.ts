@@ -43,13 +43,18 @@ import {
 } from "./expenseTypes"
 
 import { 
-	createCurrentPeriod, 
-	getCurrentPeriods 
-} from "./currentPeriod"
-
-import { 
 	expensesForQuarter 
 } from "./recovery"
+
+import { 
+	getCurrentPeriods, 
+	createCurrentPeriod, 
+} from "./currentPeriod"
+
+import {
+	getManagerICA,
+	getAvailableResources,
+} from './employees'
 
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
@@ -97,6 +102,9 @@ export const api = createApi({
 		createBandType: createBandType(builder),
 		getBandTypes: getBandTypes(builder),
 		
+		// Employees
+		getManagerICA: getManagerICA(builder),
+		getAvailableResources: getAvailableResources(builder),
 
 		// Extra Hours
 		getExtraHourTypes: getExtraHourTypes(builder), 
@@ -132,6 +140,10 @@ export const {
 	// Band Types
 	useGetBandTypesQuery,
 	useCreateBandTypeMutation,
+
+	// Employees
+	useGetManagerICAQuery,
+	useGetAvailableResourcesQuery,
 
 	// Extra Hours
 	useGetExtraHourTypesQuery,
