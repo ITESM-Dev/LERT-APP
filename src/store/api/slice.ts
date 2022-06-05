@@ -37,6 +37,7 @@ import {
 	createExpenseType, 
 } from "./expenseTypes"
 import { createCurrentPeriod, getCurrentPeriods } from "./currentPeriod"
+import { expensesForQuarter } from "./recovery"
 
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
@@ -92,6 +93,9 @@ export const api = createApi({
 		// ICAs
 		createICA: createICA(builder),
 
+		// Expenses For Quarter (Recovery)
+		expensesForQuarter: expensesForQuarter(builder),
+
 		// Expense Types
 		getExpenseTypes: getExpenseTypes(builder),
 		createExpenseType: createExpenseType(builder),
@@ -122,6 +126,9 @@ export const {
 
 	// ICAs
 	useCreateICAMutation,
+
+	// Expenses For Quarter (Recovery)
+	useExpensesForQuarterQuery,
 	
 	// Expense Types
 	useGetExpenseTypesQuery,
