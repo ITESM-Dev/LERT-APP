@@ -7,7 +7,6 @@ import { propsFlattener } from 'native-base/lib/typescript/hooks/useThemeProps/p
 import LertText from '~components/atoms/LertText';
 import LertButton from '~components/atoms/LertButton';
 import LertInput from '~components/molecules/LertInput';
-import { propsFlattener } from 'native-base/lib/typescript/hooks/useThemeProps/propsFlattener';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import theme from '~theme/theme';
