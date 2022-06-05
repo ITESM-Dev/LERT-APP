@@ -10,7 +10,7 @@ import Theme from '../../theme/theme';
 
 export type StyleTypes = DisplayTypes | BodyTypes | FixedHadingTypes | UtilityTypes;
 
-const Styles = {
+export const TextStyles = {
     ...DisplayStyles,
     ...BodyStyles,
     ...FixedHeadingStyles,
@@ -59,10 +59,10 @@ const LertText = (props: LertTextPropTypes) => {
             placement='left'
         > 
             <Text 
-                {...Styles[props.type]} 
+                {...TextStyles[props.type]} 
                 fontWeight={props.bold !== undefined ? props.bold : 
-                    Styles[props.type] !== undefined ? 
-                        Styles[props.type].fontWeight : 'light'
+                    TextStyles[props.type] !== undefined ? 
+                        TextStyles[props.type].fontWeight : 'light'
                 }
                 textDecorationLine={props.underline}
                 isTruncated={props.isTruncated !== undefined ? props.isTruncated : true}
