@@ -41,7 +41,7 @@ const SignUp = () => {
             name: `${firstName} ${lastName}`,
             mail: email,
             password: password,
-            role: 'OPManager',
+            role: 'Admin',
             band: '0',
             country: country
         }
@@ -125,6 +125,7 @@ const SignUp = () => {
                     <LertText
                         style={{marginTop:"1%"}}
                         text="Already have an IBM account? "
+                        isTruncated={false}
                         type={textTypes.label}
                         />
 

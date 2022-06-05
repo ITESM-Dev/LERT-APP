@@ -190,6 +190,7 @@ const LoginScreen = () => {
                         <LertText
                             style={{marginTop:"5%"}}
                             text="Don't have an account? "
+                            isTruncated={false}
                             type={textTypes.label}
                         />
                         <LertText
@@ -211,15 +212,16 @@ const LoginScreen = () => {
                         <LertText
                             style={{marginTop:"5%"}}
                             text="Need help? "
+                            isTruncated={false}
                             type={textTypes.label}
                         />
                         <LertText
                             style={{marginTop:"5%"}}
                             text="Contact the IBMid help desk"
                             type={textTypes.label}
-                            onPress={()=>{ Linking.openURL( IBMidHelp )}}
                             color={theme.colors.actions.actionPrimary}
                             underline="underline"
+                            onPress={()=>{ Linking.openURL( IBMidHelp )}}
                         />
                     </Box>
 
