@@ -72,3 +72,9 @@ export type ICAForm = {
 export type ExpenseTypeForm = {
     type: string;
 }
+export type CurrentPeriodForm = {
+    quarter: string,
+    year: string,
+    key: string,
+    status: string
+}

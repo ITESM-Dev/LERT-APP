@@ -1,36 +1,66 @@
-import { ScrollView, Text, View } from "react-native";
-import LegalMenu from "~components/molecules/LegalMenu";
-import Theme from '~theme/theme';
-import Overlay from "~components/organisms/Overlay";
-import LertText from "~components/atoms/LertText";
-import * as textTypes from '~styles/constants/textTypes';
-import LertButton from "~components/atoms/LertButton";
-import Table from "~components/organisms/Table";
 import { useState } from "react";
-import LertScreen from "~components/organisms/LertScreen";
+import { useSelector } from "react-redux";
+import { Box, VStack, HStack } from "native-base" ;
 
-const TABLE_HEADERS = ["Quarter", "Year", "Key", "Status"]
-import { Box, VStack, HStack } from "native-base";
+import { allCurrentPeriods } from "~store/currentPeriod";
+
+import LertText from "~components/atoms/LertText";
 import Dropdown from "~components/molecules/Dropdown";
 import LertInput from "~components/molecules/LertInput";
+import Overlay from "~components/organisms/Overlay";
+import Table from "~components/organisms/Table";
+import LertScreen from "~components/organisms/LertScreen";
 
+import Theme from '~theme/theme';
+import * as textTypes from '~styles/constants/textTypes';
+import { CurrentPeriodForm, useCreateCurrentPeriodMutation, useGetCurrentPeriodsQuery } from "~store/api";
+
+const TABLE_HEADERS = ["Quarter", "Year", "Key", "Status"]
 const dropdownTypes = [
-    { label: 'First', value: '1' },
-    { label: 'Second', value: '2' },
-    { label: 'Third', value: '3' },
-    { label: 'Fourth', value: '4' },
+    { label: 'Q1', value: '1' },
+    { label: 'Q2', value: '2' },
+    { label: 'Q3', value: '3' },
+    { label: 'Q4', value: '4' },
 ]
 
 const CurrentPeriod = () =>{
 
-    let periodExample = [
-        {quarter: 1, year: "2022", key: "idk",  status: "Active"},
-        {quarter: 2, year: "2022", key: "idk",  status: "Active"},
-    ]
-
     const [year, setYear] = useState("");
     const [key, setKey] = useState("");
-    const [status, setStatus] = useState("");
+    const [quarter, setQuarter] = useState("");
+    const [error, setError] = useState<string | null>(null)
+
+    const resetForm = () => {
+        setYear("")
+        setKey("")
+        setQuarter("")
+        setError(null)
+    }
+
+    // Current Period - State
+    const currentPeriods = useSelector(allCurrentPeriods);
+
+    // API Calls
+    const [createCurrentPeriod, response] = useCreateCurrentPeriodMutation();
+    
+    // Auto-refetch
+    useGetCurrentPeriodsQuery();
+
+    const handleSubmit = () => {
+        const currentPeriodForm: CurrentPeriodForm = {
+            quarter: quarter,
+            key: key,
+            year: year,
+            status: "Inactive"
+        }
+
+        createCurrentPeriod(currentPeriodForm)
+            .unwrap()
+            .then(() => resetForm())
+            .catch(error => setError(
+                "Something went wrong, plese try again"
+            ))
+    }
 
     return (
         <LertScreen>
@@ -50,12 +80,42 @@ const CurrentPeriod = () =>{
                     <>
                         <HStack space={2} justifyContent="space-evenly">
                             <VStack alignItems={"flex-start"}>
-                                <LertText text="Quarter" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                                <Dropdown placeholder="Quarter" items={dropdownTypes}/>
+                                <LertText 
+                                    text="Quarter" 
+                                    type={textTypes.heading} 
+                                    color={Theme.colors.text.primary} 
+                                    style={{paddingTop:"10%"}}
+                                />
+                                <Dropdown 
+                                    placeholder="Quarter"
+                                    items={dropdownTypes} 
+                                    value={quarter} 
+                                    setValue={setQuarter}
+                                />
+                                <LertText 
+                                    text="Key" 
+                                    type={textTypes.heading} 
+                                    color={Theme.colors.text.primary} 
+                                    style={{paddingTop:"10%"}}
+                                />
+                                <LertInput 
+                                    text={key} 
+                                    setText={setKey} 
+                                    placeholder={"Key"}
+                                />
                             </VStack>
                             <VStack alignItems={"flex-start"}>
-                                <LertText text="Year" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                                <LertInput text={year} setText={setYear} placeholder={"Year"}/>
+                                <LertText 
+                                    text="Year" 
+                                    type={textTypes.heading} 
+                                    color={Theme.colors.text.primary} 
+                                    style={{paddingTop:"10%"}}
+                                />
+                                <LertInput 
+                                    text={year} 
+                                    setText={setYear} 
+                                    placeholder={"Year"}
+                                />
                             </VStack>
                         </HStack>
                     </>
@@ -64,7 +124,7 @@ const CurrentPeriod = () =>{
             <Box style={{ marginTop: "3%" }}>
                 <Table 
                     headers={TABLE_HEADERS} 
-                    items={periodExample} 
+                    items={currentPeriods} 
                     flexValues={[1, 1, 1, 1]}
                 />
             </Box>
