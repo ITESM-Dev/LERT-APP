@@ -1,7 +1,7 @@
 import { RootState, store } from "~store/store";
 import { CurrentPeriodAdapter } from "./slice";
 
-const CurrentPeriodSelector = CurrentPeriodAdapter.getSelectors<RootState>((state) => state.CurrentPeriod);
+const CurrentPeriodSelector = CurrentPeriodAdapter.getSelectors<RootState>((state) => state.currentPeriod);
 
 export const allCurrentPeriods = () => CurrentPeriodSelector.selectAll(store.getState());
 
