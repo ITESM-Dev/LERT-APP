@@ -15,7 +15,7 @@ type OverlayPropTypes = {
     children: JSX.Element;
     error?: string | null;
     setError?: Dispatch<SetStateAction<string | null>>;
-    maxWidth: string | number;
+    minWidth: string | number;
     maxHeight: string | number;
     buttonTitle: string;
     handleSubmit: () => void;
@@ -34,7 +34,6 @@ const Overlay = (props: OverlayPropTypes) => {
 
     return (
         <Box 
-            alignSelf={"flex-end"}  
             alignItems={'flex-end'}
         >
             <Box 
@@ -59,13 +58,14 @@ const Overlay = (props: OverlayPropTypes) => {
 
             <Modal initialFocusRef={initialFocusRef} isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
                 <Modal.Content 
-                    maxWidth={props.maxWidth} 
-                    maxHeight={props.maxHeight} 
+                    minWidth={props.minWidth} 
+                    minHeight={props.maxHeight} 
                     style={{backgroundColor:theme.colors.text.white}}
                 >
+                    <Modal.Header>{props.buttonTitle}</Modal.Header>
                     <Modal.CloseButton onPress={() => setIsOpen(false)} />
 
-                    <Modal.Body style={{ marginTop:"10%" }}>
+                    <Modal.Body style={{ marginTop:"5%" }}>
                         {props.children}
                     </Modal.Body>
                     <Modal.Footer 

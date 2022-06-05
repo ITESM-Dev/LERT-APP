@@ -66,7 +66,7 @@ const Employee = () => {
                 color={Theme.colors.text.primary} 
             />
 
-            <Overlay maxWidth={"50%"} maxHeight={"50%"} buttonTitle="Add Employee"> 
+            <Overlay minWidth={"50%"} maxHeight={"50%"} buttonTitle="Add Employee"> 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
                         <VStack alignItems={"flex-start"}>

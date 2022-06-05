@@ -58,7 +58,7 @@ const ExpensesTypes = () => {
             />
 
             <Overlay 
-                maxWidth={"30%"} 
+                minWidth={"30%"} 
                 maxHeight={"30%"} 
                 buttonTitle="Create expense"
                 handleSubmit={handleSubmit}

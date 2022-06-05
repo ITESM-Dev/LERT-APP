@@ -39,7 +39,14 @@ const CurrentPeriod = () =>{
                 text="Current Period"
                 type={textTypes.display04} />
 
-                <Overlay maxWidth={"50%"} maxHeight={"50%"} buttonTitle="Add Employee"> 
+                <Overlay 
+                    minWidth={"50%"} 
+                    maxHeight={"60%"} 
+                    buttonTitle="Add Period"
+                    error={error}
+                    setError={setError}
+                    handleSubmit={handleSubmit}
+                > 
                     <>
                         <HStack space={2} justifyContent="space-evenly">
                             <VStack alignItems={"flex-start"}>

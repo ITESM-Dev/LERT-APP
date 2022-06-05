@@ -43,7 +43,7 @@ const ManageManagerFunctions = () => {
             
             <LertText text="Activate/Deactivate Manager Functions" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
 
-            <Overlay maxWidth={"50%"} maxHeight={"50%"} buttonTitle="Modify"> 
+            <Overlay minWidth={"50%"} maxHeight={"50%"} buttonTitle="Modify"> 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
                         <VStack alignItems={"flex-start"}>

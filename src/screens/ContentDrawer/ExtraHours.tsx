@@ -85,7 +85,7 @@ const ExtraHours = () => {
             />
 
             <Overlay 
-                maxWidth={"60%"}
+                minWidth={"60%"}
                 maxHeight={"60%"} 
                 error={error}
                 setError={setError}

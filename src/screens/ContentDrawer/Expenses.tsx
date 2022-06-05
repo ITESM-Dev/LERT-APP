@@ -73,7 +73,7 @@ const Expenses = () => {
             
             <LertText text="Expenses" type={textTypes.display04} color={Theme.colors.text.primary}/>
 
-            <Overlay maxWidth={"50%"} maxHeight={"50%"} buttonTitle="Create Expense"> 
+            <Overlay minWidth={"50%"} maxHeight={"50%"} buttonTitle="Create Expense"> 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
                         <VStack alignItems={"flex-start"}>
