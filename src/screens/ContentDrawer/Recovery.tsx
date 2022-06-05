@@ -43,7 +43,10 @@ const Recovery = () => {
 		labels: ["Q1", "Q2", "Q3", "Q4"],
 		datasets: [
 			{
-				data: /*data !== undefined ? [data["1"], data["2"], data["3"], data["4"]] :*/ [40, 30, 20, 10],
+				data: 
+					data !== undefined 
+						? [data["1"], data["2"], data["3"], data["4"]] 
+						: [40, 30, 20, 10],
 				colors: [
 					() => theme.colors.actions.actionShade2,
 					() => theme.colors.actions.actionPrimary,
