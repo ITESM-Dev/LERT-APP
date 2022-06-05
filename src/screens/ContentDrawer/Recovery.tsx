@@ -1,27 +1,15 @@
-import React from "react";
-import { View, useWindowDimensions } from "react-native";
+import { useState } from "react";
+import { useWindowDimensions } from "react-native";
 import { BarChart } from 'react-native-chart-kit';
 import { Box } from "native-base";
 
-import * as textTypes from '~styles/constants/textTypes';
-import LertText from '~components/atoms/LertText';
-import Theme from '../../theme/theme';
+import { ExpensesForQuarterForm, useExpensesForQuarterQuery } from "~store/api";
 
-const data = {
-	labels: ["Q1", "Q2", "Q3", "Q4"],
-	datasets: [
-		{
-			data: [80, 56, 10, 20],
-			colors: [
-				(opacity = 1) => "#828",
-				(opacity = 1) => "#381",
-				(opacity = 1) => "#349",
-				(opacity = 1) => "#900",
-			]
-		}
-	],
-	legend: ["BarChart"] // optional
-};
+import LertText, { TextStyles } from '~components/atoms/LertText';
+import LertScreen from "~components/organisms/LertScreen";
+
+import theme from '~theme/theme';
+import * as textTypes from '~styles/constants/textTypes';
 
 const chartConfig = {
 	backgroundColor: "#fff",
@@ -29,11 +17,14 @@ const chartConfig = {
 	backgroundGradientFromOpacity: 1.0,
 	backgroundGradientTo: '#fff',
 	backgroundGradientToOpacity: 1.0,
-	color: (opacity = 1) => `rgba(50, 50, 100, ${opacity})`,
-	strokeWidth: 3, // optional, default 3
+	color: () => theme.colors.text.primary,
+	strokeWidth: 0,
 	barPercentage: 3.0,
 	propsForLabels: {
-		fontSize: '15',
+		...TextStyles[textTypes.shortParagraph]
+	},
+	propsForHorizontalLabels: {
+		...TextStyles[textTypes.shortParagraph]
 	},
 	propsForBackgroundLines: {
 		color: "#000",
@@ -41,32 +32,69 @@ const chartConfig = {
 };
 
 const Recovery = () => {
-
 	const screenWidth = useWindowDimensions().width;
-    const screenHeight = useWindowDimensions().height;
+	const screenHeight = useWindowDimensions().height;
+
+	const [year, setYear] = useState("2022")
+
+	const { data } = useExpensesForQuarterQuery({ year } as ExpensesForQuarterForm)
+	
+	const charData = {
+		labels: ["Q1", "Q2", "Q3", "Q4"],
+		datasets: [
+			{
+				data: 
+					data !== undefined 
+						? [data["1"], data["2"], data["3"], data["4"]] 
+						: [40, 30, 20, 10],
+				colors: [
+					() => theme.colors.actions.actionShade2,
+					() => theme.colors.actions.actionPrimary,
+					() => theme.colors.actions.actionShade1,
+					() => theme.colors.actions.actionShade0,
+				]
+			}
+		]
+	};
 
     return (
-        <View>
-            <LertText text="Recovery and Adjustments" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
+        <LertScreen>
+            <LertText 
+				text="Recovery and Adjustments" 
+				type={textTypes.display04} 
+				color={theme.colors.text.primary}
+			/>
 
-            <LertText text="Table per quarter" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
+			<LertText 
+				text={`From ${year}`} 
+				type={textTypes.display01} 
+				color={theme.colors.text.primary}
+			/>
 
             <Box alignItems="center" justifyContent="center" flex={1}>
                 <BarChart
-                    withHorizontalLabels={true}
-                    data={data}
-                    width={screenWidth/10.0 * 6}
-                    height={screenHeight/10.0 * 5}
+                    data={charData}
+					//@ts-ignore
                     chartConfig={chartConfig}
-                    style={{marginLeft: 8, marginRight: 8, borderRadius: 7}}
-                    fromZero={true}
-                    withCustomBarColorFromData={true}
-                    flatColor={true}
-                    showValuesOnTopOfBars={true}
+					fromZero={true}
+					withCustomBarColorFromData={true}
+					showValuesOnTopOfBars={true}
+					
+					yAxisLabel={"$"}
+
+                    height={screenHeight / 10.0 * 5}
+                    width={screenWidth / 10.0 * 7}
+					
+                    withHorizontalLabels={true}
+					withInnerLines={false}
+					flatColor={true}
+                    style={{
+						marginTop: "3%"
+					}}
                 />
             </Box>
 
-        </View>
+        </LertScreen>
     )
 };
 

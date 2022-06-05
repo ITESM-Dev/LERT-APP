@@ -68,10 +68,14 @@ export type ICAForm = {
     icaOwner: string,
     idPlanning: string
 }
+export type ExpensesForQuarterForm = {
+    year: string;
+}
 
 export type ExpenseTypeForm = {
     type: string;
 }
+
 export type CurrentPeriodForm = {
     quarter: string,
     year: string,

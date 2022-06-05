@@ -10,7 +10,10 @@ import {
     clearExpenses,
 } from './slice'
 
-import { ExpenseType } from "./types";
+import { 
+    ExpenseType,
+    ExpenseYear,
+} from "./types";
 
 export {
     expensesReducer,
@@ -21,4 +24,5 @@ export {
     removeExpense,
     clearExpenses,
     ExpenseType,
+    ExpenseYear,
 }

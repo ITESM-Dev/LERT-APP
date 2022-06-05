@@ -12,13 +12,26 @@ import {
 
 import { ExpenseTypesType } from "./types";
 
+// Selectors
+import {
+    allExpenseTypes,
+    expenseTypesEntities,
+    expenseTypesIds,
+} from './selectors'
+
 export {
     expenseTypesReducer,
+    
     expenseTypesAdapter,
     setAllExpenseTypes,
     addExpenseType,
     updateExpenseType,
     removeExpenseType,
     clearExpenseTypes,
+
+    allExpenseTypes,
+    expenseTypesEntities,
+    expenseTypesIds,
+
     ExpenseTypesType,
 };
