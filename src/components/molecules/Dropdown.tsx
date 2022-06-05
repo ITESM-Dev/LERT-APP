@@ -51,16 +51,17 @@ const Dropdown = (props: DropdownPropTypes) => {
 
                 listItemLabelStyle={ dropdownStyles.listItem }
 
+                // @ts-ignore
                 textStyle={{ 
                     ...dropdownStyles.text, 
                     color: COLORS.text.bg,
                 }}
                 
+                // @ts-ignore
                 arrowIconStyle={ dropdownStyles.arrowIcon }
                 arrowIconContainerStyle={ dropdownStyles.arrowContainer }
                 
                 listMode='FLATLIST'
-                dropDownDirection='AUTO'
                 bottomOffset={200}
 
                 dropDownContainerStyle={ dropdownStyles.dropdownContainer }
