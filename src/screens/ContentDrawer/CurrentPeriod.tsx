@@ -70,12 +70,13 @@ const CurrentPeriod = () =>{
                 type={textTypes.display04} />
 
                 <Overlay 
-                    minWidth={"50%"} 
-                    maxHeight={"60%"} 
+                    minWidth={"50%"}
+                    maxHeight={"60%"}
                     buttonTitle="Add Period"
                     error={error}
                     setError={setError}
-                    handleSubmit={handleSubmit}
+                    handleSubmit={handleSubmit} 
+                    buttonType={"primary"}                
                 > 
                     <>
                         <HStack space={2} justifyContent="space-evenly">

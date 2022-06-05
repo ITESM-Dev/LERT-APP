@@ -15,6 +15,74 @@ import { useDispatch, useSelector } from "react-redux";
 import { allICAs } from "~store/ICAs/selectors";
 import { AppDispatch } from "~store/store";
 import { ICAForm, useCreateICAMutation } from "~store/api";
+import ExpandableTable from "~components/molecules/ExpandableTable";
+import LertTag from "~components/molecules/LertTag";
+import theme from "../../theme/theme";
+let data = [
+    {
+        status:<LertTag title={"Active"} backgroundColor={theme.colors.alerts.successPrimary}/>,
+        code: "A0jp65dd",
+        type: "type example", 
+        owner: "persona1@ibm.com",
+        startDate: "2019-04-06",
+        endDate: "2022-09-11",
+        budget: "$42,003",
+        totalBilling: "832022",
+    },
+    {
+        status: <LertTag title={"Active"} backgroundColor={theme.colors.alerts.successPrimary}/>,
+        code: "A0jp65dd",
+        type: "type example", 
+        owner: "persona1@ibm.com",
+        startDate: "2019-04-06",
+        endDate: "2022-09-11",
+        budget: "$42,003",
+        totalBilling: "832022",
+    },
+    {
+        status: <LertTag title={"Active"} backgroundColor={theme.colors.alerts.successPrimary}/>,
+        code: "A0jp65dd",
+        type: "type example", 
+        owner: "persona1@ibm.com",
+        startDate: "2019-04-06",
+        endDate: "2022-09-11",
+        budget: "$42,003",
+        totalBilling: "832022",
+    },
+    {
+        status: <LertTag title={"Active"} backgroundColor={theme.colors.alerts.successPrimary}/>,
+        code: "A0jp65dd",
+        type: "type example", 
+        owner: "persona1@ibm.com",
+        startDate: "2019-04-06",
+        endDate: "2022-09-11",
+        budget: "$42,003",
+        totalBilling: "832022",
+    },
+]
+let headers=["Status", "Code", "Type", "Owner", "Strat Date", "End Date", "Budget", "Total Billing"]
+let icaInfo =[
+    {header:"ICAPerf", data:"781JLS"},
+    {header: "ICAReq", data:"78A67"},
+    {header:"Year", data:"2022"},
+    {header:"IDPlanning", data:"523"},
+    {header:"Country", data:"Mexico"},
+    {header:"Dept", data:"CIO"},
+    {header:"FreqBill", data:"QUARTERLY"},
+    {header:"CC", data:"M552"},
+    {header:"CityNamePerf", data:"Mexico"},
+    {header:"CityNameReq", data:"Ireland"},
+    {header:"RCityPerf", data:"781"},
+    {header:"RCityReq", data:"7831"},
+    {header:"Division", data:"1B"},
+    {header:"Major", data:"638"},
+    {header:"Minor", data:"234"},
+    {header:"Leru", data:"1d32"},
+    {header:"Description", data:"Brand new"},
+    {header:"Nec", data:"12345"},
+    {header:"TotalPlusTaxes", data:"231264"},
+    {header:"ICA Core", data:"omgomg"}
+]
 
 const ICAS = () => {
 
@@ -57,7 +125,7 @@ const ICAS = () => {
 
     // Auto fetching for ICAS
     const [createICA, response] = useCreateICAMutation();
-    const [error, setError] = useState(null)
+    const [error, setError] = useState<string | null>(null)
 
     const handleSubmit = () => {
         /*
@@ -132,10 +200,11 @@ const ICAS = () => {
             <Overlay 
                 minWidth={"65%"}
                 maxHeight={"80%"}
-                buttonTitle="Add Extra Hour"
+                buttonTitle="Add ICA"
                 handleSubmit={handleSubmit} 
                 error={error} 
                 setError={setError}            
+                buttonType={"icon"}
             > 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
@@ -201,11 +270,8 @@ const ICAS = () => {
             </Overlay>
 
             <LertText text="Extra Hours List" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
+            <ExpandableTable headers={headers} items={data} flexValues={[1, 1, 1, 1, 1, 1, 1, 1]} amount={8} subItems={icaInfo}/>
 
-            <Table headers={["ICA Performing", "ICA Requesting", "Year", "ID Planning", "ICA Owner", "Budget", "Country", "Dept", "Frequency Bill", "CC", "City Name Perf", 
-            "City Name Req", "R City Perf", "R City Req", "Division", "Major", "Minor", "Leru", "Description", "Type", "Nec", "Total Plus Taxes", "Start Date", "Finish Date" ]} 
-            items={example} 
-            flexValues={[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}/>
         </View>
     )
 };
