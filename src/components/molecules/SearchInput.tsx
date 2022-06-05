@@ -1,22 +1,21 @@
-import { useEffect } from 'react';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { View } from 'react-native';
+// @ts-ignore
 import Autocomplete from 'react-native-autocomplete-input'
-import LertText from '~components/atoms/LertText';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import * as TextTypes from '~styles/constants/textTypes';
-import { dropdownStyles } from './Dropdown';
-import { LertInputStyle } from './LertInput';
+import LertText from '~components/atoms/LertText';
+import LertInput from '~components/molecules/LertInput';
+import { dropdownStyles } from '~components/molecules/Dropdown';
 
 import Theme from '~theme/theme'
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { setDelegates } from '~store/delegates';
+import * as TextTypes from '~styles/constants/textTypes';
 
 const COLORS = Theme.colors
 const BG_COLOR = COLORS.components.offWhite
 
 type SearchInputPropTypes = {
-    items: any[];
+    items: string[];
     placeholder: string;
     value: string;
     setValue: Dispatch<SetStateAction<string>>;
@@ -47,14 +46,20 @@ const SearchInput = (props: SearchInputPropTypes) => {
                 containerStyle={{
                     flex: 1,
                 }}
-                inputStyle={{
-                    ...LertInputStyle,
+                inputContainerStyle={{
+                    borderWidth: 0
                 }}
+                renderTextInput={() => 
+                    <LertInput
+                        placeholder={props.placeholder} 
+                        text={query} 
+                        setText={setQuery} 
+                    />  
+                }
                 listContainerStyle={{
                     flex: 1,
                     position: 'absolute',
                     zIndex: 1,
-                    ...dropdownStyles.itemContainer,
                     marginTop: 45,
                     backgroundColor: BG_COLOR,
                     width: '100%',
