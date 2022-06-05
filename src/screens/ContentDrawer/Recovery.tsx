@@ -54,8 +54,7 @@ const Recovery = () => {
 					() => theme.colors.actions.actionShade0,
 				]
 			}
-		],
-		legend: ["BarChart"]
+		]
 	};
 
     return (
@@ -63,6 +62,12 @@ const Recovery = () => {
             <LertText 
 				text="Recovery and Adjustments" 
 				type={textTypes.display04} 
+				color={theme.colors.text.primary}
+			/>
+
+			<LertText 
+				text={`From ${year}`} 
+				type={textTypes.display01} 
 				color={theme.colors.text.primary}
 			/>
 
