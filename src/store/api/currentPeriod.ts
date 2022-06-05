@@ -6,7 +6,7 @@ import { CurrentPeriodType } from "~store/currentPeriod";
 export const createCurrentPeriod = (builder: BuilderType) => (
     builder.mutation<void, CurrentPeriodForm>({
         query: (currentPeriodForm: CurrentPeriodForm) => ({
-            url: "createCurrent",
+            url: "createCurrentPeriod",
             method: "POST",
             body: currentPeriodForm,
             responseHandler: "json",
@@ -23,8 +23,8 @@ export const getCurrentPeriods = (builder: BuilderType) => (
             validateStatus: validateGetStatus,
         }),
         providesTags: ["CurrentPeriod"], //maybe change this tag to plural
-        transformResponse: (response) => {
-            const currentPeriodAPI = response as CurrentPeriodType[]
+        transformResponse: (response: any[]) => {
+            const currentPeriodAPI = response
 
             const currentPeriods = currentPeriodAPI.map(item => ({
                 quarter: item.quarter,
