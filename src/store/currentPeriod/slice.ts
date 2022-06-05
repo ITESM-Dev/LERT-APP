@@ -1,4 +1,5 @@
 import { createEntityAdapter, createSlice, EntityId, PayloadAction } from "@reduxjs/toolkit";
+import { api } from "~store/api";
 import { CurrentPeriodType } from "./types";
 
 export const CurrentPeriodAdapter = createEntityAdapter<CurrentPeriodType>({
@@ -6,7 +7,7 @@ export const CurrentPeriodAdapter = createEntityAdapter<CurrentPeriodType>({
 });
 
 const CurrentPeriod = createSlice({
-    name: "currentPeriod",
+    name: "currentPeriods",
     initialState: CurrentPeriodAdapter.getInitialState(),
     reducers: {
         setCurrenPeriod(state, action: PayloadAction<CurrentPeriodType[]>) {
@@ -24,6 +25,15 @@ const CurrentPeriod = createSlice({
         clearCurrentPeriods(state, _) {
             CurrentPeriodAdapter.removeAll(state);
         }
+    },
+    extraReducers: (builder) => {
+        builder 
+            .addMatcher(
+                api.endpoints.getCurrentPeriods.matchFulfilled,
+                (state, { payload }) => {
+                    CurrentPeriodAdapter.setMany(state, payload);
+                }
+            )
     }
 });
 
