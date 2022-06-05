@@ -217,7 +217,7 @@ const ContentDrawer = () => {
                                 drawerIcon: () => 
                                     <Ionicons
                                         {...ICONS_STYLE} 
-                                        name="sync-outline"
+                                        name="calendar-outline"
                                     />
                             }}
                         />
