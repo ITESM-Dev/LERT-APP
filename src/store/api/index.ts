@@ -12,6 +12,10 @@ import {
     // Band Types
     useGetBandTypesQuery,
     useCreateBandTypeMutation,
+
+    // Employees
+    useGetManagerICAQuery,
+    useGetAvailableResourcesQuery,
     
     // Extra Hours
     useGetExtraHourTypesQuery,
@@ -43,6 +47,8 @@ import {
     ExpensesForQuarterForm,
     ExpenseTypeForm,
     CurrentPeriodForm,
+    AvailableResource,
+    ManagerICA,
 } from './types'
 
 export {
@@ -63,6 +69,12 @@ export {
     BandTypeForm,
     useGetBandTypesQuery,
     useCreateBandTypeMutation,
+
+    // Employees
+    AvailableResource,
+    ManagerICA,
+    useGetManagerICAQuery,
+    useGetAvailableResourcesQuery,
     
     // Extra Hours
     ExtraHourForm,
