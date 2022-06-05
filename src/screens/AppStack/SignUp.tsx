@@ -162,27 +162,27 @@ const SignUp = () => {
                 <LertInput
                     placeholder="Password"
                     password={true}
-                    style={{width: "100%", marginTop:"5%", marginBottom:'7%'}}
+                    style={{ width: "100%", marginTop:"5%" }}
                     text={password}
                     setText={setPassword}
-                    /> 
+                /> 
 
                 <LertText
                     style={{marginTop:"5%"}}
                     text="Personal information"
                     type={textTypes.display01}
-                    />
+                />
                 <Box style={{flexDirection:'row', width: '100%'}}>
                     <LertInput
                         placeholder="First name"
-                        style={{width: "100%", marginTop:"1%"}}
+                        style={{width: "100%" }}
                         text={firstName}
                         setText={setFirstName}
                         />
                     
                     <LertInput
                         placeholder="Last name"
-                        style={{width: "100%", marginTop:"5%", marginLeft:"5%"}}
+                        style={{ width: "100%", marginTop:"5%", marginLeft:"5%"}}
                         text={lastName}
                         setText={setLastName}
                         />
