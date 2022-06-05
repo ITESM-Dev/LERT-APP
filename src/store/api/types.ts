@@ -81,3 +81,12 @@ export type CurrentPeriodForm = {
     key: string,
     status: string
 }
+
+export type AvailableResource = {
+    mail: string;
+}
+
+export type ManagerICA = {
+    idICA: string;
+    idCode: string;
+}
