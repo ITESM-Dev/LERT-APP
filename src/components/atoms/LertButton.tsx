@@ -1,17 +1,20 @@
 
-import { Button } from 'native-base'
-import { ViewStyle } from 'react-native';
+import { Actionsheet, Button } from 'native-base'
+import { Component } from 'react';
+import { ViewStyle, Text } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import BodyStyles from '~styles/body';
 import theme from '~theme/theme';
 
 type LertButtonPropTypes = {
-    title: string;
-    type: "primary" | "secondary" | "terciary" | "danger" | "ghost";
+    type: "primary" | "secondary" | "terciary" | "danger" | "ghost" | "icon";
+    title: any;
     disabled?: boolean;
     onPress: () => void;
     style?: ViewStyle; 
     testID?: string;
+    //icon?: any;
 }
 
 /**
@@ -62,7 +65,10 @@ const LertButton = (props: LertButtonPropTypes) => {
             disabled={disabled}
             onPress={onPress}
         >
+            
             {title}
+    
+            
         </Button>
     );
 };
@@ -75,6 +81,7 @@ type StyleType = {
     borderWidth?:  number;
     color?: string;
     _text?: any;
+    
 }
 
 // Button Styles
@@ -142,6 +149,9 @@ const LertButtonStyles: { [name: string]: StyleType} = {
     ghostPressed: {
         borderColor: 'actions.actionPrimary',
         borderWidth: 2
+    },
+    icon:{
+        backgroundColor: 'transparent',        
     }
 }
 

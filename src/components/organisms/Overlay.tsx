@@ -1,5 +1,5 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
-import { Text, useWindowDimensions } from 'react-native';
+import { Text, useWindowDimensions, ViewStyle } from 'react-native';
 import { Popover, Box, Button, Modal } from 'native-base';
 
 import { propsFlattener } from 'native-base/lib/typescript/hooks/useThemeProps/propsFlattener';
@@ -7,6 +7,8 @@ import { propsFlattener } from 'native-base/lib/typescript/hooks/useThemeProps/p
 import LertText from '~components/atoms/LertText';
 import LertButton from '~components/atoms/LertButton';
 import LertInput from '~components/molecules/LertInput';
+import { propsFlattener } from 'native-base/lib/typescript/hooks/useThemeProps/propsFlattener';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import theme from '~theme/theme';
 import * as textTypes from '~styles/constants/textTypes';
@@ -17,8 +19,12 @@ type OverlayPropTypes = {
     setError?: Dispatch<SetStateAction<string | null>>;
     minWidth: string | number;
     maxHeight: string | number;
-    buttonTitle: string;
     handleSubmit: () => void;
+    maxWidth?: string | number;
+    buttonTitle: string | any;
+    buttonType: "primary" | "secondary" | "terciary" | "danger" | "ghost" | "icon";
+
+    style?: ViewStyle; 
 }
 
 /**
@@ -41,8 +47,8 @@ const Overlay = (props: OverlayPropTypes) => {
             >
                 <LertButton 
                     title={props.buttonTitle} 
-                    type="primary" 
-                    onPress={() => setIsOpen(true)} 
+                    onPress={() => setIsOpen(true)}
+                    type={props.buttonType}  
                 />    
             
                 {props.error && 
@@ -72,16 +78,18 @@ const Overlay = (props: OverlayPropTypes) => {
                         style={{
                             backgroundColor:theme.colors.text.white, 
                             paddingRight:"4%", 
-                            paddingTop:"4%"
+                            paddingTop:"4%",
+                            alignContent: 'flex-start'
                         }}
                     >
                         <LertButton 
-                            title="SUBMIT" 
+                            title="Submit" 
                             type="primary" 
                             onPress={() => {
                                 props.handleSubmit()
                                 setIsOpen(false)
                             }}
+                            style={{flex:1, flexWrap:'wrap'}}
                         />
                     </Modal.Footer>
                 </Modal.Content>

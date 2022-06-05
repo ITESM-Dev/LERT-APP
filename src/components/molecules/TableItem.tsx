@@ -28,6 +28,7 @@ const TableItem = ({ items, flexValues, styles, amount }: TableItemPropTypes) =>
 
     return (
         <Box
+            marginX={"0%"}
             borderWidth={0.1}
             borderColor={Theme.colors.icons.primary}
             height={10}
