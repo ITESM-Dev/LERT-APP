@@ -1,20 +1,22 @@
-import { View } from "react-native";
-
-import Table from "~components/organisms/Table";
-import LertText from '~components/atoms/LertText';
-import Overlay from '~components/organisms/Overlay';
-import LertInput from '~components/molecules/LertInput';
-import * as textTypes from '~styles/constants/textTypes';
-
-import Theme from '../../theme/theme';
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { HStack, VStack } from "native-base";
-import { AppDispatch } from "~store/store";
-import { useDispatch, useSelector } from "react-redux";
-import { allExpenseTypes } from "~store/expenseTypes/selectors";
+
+import { 
+    ExpenseTypeForm,
+    useCreateExpenseTypeMutation, 
+    useGetExpenseTypesQuery 
+} from "~store/api";
+import { allExpenseTypes } from "~store/expenseTypes";
+
+import LertText from '~components/atoms/LertText';
+import LertInput from '~components/molecules/LertInput';
+import Table from "~components/organisms/Table";
+import Overlay from '~components/organisms/Overlay';
 import LertScreen from "~components/organisms/LertScreen";
-import { useCreateExpenseTypeMutation, useGetExpenseTypesQuery } from "~store/api";
-import { ExpenseTypeForm } from "~store/api/types";
+
+import Theme from '~theme/theme';
+import * as textTypes from '~styles/constants/textTypes';
 
 const TABLE_HEADERS = ["Name"]
 
