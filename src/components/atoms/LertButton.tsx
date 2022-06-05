@@ -56,7 +56,7 @@ const LertButton = (props: LertButtonPropTypes) => {
 
             _focus={{
                 ...style,
-                borderColor: LertButtonStyles[`${type}Hover`].borderColor
+                borderColor: LertButtonStyles[`${type}Pressed`].borderColor
             }}
 
             disabled={disabled}
