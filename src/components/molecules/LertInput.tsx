@@ -11,6 +11,7 @@ type LertInputPropTypes = {
     text: string;
     setText: Dispatch<SetStateAction<string>>;
     password?: boolean;
+    isDisabled?: boolean;
 }
 
 /**
@@ -33,6 +34,8 @@ const LertInput = (props: LertInputPropTypes) => {
             placeholder={props.placeholder}
             onChangeText={props.setText}
             value={props.text}
+
+            isDisabled={props.isDisabled}
 
             _focus={{
                 borderWidth: 1,
