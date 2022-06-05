@@ -17,9 +17,8 @@ type OverlayPropTypes = {
     error?: string | null;
     setError?: Dispatch<SetStateAction<string | null>>;
     minWidth: string | number;
-    maxHeight: string | number;
+    minHeight: string | number;
     handleSubmit: () => void;
-    maxWidth?: string | number;
     buttonTitle: string | any;
     buttonType: "primary" | "secondary" | "terciary" | "danger" | "ghost" | "icon";
 
@@ -28,8 +27,6 @@ type OverlayPropTypes = {
 
 /**
  * @param children The components that go inside the Modal window
- * @param maxWidth String or number to give the maxWidth of the Modal
- * @param maxHeight String or number to give the maxHeight of the Modal
  * @param buttonTitle String that will be the title of the button
  */
 const Overlay = (props: OverlayPropTypes) => {
@@ -64,7 +61,7 @@ const Overlay = (props: OverlayPropTypes) => {
             <Modal initialFocusRef={initialFocusRef} isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
                 <Modal.Content 
                     minWidth={props.minWidth} 
-                    minHeight={props.maxHeight} 
+                    minHeight={props.minHeight} 
                     style={{backgroundColor:theme.colors.text.white}}
                 >
                     <Modal.Header>{props.buttonTitle}</Modal.Header>
@@ -88,7 +85,6 @@ const Overlay = (props: OverlayPropTypes) => {
                                 props.handleSubmit()
                                 setIsOpen(false)
                             }}
-                            style={{flex:1, flexWrap:'wrap'}}
                         />
                     </Modal.Footer>
                 </Modal.Content>
