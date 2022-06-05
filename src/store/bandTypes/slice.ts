@@ -1,6 +1,5 @@
 import { createEntityAdapter, createSlice, EntityId, PayloadAction } from "@reduxjs/toolkit";
 import { api } from "~store/api";
-import { ExpenseType } from "~store/expenses";
 import { BandTypesType } from "./types";
 
 export const bandTypesAdapter = createEntityAdapter<BandTypesType>({
