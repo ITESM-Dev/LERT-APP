@@ -20,6 +20,9 @@ import {
     // ICAs
     useCreateICAMutation,
 
+    // Expenses for Quarter (Recovery)
+    useExpensesForQuarterQuery,
+
     // Expense Types
     useGetExpenseTypesQuery,
     useCreateExpenseTypeMutation,
@@ -36,6 +39,8 @@ import {
     BandTypeForm,
     ExtraHourForm,
     ICAForm,
+    ExpensesForQuarterForm,
+    ExpenseTypeForm,
     CurrentPeriodForm,
 } from './types'
 
@@ -67,7 +72,12 @@ export {
     ICAForm,
     useCreateICAMutation,
 
+    // Expenses for Quarter (Recovery)
+    ExpensesForQuarterForm,
+    useExpensesForQuarterQuery,
+
     // Expense Types
+    ExpenseTypeForm,
     useGetExpenseTypesQuery,
     useCreateExpenseTypeMutation,
 
