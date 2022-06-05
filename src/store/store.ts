@@ -19,16 +19,16 @@ export const store = configureStore({
         [api.reducerPath]: api.reducer,
 
         // Common Reducers
+        user: userReducer,
+        ICAs: ICAsReducer,
+        currentPeriod: currentPeriodReducer,
         expenses: expensesReducer, 
+        expenseTypes: expenseTypesReducer,
         employees: employeesReducer,
         managers: managersReducer,
-        ICAs: ICAsReducer,
-        user: userReducer,
-        expenseTypes: expenseTypesReducer,
         bandTypes: bandTypesReducer,
         extraHours: extraHoursReducer,
         delegate: delegateReducer,
-        currentPeriod: currentPeriodReducer,
     }),
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware().concat(api.middleware),
