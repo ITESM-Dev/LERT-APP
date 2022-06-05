@@ -3,9 +3,6 @@ export type EmployeeType = {
     employeeNum: number;
     name: string;
     manager: string;
-    idManager?: string;
     ICA: string;
-    idICA?: string;
     band: number;
-    idBandType?: string;
 }
