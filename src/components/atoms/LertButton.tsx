@@ -1,11 +1,9 @@
 
-import { Actionsheet, Button } from 'native-base'
-import { Component } from 'react';
-import { ViewStyle, Text } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { Button } from 'native-base'
+import { ViewStyle } from 'react-native';
 
-import BodyStyles from '~styles/body';
 import theme from '~theme/theme';
+import BodyStyles from '~styles/body';
 
 type LertButtonPropTypes = {
     type: "primary" | "secondary" | "terciary" | "danger" | "ghost" | "icon";
@@ -14,12 +12,11 @@ type LertButtonPropTypes = {
     onPress: () => void;
     style?: ViewStyle; 
     testID?: string;
-    //icon?: any;
 }
 
 /**
  * @param title Text for Button
- * @param type "primary" | "secondary" | "terciary" | "danger" | "ghost"
+ * @param type "primary" | "secondary" | "terciary" | "danger" | "ghost" | "icon"
  * @param style (optional) component style
  */
 const LertButton = (props: LertButtonPropTypes) => {
@@ -81,7 +78,6 @@ type StyleType = {
     borderWidth?:  number;
     color?: string;
     _text?: any;
-    
 }
 
 // Button Styles
@@ -150,7 +146,13 @@ const LertButtonStyles: { [name: string]: StyleType} = {
         borderColor: 'actions.actionPrimary',
         borderWidth: 2
     },
-    icon:{
+    icon: {
+        backgroundColor: 'transparent',        
+    },
+    iconHover: {
+        backgroundColor: 'transparent',        
+    },
+    iconPressed: {
         backgroundColor: 'transparent',        
     }
 }
