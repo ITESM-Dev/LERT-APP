@@ -60,8 +60,10 @@ const Dropdown = (props: DropdownPropTypes) => {
                 // @ts-ignore
                 arrowIconStyle={ dropdownStyles.arrowIcon }
                 arrowIconContainerStyle={ dropdownStyles.arrowContainer }
+                showTickIcon={false}
                 
                 listMode='FLATLIST'
+                dropDownDirection={"BOTTOM"}
                 bottomOffset={200}
 
                 dropDownContainerStyle={ dropdownStyles.dropdownContainer }
@@ -94,15 +96,15 @@ export const dropdownStyles = StyleSheet.create({
     },
     dropdownContainer: { 
         borderColor: BORDER_COLOR,
+        position: 'absolute',
         borderRadius: 0,
     },
     container: {
         backgroundColor: BG_COLOR,
         borderColor: BORDER_COLOR,
         borderBottomWidth: 1,
-        flexDirection: 'row',
+        flex: 1,
         justifyContent: 'space-between',
-        alignItems: 'center',
     },
     arrowContainer: {
         marginStart: 20,
@@ -112,15 +114,13 @@ export const dropdownStyles = StyleSheet.create({
         tintColor: COLORS.icons.secondary,
     },
     text: {
-        ...BodyStyles.paragraphComponents ,
+        ...BodyStyles.paragraphComponents,
         fontFamily: 'body',
         tintColor: COLORS.text.bg,
     },
     itemContainer: {
         backgroundColor: BG_COLOR,
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 10
+        padding: 10,
     },
     listItem: {
         color: COLORS.text.bg
