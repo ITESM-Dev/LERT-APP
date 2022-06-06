@@ -18,6 +18,7 @@ import {
     useCreateExtraHourTypeMutation,
 
     // ICAs
+    useGetICAsQuery,
     useCreateICAMutation,
 
     // Expenses for Quarter (Recovery)
@@ -70,6 +71,7 @@ export {
 
     // ICAs
     ICAForm,
+    useGetICAsQuery,
     useCreateICAMutation,
 
     // Expenses for Quarter (Recovery)

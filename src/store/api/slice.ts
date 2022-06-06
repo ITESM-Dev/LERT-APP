@@ -9,6 +9,9 @@ import {
 	FetchBaseQueryMeta 
 } from "@reduxjs/toolkit/dist/query/react"
 
+import { API_URL } from "~utils/constants"
+import { RootState } from "~store/store"
+
 import { 
 	login, 
 	logout, 
@@ -19,25 +22,34 @@ import {
 	getUserInfo 
 } from "./user"
 
-import { API_URL } from "~utils/constants"
-import { RootState } from "~store/store"
 import { 
 	getBandTypes,
 	createBandType, 
 } from "./bandTypes"
+
 import { 
 	getExtraHourTypes,
 	createExtraHourType, 
 } from "./extraHours"
+
 import { 
-	createICA,
+	getICAs,
+	createICA, 
 } from "./ICAs"
+
 import { 
 	getExpenseTypes,
 	createExpenseType, 
 } from "./expenseTypes"
-import { createCurrentPeriod, getCurrentPeriods } from "./currentPeriod"
-import { expensesForQuarter } from "./recovery"
+
+import { 
+	createCurrentPeriod, 
+	getCurrentPeriods 
+} from "./currentPeriod"
+
+import { 
+	expensesForQuarter 
+} from "./recovery"
 
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
@@ -91,6 +103,7 @@ export const api = createApi({
 		createExtraHourType: createExtraHourType(builder),
 
 		// ICAs
+		getICAs: getICAs(builder),
 		createICA: createICA(builder),
 
 		// Expenses For Quarter (Recovery)
@@ -125,6 +138,7 @@ export const {
 	useCreateExtraHourTypeMutation,
 
 	// ICAs
+	useGetICAsQuery,
 	useCreateICAMutation,
 
 	// Expenses For Quarter (Recovery)
