@@ -1,16 +1,13 @@
 export type ExpenseType = {
-    id: string;
+    employeeMail: string;
     type: string;
     cost: number;
     date: string;
-    comment: string;
-    idICA: string;
-    idEmployee?: string;
-    employeeMail: string;
-    idICAManager?: string;
+    ICA: string;
     ICAManager: string;
-    idAdministrator?: string;
     administrator: string;
+    comment: string;
+    id: string;
 }
 
 export type ExpenseYear = {
