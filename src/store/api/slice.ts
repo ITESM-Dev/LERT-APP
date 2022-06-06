@@ -24,7 +24,9 @@ import {
 
 import { 
 	getBandTypes,
-	createBandType, 
+	createBandType,
+	updateBandType, 
+	deleteBandType,
 } from "./bandTypes"
 
 import { 
@@ -94,6 +96,9 @@ export const validateDeleteStatus = (response: Response) =>
 export const validateUpdateStatus = (response: Response) => 
 	response.status === 200
 
+export const validateDeleteStatus = (response: Response) => 
+	response.status === 200
+
 export const api = createApi({
 	baseQuery: fetchBaseQuery({ 
 		baseUrl: API_URL,
@@ -129,8 +134,10 @@ export const api = createApi({
 		logout: logout(builder),
 
 		// Band Types
-		createBandType: createBandType(builder),
 		getBandTypes: getBandTypes(builder),
+		createBandType: createBandType(builder),
+		updateBandType: updateBandType(builder),
+		deleteBandType: deleteBandType(builder),
 		
 		// Employees
 		getManagerICA: getManagerICA(builder),
@@ -177,7 +184,9 @@ export const {
 	// Band Types
 	useGetBandTypesQuery,
 	useCreateBandTypeMutation,
-
+	useUpdateBandTypeMutation,
+	useDeleteBandTypeMutation,
+	
 	// Employees
 	useGetManagerICAQuery,
 	useGetAvailableResourcesQuery,

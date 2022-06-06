@@ -15,6 +15,8 @@ import {
     // Band Types
     useGetBandTypesQuery,
     useCreateBandTypeMutation,
+    useUpdateBandTypeMutation,
+	useDeleteBandTypeMutation,
 
     // Employees
     useGetManagerICAQuery,
@@ -82,6 +84,8 @@ export {
     BandTypeForm,
     useGetBandTypesQuery,
     useCreateBandTypeMutation,
+    useUpdateBandTypeMutation,
+	useDeleteBandTypeMutation,
 
     // Employees
     AvailableResource,
