@@ -5,9 +5,12 @@ import { Box, HStack, VStack } from "native-base";
 import { 
     ExpenseForm, 
     useCreateExpenseMutation, 
+    useGetAvailableResourcesQuery, 
+    useGetCurrentPeriodsQuery, 
     useGetExpensesQuery, 
     useGetExpenseTypesQuery,
     useGetManagerICAQuery,
+    useGetResourcesQuery,
 } from "~store/api";
 import { allExpenses } from "~store/expenses";
 
@@ -20,6 +23,7 @@ import LertScreen from "~components/organisms/LertScreen";
 
 import Theme from '../../theme/theme';
 import * as textTypes from '~styles/constants/textTypes';
+import { allCurrentPeriods } from "~store/currentPeriod";
 
 const dropdownTypes = [
     { label: 'First', value: 'first' },
@@ -30,39 +34,52 @@ const TABLE_HEADERS = ["Employee Mail", "Type", "Cost", "Date", "ICA", "ICA Mana
 
 const Expenses = () => {
 
-    const [name, setName] = useState("")
     const [employeeMail, setEmployeeMail] = useState("");
     const [date, setDate] = useState("");
     const [cost, setCost] = useState(""); 
     const [comment, setComment] = useState("");
     const [ica, setIca] = useState("");
     const [type, setType] = useState("");
+    const [key, setKey] = useState("")
 
     const [error, setError] = useState<string | null>(null)
 
     const resetForm = () => {
-        setName("")
         setEmployeeMail("")
         setDate("")
         setCost("")
         setComment("")
         setType("")
+        setKey("")
         setError(null)
     }
 
     // Expenses - State
     const expenses = useSelector(allExpenses)
 
+    // Current Periods - State
+    const currentPeriods = useSelector(allCurrentPeriods)
+
     // Auto-fetch
     useGetExpensesQuery()
+    // Current Periods
+    useGetCurrentPeriodsQuery()
 
     // Expense Types
     const expenseTypesAPI = useGetExpenseTypesQuery()
     // ICA Number
     const managerICA = useGetManagerICAQuery()
+    // Employee Mails (Resources)
+    const resources = useGetResourcesQuery()
 
     // API Calls
     const [createExpense, response] = useCreateExpenseMutation()
+
+    useEffect(() => {
+        if (managerICA.data !== undefined) {
+            setIca(managerICA.data!.icaCode)
+        }
+    }, [managerICA.data])
 
     const handleSubmit = () => {
         const expenseForm: ExpenseForm = {
@@ -71,8 +88,8 @@ const Expenses = () => {
             cost: cost,
             date: date,
             comment: comment,
-            nameExpense: name,
-            keyCurrentPeriod: "" // Figure out how to get this
+            nameExpense: type,
+            keyCurrentPeriod: key
         }
 
         createExpense(expenseForm)
@@ -82,10 +99,6 @@ const Expenses = () => {
                 "Something went wrong, please try again"
             ))
     }
-
-    useEffect(() => {
-        setIca(managerICA.data?.idCode ? managerICA.data?.idCode : "")
-    }, [managerICA.data])
 
     return (
         <LertScreen>
@@ -111,7 +124,7 @@ const Expenses = () => {
                                 style={{paddingTop:"10%"}}
                             />
                             <SearchInput
-                                placeholder="Type"
+                                placeholder="Search Type"
                                 value={type}
                                 setValue={setType}
                                 items={
@@ -126,10 +139,15 @@ const Expenses = () => {
                                 color={Theme.colors.text.primary} 
                                 style={{paddingTop:"10%"}}
                             />
-                            <LertInput 
-                                text={employeeMail} 
-                                setText={setEmployeeMail} 
-                                placeholder={"Employee Mail"}
+                            <SearchInput  
+                                placeholder={"Search Employee"}
+                                value={employeeMail}
+                                setValue={setEmployeeMail}
+                                items={
+                                    resources.data 
+                                    ? resources.data?.map(item => item.mail)
+                                    : []
+                                }
                             />
                             <LertText 
                                 text="Cost" 
@@ -141,6 +159,17 @@ const Expenses = () => {
                                 text={cost} 
                                 setText={setCost} 
                                 placeholder={"USD Cost"}
+                            />
+                            <LertText 
+                                text="Comment" 
+                                type={textTypes.heading} 
+                                color={Theme.colors.text.primary} 
+                                style={{paddingTop:"10%"}}
+                            />
+                            <LertInput 
+                                text={comment} 
+                                setText={setComment} 
+                                placeholder={"Comment"}
                             />
                         </VStack>
                         <VStack alignItems={"flex-start"}>
@@ -156,15 +185,16 @@ const Expenses = () => {
                                 placeholder={"Date"}
                             />
                             <LertText 
-                                text="Comment" 
+                                text="Current Period" 
                                 type={textTypes.heading} 
                                 color={Theme.colors.text.primary} 
                                 style={{paddingTop:"10%"}}
                             />
-                            <LertInput 
-                                text={comment} 
-                                setText={setComment} 
-                                placeholder={"Comment"}
+                            <SearchInput  
+                                placeholder={"Search Key"}
+                                value={key}
+                                setValue={setKey}
+                                items={currentPeriods.map(item => item.key.toString())}
                             />
                             <LertText 
                                 text="ICA" 
