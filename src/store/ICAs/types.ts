@@ -1,30 +1,29 @@
 export type ICAType = {
     id: string;
-    icaCode: string;
-    totalBilling: number;
-    rCtyPerf: string;
-    ctyNamePerf: string;
-    endDate: string;
-    startDate: string;
-    totalPlusTaxes: number;
-    nec: number;
-    type: string;
-    description: string;
-    leru: string;
-    minor: string;
-    mayor: string;
-    division: string;
-    rCtyReq: string;
-    cityReqName: string;
-    cc: string;
-    frequencyBill: string;
-    depto: string;
     status: string;
-    country: string;
-    budget: number;
-    idIcaOwner?: string;
-    icaOwner: string;
-    idPlanning: string;
-    year: string;
-    icaCore: string;
+    totalBilling: string;
+    icaCode: string,
+    icaCore: string,
+    year: string,
+    idPlanning: string
+    icaOwner: string,
+    budget: number,
+    country: string,
+    depto: string,
+    frequencyBill: string,
+    cc: string,
+    ctyNamePerf: string,
+    ctyNameReq: string,
+    rCtyPerf: string,
+    rCtyReq: string,
+    division: string,
+    major: string,
+    minor: string,
+    leru: string,
+    description: string,
+    type: string,
+    nec: string,
+    totalPlusTaxes: number,
+    startDate: string,
+    endDate: string,
 }
