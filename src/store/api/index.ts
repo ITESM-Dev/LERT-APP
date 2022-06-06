@@ -33,6 +33,8 @@ import {
     // Expense,
     useGetExpensesQuery,
     useCreateExpenseMutation,
+    useUpdateExpenseMutation,
+	useDeleteExpenseMutation,
 
     // Expenses for Quarter (Recovery)
     useExpensesForQuarterQuery,
@@ -109,6 +111,8 @@ export {
     ExpenseForm,
     useGetExpensesQuery,
     useCreateExpenseMutation,
+    useUpdateExpenseMutation,
+	useDeleteExpenseMutation,
 
     // Expenses for Quarter (Recovery)
     ExpensesForQuarterForm,
