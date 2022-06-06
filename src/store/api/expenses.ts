@@ -1,5 +1,11 @@
 import { ExpenseType } from "~store/expenses";
-import { BuilderType, validateGetStatus, validatePostStatus } from "./slice";
+import { 
+    BuilderType, 
+    validateGetStatus, 
+    validatePostStatus, 
+    validateUpdateStatus,
+    validateDeleteStatus, 
+} from "./slice";
 import { ExpenseForm } from "./types";
 
 export const getExpenses = (builder: BuilderType) => (
