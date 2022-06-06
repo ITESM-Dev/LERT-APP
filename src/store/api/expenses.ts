@@ -1,5 +1,11 @@
 import { ExpenseType } from "~store/expenses";
-import { BuilderType, validateGetStatus, validatePostStatus } from "./slice";
+import { 
+    BuilderType, 
+    validateGetStatus, 
+    validatePostStatus, 
+    validateUpdateStatus,
+    validateDeleteStatus, 
+} from "./slice";
 import { ExpenseForm } from "./types";
 
 export const getExpenses = (builder: BuilderType) => (
@@ -32,6 +38,30 @@ export const createExpense = (builder: BuilderType) => (
             method: "POST",
             body: expenseForm,
             validateStatus: validatePostStatus,
+        }),
+        invalidatesTags: ["Expenses", "CurrentPeriod", "ICAs"]
+    })
+)
+
+export const updateExpense = (builder: BuilderType) => (
+    builder.mutation<void, ExpenseForm>({
+        query: (expenseForm) => ({
+            url: "updateExpense",
+            method: "POST",
+            body: expenseForm,
+            validateStatus: validateUpdateStatus,
+        }),
+        invalidatesTags: ["Expenses", "CurrentPeriod", "ICAs"]
+    })
+)
+
+export const deleteExpense = (builder: BuilderType) => (
+    builder.mutation<void, string>({
+        query: (id) => ({
+            url: "deleteExpense",
+            method: "POST",
+            body: { id },
+            validateStatus: validateDeleteStatus,
         }),
         invalidatesTags: ["Expenses", "CurrentPeriod", "ICAs"]
     })
