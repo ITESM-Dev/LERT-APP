@@ -26,6 +26,7 @@ import { useEffect } from "react";
 import LegalMenu from "~components/molecules/LegalMenu";
 import { CONTENT_DRAWER_SCREENS } from "~utils/screenNames";
 import { Box } from "native-base";
+import { USER_ROLES } from "~utils/constants";
 
 
 const LABELS_STYLE = {
@@ -92,7 +93,7 @@ const ContentDrawer = () => {
                     }}
                 />
 
-                {role === 'OPManager' &&
+                {role === USER_ROLES.OP_MANAGER &&
                     <Drawer.Group>
                         <Drawer.Screen 
                             name={CONTENT_DRAWER_SCREENS.Types}
@@ -163,7 +164,7 @@ const ContentDrawer = () => {
                     </Drawer.Group>
                 }
 
-                {role === 'Manager' &&
+                {role === USER_ROLES.MANAGER &&
                     <Drawer.Group>
                         <Drawer.Screen 
                             name={CONTENT_DRAWER_SCREENS.Delegate}
@@ -224,7 +225,7 @@ const ContentDrawer = () => {
                     </Drawer.Group>
                 }
 
-                {role === 'IcaAdmin' &&
+                {role === USER_ROLES.ICA_ADMIN &&
                     <Drawer.Group>
                         <Drawer.Screen 
                             name={CONTENT_DRAWER_SCREENS.Employee}
@@ -240,7 +241,7 @@ const ContentDrawer = () => {
                     </Drawer.Group>
                 }
 
-                {role === 'Admin' &&
+                {role === USER_ROLES.ADMIN &&
                     <Drawer.Group>
                         <Drawer.Screen 
                             name={CONTENT_DRAWER_SCREENS.Delegate}
