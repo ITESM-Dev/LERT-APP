@@ -65,8 +65,10 @@ const Employee = () => {
 
 
     useEffect(() => {
-        setICANum(managerICA.data?.idCode ? managerICA.data?.idCode : "")
-        setManager(user.mail)
+        if (managerICA.data !== undefined) {
+            setICANum(managerICA.data!.icaCode)
+            setManager(user.mail)
+        }
     }, [managerICA.data])
 
     const handleSubmit = () => {
