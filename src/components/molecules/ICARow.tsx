@@ -69,10 +69,7 @@ const ICARow = (props: ICARowPropTypes) => {
                 }}
             >
                 <TableItem 
-                    styles={{ 
-                        borderBottomColor:theme.colors.icons.primary, 
-                        borderRightColor: theme.colors.icons.primary,
-                        borderRightWidth: 0.1, 
+                    styles={{
                         backgroundColor: theme.colors.components.offWhite
                     }}
                     items={firstRow(props.items)}

@@ -60,7 +60,9 @@ const SearchInput = (props: SearchInputPropTypes) => {
                     flex: 1,
                     position: 'absolute',
                     zIndex: 1,
-                    marginTop: 45,
+                    marginTop: 35,
+                    borderColor: COLORS.icons.primary,
+                    borderWidth: 0.1,
                     backgroundColor: BG_COLOR,
                     width: '100%',
                 }}

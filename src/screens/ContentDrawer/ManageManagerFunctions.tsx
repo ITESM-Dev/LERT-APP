@@ -8,7 +8,7 @@ import * as textTypes from '~styles/constants/textTypes';
 
 import Theme from '../../theme/theme';
 import { useState } from "react";
-import { HStack, VStack } from "native-base";
+import { Box, HStack, VStack } from "native-base";
 import Dropdown from "~components/molecules/Dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "~store/store";
@@ -32,18 +32,34 @@ const ManageManagerFunctions = () => {
 
     const [manager, setManager] = useState("");
 
-    // Store Dispatcher
-    const dispatch: AppDispatch = useDispatch();
+    const [error, setError] = useState<string | null>(null)
 
     // Managers - State
     const managers = useSelector(allManagers);
 
+    const handleSubmit = () => {
+
+    }
+
     return (
         <LertScreen>
             
-            <LertText text="Activate/Deactivate Manager Functions" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
+            <LertText 
+                text="Activate/Deactivate Manager Functions" 
+                numberOfLines={2}
+                type={textTypes.display04} 
+                color={Theme.colors.text.primary} 
+            />
 
-            <Overlay minWidth={"50%"} maxHeight={"50%"} buttonTitle="Modify"> 
+            <Overlay 
+                minWidth={"60%"}
+                minHeight={"60%"}
+                buttonTitle="Do Something" 
+                handleSubmit={handleSubmit}
+                buttonType={"primary"}    
+                error={error}
+                setError={setError}        
+            > 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
                         <VStack alignItems={"flex-start"}>
@@ -57,13 +73,15 @@ const ManageManagerFunctions = () => {
 
             </Overlay>
 
-            <LertText text="Extra Hours List" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
-
-            <Table 
-                headers={TABLE_HEADERS} 
-                items={example} 
-                flexValues={[1, 1, 1]} 
-            />
+            <Box
+                marginTop={30}
+            >
+                <Table 
+                    headers={TABLE_HEADERS} 
+                    items={example} 
+                    flexValues={[1, 1, 1]} 
+                />
+            </Box>
 
         </LertScreen>
     )
