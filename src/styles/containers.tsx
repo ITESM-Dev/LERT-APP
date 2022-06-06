@@ -23,7 +23,7 @@ const containerStyles: { [key: string]:any } = {
         backgroundColor: Theme.colors.components.background,
     },
     insideScreen: {
-        margin: '5%'
+        margin: 30
     }
 
 };

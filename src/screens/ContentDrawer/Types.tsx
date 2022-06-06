@@ -61,9 +61,10 @@ const Types = () => {
 
             <Overlay    
                 minWidth={"50%"} 
-                maxHeight={"50%"} 
+                minHeight={"50%"} 
                 buttonTitle="Create Band Type"
                 handleSubmit={handleSubmit}
+                buttonType={"primary"}
             > 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
