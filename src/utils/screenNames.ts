@@ -19,6 +19,6 @@ export enum CONTENT_DRAWER_SCREENS {
     ManageManagerFunctions = "Manage Manager Functions",
     Recovery = "Recovery",
     Types = "Types",
-    UserRoles = "UserRoles"
+    UserRoles = "User Roles"
 }
 
