@@ -7,7 +7,7 @@ export type ICAType = {
     year: string,
     idPlanning: string
     icaOwner: string,
-    budget: number,
+    budget: string,
     country: string,
     depto: string,
     frequencyBill: string,
@@ -23,7 +23,7 @@ export type ICAType = {
     description: string,
     type: string,
     nec: string,
-    totalPlusTaxes: number,
+    totalPlusTaxes: string,
     startDate: string,
     endDate: string,
 }
