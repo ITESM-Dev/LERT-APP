@@ -38,3 +38,27 @@ export const createExtraHourType = (builder: BuilderType) => (
         }
     })
 )
+
+export const updateExtraHourType = (builder: BuilderType) => (
+    builder.mutation<string, ExtraHourForm>({
+        query: (extraHourForm: ExtraHourForm) => ({
+            url: 'updateHourType',
+            method: 'POST',
+            body: extraHourForm,
+            validateStatus: validateUpdateStatus,
+        }),
+        invalidatesTags: ["ExtraHours"]
+    })
+)
+
+export const deleteExtraHourType = (builder: BuilderType) => (
+    builder.mutation<string, string>({
+        query: (id) => ({
+            url: 'deleteHourType',
+            method: 'POST',
+            body: { id },
+            validateStatus: validateDeleteStatus,
+        }),
+        invalidatesTags: ["ExtraHours"]
+    })
+)

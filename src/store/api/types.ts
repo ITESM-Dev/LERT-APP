@@ -37,6 +37,7 @@ export type BandTypeForm = {
 }
 
 export type ExtraHourForm = {
+    id?: string;
     type: string,
     band: string,
     country: string,
@@ -87,6 +88,7 @@ export type ExpenseForm = {
 }
 
 export type ExpenseTypeForm = {
+    id?: string;
     type: string;
 }
 

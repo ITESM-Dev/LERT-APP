@@ -27,6 +27,8 @@ import {
     // Extra Hours
     useGetExtraHourTypesQuery,
     useCreateExtraHourTypeMutation,
+    useUpdateExtraHourTypeMutation,
+	useDeleteExtraHourTypeMutation,
 
     // ICAs
     useGetICAsQuery,
@@ -107,6 +109,8 @@ export {
     ExtraHourForm,
     useGetExtraHourTypesQuery,
     useCreateExtraHourTypeMutation,
+    useUpdateExtraHourTypeMutation,
+	useDeleteExtraHourTypeMutation,
 
     // ICAs
     ICAForm,
