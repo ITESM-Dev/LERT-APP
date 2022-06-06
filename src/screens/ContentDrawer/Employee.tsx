@@ -97,7 +97,7 @@ const Employee = () => {
                             />
 
                             <SearchInput  
-                                placeholder={TABLE_HEADERS[1]}
+                                placeholder={"Search employee"}
                                 value={employeeMail}
                                 setValue={setEmployeeMail}
                                 items={

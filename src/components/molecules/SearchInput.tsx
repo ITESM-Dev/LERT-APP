@@ -10,6 +10,7 @@ import { dropdownStyles } from '~components/molecules/Dropdown';
 
 import Theme from '~theme/theme'
 import * as TextTypes from '~styles/constants/textTypes';
+import { useEffect } from 'react';
 
 const COLORS = Theme.colors
 const BG_COLOR = COLORS.components.offWhite
@@ -27,10 +28,15 @@ const SearchInput = (props: SearchInputPropTypes) => {
     const [selected, setSelected] = useState(false)
 
     const itemClickHandler = (item: any) => {
-        setQuery(item)
         setSelected(true)
+        setQuery(item)
         props.setValue(item)
     }
+
+    useEffect(() => {
+        setSelected(false)
+        props.setValue("")
+    }, [query])
 
     return (
         <View style={{ flex: 1 }}>
@@ -68,8 +74,6 @@ const SearchInput = (props: SearchInputPropTypes) => {
                 }}
                 
                 onChangeText={(text: string) => {
-                    if (selected) setSelected(false)
-                    props.setValue("")
                     setQuery(text)
                 }}
 
