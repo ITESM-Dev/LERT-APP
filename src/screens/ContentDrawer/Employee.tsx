@@ -29,30 +29,11 @@ const TABLE_HEADERS = ["Employee Num", "Employee Mail", "Manager", "ICA Number",
 
 const Employee = () => {
 
-    let example: EmployeeType[] = [
-        {
-            employeeNum: 121, 
-            name: "Leonardo Galindo", 
-            manager: "Ulises Venegas",  
-            ICA: 5, 
-            band: 4,
-            id: 121
-        },
-        {
-            employeeNum: 122,
-            name: "Rafael Gómez", 
-            manager: "Ulises Venegas",  
-            ICA: 1, 
-            band: 1,
-            id: 122, 
-        },
-    ]
-
-    const [employeeNum, setemployeeNum] = useState("");
     const [employeeMail, setEmployeeMail] = useState("");
     const [manager, setManager] = useState("");
     const [ICANum, setICANum] = useState("");
     const [band, setBand] = useState("");
+    const [error, setError] = useState<string | null>(null)
 
     // Employees - State
     const employees = useSelector(allEmployees);
@@ -60,11 +41,27 @@ const Employee = () => {
     // User - State
     const user = useSelector(userSelector);
 
+    // Auto-fetch Employees
+    
+
+    // API Calls
+    //const [createEmployee, response] =
+
     // ICA Num
     const managerICA = useGetManagerICAQuery()
 
     // Employee Mails (Resources)
     const availableResources = useGetAvailableResourcesQuery()
+
+    const resetForm = () => {
+        setEmployeeMail("")
+        setBand("")
+        setError(null)
+    }
+
+    const handleSubmit = () => {
+        
+    }
 
     useEffect(() => {
         setICANum(managerICA.data?.idCode ? managerICA.data?.idCode : "")
@@ -83,25 +80,14 @@ const Employee = () => {
                 minWidth={"50%"}
                 minHeight={"50%"}
                 buttonTitle="Add Employee" 
-                handleSubmit={() => {}} 
-                buttonType={"primary"}           
+                handleSubmit={handleSubmit} 
+                buttonType={"primary"}   
+                error={error}
+                setError={setError}        
             > 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
                         <VStack alignItems={"flex-start"}>
-
-                            <LertText 
-                                text={TABLE_HEADERS[0]}
-                                type={textTypes.heading} 
-                                color={Theme.colors.text.primary} 
-                                style={{paddingTop:"10%"}}
-                            />
-
-                            <LertInput 
-                                text={employeeNum} 
-                                setText={setemployeeNum} 
-                                placeholder={TABLE_HEADERS[0]}
-                            />
 
                             <LertText 
                                 text={TABLE_HEADERS[1]}
