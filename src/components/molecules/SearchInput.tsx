@@ -33,11 +33,6 @@ const SearchInput = (props: SearchInputPropTypes) => {
         props.setValue(item)
     }
 
-    useEffect(() => {
-        setSelected(false)
-        props.setValue("")
-    }, [query])
-
     return (
         <View style={{ flex: 1 }}>
             <Autocomplete 
@@ -74,7 +69,9 @@ const SearchInput = (props: SearchInputPropTypes) => {
                 }}
                 
                 onChangeText={(text: string) => {
+                    setSelected(false)
                     setQuery(text)
+                    props.setValue("")
                 }}
 
                 flatListProps={{
