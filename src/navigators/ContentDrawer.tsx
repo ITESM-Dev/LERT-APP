@@ -224,6 +224,22 @@ const ContentDrawer = () => {
                     </Drawer.Group>
                 }
 
+                {role === 'IcaAdmin' &&
+                    <Drawer.Group>
+                        <Drawer.Screen 
+                            name={CONTENT_DRAWER_SCREENS.Employee}
+                            component={Employee}
+                            options={{
+                                drawerIcon: () => 
+                                    <Ionicons 
+                                        {...ICONS_STYLE}
+                                        name="person-outline" 
+                                    />
+                            }}
+                        />
+                    </Drawer.Group>
+                }
+
                 {role === 'Admin' &&
                     <Drawer.Group>
                         <Drawer.Screen 

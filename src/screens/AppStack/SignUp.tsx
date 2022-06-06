@@ -41,14 +41,13 @@ const SignUp = () => {
             name: `${firstName} ${lastName}`,
             mail: email,
             password: password,
-            role: 'Admin',
+            role: 'IcaAdmin',
             band: '0',
             country: country
         }
 
         dispatch(signUpUserThunk(signUpForm))
             .then((response: any) => {
-                console.log(response)
                 if(response.meta.requestStatus === 'fulfilled') 
                     navigation.navigate(APP_STACK_SCREENS.LoginScreen)
             })
