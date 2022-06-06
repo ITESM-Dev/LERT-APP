@@ -105,10 +105,11 @@ export type AvailableResource = {
 
 export type ManagerICA = {
     idICA: string;
-    idCode: string;
+    icaCode: string;
 }
 
 export type EmployeeForm = {
+    id?: string;
     resourceMail: string,
     managerMail: string,
     band: string,
