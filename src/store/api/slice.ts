@@ -79,10 +79,16 @@ export type BuilderType = EndpointBuilder<
 	"api"
 >
 
+export const validateGetStatus = (response: Response) => 
+	response.status === 200
+
 export const validatePostStatus = (response: Response) => 
 	response.status === 201
 
-export const validateGetStatus = (response: Response) => 
+export const validateUpdateStatus = (response: Response) => 
+	response.status === 200
+
+export const validateDeleteStatus = (response: Response) => 
 	response.status === 200
 
 export const validateUpdateStatus = (response: Response) => 
