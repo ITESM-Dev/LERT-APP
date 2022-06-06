@@ -6,7 +6,7 @@ import * as textTypes from '~styles/constants/textTypes';
 import Theme from '~theme/theme';
 
 type TableItemPropTypes = {
-    items: Array<string>;
+    items: Array<any>;
     flexValues: Array<number>;
     styles?: ViewStyle;
     amount: number;
@@ -30,6 +30,7 @@ const TableItem = ({ items, flexValues, styles, amount }: TableItemPropTypes) =>
         <Box
             marginX={"0%"}
             borderWidth={0.1}
+            // @ts-ignore
             borderColor={Theme.colors.icons.primary}
             height={10}
             flexDirection='row'

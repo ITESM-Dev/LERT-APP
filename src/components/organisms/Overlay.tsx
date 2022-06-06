@@ -20,7 +20,7 @@ type OverlayPropTypes = {
     minHeight: string | number;
     handleSubmit: () => void;
     buttonTitle: string | any;
-    buttonType: "primary" | "secondary" | "terciary" | "danger" | "ghost" | "icon";
+    buttonType?: "primary" | "secondary" | "terciary" | "danger" | "ghost" | "icon";
 
     style?: ViewStyle; 
 }
@@ -44,7 +44,7 @@ const Overlay = (props: OverlayPropTypes) => {
                 <LertButton 
                     title={props.buttonTitle} 
                     onPress={() => setIsOpen(true)}
-                    type={props.buttonType}  
+                    type={props.buttonType ? props.buttonType : "primary"}  
                 />    
             
                 {props.error && 

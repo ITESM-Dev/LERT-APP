@@ -24,8 +24,8 @@ const LertTag = (props: TagPropTypes) => {
             display='flex' 
             flexDirection='column'
             justifyContent='space-around'
-            paddingX={'1%'}
-            paddingY={'.5%'}
+            paddingX={2}
+            paddingY={1}
             rounded="100"
         >
             <LertText 

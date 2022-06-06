@@ -86,7 +86,8 @@ const ExtraHours = () => {
 
             <Overlay 
                 minWidth={"60%"}
-                maxHeight={"60%"} 
+                minHeight={"60%"} 
+                buttonType={"primary"}
                 error={error}
                 setError={setError}
                 buttonTitle="Add Extra Hour"
