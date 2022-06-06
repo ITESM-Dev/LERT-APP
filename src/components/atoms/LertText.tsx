@@ -1,6 +1,6 @@
 import { ViewStyle } from 'react-native';
 
-import { Text, Tooltip, useTheme } from 'native-base';
+import { Text } from 'native-base';
 
 import DisplayStyles, { DisplayTypes } from '~styles/display';
 import FixedHeadingStyles, { FixedHadingTypes } from '~styles/fixedHeadings';
@@ -52,28 +52,21 @@ type LertTextPropTypes = {
 const LertText = (props: LertTextPropTypes) => {
 
     return (
-        <Tooltip 
-            label={props.text} 
-            isDisabled={props.tooltipDisabled !== undefined ? props.tooltipDisabled : true} 
-            openDelay={100} 
-            placement='left'
-        > 
-            <Text 
-                {...TextStyles[props.type]} 
-                fontWeight={props.bold !== undefined ? props.bold : 
-                    TextStyles[props.type] !== undefined ? 
-                        TextStyles[props.type].fontWeight : 'light'
-                }
-                textDecorationLine={props.underline}
-                isTruncated={props.isTruncated !== undefined ? props.isTruncated : true}
-                numberOfLines={props.numberOfLines}
-                style={props.style} 
-                color={props.color ? props.color  : Theme.colors.text.primary}
-                onPress={props.onPress}
-            >
-                {props.text}
-            </Text>
-        </Tooltip>
+        <Text 
+            {...TextStyles[props.type]} 
+            fontWeight={props.bold !== undefined ? props.bold : 
+                TextStyles[props.type] !== undefined ? 
+                    TextStyles[props.type].fontWeight : 'light'
+            }
+            textDecorationLine={props.underline}
+            isTruncated={props.isTruncated !== undefined ? props.isTruncated : true}
+            numberOfLines={props.numberOfLines}
+            style={props.style} 
+            color={props.color ? props.color  : Theme.colors.text.primary}
+            onPress={props.onPress}
+        >
+            {props.text}
+        </Text>
     );
 };
 
