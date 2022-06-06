@@ -1,5 +1,5 @@
 import { ExtraHourType } from "~store/extraHours";
-import { BuilderType, validateGetStatus, validatePostStatus } from "./slice";
+import { BuilderType, validateDeleteStatus, validateGetStatus, validatePostStatus, validateUpdateStatus } from "./slice";
 import { ExtraHourForm } from "./types";
 
 export const getExtraHourTypes = (builder: BuilderType) => (

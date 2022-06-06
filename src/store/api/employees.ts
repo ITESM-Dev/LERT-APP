@@ -1,5 +1,5 @@
 import { EmployeeType } from "~store/employees";
-import { BuilderType, validateGetStatus, validatePostStatus } from "./slice";
+import { BuilderType, validateGetStatus, validatePostStatus, validateUpdateStatus } from "./slice";
 import { AvailableResource, EmployeeForm, ManagerICA } from "./types";
 
 export const getAvailableResources = (builder: BuilderType) => (
@@ -47,7 +47,7 @@ export const assignResourceToManager = (builder: BuilderType) => (
             url: "assignResourceToManager",
             method: "POST",
             body: employeeForm,
-            validateStatus: validatePostStatus,
+            validateStatus: validateUpdateStatus,
         })
     })
 )
