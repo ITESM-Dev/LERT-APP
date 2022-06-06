@@ -1,26 +1,22 @@
-import { Text, View } from "react-native";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { Box, HStack, VStack } from "native-base";
 
-import Table from "~components/organisms/Table";
+import { ICAForm, useCreateICAMutation, useGetICAsQuery } from "~store/api";
+import { allICAs } from "~store/ICAs";
+
 import LertText from '~components/atoms/LertText';
-import Overlay from '~components/organisms/Overlay';
 import LertInput from '~components/molecules/LertInput';
+import ExpandableTable from "~components/molecules/ExpandableTable";
+import Overlay from '~components/organisms/Overlay';
+import LertScreen from "~components/organisms/LertScreen";
+
+import theme from "~theme/theme";
 import * as textTypes from '~styles/constants/textTypes';
 
-import Theme from '../../theme/theme';
-import { useState } from "react";
-import { HStack, VStack } from "native-base";
-import Dropdown from "~components/molecules/Dropdown";
-import { useDispatch, useSelector } from "react-redux";
-
-import { allICAs } from "~store/ICAs/selectors";
-import { AppDispatch } from "~store/store";
-import { ICAForm, useCreateICAMutation } from "~store/api";
-import ExpandableTable from "~components/molecules/ExpandableTable";
-import LertTag from "~components/molecules/LertTag";
-import theme from "../../theme/theme";
 let data = [
     {
-        status:<LertTag title={"Active"} backgroundColor={theme.colors.alerts.successPrimary}/>,
+        status: "Active",
         code: "A0jp65dd",
         type: "type example", 
         owner: "persona1@ibm.com",
@@ -28,9 +24,29 @@ let data = [
         endDate: "2022-09-11",
         budget: "$42,003",
         totalBilling: "832022",
+        
+        year: "2022",
+        idPlanning: "523",
+        country: "Mexico",
+        depto: "CIO",
+        frequencyBill: "QUARTERLY",
+        cc: "M552",
+        ctyNamePerf: "781JLS",
+        ctyNameReq: "Ireland",
+        rCtyPerf: "781",
+        rCtyReq: "7831",
+        division: "1B",
+        major: "638",
+        minor: "234",
+        leru: "1d32",
+        description: "Brand new",
+        nec: "12345",
+        totalPlusTaxes: "231264",
+        icaCore: "omgomg",
+        id: "1",
     },
     {
-        status: <LertTag title={"Active"} backgroundColor={theme.colors.alerts.successPrimary}/>,
+        status: "Active",
         code: "A0jp65dd",
         type: "type example", 
         owner: "persona1@ibm.com",
@@ -38,9 +54,29 @@ let data = [
         endDate: "2022-09-11",
         budget: "$42,003",
         totalBilling: "832022",
+        
+        year: "2022",
+        idPlanning: "523",
+        country: "Mexico",
+        depto: "CIO",
+        frequencyBill: "QUARTERLY",
+        cc: "M552",
+        ctyNamePerf: "781JLS",
+        ctyNameReq: "Ireland",
+        rCtyPerf: "781",
+        rCtyReq: "7831",
+        division: "1B",
+        major: "638",
+        minor: "234",
+        leru: "1d32",
+        description: "Brand new",
+        nec: "12345",
+        totalPlusTaxes: "231264",
+        icaCore: "omgomg",
+        id: "1",
     },
     {
-        status: <LertTag title={"Active"} backgroundColor={theme.colors.alerts.successPrimary}/>,
+        status: "Active",
         code: "A0jp65dd",
         type: "type example", 
         owner: "persona1@ibm.com",
@@ -48,9 +84,29 @@ let data = [
         endDate: "2022-09-11",
         budget: "$42,003",
         totalBilling: "832022",
+
+        year: "2022",
+        idPlanning: "523",
+        country: "Mexico",
+        depto: "CIO",
+        frequencyBill: "QUARTERLY",
+        cc: "M552",
+        ctyNamePerf: "781JLS",
+        ctyNameReq: "Ireland",
+        rCtyPerf: "781",
+        rCtyReq: "7831",
+        division: "1B",
+        major: "638",
+        minor: "234",
+        leru: "1d32",
+        description: "Brand new",
+        nec: "12345",
+        totalPlusTaxes: "231264",
+        icaCore: "omgomg",
+        id: "1",
     },
     {
-        status: <LertTag title={"Active"} backgroundColor={theme.colors.alerts.successPrimary}/>,
+        status: "Active",
         code: "A0jp65dd",
         type: "type example", 
         owner: "persona1@ibm.com",
@@ -58,45 +114,35 @@ let data = [
         endDate: "2022-09-11",
         budget: "$42,003",
         totalBilling: "832022",
+        
+        year: "2022",
+        idPlanning: "523",
+        country: "Mexico",
+        depto: "CIO",
+        frequencyBill: "QUARTERLY",
+        cc: "M552",
+        ctyNamePerf: "781JLS",
+        ctyNameReq: "Ireland",
+        rCtyPerf: "781",
+        rCtyReq: "7831",
+        division: "1B",
+        major: "638",
+        minor: "234",
+        leru: "1d32",
+        description: "Brand new",
+        nec: "12345",
+        totalPlusTaxes: "231264",
+        icaCore: "omgomg",
+        id: "1",
     },
 ]
-let headers=["Status", "Code", "Type", "Owner", "Strat Date", "End Date", "Budget", "Total Billing"]
-let icaInfo =[
-    {header:"ICAPerf", data:"781JLS"},
-    {header: "ICAReq", data:"78A67"},
-    {header:"Year", data:"2022"},
-    {header:"IDPlanning", data:"523"},
-    {header:"Country", data:"Mexico"},
-    {header:"Dept", data:"CIO"},
-    {header:"FreqBill", data:"QUARTERLY"},
-    {header:"CC", data:"M552"},
-    {header:"CityNamePerf", data:"Mexico"},
-    {header:"CityNameReq", data:"Ireland"},
-    {header:"RCityPerf", data:"781"},
-    {header:"RCityReq", data:"7831"},
-    {header:"Division", data:"1B"},
-    {header:"Major", data:"638"},
-    {header:"Minor", data:"234"},
-    {header:"Leru", data:"1d32"},
-    {header:"Description", data:"Brand new"},
-    {header:"Nec", data:"12345"},
-    {header:"TotalPlusTaxes", data:"231264"},
-    {header:"ICA Core", data:"omgomg"}
-]
+
+let headers=["Status", "Code", "Type", "Owner", "Start Date", "End Date", "Budget", "Total Billing"]
 
 const ICAS = () => {
 
-    let example = [
-        {ICAPerf: "781JLS", ICAReq: "78A67", Year: 2022, IDPlanning: 523, ICAOwner:"persona1@ibm.com", Budget:12000, Country: "Mexico", Dept: "CIO", FreqBill: "QUARTERLY", CC: "M552", 
-        CityNamePerf: "Mexico", CityNameReq: "Ireland", RCityPerf: 781, RCityReq: 7831, Division: "1B", Major: 638, Minor: 234, Leru: "1d32", Description: "Brand New", Type: "111", 
-        Nec: "12345", TotalPlusTaxes: "1111", StartDate: "11", FinishDate: "1111"},
-        {ICAPerf: "781JLS", ICAReq: "78A67", Year: 2022, IDPlanning: 523, ICAOwner:"persona1@ibm.com", Budget:12000, Country: "Mexico", Dept: "CIO", FreqBill: "QUARTERLY", CC: "M552", 
-        CityNamePerf: "Mexico", CityNameReq: "Ireland", RCityPerf: 781, RCityReq: 7831, Division: "1B", Major: 638, Minor: 234, Leru: "1d32", Description: "Brand New", Type: "111", 
-        Nec: "12345", TotalPlusTaxes: "1111", StartDate: "11", FinishDate: "1111"},
-    ]
-
-    const [ICAPerf, setICAPerf] = useState("");
-    const [ICAReq, setICAReq] = useState("");
+    const [ICACode, setICACode] = useState("");
+    const [ICACore, setICACore] = useState("");
     const [year, setYear] = useState("");
     const [IDPlanning, setIDPlanning] = useState("");
     const [ICAOwner, setICAOwner] = useState("");
@@ -124,144 +170,148 @@ const ICAS = () => {
     const ICAs = useSelector(allICAs);
 
     // Auto fetching for ICAS
+    useGetICAsQuery()
+
     const [createICA, response] = useCreateICAMutation();
     const [error, setError] = useState<string | null>(null)
 
-    const handleSubmit = () => {
-        /*
-        const icaForm: ICAForm = {
-            "icaCode": "6",
-            "icaCore": "03",
-            "year": year,
-            "totalBilling": "20000",
-            "rCtyPerf": "1529",
-            "ctyNamePerf": CityNamePerf,
-            "endDate": finishDate,
-            "startDate": startDate,
-            "totalPlusTaxes": totalPlusTaxes,
-            "nec": nec,
-            "type": type,
-            "description": description,
-            "leru": leru,
-            "minor": minor,
-            "major": major,
-            "division": division,
-            "rCtyReq": RCityReq,
-            "ctyNameReq": CityNameReq,
-            "cc": "cc",
-            "frequencyBill": freqBill,
-            "depto": dept,
-            "status": "Active",
-            "country": country,
-            "budget": budget,
-            "icaOwner": ICAOwner,
-            "idPlanning": IDPlanning
-        }
-        */
+    const resetForm = () => {
+        setICACode("")
+        setICACore("")
+        setYear("")
+        setIDPlanning("")
+        setICAOwner("")
+        setBudget("")
+        setCountry("")
+        setDept("")
+        setFreqBill("")
+        setCC("")
+        setCityNamePerf("")
+        setCityNameReq("")
+        setRCityPerf("")
+        setRCityReq("")
+        setDivision("")
+        setMajor("")
+        setMinor("")
+        setLeru("")
+        setDescription("")
+        setType("")
+        setNec("")
+        setTotalPlusTaxes("")
+        setStartDate("")
+        setFinishDate("")
+        setError(null)
+    }
 
+    const handleSubmit = () => {
         const icaForm: ICAForm = {
-            "icaCode": "6",
-            "icaCore": "03",
-            "year": "2022",
-            "totalBilling": "20000",
-            "rCtyPerf": "1529",
-            "ctyNamePerf": "Guadalajara",
-            "endDate": "2021-08-01",
-            "startDate": "2021-12-08",
-            "totalPlusTaxes": "23200",
-            "nec": "2",
-            "type": "1",
-            "description": "ICA with id 2",
-            "leru": "leru",
-            "minor": "minor",
-            "major": "motoko",
-            "division": "3rd Division",
-            "rCtyReq": "rCtyReq",
-            "ctyNameReq": "San Francisco",
-            "cc": "cc",
-            "frequencyBill": "idk",
-            "depto": "Accounting++",
-            "status": "Active",
-            "country": "Mexico",
-            "budget": "50000",
-            "icaOwner": "Felipe",
-            "idPlanning": "142"
+            icaCode: ICACode,
+            icaCore: ICACore,
+            year: year,
+            idPlanning: IDPlanning,
+            icaOwner: ICAOwner,
+            budget: budget,
+            country: country,
+            depto: dept,
+            frequencyBill: freqBill,
+            cc: CC,
+            ctyNamePerf: CityNamePerf,
+            ctyNameReq: CityNameReq,
+            rCtyPerf: RCityPerf,
+            rCtyReq: RCityReq,
+            division: division,
+            major: major,
+            minor: minor,
+            leru: leru,
+            description: description,
+            type: type,
+            nec: nec,
+            totalPlusTaxes: totalPlusTaxes,
+            startDate: startDate,
+            endDate: finishDate,
         }
 
         createICA(icaForm)
             .unwrap()
-            .catch(error => alert(error))
+            .then(() => resetForm())
+            .catch(error => setError(
+                "Something went wrong, please try again"
+            ))
     }
 
     return (
-        <View>
-            <LertText text="Extra Hours" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
+        <LertScreen>
+            <LertText 
+                text="ICA" 
+                type={textTypes.display04} 
+                color={theme.colors.text.primary}
+            />
 
             <Overlay 
                 minWidth={"65%"}
-                maxHeight={"80%"}
+                minHeight={"80%"}
+                buttonType={"icon"}
                 buttonTitle="Add ICA"
                 handleSubmit={handleSubmit} 
                 error={error} 
-                setError={setError}            
-                buttonType={"icon"}
+                setError={setError}
             > 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
                         <VStack alignItems={"flex-start"}>
-                            <LertText text="ICA Code" type={textTypes.heading} color={Theme.colors.text.primary}/>
-                            <LertInput text={ICAPerf} setText={setICAPerf} placeholder={"ICA Code"}/>
-                            <LertText text="ICA Requesting" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                            <LertInput text={ICAReq} setText={setICAReq} placeholder={"ICA Requesting"}/>
-                            <LertText text="Year" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="ICA Code" type={textTypes.heading} color={theme.colors.text.primary}/>
+                            <LertInput text={ICACode} setText={setICACode} placeholder={"ICA Code"}/>
+                            <LertText text="ICA Requesting" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertInput text={ICACore} setText={setICACore} placeholder={"ICA Requesting"}/>
+                            <LertText text="Year" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={year} setText={setYear} placeholder={"Year"}/>
-                            <LertText text="ID Planning" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="ID Planning" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={IDPlanning} setText={setIDPlanning} placeholder={"ID Planning"}/>
-                            <LertText text="ICA Owner" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="ICA Owner" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={ICAOwner} setText={setICAOwner} placeholder={"ICA Owner"}/>
-                            <LertText text="Budget" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="Budget" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={budget} setText={setBudget} placeholder={"Budget"}/>
                         </VStack>
                         <VStack alignItems={"flex-start"}>
-                            <LertText text="Country" type={textTypes.heading} color={Theme.colors.text.primary}/>
+                            <LertText text="Country" type={textTypes.heading} color={theme.colors.text.primary}/>
                             <LertInput text={country} setText={setCountry} placeholder={"Country"}/>
-                            <LertText text="Dept" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="Dept" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={dept} setText={setDept} placeholder={"Dept"}/>
-                            <LertText text="Frequency Bill" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="Frequency Bill" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={freqBill} setText={setFreqBill} placeholder={"Frequency Bill"}/>
-                            <LertText text="CC" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="CC" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={CC} setText={setCC} placeholder={"CC"}/>
-                            <LertText text="City Name Perf" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="City Name Perf" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={CityNamePerf} setText={setCityNamePerf} placeholder={"City Name Perf"}/>
-                            <LertText text="City Name Req" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="City Name Req" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={CityNameReq} setText={setCityNameReq} placeholder={"City Name Req"}/>
                         </VStack>
                         <VStack alignItems={"flex-start"}>
-                            <LertText text="R City Perf" type={textTypes.heading} color={Theme.colors.text.primary}/>
+                            <LertText text="R City Perf" type={textTypes.heading} color={theme.colors.text.primary}/>
                             <LertInput text={RCityPerf} setText={setRCityPerf} placeholder={"R City Perf"}/>
-                            <LertText text="R City Req" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="R City Req" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={RCityReq} setText={setRCityReq} placeholder={"R City Req"}/>
-                            <LertText text="Division" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="Division" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={division} setText={setDivision} placeholder={"Division"}/>
-                            <LertText text="Major" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="Major" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={major} setText={setMajor} placeholder={"Major"}/>
-                            <LertText text="Minor" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="Minor" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={minor} setText={setMinor} placeholder={"Minor"}/>
-                            <LertText text="Leru" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="Leru" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={leru} setText={setLeru} placeholder={"Leru"}/>
                         </VStack>
                         <VStack alignItems={"flex-start"}>
-                            <LertText text="Description" type={textTypes.heading} color={Theme.colors.text.primary}/>
+                            <LertText text="Description" type={textTypes.heading} color={theme.colors.text.primary}/>
                             <LertInput text={description} setText={setDescription} placeholder={"Description"}/>
-                            <LertText text="Type" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="Type" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={type} setText={setType} placeholder={"Type"}/>
-                            <LertText text="Nec" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="Nec" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={nec} setText={setNec} placeholder={"Nec"}/>
-                            <LertText text="Total Plus Taxes" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="Total Plus Taxes" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={totalPlusTaxes} setText={setTotalPlusTaxes} placeholder={"Total Plus Taxes"}/>
-                            <LertText text="Start Date" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="Start Date" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={startDate} setText={setStartDate} placeholder={"Start Date"}/>
-                            <LertText text="Finish Date" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
+                            <LertText text="Finish Date" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={finishDate} setText={setFinishDate} placeholder={"Finish Date"}/>
                         </VStack>
                     </HStack>
@@ -269,10 +319,17 @@ const ICAS = () => {
 
             </Overlay>
 
-            <LertText text="Extra Hours List" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
-            <ExpandableTable headers={headers} items={data} flexValues={[1, 1, 1, 1, 1, 1, 1, 1]} amount={8} subItems={icaInfo}/>
+            <Box
+                marginTop={10}
+            >
+                <ExpandableTable 
+                    headers={headers} 
+                    items={data} 
+                    flexValues={[1, 1, 1, 2, 1, 1, 1, 1]}
+                />
+            </Box>
 
-        </View>
+        </LertScreen>
     )
 };
 
