@@ -30,7 +30,8 @@ import {
 	createExtraHourType, 
 } from "./extraHours"
 import { 
-	createICA,
+	getICAs,
+	createICA, 
 } from "./ICAs"
 import { 
 	getExpenseTypes,
@@ -91,6 +92,7 @@ export const api = createApi({
 		createExtraHourType: createExtraHourType(builder),
 
 		// ICAs
+		getICAs: getICAs(builder),
 		createICA: createICA(builder),
 
 		// Expenses For Quarter (Recovery)
@@ -125,6 +127,7 @@ export const {
 	useCreateExtraHourTypeMutation,
 
 	// ICAs
+	useGetICAsQuery,
 	useCreateICAMutation,
 
 	// Expenses For Quarter (Recovery)

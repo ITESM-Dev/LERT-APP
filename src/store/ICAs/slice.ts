@@ -1,4 +1,5 @@
 import { createEntityAdapter, createSlice, EntityId, PayloadAction } from "@reduxjs/toolkit";
+import { api } from "~store/api";
 import { ICAType } from "./types";
 
 export const ICAsAdapter = createEntityAdapter<ICAType>({
@@ -24,6 +25,15 @@ const ICAs = createSlice({
         clearICAs(state, _) {
             ICAsAdapter.removeAll(state);
         }
+    },
+    extraReducers: (builder) => {
+        builder 
+            .addMatcher(
+                api.endpoints.getICAs.matchFulfilled,
+                (state, { payload }) => {
+                    ICAsAdapter.setMany(state, payload);
+                }
+            )
     }
 });
 
