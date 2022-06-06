@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Box, HStack, VStack } from "native-base";
 
 import { ICAForm, useCreateICAMutation, useGetICAsQuery } from "~store/api";
-import { allICAs } from "~store/ICAs";
+import { allICAs, setICAs } from "~store/ICAs";
 
 import LertText from '~components/atoms/LertText';
 import LertInput from '~components/molecules/LertInput';
@@ -13,6 +13,7 @@ import LertScreen from "~components/organisms/LertScreen";
 
 import theme from "~theme/theme";
 import * as textTypes from '~styles/constants/textTypes';
+import { useEffect } from "react";
 
 let data = [
     {
@@ -73,7 +74,7 @@ let data = [
         nec: "12345",
         totalPlusTaxes: "231264",
         icaCore: "omgomg",
-        id: "1",
+        id: "2",
     },
     {
         status: "Active",
@@ -103,7 +104,7 @@ let data = [
         nec: "12345",
         totalPlusTaxes: "231264",
         icaCore: "omgomg",
-        id: "1",
+        id: "3",
     },
     {
         status: "Active",
@@ -133,7 +134,7 @@ let data = [
         nec: "12345",
         totalPlusTaxes: "231264",
         icaCore: "omgomg",
-        id: "1",
+        id: "4",
     },
 ]
 
@@ -239,6 +240,11 @@ const ICAS = () => {
             ))
     }
 
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(setICAs(data))
+    }, [])
+
     return (
         <LertScreen>
             <LertText 
@@ -324,7 +330,7 @@ const ICAS = () => {
             >
                 <ExpandableTable 
                     headers={headers} 
-                    items={data} 
+                    items={ICAs} 
                     flexValues={[1, 1, 1, 2, 1, 1, 1, 1]}
                 />
             </Box>

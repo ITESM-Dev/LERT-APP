@@ -5,7 +5,7 @@ import { ICAForm } from "./types";
 export const getICAs = (builder: BuilderType) => (
     builder.query<ICAType[], void>({
         query: () => ({
-            url: "get",
+            url: "getIcas",
             validateStatus: validateGetStatus,
         }),
         providesTags: ["ICAs"],

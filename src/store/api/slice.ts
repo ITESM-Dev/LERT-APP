@@ -9,6 +9,9 @@ import {
 	FetchBaseQueryMeta 
 } from "@reduxjs/toolkit/dist/query/react"
 
+import { API_URL } from "~utils/constants"
+import { RootState } from "~store/store"
+
 import { 
 	login, 
 	logout, 
@@ -19,8 +22,6 @@ import {
 	getUserInfo 
 } from "./user"
 
-import { API_URL } from "~utils/constants"
-import { RootState } from "~store/store"
 import { 
 	getBandTypes,
 	createBandType, 
@@ -37,8 +38,13 @@ import {
 	getExpenseTypes,
 	createExpenseType, 
 } from "./expenseTypes"
-import { createCurrentPeriod, getCurrentPeriods } from "./currentPeriod"
-import { expensesForQuarter } from "./recovery"
+import { 
+	createCurrentPeriod, 
+	getCurrentPeriods 
+} from "./currentPeriod"
+import { 
+	expensesForQuarter 
+} from "./recovery"
 
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
