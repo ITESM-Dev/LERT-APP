@@ -1,8 +1,11 @@
-import { string } from "prop-types";
-
 export type GetUserInfoForm = {
     mail: string;
     token: string;
+}
+
+export type UserRoleForm = {
+    mail: string;
+    role: string;
 }
 
 export type LoginForm = {
