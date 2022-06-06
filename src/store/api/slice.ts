@@ -42,6 +42,8 @@ import {
 import { 
 	getExpenseTypes,
 	createExpenseType, 
+	updateExpenseType,
+	deleteExpenseType
 } from "./expenseTypes"
 
 import { 
@@ -155,6 +157,8 @@ export const api = createApi({
 		// Expense Types
 		getExpenseTypes: getExpenseTypes(builder),
 		createExpenseType: createExpenseType(builder),
+		updateExpenseType: updateExpenseType(builder),
+		deleteExpenseType: deleteExpenseType(builder),
 
 		// CurrentPeriod
 		getCurrentPeriods: getCurrentPeriods(builder),
@@ -203,6 +207,8 @@ export const {
 	// Expense Types
 	useGetExpenseTypesQuery,
 	useCreateExpenseTypeMutation,
+	useUpdateExpenseTypeMutation,
+	useDeleteExpenseTypeMutation,
 
 	// Current Period
 	useGetCurrentPeriodsQuery,
