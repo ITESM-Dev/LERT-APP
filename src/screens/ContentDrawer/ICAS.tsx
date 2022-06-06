@@ -13,6 +13,8 @@ import LertScreen from "~components/organisms/LertScreen";
 
 import theme from "~theme/theme";
 import * as textTypes from '~styles/constants/textTypes';
+import Dropdown from "~components/molecules/Dropdown";
+import { dropdownCountries } from "~utils/constants";
 
 let data = [
     {
@@ -250,7 +252,7 @@ const ICAS = () => {
             <Overlay 
                 minWidth={"65%"}
                 minHeight={"80%"}
-                buttonType={"icon"}
+                buttonType={"primary"}
                 buttonTitle="Add ICA"
                 handleSubmit={handleSubmit} 
                 error={error} 
@@ -273,8 +275,17 @@ const ICAS = () => {
                             <LertInput text={budget} setText={setBudget} placeholder={"Budget"}/>
                         </VStack>
                         <VStack alignItems={"flex-start"}>
-                            <LertText text="Country" type={textTypes.heading} color={theme.colors.text.primary}/>
-                            <LertInput text={country} setText={setCountry} placeholder={"Country"}/>
+                            <LertText 
+                                text="Country" 
+                                type={textTypes.heading} 
+                                color={theme.colors.text.primary}
+                            />
+                            <Dropdown 
+                                value={country}
+                                setValue={setCountry}
+                                placeholder={"Country"} 
+                                items={dropdownCountries}                            
+                            />
                             <LertText text="Dept" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={dept} setText={setDept} placeholder={"Dept"}/>
                             <LertText text="Frequency Bill" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
