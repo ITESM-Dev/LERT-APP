@@ -93,12 +93,6 @@ export const validateUpdateStatus = (response: Response) =>
 export const validateDeleteStatus = (response: Response) => 
 	response.status === 200
 
-export const validateUpdateStatus = (response: Response) => 
-	response.status === 200
-
-export const validateDeleteStatus = (response: Response) => 
-	response.status === 200
-
 export const api = createApi({
 	baseQuery: fetchBaseQuery({ 
 		baseUrl: API_URL,
