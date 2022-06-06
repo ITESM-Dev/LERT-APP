@@ -17,6 +17,7 @@ import theme from '~theme/theme';
 import * as textTypes from '~styles/constants/textTypes';
 
 import { APP_STACK_SCREENS } from '~utils/screenNames';
+import { USER_ROLES } from '~utils/constants';
 
 const SignUp = () => {
 
@@ -41,7 +42,7 @@ const SignUp = () => {
             name: `${firstName} ${lastName}`,
             mail: email,
             password: password,
-            role: 'IcaAdmin',
+            role: USER_ROLES.RESOURCE,
             band: '0',
             country: country
         }

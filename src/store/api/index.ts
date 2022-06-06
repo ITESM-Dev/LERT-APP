@@ -4,6 +4,9 @@ import {
     // User
     useGetUserInfoQuery,
 
+    // User Roles
+	useUpdateUserRoleMutation,
+
     // Authentication
     useLoginQuery,
     useSignUpQuery, 
@@ -42,6 +45,7 @@ import {
 } from "./slice";
 
 import {
+    UserRoleForm,
     LoginForm,
     SignUpForm,
     LogoutForm,
@@ -61,6 +65,10 @@ export {
 
     // User
     useGetUserInfoQuery,
+
+    // User Roles
+    UserRoleForm,
+	useUpdateUserRoleMutation,
 
     // Authentication
     LoginForm,
