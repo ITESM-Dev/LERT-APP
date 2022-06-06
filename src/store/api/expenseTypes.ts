@@ -33,3 +33,27 @@ export const createExpenseType = (builder: BuilderType) => (
         invalidatesTags: ["ExpenseTypes"]
     })
 )
+
+export const updateExpenseType = (builder: BuilderType) => (
+    builder.mutation<string, ExpenseTypeForm>({
+        query: (expenseTypeForm) => ({
+            url: 'updateExpenseType',
+            method: 'POST',
+            body: expenseTypeForm,
+            validateStatus: validateUpdateStatus
+        }),
+        invalidatesTags: ["ExpenseTypes", "Expenses"]
+    })
+)
+
+export const deleteExpenseType = (builder: BuilderType) => (
+    builder.mutation<void, string>({
+        query: (id) => ({
+            url: 'deleteExpenseType',
+            method: 'POST',
+            body: { id },
+            validateStatus: validateDeleteStatus
+        }),
+        invalidatesTags: ["ExpenseTypes"]
+    })
+)
