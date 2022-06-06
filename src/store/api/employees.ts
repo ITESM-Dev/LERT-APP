@@ -1,6 +1,6 @@
 import { EmployeeType } from "~store/employees";
-import { BuilderType, validateGetStatus } from "./slice";
-import { AvailableResource, ManagerICA } from "./types";
+import { BuilderType, validateGetStatus, validatePostStatus } from "./slice";
+import { AvailableResource, EmployeeForm, ManagerICA } from "./types";
 
 export const getAvailableResources = (builder: BuilderType) => (
     builder.query<AvailableResource[], void>({
@@ -20,21 +20,34 @@ export const getManagerICA = (builder: BuilderType) => (
     })
 )
 
-/*
 export const getResources = (builder: BuilderType) => (
     builder.query<EmployeeType[], void>({
         query: () => ({
             url: 'getResources',
             validateStatus: validateGetStatus,
         }),
+        providesTags: ["Employees"],
         transformResponse: (response: any[]) => {
-            const employees = response.map(item => {
-                id: item.id,
-                employeeNum: item.
-            } as EmployeeType)
+            const employees = response.map(item => ({
+                idSerial: item.idSerial,
+                mail: item.mail,
+                managerMail: item.managerMail,
+                icaCode: item.icaCode,
+                band: item.band,
+            } as EmployeeType))
 
             return employees;
         }
     })
 )
-*/
+
+export const assignResourceToManager = (builder: BuilderType) => (
+    builder.mutation<void, EmployeeForm>({
+        query: (employeeForm) => ({
+            url: "assignResourceToManager",
+            method: "POST",
+            body: employeeForm,
+            validateStatus: validatePostStatus,
+        })
+    })
+)
