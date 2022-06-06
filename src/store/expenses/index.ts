@@ -15,6 +15,10 @@ import {
     ExpenseYear,
 } from "./types";
 
+import {
+    allExpenses,
+} from "./selectors"
+
 export {
     expensesReducer,
     expensesAdapter,
@@ -25,4 +29,5 @@ export {
     clearExpenses,
     ExpenseType,
     ExpenseYear,
+    allExpenses,
 }
