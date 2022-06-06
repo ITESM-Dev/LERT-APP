@@ -1,5 +1,5 @@
 import { BandTypesType } from "~store/bandTypes";
-import { BuilderType, validateGetStatus, validatePostStatus } from "./slice";
+import { BuilderType, validateDeleteStatus, validateGetStatus, validatePostStatus, validateUpdateStatus } from "./slice";
 import { BandTypeForm } from "./types";
 
 export const createBandType = (builder: BuilderType) => (
@@ -21,8 +21,19 @@ export const updateBandType = (builder: BuilderType) => (
             url: "updateBandType",
             method: "POST",
             body: bandTypeForm,
-            responseHandler: 'json',
-            validateStatus: validatePostStatus
+            validateStatus: validateUpdateStatus
+        }),
+        invalidatesTags: ["BandTypes"]
+    })
+)
+
+export const deleteBandType = (builder: BuilderType) => (
+    builder.mutation<void, string>({
+        query: (id) => ({
+            url: "deleteBandType",
+            method: "POST",
+            body: { id },
+            validateStatus: validateDeleteStatus
         }),
         invalidatesTags: ["BandTypes"]
     })
