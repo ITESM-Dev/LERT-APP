@@ -18,7 +18,7 @@ import * as textTypes from '~styles/constants/textTypes';
 import Theme from '~theme/theme';
 import LertScreen from "~components/organisms/LertScreen";
 
-const TABLE_HEADERS = ["Admin Mail", "Manager Mail", "Status"]
+const TABLE_HEADERS = ["Admin Mail", "Role"]
 
 const UserRoles = () => {
 
