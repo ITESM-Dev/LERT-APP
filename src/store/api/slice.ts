@@ -60,9 +60,22 @@ import {
 	getAvailableResources,
 } from './employees'
 
+import { 
+	updateUserRole 
+} from "./userRoles"
+
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
-	"BandTypes" | "Delegates"| "Employees" | "Expenses" | "ExpenseTypes" | "ExtraHours" | "ICAs" | "Managers" | "CurrentPeriod", 
+	"BandTypes" | 
+	"Delegates"| 
+	"Employees" | 
+	"Expenses" | 
+	"ExpenseTypes" | 
+	"ExtraHours" | 
+	"ICAs" | 
+	"Managers" | 
+	"CurrentPeriod" |
+	"UserRoles", 
 	"api"
 >
 
@@ -70,6 +83,9 @@ export const validatePostStatus = (response: Response) =>
 	response.status === 201
 
 export const validateGetStatus = (response: Response) => 
+	response.status === 200
+
+export const validateUpdateStatus = (response: Response) => 
 	response.status === 200
 
 export const api = createApi({
@@ -90,12 +106,16 @@ export const api = createApi({
 		"ExtraHours",
 		"ICAs",
 		"Managers",
-		"CurrentPeriod"
+		"CurrentPeriod",
+		"UserRoles",
 	],
 	endpoints: (builder) => ({
 		
 		// User
 		getUserInfo: getUserInfo(builder),
+
+		// User Roles
+		updateUserRole: updateUserRole(builder),
 		
 		// Authentication
 		login: login(builder),
@@ -139,6 +159,9 @@ export const {
 	
 	// User
 	useGetUserInfoQuery,
+
+	// User Roles
+	useUpdateUserRoleMutation,
 	
 	// Authentication
 	useLoginQuery,
