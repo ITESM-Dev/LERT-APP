@@ -17,8 +17,8 @@ export const getICAs = (builder: BuilderType) => (
                 icaOwner: item.icaOwner,
                 startDate: item.startDate,
                 endDate: item.endDate,
-                budget: item.budget,
-                totalBilling: item.totalBilling,
+                budget: "$ " + item.budget,
+                totalBilling: "$ " + item.totalBilling,
 
                 year: item.year,
                 idPlanning: item.idPlanning,
