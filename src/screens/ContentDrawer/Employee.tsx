@@ -5,8 +5,11 @@ import { useSelector } from "react-redux";
 import { HStack, VStack } from "native-base";
 
 import { 
+    EmployeeForm,
+    useAssignResourceToManagerMutation,
     useGetAvailableResourcesQuery, 
-    useGetManagerICAQuery 
+    useGetManagerICAQuery, 
+    useGetResourcesQuery
 } from "~store/api";
 import { userSelector } from "~store/user";
 import { 
@@ -33,7 +36,14 @@ const Employee = () => {
     const [manager, setManager] = useState("");
     const [ICANum, setICANum] = useState("");
     const [band, setBand] = useState("");
+
     const [error, setError] = useState<string | null>(null)
+
+    const resetForm = () => {
+        setEmployeeMail("")
+        setBand("")
+        setError(null)
+    }
 
     // Employees - State
     const employees = useSelector(allEmployees);
@@ -42,31 +52,37 @@ const Employee = () => {
     const user = useSelector(userSelector);
 
     // Auto-fetch Employees
+    useGetResourcesQuery()
     
-
-    // API Calls
-    //const [createEmployee, response] =
-
+    // API Call
+    const [assignResource, response] = useAssignResourceToManagerMutation()
+    
     // ICA Num
     const managerICA = useGetManagerICAQuery()
 
     // Employee Mails (Resources)
     const availableResources = useGetAvailableResourcesQuery()
 
-    const resetForm = () => {
-        setEmployeeMail("")
-        setBand("")
-        setError(null)
-    }
-
-    const handleSubmit = () => {
-        
-    }
 
     useEffect(() => {
         setICANum(managerICA.data?.idCode ? managerICA.data?.idCode : "")
         setManager(user.mail)
     }, [managerICA.data])
+
+    const handleSubmit = () => {
+        const employeeForm: EmployeeForm = {
+            resourceMail: employeeMail,
+            managerMail: manager,
+            icaCode: ICANum,
+            band: band,
+        }
+        assignResource(employeeForm)
+            .unwrap()
+            .then(() => resetForm())
+            .catch(error => setError(
+                "Something went wrong, try again"
+            ))
+    }
 
     return (
         <LertScreen>
@@ -80,10 +96,10 @@ const Employee = () => {
                 minWidth={"50%"}
                 minHeight={"50%"}
                 buttonTitle="Add Employee" 
-                handleSubmit={handleSubmit} 
-                buttonType={"primary"}   
+                buttonType={"primary"}           
+                handleSubmit={handleSubmit}
                 error={error}
-                setError={setError}        
+                setError={setError} 
             > 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
@@ -97,7 +113,7 @@ const Employee = () => {
                             />
 
                             <SearchInput  
-                                placeholder={"Search employee"}
+                                placeholder={"Search Employee"}
                                 value={employeeMail}
                                 setValue={setEmployeeMail}
                                 items={
@@ -155,7 +171,8 @@ const Employee = () => {
                 </>
             </Overlay>
 
-            <View style={{ 
+            <View 
+                style={{ 
                     marginTop: "3%",
                 }}
             >

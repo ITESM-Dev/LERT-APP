@@ -62,6 +62,8 @@ import {
 import {
 	getManagerICA,
 	getAvailableResources,
+	getResources,
+	assignResourceToManager,
 } from './employees'
 
 import { 
@@ -138,6 +140,8 @@ export const api = createApi({
 		// Employees
 		getManagerICA: getManagerICA(builder),
 		getAvailableResources: getAvailableResources(builder),
+		getResources: getResources(builder),
+		assignResourceToManager: assignResourceToManager(builder),
 
 		// Extra Hours
 		getExtraHourTypes: getExtraHourTypes(builder), 
@@ -188,6 +192,8 @@ export const {
 	// Employees
 	useGetManagerICAQuery,
 	useGetAvailableResourcesQuery,
+	useGetResourcesQuery,
+	useAssignResourceToManagerMutation,
 
 	// Extra Hours
 	useGetExtraHourTypesQuery,

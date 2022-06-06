@@ -105,3 +105,10 @@ export type ManagerICA = {
     idICA: string;
     idCode: string;
 }
+
+export type EmployeeForm = {
+    resourceMail: string,
+    managerMail: string,
+    band: string,
+    icaCode: string
+}

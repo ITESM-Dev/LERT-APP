@@ -1,8 +1,9 @@
 import { createEntityAdapter, createSlice, EntityId, PayloadAction } from "@reduxjs/toolkit";
+import { api } from "~store/api";
 import { EmployeeType } from "./types";
 
 export const employeesAdapter = createEntityAdapter<EmployeeType>({
-    selectId: (employee) => employee.id,
+    selectId: (employee) => employee.idSerial,
 })
 
 const employees = createSlice({
@@ -24,6 +25,15 @@ const employees = createSlice({
         clearEmployees(state, _) {
             employeesAdapter.removeAll(state);
         }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addMatcher(
+                api.endpoints.getResources.matchFulfilled,
+                (state, { payload }) => {
+                    employeesAdapter.setMany(state, payload);
+                }
+            )
     }
 });
 

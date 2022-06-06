@@ -1,8 +1,7 @@
 export type EmployeeType = {
-    id: string;
-    employeeNum: number;
-    name: string;
-    manager: string;
-    ICA: string;
+    idSerial: string;
+    mail: string;
+    managerMail: string;
+    icaCode: string;
     band: number;
 }

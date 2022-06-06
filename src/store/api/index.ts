@@ -21,6 +21,8 @@ import {
     // Employees
     useGetManagerICAQuery,
     useGetAvailableResourcesQuery,
+    useGetResourcesQuery,
+	useAssignResourceToManagerMutation,
     
     // Extra Hours
     useGetExtraHourTypesQuery,
@@ -62,6 +64,7 @@ import {
     CurrentPeriodForm,
     AvailableResource,
     ManagerICA,
+    EmployeeForm,
 } from './types'
 
 export {
@@ -92,8 +95,11 @@ export {
     // Employees
     AvailableResource,
     ManagerICA,
+    EmployeeForm,
     useGetManagerICAQuery,
     useGetAvailableResourcesQuery,
+    useGetResourcesQuery,
+	useAssignResourceToManagerMutation,
     
     // Extra Hours
     ExtraHourForm,
