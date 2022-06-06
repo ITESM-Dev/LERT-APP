@@ -32,6 +32,8 @@ import {
 import { 
 	getExtraHourTypes,
 	createExtraHourType, 
+	updateExtraHourType,
+	deleteExtraHourType, 
 } from "./extraHours"
 
 import { 
@@ -148,6 +150,8 @@ export const api = createApi({
 		// Extra Hours
 		getExtraHourTypes: getExtraHourTypes(builder), 
 		createExtraHourType: createExtraHourType(builder),
+		updateExtraHourType: updateExtraHourType(builder),
+		deleteExtraHourType: deleteExtraHourType(builder),
 
 		// ICAs
 		getICAs: getICAs(builder),
@@ -202,6 +206,8 @@ export const {
 	// Extra Hours
 	useGetExtraHourTypesQuery,
 	useCreateExtraHourTypeMutation,
+	useUpdateExtraHourTypeMutation,
+	useDeleteExtraHourTypeMutation,
 
 	// ICAs
 	useGetICAsQuery,
