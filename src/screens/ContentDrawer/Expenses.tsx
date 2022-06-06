@@ -1,21 +1,25 @@
 import { useEffect, useState } from "react";
-import { Text, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { HStack, VStack } from "native-base";
+import { useSelector } from "react-redux";
+import { Box, HStack, VStack } from "native-base";
 
-import { AppDispatch, store } from "~store/store";
-import { setAllExpenses } from "~store/expenses";
-import { allExpenses } from "~store/expenses/selectors";
+import { 
+    ExpenseForm, 
+    useCreateExpenseMutation, 
+    useGetExpensesQuery, 
+    useGetExpenseTypesQuery,
+    useGetManagerICAQuery,
+} from "~store/api";
+import { allExpenses } from "~store/expenses";
 
-import Table from "~components/organisms/Table";
 import LertText from '~components/atoms/LertText';
-import Overlay from '~components/organisms/Overlay';
+import SearchInput from "~components/molecules/SearchInput";
 import LertInput from '~components/molecules/LertInput';
-import * as textTypes from '~styles/constants/textTypes';
-import Dropdown from "~components/molecules/Dropdown";
+import Table from "~components/organisms/Table";
+import Overlay from '~components/organisms/Overlay';
+import LertScreen from "~components/organisms/LertScreen";
 
 import Theme from '../../theme/theme';
-import LertScreen from "~components/organisms/LertScreen";
+import * as textTypes from '~styles/constants/textTypes';
 
 const dropdownTypes = [
     { label: 'First', value: 'first' },
@@ -25,48 +29,63 @@ const dropdownTypes = [
 const TABLE_HEADERS = ["Employee Mail", "Type", "Cost", "Date", "ICA", "ICA Manager", "Administrator", "Comment"]
 
 const Expenses = () => {
-    let example = [
-        { 
-            employeeMail: "user@ibm.com", 
-            type: "Course", 
-            cost:"1000", 
-            date: "2022-02-10", 
-            ICA: "13D2L2", 
-            ICAManager: "manager@ibm.com", 
-            administrator: "admin@ibm.com", 
-            comment: "lent123",
-            id: '1',
-        },
-        {
-            employeeMail: "user2@ibm.com", 
-            type: "Course", 
-            cost:"1500", 
-            date: "2022-02-10", 
-            ICA: "96D5L3", 
-            ICAManager: "manager2@ibm.com", 
-            administrator: "admin2@ibm.com", 
-            comment: "lent321",
-            id: 2,
-        },
-    ]
 
+    const [name, setName] = useState("")
     const [employeeMail, setEmployeeMail] = useState("");
     const [date, setDate] = useState("");
-    const [cost, setCost] = useState(""); //Deben ser numeros pero lert input solo toma string
+    const [cost, setCost] = useState(""); 
     const [comment, setComment] = useState("");
     const [ica, setIca] = useState("");
     const [type, setType] = useState("");
 
-    // Store Dispatcher
-    const dispatch: AppDispatch = useDispatch()
+    const [error, setError] = useState<string | null>(null)
+
+    const resetForm = () => {
+        setName("")
+        setEmployeeMail("")
+        setDate("")
+        setCost("")
+        setComment("")
+        setType("")
+        setError(null)
+    }
+
     // Expenses - State
     const expenses = useSelector(allExpenses)
 
+    // Auto-fetch
+    useGetExpensesQuery()
+
+    // Expense Types
+    const expenseTypesAPI = useGetExpenseTypesQuery()
+    // ICA Number
+    const managerICA = useGetManagerICAQuery()
+
+    // API Calls
+    const [createExpense, response] = useCreateExpenseMutation()
+
+    const handleSubmit = () => {
+        const expenseForm: ExpenseForm = {
+            icaCode: ica,
+            mail: employeeMail,
+            cost: cost,
+            date: date,
+            comment: comment,
+            nameExpense: name,
+            keyCurrentPeriod: "" // Figure out how to get this
+        }
+
+        createExpense(expenseForm)
+            .unwrap()
+            .then(() => resetForm())
+            .catch(error => setError(
+                "Something went wrong, please try again"
+            ))
+    }
+
     useEffect(() => {
-        if (expenses.length === 0) {
-            dispatch(setAllExpenses(example))
-        }   
-    }, [expenses])
+        setIca(managerICA.data?.idCode ? managerICA.data?.idCode : "")
+    }, [managerICA.data])
 
     return (
         <LertScreen>
@@ -74,40 +93,107 @@ const Expenses = () => {
             <LertText text="Expenses" type={textTypes.display04} color={Theme.colors.text.primary}/>
 
             <Overlay 
-                minWidth={"50%"}
-                minHeight={"50%"}
+                minWidth={"60%"}
+                minHeight={"60%"}
                 buttonTitle="Create Expense" 
-                handleSubmit={() => {}}
-                buttonType={"primary"}            
+                handleSubmit={handleSubmit}
+                buttonType={"primary"}    
+                error={error}
+                setError={setError}        
             > 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
                         <VStack alignItems={"flex-start"}>
-                            <LertText text="Employee Mail" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                            <LertInput text={employeeMail} setText={setEmployeeMail} placeholder={"Employee Mail"}/>
-                            <LertText text="Date" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                            <LertInput text={date} setText={setDate} placeholder={"Date"}/>
-                            <LertText text="Cost" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                            <LertInput text={cost} setText={setCost} placeholder={"USD Cost"}/>
+                            <LertText 
+                                text="Type" 
+                                type={textTypes.heading} 
+                                color={Theme.colors.text.primary} 
+                                style={{paddingTop:"10%"}}
+                            />
+                            <SearchInput
+                                placeholder="Type"
+                                value={type}
+                                setValue={setType}
+                                items={
+                                    expenseTypesAPI.data 
+                                    ? expenseTypesAPI.data!.map(item => item.type)
+                                    : []
+                                }
+                            />
+                            <LertText 
+                                text="Employee Mail" 
+                                type={textTypes.heading} 
+                                color={Theme.colors.text.primary} 
+                                style={{paddingTop:"10%"}}
+                            />
+                            <LertInput 
+                                text={employeeMail} 
+                                setText={setEmployeeMail} 
+                                placeholder={"Employee Mail"}
+                            />
+                            <LertText 
+                                text="Cost" 
+                                type={textTypes.heading} 
+                                color={Theme.colors.text.primary} 
+                                style={{paddingTop:"10%"}}
+                            />
+                            <LertInput 
+                                text={cost} 
+                                setText={setCost} 
+                                placeholder={"USD Cost"}
+                            />
                         </VStack>
                         <VStack alignItems={"flex-start"}>
-                            <LertText text="Comment" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                            <LertInput text={comment} setText={setComment} placeholder={"Comment"}/>
-                            <LertText text="ICA" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                            <LertInput text={ica} setText={setIca} placeholder={"ICA"}/>
-                            <LertText text="Type" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                            <Dropdown placeholder="Type" items={dropdownTypes}/>
+                            <LertText 
+                                text="Date" 
+                                type={textTypes.heading} 
+                                color={Theme.colors.text.primary} 
+                                style={{paddingTop:"10%"}}
+                            />
+                            <LertInput 
+                                text={date} 
+                                setText={setDate} 
+                                placeholder={"Date"}
+                            />
+                            <LertText 
+                                text="Comment" 
+                                type={textTypes.heading} 
+                                color={Theme.colors.text.primary} 
+                                style={{paddingTop:"10%"}}
+                            />
+                            <LertInput 
+                                text={comment} 
+                                setText={setComment} 
+                                placeholder={"Comment"}
+                            />
+                            <LertText 
+                                text="ICA" 
+                                type={textTypes.heading} 
+                                color={Theme.colors.text.primary} 
+                                style={{paddingTop:"10%"}}
+                            />
+                            <LertInput 
+                                text={ica} 
+                                isDisabled={true}
+                                setText={setIca} 
+                                placeholder={"ICA"}
+                            />
+                            
                         </VStack>
                     </HStack>
                 </>
 
             </Overlay>
 
-            <Table 
-                headers={TABLE_HEADERS} 
-                items={expenses} 
-                flexValues={[3, 1, 1, 1, 1, 2, 2, 2]}
-            />
+            <Box
+                marginTop={30}
+            >
+                <Table 
+                    headers={TABLE_HEADERS} 
+                    items={expenses} 
+                    flexValues={[3, 1, 1, 1, 1, 2, 2, 2]}
+                />
+            </Box>
 
         </LertScreen>
     )

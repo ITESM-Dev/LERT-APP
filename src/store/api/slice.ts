@@ -45,6 +45,10 @@ import {
 import { 
 	expensesForQuarter 
 } from "./recovery"
+import { 
+	getExpenses,
+	createExpense, 
+} from "./expenses"
 
 import { 
 	getCurrentPeriods, 
@@ -114,6 +118,10 @@ export const api = createApi({
 		getICAs: getICAs(builder),
 		createICA: createICA(builder),
 
+		// Expenses
+		getExpenses: getExpenses(builder),
+		createExpense: createExpense(builder),
+
 		// Expenses For Quarter (Recovery)
 		expensesForQuarter: expensesForQuarter(builder),
 
@@ -152,6 +160,10 @@ export const {
 	// ICAs
 	useGetICAsQuery,
 	useCreateICAMutation,
+
+	// Expenses
+	useGetExpensesQuery,
+	useCreateExpenseMutation,
 
 	// Expenses For Quarter (Recovery)
 	useExpensesForQuarterQuery,

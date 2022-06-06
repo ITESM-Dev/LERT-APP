@@ -25,6 +25,10 @@ import {
     useGetICAsQuery,
     useCreateICAMutation,
 
+    // Expense,
+    useGetExpensesQuery,
+    useCreateExpenseMutation,
+
     // Expenses for Quarter (Recovery)
     useExpensesForQuarterQuery,
 
@@ -44,6 +48,7 @@ import {
     BandTypeForm,
     ExtraHourForm,
     ICAForm,
+    ExpenseForm,
     ExpensesForQuarterForm,
     ExpenseTypeForm,
     CurrentPeriodForm,
@@ -85,6 +90,11 @@ export {
     ICAForm,
     useGetICAsQuery,
     useCreateICAMutation,
+
+    // Expense,
+    ExpenseForm,
+    useGetExpensesQuery,
+    useCreateExpenseMutation,
 
     // Expenses for Quarter (Recovery)
     ExpensesForQuarterForm,

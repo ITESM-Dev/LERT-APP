@@ -1,3 +1,5 @@
+import { string } from "prop-types";
+
 export type GetUserInfoForm = {
     mail: string;
     token: string;
@@ -69,6 +71,16 @@ export type ICAForm = {
 
 export type ExpensesForQuarterForm = {
     year: string;
+}
+
+export type ExpenseForm = {
+    icaCode: string;
+    mail: string;
+    cost: string;
+    date: string;
+    comment: string;
+    nameExpense: string;
+    keyCurrentPeriod: string;
 }
 
 export type ExpenseTypeForm = {
