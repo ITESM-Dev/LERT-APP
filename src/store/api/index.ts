@@ -40,6 +40,8 @@ import {
     // Expense Types
     useGetExpenseTypesQuery,
     useCreateExpenseTypeMutation,
+    useUpdateExpenseTypeMutation,
+	useDeleteExpenseTypeMutation,
 
     // Current Periods
     useGetCurrentPeriodsQuery,
@@ -116,6 +118,8 @@ export {
     ExpenseTypeForm,
     useGetExpenseTypesQuery,
     useCreateExpenseTypeMutation,
+    useUpdateExpenseTypeMutation,
+	useDeleteExpenseTypeMutation,
 
     // Current Periods
     CurrentPeriodForm,

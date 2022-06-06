@@ -42,6 +42,8 @@ import {
 import { 
 	getExpenseTypes,
 	createExpenseType, 
+	updateExpenseType,
+	deleteExpenseType
 } from "./expenseTypes"
 
 import { 
@@ -86,12 +88,6 @@ export const validateGetStatus = (response: Response) =>
 
 export const validatePostStatus = (response: Response) => 
 	response.status === 201
-
-export const validateUpdateStatus = (response: Response) => 
-	response.status === 200
-
-export const validateDeleteStatus = (response: Response) => 
-	response.status === 200
 
 export const validateUpdateStatus = (response: Response) => 
 	response.status === 200
@@ -161,6 +157,8 @@ export const api = createApi({
 		// Expense Types
 		getExpenseTypes: getExpenseTypes(builder),
 		createExpenseType: createExpenseType(builder),
+		updateExpenseType: updateExpenseType(builder),
+		deleteExpenseType: deleteExpenseType(builder),
 
 		// CurrentPeriod
 		getCurrentPeriods: getCurrentPeriods(builder),
@@ -209,6 +207,8 @@ export const {
 	// Expense Types
 	useGetExpenseTypesQuery,
 	useCreateExpenseTypeMutation,
+	useUpdateExpenseTypeMutation,
+	useDeleteExpenseTypeMutation,
 
 	// Current Period
 	useGetCurrentPeriodsQuery,
