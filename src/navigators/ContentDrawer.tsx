@@ -27,6 +27,7 @@ import LegalMenu from "~components/molecules/LegalMenu";
 import { CONTENT_DRAWER_SCREENS } from "~utils/screenNames";
 import { Box } from "native-base";
 import { USER_ROLES } from "~utils/constants";
+import UserRoles from "~screens/ContentDrawer/userRoles";
 
 
 const LABELS_STYLE = {
@@ -251,6 +252,18 @@ const ContentDrawer = () => {
                                     <Ionicons 
                                         {...ICONS_STYLE}
                                         name="people-outline" 
+                                    />
+                            }}
+                        />
+
+                        <Drawer.Screen 
+                            name={CONTENT_DRAWER_SCREENS.UserRoles}
+                            component={UserRoles}
+                            options={{
+                                drawerIcon: () => 
+                                    <Ionicons 
+                                        {...ICONS_STYLE}
+                                        name="glasses-outline" 
                                     />
                             }}
                         />

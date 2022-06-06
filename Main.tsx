@@ -37,6 +37,7 @@ const Main = () => {
                 Expenses: "Expenses",
                 Recovery: "Recovery",
                 CurrentPeriod: "CurrentPeriod",
+                UserRoles: "UserRoles",
                 NotFound: '*',
             }
         }
