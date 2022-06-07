@@ -42,7 +42,7 @@ export const getResources = (builder: BuilderType) => (
 )
 
 export const assignResourceToManager = (builder: BuilderType) => (
-    builder.mutation<void, EmployeeForm>({
+    builder.mutation<any, EmployeeForm>({
         query: (employeeForm) => ({
             url: "assignResourceToManager",
             method: "POST",
