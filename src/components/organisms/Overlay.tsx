@@ -35,8 +35,10 @@ const Overlay = (props: OverlayPropTypes) => {
     const initialFocusRef = React.useRef(null);
 
     return (
+        // @ts-ignore
         <Box 
             alignItems={'flex-end'}
+            {...props.style}
         >
             <Box 
                 alignItems={'flex-end'}

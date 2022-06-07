@@ -39,6 +39,7 @@ import {
     useCreateExpenseMutation,
     useUpdateExpenseMutation,
 	useDeleteExpenseMutation,
+    useGetExpenseReportQuery,
 
     // Expenses for Quarter (Recovery)
     useExpensesForQuarterQuery,
@@ -69,6 +70,7 @@ import {
     AvailableResource,
     ManagerICA,
     EmployeeForm,
+    ExpenseReportForm,
 } from './types'
 
 export {
@@ -119,10 +121,12 @@ export {
 
     // Expense,
     ExpenseForm,
+    ExpenseReportForm,
     useGetExpensesQuery,
     useCreateExpenseMutation,
     useUpdateExpenseMutation,
 	useDeleteExpenseMutation,
+    useGetExpenseReportQuery,
 
     // Expenses for Quarter (Recovery)
     ExpensesForQuarterForm,

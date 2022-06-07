@@ -56,6 +56,7 @@ import {
 	createExpense, 
 	updateExpense,
 	deleteExpense,
+	getExpenseReport,
 } from "./expenses"
 
 import { 
@@ -162,6 +163,7 @@ export const api = createApi({
 		createExpense: createExpense(builder),
 		updateExpense: updateExpense(builder),
 		deleteExpense: deleteExpense(builder),
+		getExpenseReport: getExpenseReport(builder),
 
 		// Expenses For Quarter (Recovery)
 		expensesForQuarter: expensesForQuarter(builder),
@@ -218,6 +220,7 @@ export const {
 	useCreateExpenseMutation,
 	useUpdateExpenseMutation,
 	useDeleteExpenseMutation,
+	useGetExpenseReportQuery,
 
 	// Expenses For Quarter (Recovery)
 	useExpensesForQuarterQuery,
