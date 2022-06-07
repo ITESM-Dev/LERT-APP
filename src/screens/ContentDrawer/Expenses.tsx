@@ -4,9 +4,10 @@ import { Box, HStack, VStack } from "native-base";
 
 import { 
     ExpenseForm, 
-    useCreateExpenseMutation, 
-    useGetAvailableResourcesQuery, 
+    ExpenseReportForm, 
+    useCreateExpenseMutation,
     useGetCurrentPeriodsQuery, 
+    useGetExpenseReportQuery, 
     useGetExpensesQuery, 
     useGetExpenseTypesQuery,
     useGetManagerICAQuery,
@@ -98,6 +99,18 @@ const Expenses = () => {
             .catch(error => setError(
                 "Something went wrong, please try again"
             ))
+    }
+
+    const [startDate, setStartDate] = useState("")
+    const [endDate, setEndDate] = useState("")
+
+    const generateExpenseReport = () => {
+        const expenseReportForm: ExpenseReportForm = {
+            startDate: startDate,
+            endDate: endDate,
+        }
+        const { data } = useGetExpenseReportQuery(expenseReportForm)
+        console.log(data)
     }
 
     return (
@@ -214,9 +227,55 @@ const Expenses = () => {
                 </>
 
             </Overlay>
+                
+
+            <Overlay
+                minWidth={"40%"}
+                minHeight={"30%"}
+                buttonTitle="Generate Report" 
+                handleSubmit={generateExpenseReport}
+                buttonType={"secondary"}    
+                error={error}
+                setError={setError}  
+                style={{ marginTop: 15 }}
+            >
+                <HStack 
+                    space={2} 
+                    justifyContent="space-evenly"
+                >
+                    <VStack alignItems={"flex-start"}>
+                        <LertText 
+                        text="Start Date" 
+                        type={textTypes.heading} 
+                        color={Theme.colors.text.primary} 
+                        style={{paddingTop:"10%"}}
+                        />
+                        <LertInput 
+                            text={startDate} 
+                            setText={setStartDate} 
+                            placeholder={"YYYY-MM-DD"}
+                        />
+                    </VStack>
+
+                    <VStack alignItems={"flex-start"}>
+                        <LertText 
+                        text="End Date" 
+                        type={textTypes.heading} 
+                        color={Theme.colors.text.primary} 
+                        style={{paddingTop:"10%"}}
+                        />
+                        <LertInput 
+                            text={endDate} 
+                            setText={setEndDate} 
+                            placeholder={"YYYY-MM-DD"}
+                        />
+                    </VStack>
+
+                </HStack>
+            </Overlay>
 
             <Box
-                marginTop={30}
+                marginTop={15}
             >
                 <Table 
                     headers={TABLE_HEADERS} 
