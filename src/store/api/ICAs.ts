@@ -83,4 +83,3 @@ export const deleteICA = (builder: BuilderType) => (
         invalidatesTags: ["ICAs"]
     })
 )
-

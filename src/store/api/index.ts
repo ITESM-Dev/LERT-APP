@@ -118,6 +118,8 @@ export {
     ICAForm,
     useGetICAsQuery,
     useCreateICAMutation,
+    useDeleteICAMutation,
+    useUpdateICAMutation,
 
     // Expense,
     ExpenseForm,
