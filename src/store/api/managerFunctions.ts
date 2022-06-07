@@ -1,6 +1,5 @@
-import { ManagerFunctionsType } from "~store/managerFunctions";
 import { ManagerType } from "~store/managers";
-import { BuilderType, validateDeleteStatus, validateGetStatus, validatePostStatus, validateUpdateStatus } from "./slice";
+import { BuilderType, validateGetStatus, validateUpdateStatus } from "./slice";
 import { ManagerFunctionsForm } from "./types";
 
 export const updateManagerFunctions = (builder: BuilderType) => (
