@@ -16,7 +16,7 @@ import { AppDispatch } from "~store/store";
 import { allManagers } from "~store/managers/selectors";
 import LertScreen from "~components/organisms/LertScreen";
 import SearchInput from "~components/molecules/SearchInput";
-import { useGetManagerFunctionsQuery } from "~store/api";
+import { useGetManagerFunctionsQuery, useSetOPManagerMutation } from "~store/api";
 
 const dropdownItems = [
     { label: 'Active', value: 'active' },
@@ -36,13 +36,26 @@ const ManageManagerFunctions = () => {
     // Managers - State
     const managers = useSelector(allManagers);
 
+    // Set OPManager
+    const [setOPManager, response] = useSetOPManagerMutation();
+
     /**
      * @todo getAvailableManagers for SearchInput
      * @todo assignManagerToOP
      */
 
-    const handleSubmit = () => {
+    const resetForm = () => {
+        setManager("")
+        setError(null)
+    }
 
+    const handleSubmit = () => {   
+        setOPManager(manager)
+            .unwrap()
+            .then(() => resetForm())
+            .catch(() => setError(
+                "Something went wrong, please try again"
+            ))
     }
 
     return (
