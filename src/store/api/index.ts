@@ -33,6 +33,8 @@ import {
     // ICAs
     useGetICAsQuery,
     useCreateICAMutation,
+    useUpdateICAMutation,
+    useDeleteICAMutation,
 
     // Expense,
     useGetExpensesQuery,
