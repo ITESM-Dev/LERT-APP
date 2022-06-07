@@ -77,6 +77,11 @@ import {
 	updateUserRole 
 } from "./userRoles"
 
+import {
+	updateManagerFunctions,
+	getManagerFunctions,
+} from "./managerFunctions";
+
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
 	"BandTypes" | 
@@ -88,7 +93,8 @@ export type BuilderType = EndpointBuilder<
 	"ICAs" | 
 	"Managers" | 
 	"CurrentPeriod" |
-	"UserRoles", 
+	"UserRoles" |
+	"ManagerFunctions", 
 	"api"
 >
 
@@ -124,6 +130,7 @@ export const api = createApi({
 		"Managers",
 		"CurrentPeriod",
 		"UserRoles",
+		"ManagerFunctions",
 	],
 	endpoints: (builder) => ({
 		
@@ -181,6 +188,10 @@ export const api = createApi({
 		// CurrentPeriod
 		getCurrentPeriods: getCurrentPeriods(builder),
 		createCurrentPeriod: createCurrentPeriod(builder),
+
+		//ManagerFunctions
+		getManagerFunctions: getManagerFunctions(builder),
+		updateManagerFunctions: updateManagerFunctions(builder),
 	}),
 })
 
@@ -240,4 +251,8 @@ export const {
 	// Current Period
 	useGetCurrentPeriodsQuery,
 	useCreateCurrentPeriodMutation,
+
+	//Manager Funtcions
+	useGetManagerFunctionsQuery,
+	useUpdateManagerFunctionsMutation,
 } = api

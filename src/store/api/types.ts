@@ -120,3 +120,10 @@ export type ExpenseReportForm = {
     startDate: string;
     endDate: string;
 }
+export type ManagerFunctionsForm = {
+    id?: string;
+    mail: string;
+    status: string;
+    recoveryStatus: string;
+    lastUpdated: string;
+}

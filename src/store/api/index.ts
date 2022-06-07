@@ -55,6 +55,10 @@ import {
     // Current Periods
     useGetCurrentPeriodsQuery,
     useCreateCurrentPeriodMutation,
+
+    // Manager Functions
+    useGetManagerFunctionsQuery,
+    useUpdateManagerFunctionsMutation,
 } from "./slice";
 
 import {
@@ -148,4 +152,7 @@ export {
     useGetCurrentPeriodsQuery,
     useCreateCurrentPeriodMutation,
 
+    // Manager functions
+    useGetManagerFunctionsQuery,
+    useUpdateManagerFunctionsMutation,
 }
