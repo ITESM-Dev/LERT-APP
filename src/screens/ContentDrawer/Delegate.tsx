@@ -1,33 +1,54 @@
-import { useEffect, useRef, useState } from "react";
-import { View, Animated } from "react-native";
-import { HStack, ScrollView, VStack } from "native-base";
+import { useEffect, useState } from "react";
+import { View } from "react-native";
+import { HStack, VStack } from "native-base";
 
-import { useDispatch, useSelector } from "react-redux";
-
-import { AppDispatch } from "~store/store";
-import { allDelegates } from "~store/delegates/selectors";
+import { useSelector } from "react-redux";
 
 import LertText from '~components/atoms/LertText';
-import LertButton from "~components/atoms/LertButton";
 import SearchInput from "~components/molecules/SearchInput";
 import Table from "~components/organisms/Table";
-import LegalMenu from "~components/molecules/LegalMenu";
 
 import * as textTypes from '~styles/constants/textTypes';
 
 import Theme from '~theme/theme';
 import LertScreen from "~components/organisms/LertScreen";
+import { userSelector, UserType } from "~store/user";
+import { USER_ROLES } from "~utils/constants";
+import Overlay from "~components/organisms/Overlay";
 
-const TABLE_HEADERS = ["Admin Mail", "Manager Mail", "Status"]
+const TABLE_HEADERS = ["Manager", "ICA Admin"]
 
 const Delegate = () => {
 
     let example = [
-        {AdminMail: "admin1@ibm.com", ManagerMail: "manager1@ibm.com", Status: "Active"},
-        {AdminMail: "admin2@ibm.com", ManagerMail: "manager2@ibm.com", Status: "Inactive"},
+        { ManagerMail: "manager1@ibm.com", AdminMail: "admin1@ibm.com" },
+        { ManagerMail: "manager2@ibm.com", AdminMail: "admin2@ibm.com" },
     ]
-
+    
+    const [manager, setManager] = useState("")
     const [delegate, setDelegate] = useState("")
+    const [error, setError] = useState<string | null>(null)
+
+    // User - State
+    const user = useSelector(userSelector) as UserType;
+
+    /*  If user.role === manager
+            - Get All their delegates
+            - Disable Manager Mail Input
+        
+        If user.role !== manager
+            - Get All managers with their delegate
+    */
+
+    useEffect(() => {
+        if (user.role === USER_ROLES.MANAGER) {
+            setManager(user.mail)
+        }
+    }, [user, manager])
+
+    const handleSubmit = () => {
+
+    }
 
     return (
         <LertScreen>
@@ -37,37 +58,49 @@ const Delegate = () => {
                 color={Theme.colors.text.primary}
             />
 
-            <HStack 
-                flex={1}
-                marginTop={"5%"}
+            <Overlay 
+                minWidth={"40%"}
+                minHeight={"40%"}
+                buttonTitle="Delegate ICA Admin" 
+                handleSubmit={handleSubmit}
+                buttonType={"primary"}    
+                error={error}
+                setError={setError}
             >
-                
-                <VStack flex={1}>
-                    <SearchInput 
-                        items={example.map(item => item.ManagerMail)}
-                        placeholder={"Search Manager"}
-                        value={delegate}
-                        setValue={setDelegate}
-                    />
-                </VStack>
+                <HStack
+                    space={2}
+                    justifyContent="space-evenly"
+                    alignItems={"center"}
+                >
+                    <VStack 
+                        flex={1}
+                        marginX={10}
+                    >
+                        <SearchInput 
+                            items={example.map(item => item.ManagerMail)}
+                            isDisabled={user.role === USER_ROLES.MANAGER}
+                            placeholder={"Search Manager"}
+                            value={manager}
+                            setValue={setManager}
+                        />
+                    </VStack>
 
-                <VStack style={{ flex: 2 }}/>
-                
-                <VStack flex={1}>
-                    <LertButton 
-                        title="Select Profile" 
-                        type="primary" 
-                        disabled={delegate === ""}
-                        onPress={() => {
-                            alert(`Login as ${delegate}`)
-                        }}
-                    />
-                </VStack>
-                
-            </HStack>
+                    <VStack 
+                        flex={1} 
+                        marginX={10}
+                    >
+                        <SearchInput 
+                            items={example.map(item => item.AdminMail)}
+                            placeholder={"Search ICA Admin"}
+                            value={delegate}
+                            setValue={setDelegate}
+                        />
+                    </VStack>
+                </HStack>
+            </Overlay>
 
             <View style={{ 
-                    marginTop: "3%", 
+                    marginTop: 30, 
                     position: 'relative', 
                     zIndex: -1 
                 }}
@@ -75,7 +108,7 @@ const Delegate = () => {
                 <Table 
                     headers={TABLE_HEADERS} 
                     items={example} 
-                    flexValues={[2, 2, 3]}
+                    flexValues={[1, 1]}
                 />
             </View> 
 
