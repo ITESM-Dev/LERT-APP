@@ -29,7 +29,6 @@ export const store = configureStore({
         bandTypes: bandTypesReducer,
         extraHours: extraHoursReducer,
         delegate: delegateReducer,
-        managerFunctions: managerFunctionsReducer,
     }),
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware().concat(api.middleware),
