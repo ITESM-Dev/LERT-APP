@@ -1,6 +1,6 @@
 import { ICAType } from "~store/ICAs";
-import { BuilderType, validateGetStatus, validatePostStatus } from "./slice";
-import { ICAForm } from "./types";
+import { BuilderType, validateDeleteStatus, validateGetStatus, validatePostStatus, validateUpdateStatus } from "./slice";
+import { BandTypeForm, ICAForm } from "./types";
 
 export const getICAs = (builder: BuilderType) => (
     builder.query<ICAType[], void>({
@@ -60,3 +60,26 @@ export const createICA = (builder: BuilderType) => (
     })
 )
 
+export const updateICA = (builder: BuilderType) => (
+    builder.mutation<string, ICAForm>({
+        query: (icaForm) => ({
+            url: "updateIca",
+            method: "POST",
+            body: icaForm,
+            validateStatus: validateUpdateStatus
+        }),
+        invalidatesTags: ["ICAs"]
+    })
+)
+
+export const deleteICA = (builder: BuilderType) => (
+    builder.mutation<void, string>({
+        query: (id) => ({
+            url: "deleteIca",
+            method: "POST",
+            body: { id },
+            validateStatus: validateDeleteStatus
+        }),
+        invalidatesTags: ["ICAs"]
+    })
+)

@@ -33,6 +33,8 @@ import {
     // ICAs
     useGetICAsQuery,
     useCreateICAMutation,
+    useUpdateICAMutation,
+    useDeleteICAMutation,
 
     // Expense,
     useGetExpensesQuery,
@@ -118,6 +120,8 @@ export {
     ICAForm,
     useGetICAsQuery,
     useCreateICAMutation,
+    useDeleteICAMutation,
+    useUpdateICAMutation,
 
     // Expense,
     ExpenseForm,

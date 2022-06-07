@@ -39,6 +39,8 @@ import {
 import { 
 	getICAs,
 	createICA, 
+	updateICA,
+	deleteICA,
 } from "./ICAs"
 
 import { 
@@ -157,6 +159,8 @@ export const api = createApi({
 		// ICAs
 		getICAs: getICAs(builder),
 		createICA: createICA(builder),
+		updateICA: updateICA(builder),
+		deleteICA: deleteICA(builder),
 
 		// Expenses
 		getExpenses: getExpenses(builder),
@@ -214,6 +218,8 @@ export const {
 	// ICAs
 	useGetICAsQuery,
 	useCreateICAMutation,
+	useUpdateICAMutation,
+	useDeleteICAMutation,
 
 	// Expenses
 	useGetExpensesQuery,
