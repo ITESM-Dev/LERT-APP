@@ -3,5 +3,5 @@ export type ManagerType = {
     mail: string;
     recoveryStatus: string;
     status: string;
-    lastUpdate: string;
+    lastUpdated: string;
 }

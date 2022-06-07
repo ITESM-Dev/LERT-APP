@@ -1,4 +1,5 @@
 import { createEntityAdapter, createSlice, EntityId, PayloadAction } from "@reduxjs/toolkit"
+import { api } from "~store/api";
 import { ManagerType } from "./types"
 
 export const managersAdapter = createEntityAdapter<ManagerType>({
@@ -24,6 +25,15 @@ const managersSlice = createSlice({
         clearManagers: (state, _) => {
             managersAdapter.removeAll(state);
         }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addMatcher(
+                api.endpoints.getManagerFunctions.matchFulfilled,
+                (state, { payload }) => {
+                    managersAdapter.setMany(state, payload);
+                }
+            )
     }
 });
 

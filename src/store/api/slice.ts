@@ -76,9 +76,7 @@ import {
 } from "./userRoles"
 
 import {
-	createManagerFunctions,
 	updateManagerFunctions,
-	deleteManagerFunctions,
 	getManagerFunctions,
 } from "./managerFunctions";
 
@@ -189,9 +187,7 @@ export const api = createApi({
 
 		//ManagerFunctions
 		getManagerFunctions: getManagerFunctions(builder),
-		createManagerFunctions: createManagerFunctions(builder),
 		updateManagerFunctions: updateManagerFunctions(builder),
-		deleteManagerFunctions: deleteManagerFunctions(builder),
 	}),
 })
 
@@ -252,7 +248,5 @@ export const {
 
 	//Manager Funtcions
 	useGetManagerFunctionsQuery,
-	useCreateManagerFunctionsMutation,
 	useUpdateManagerFunctionsMutation,
-	useDeleteManagerFunctionsMutation,
 } = api
