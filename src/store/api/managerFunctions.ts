@@ -1,26 +1,14 @@
 import { ManagerType } from "~store/managers";
-import { BuilderType, validateGetStatus, validateUpdateStatus } from "./slice";
+import { BuilderType, validateGetStatus, validatePostStatus, validateUpdateStatus } from "./slice";
 import { ManagerFunctionsForm } from "./types";
-
-export const updateManagerFunctions = (builder: BuilderType) => (
-    builder.mutation<string, ManagerFunctionsForm>({
-        query: (managerFunctionsForm) => ({
-            url: "updateManagerFunctions",
-            method: "POST",
-            body: managerFunctionsForm,
-            validateStatus: validateUpdateStatus
-        }),
-        invalidatesTags: ["ManagerFunctions"]
-    })
-)
 
 export const getManagerFunctions = (builder: BuilderType) => (
     builder.query<ManagerType[], void>({
         query: () => ({
-            url: "getManagerFunctions",
+            url: "getManagers",
             validateStatus: validateGetStatus,
         }),
-        providesTags: ["ManagerFunctions"],
+        providesTags: ["Managers"],
         transformResponse: (response: any[]) => {
 
             const managerFunctions = response.map(item => ({
@@ -33,5 +21,29 @@ export const getManagerFunctions = (builder: BuilderType) => (
 
             return managerFunctions;
         }
+    })
+)
+
+export const updateManagerFunctions = (builder: BuilderType) => (
+    builder.mutation<string, ManagerFunctionsForm>({
+        query: (managerFunctionsForm) => ({
+            url: "updateManager",
+            method: "POST",
+            body: managerFunctionsForm,
+            validateStatus: validateUpdateStatus
+        }),
+        invalidatesTags: ["Managers"]
+    })
+)
+
+export const setOPManager = (builder: BuilderType) => (
+    builder.mutation<any, string>({
+        query: (managerMail) => ({
+            url: "setOpManager",
+            method: "POST",
+            body: { managerMail },
+            validateStatus: validateUpdateStatus,
+        }),
+        invalidatesTags: ["Managers"],
     })
 )

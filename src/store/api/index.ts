@@ -60,6 +60,7 @@ import {
     // Manager Functions
     useGetManagerFunctionsQuery,
     useUpdateManagerFunctionsMutation,
+    useSetOPManagerMutation,
 } from "./slice";
 
 import {
@@ -157,4 +158,5 @@ export {
     // Manager functions
     useGetManagerFunctionsQuery,
     useUpdateManagerFunctionsMutation,
+    useSetOPManagerMutation,
 }
