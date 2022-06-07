@@ -12,7 +12,6 @@ import { bandTypesReducer } from "./bandTypes";
 import { extraHoursReducer } from "./extraHours";
 import { delegateReducer } from "./delegates";
 import { currentPeriodReducer } from "./currentPeriod";
-import { managerFunctionsReducer } from "./managerFunctions";
 
 export const store = configureStore({
     reducer: combineReducers({
