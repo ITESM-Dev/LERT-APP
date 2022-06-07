@@ -8,6 +8,7 @@ import {
     EmployeeForm,
     useAssignResourceToManagerMutation,
     useGetAvailableResourcesQuery, 
+    useGetBandTypesQuery, 
     useGetManagerICAQuery, 
     useGetResourcesQuery
 } from "~store/api";
@@ -26,6 +27,7 @@ import LertScreen from "~components/organisms/LertScreen";
 
 import Theme from '../../theme/theme';
 import * as textTypes from '~styles/constants/textTypes';
+import { allBandTypes } from "~store/bandTypes/selectors";
 
 
 const TABLE_HEADERS = ["Employee Num", "Employee Mail", "Manager", "ICA Number", "Band"]
@@ -63,6 +65,9 @@ const Employee = () => {
     // Employee Mails (Resources)
     const availableResources = useGetAvailableResourcesQuery()
 
+    // Band Types
+    useGetBandTypesQuery()
+    const bandTypes = useSelector(allBandTypes)
 
     useEffect(() => {
         if (managerICA.data !== undefined) {
@@ -132,10 +137,11 @@ const Employee = () => {
                                 style={{paddingTop:"10%"}}
                             />
 
-                            <LertInput 
-                                text={band} 
-                                setText={setBand} 
-                                placeholder={TABLE_HEADERS[4]}
+                            <SearchInput  
+                                placeholder={"Search Band"}
+                                value={band}
+                                setValue={setBand}
+                                items={bandTypes.map(band => band.band)}
                             />
 
                         </VStack>
