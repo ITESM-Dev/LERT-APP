@@ -11,7 +11,7 @@ import { SetStateAction } from 'react';
 
 const COLORS = Theme.colors
 const BG_COLOR = COLORS.components.offWhite
-const BORDER_COLOR = COLORS.components.highContrast
+const BORDER_COLOR = COLORS.text.primary
 
 type DropdownPropTypes = {
     placeholder: string;
@@ -64,7 +64,6 @@ const Dropdown = (props: DropdownPropTypes) => {
                 
                 listMode='FLATLIST'
                 dropDownDirection={"BOTTOM"}
-                bottomOffset={200}
 
                 dropDownContainerStyle={ dropdownStyles.dropdownContainer }
 
@@ -92,7 +91,7 @@ const Dropdown = (props: DropdownPropTypes) => {
 export const dropdownStyles = StyleSheet.create({
     generalStyle: {
         flexDirection: 'row', 
-        padding: 10,
+        padding: 7,
     },
     dropdownContainer: { 
         borderColor: BORDER_COLOR,
@@ -100,7 +99,6 @@ export const dropdownStyles = StyleSheet.create({
         borderRadius: 0,
     },
     container: {
-        backgroundColor: BG_COLOR,
         borderColor: BORDER_COLOR,
         borderBottomWidth: 1,
         flex: 1,

@@ -2,21 +2,18 @@ import { useEffect, useRef, useState } from "react";
 import { View, Animated } from "react-native";
 import { HStack, ScrollView, VStack } from "native-base";
 
-import { useDispatch, useSelector } from "react-redux";
-
-import { AppDispatch } from "~store/store";
-import { allDelegates } from "~store/delegates/selectors";
-
 import LertText from '~components/atoms/LertText';
 import LertButton from "~components/atoms/LertButton";
 import SearchInput from "~components/molecules/SearchInput";
+import Dropdown from '~components/molecules/Dropdown'
 import Table from "~components/organisms/Table";
-import LegalMenu from "~components/molecules/LegalMenu";
 
 import * as textTypes from '~styles/constants/textTypes';
 
 import Theme from '~theme/theme';
 import LertScreen from "~components/organisms/LertScreen";
+import { USER_ROLES_ARRAY } from "~utils/constants";
+import { useGetAllUsersQuery, UserRoleForm, useUpdateUserRoleMutation } from "~store/api";
 
 const TABLE_HEADERS = ["Admin Mail", "Role"]
 
@@ -27,7 +24,24 @@ const UserRoles = () => {
         {User: "admin3@ibm.com", Role: "Boss"},
     ]
 
-    const [delegate, setDelegate] = useState("")
+    const [mail, setMail] = useState("")
+    const [role, setRole] = useState("")
+
+    // All Users
+    const { data } = useGetAllUsersQuery()
+
+    // Assign Role
+    const [updateUserRole, response] = useUpdateUserRoleMutation()
+
+    const handleUpdateRole = () => {
+        const userRoleForm: UserRoleForm = {
+            mail: mail,
+            role: role,
+        }
+        updateUserRole(userRoleForm)
+            .unwrap()
+            .then(() => alert("Updated"))
+    }
 
     return (
         <LertScreen>
@@ -44,38 +58,49 @@ const UserRoles = () => {
                 
                 <VStack flex={1}>
                     <SearchInput 
-                        items={example.map(item => item.User)}
+                        items={data !== undefined ? data.map(item => item.mail) : []}
                         placeholder={"Search user"}
-                        value={delegate}
-                        setValue={setDelegate}
+                        value={mail}
+                        setValue={setMail}
                     />
+
                 </VStack>
 
-                <VStack style={{ flex: 2 }}/>
+                <VStack 
+                    style={{ 
+                        flex: 1,
+                        marginHorizontal: 50
+                    }}
+                >
+                    <Dropdown 
+                        placeholder="Select Role"
+                        value={role}
+                        setValue={setRole}
+                        items={USER_ROLES_ARRAY}
+                    />
+                </VStack>
                 
                 <VStack flex={1}>
                     <LertButton 
-                        title="Login Profile" 
+                        title="Update Role" 
                         type="primary" 
-                        disabled={delegate === ""}
-                        onPress={() => {
-                            alert(`Login as ${delegate}`)
-                        }}
+                        disabled={mail === "" || role === ""}
+                        onPress={handleUpdateRole}
                     />
                 </VStack>
                 
             </HStack>
 
             <View style={{ 
-                    marginTop: "3%", 
+                    marginTop: 30, 
                     position: 'relative', 
                     zIndex: -1 
                 }}
             >
                 <Table 
                     headers={TABLE_HEADERS} 
-                    items={example} 
-                    flexValues={[2, 2, 3]}
+                    items={data !== undefined ? data : []} 
+                    flexValues={[1, 1]}
                 />
             </View> 
 

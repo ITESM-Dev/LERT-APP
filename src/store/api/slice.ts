@@ -74,7 +74,8 @@ import {
 } from './employees'
 
 import { 
-	updateUserRole 
+	getAllUsers,
+	updateUserRole,
 } from "./userRoles"
 
 import {
@@ -138,6 +139,7 @@ export const api = createApi({
 		getUserInfo: getUserInfo(builder),
 
 		// User Roles
+		getAllUsers: getAllUsers(builder),
 		updateUserRole: updateUserRole(builder),
 		
 		// Authentication
@@ -201,6 +203,7 @@ export const {
 	useGetUserInfoQuery,
 
 	// User Roles
+	useGetAllUsersQuery,
 	useUpdateUserRoleMutation,
 	
 	// Authentication
