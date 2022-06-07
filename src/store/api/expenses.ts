@@ -6,7 +6,7 @@ import {
     validateUpdateStatus,
     validateDeleteStatus, 
 } from "./slice";
-import { ExpenseForm } from "./types";
+import { ExpenseForm, ExpenseReportForm } from "./types";
 
 export const getExpenses = (builder: BuilderType) => (
     builder.query<ExpenseType[], void>({
@@ -64,5 +64,15 @@ export const deleteExpense = (builder: BuilderType) => (
             validateStatus: validateDeleteStatus,
         }),
         invalidatesTags: ["Expenses", "CurrentPeriod", "ICAs"]
+    })
+)
+
+export const getExpenseReport = (builder: BuilderType) => (
+    builder.query<any, ExpenseReportForm>({
+        query: (expenseReportForm) => ({
+            url: 'reportExpense',
+            body: expenseReportForm,
+            validateStatus: validateGetStatus,
+        })
     })
 )

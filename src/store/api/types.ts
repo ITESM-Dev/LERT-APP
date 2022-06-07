@@ -115,3 +115,8 @@ export type EmployeeForm = {
     band: string,
     icaCode: string
 }
+
+export type ExpenseReportForm = {
+    startDate: string;
+    endDate: string;
+}
