@@ -12,6 +12,8 @@ type LertInputPropTypes = {
     setText: Dispatch<SetStateAction<string>>;
     password?: boolean;
     isDisabled?: boolean;
+    onFocus?: () => void;
+    onBlur?: () => void;
 }
 
 /**
@@ -37,6 +39,13 @@ const LertInput = (props: LertInputPropTypes) => {
 
             isDisabled={props.isDisabled}
 
+            onFocus={props.onFocus}
+            onBlur={props.onBlur}
+
+            style={{
+                borderBottomColor: Theme.colors.text.primary,
+            }}
+
             _focus={{
                 borderWidth: 1,
                 borderColor: Theme.colors.actions.actionPrimary,
@@ -58,7 +67,7 @@ export const LertInputStyle = {
     borderBottomWidth: 1,
     borderTopWidth: 1,
     borderTopColor: "rgba(0, 0, 0, 0.0)",
-    borderBottomColor: Theme.colors.text.primary,
+    
 }
 
 export default LertInput;
