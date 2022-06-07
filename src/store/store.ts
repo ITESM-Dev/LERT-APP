@@ -12,6 +12,7 @@ import { bandTypesReducer } from "./bandTypes";
 import { extraHoursReducer } from "./extraHours";
 import { delegateReducer } from "./delegates";
 import { currentPeriodReducer } from "./currentPeriod";
+import { managerFunctionsReducer } from "./managerFunctions";
 
 export const store = configureStore({
     reducer: combineReducers({
@@ -29,6 +30,7 @@ export const store = configureStore({
         bandTypes: bandTypesReducer,
         extraHours: extraHoursReducer,
         delegate: delegateReducer,
+        managerFunctions: managerFunctionsReducer,
     }),
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware().concat(api.middleware),
