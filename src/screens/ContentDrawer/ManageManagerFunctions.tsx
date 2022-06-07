@@ -15,27 +15,31 @@ import { AppDispatch } from "~store/store";
 
 import { allManagers } from "~store/managers/selectors";
 import LertScreen from "~components/organisms/LertScreen";
+import SearchInput from "~components/molecules/SearchInput";
+import { useGetManagerFunctionsQuery } from "~store/api";
 
 const dropdownItems = [
     { label: 'Active', value: 'active' },
     { label: 'Inactive', value: 'inactive' },
 ]
 
-const TABLE_HEADERS = ["Manager", "Status", "Last Update"]
+const TABLE_HEADERS = ["Manager", "Status", "Recovery Status", "Last Update"]
 
 const ManageManagerFunctions = () => {
-
-    let example = [
-        {Manager: "IBM1", Status: "Active", LastUpdate: "02/02/22"},
-        {Manager: "IBM2", Status: "Inactive", LastUpdate: "02/10/22"},
-    ]
 
     const [manager, setManager] = useState("");
 
     const [error, setError] = useState<string | null>(null)
 
+    useGetManagerFunctionsQuery()
+
     // Managers - State
     const managers = useSelector(allManagers);
+
+    /**
+     * @todo getAvailableManagers for SearchInput
+     * @todo assignManagerToOP
+     */
 
     const handleSubmit = () => {
 
@@ -45,31 +49,39 @@ const ManageManagerFunctions = () => {
         <LertScreen>
             
             <LertText 
-                text="Activate/Deactivate Manager Functions" 
+                text="Manager Functions" 
                 numberOfLines={2}
                 type={textTypes.display04} 
                 color={Theme.colors.text.primary} 
             />
 
             <Overlay 
-                minWidth={"60%"}
-                minHeight={"60%"}
-                buttonTitle="Do Something" 
+                minWidth={"20%"}
+                minHeight={"30%"}
+                buttonTitle="Assign Manager" 
                 handleSubmit={handleSubmit}
                 buttonType={"primary"}    
                 error={error}
                 setError={setError}        
             > 
-                <>
-                    <HStack space={2} justifyContent="space-evenly">
-                        <VStack alignItems={"flex-start"}>
-                            <LertText text="Manager" type={textTypes.heading} color={Theme.colors.text.primary}/>
-                            <LertInput text={manager} setText={setManager} placeholder={"Manager"}/>
-                            <LertText text="Status" type={textTypes.heading} color={Theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                            <Dropdown placeholder="Status" items={dropdownItems}/>
-                        </VStack>
-                    </HStack>
-                </>
+                <HStack 
+                    flex={1}
+                    justifyContent={'center'}
+                >
+                    <VStack>
+                        <LertText 
+                            text="Manager" 
+                            type={textTypes.heading} 
+                            color={Theme.colors.text.primary}
+                        />
+                        <SearchInput 
+                            placeholder={"Search Manager"}
+                            value={manager} 
+                            setValue={setManager} 
+                            items={[]}
+                        />
+                    </VStack>
+                </HStack>
 
             </Overlay>
 
@@ -78,8 +90,8 @@ const ManageManagerFunctions = () => {
             >
                 <Table 
                     headers={TABLE_HEADERS} 
-                    items={example} 
-                    flexValues={[1, 1, 1]} 
+                    items={managers} 
+                    flexValues={[1, 1, 1, 1]} 
                 />
             </Box>
 

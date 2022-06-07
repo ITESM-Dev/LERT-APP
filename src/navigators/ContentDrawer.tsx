@@ -152,13 +152,13 @@ const ContentDrawer = () => {
                             }}
                         />
                         <Drawer.Screen 
-                            name={CONTENT_DRAWER_SCREENS.EditManagerInformation}
-                            component={EditManagerInformation}
+                            name={CONTENT_DRAWER_SCREENS.Delegate}
+                            component={Delegate}
                             options={{
                                 drawerIcon: () => 
                                     <Ionicons 
                                         {...ICONS_STYLE}
-                                        name="pencil-outline" 
+                                        name="people-outline" 
                                     />
                             }}
                         />
@@ -244,18 +244,6 @@ const ContentDrawer = () => {
 
                 {role === USER_ROLES.ADMIN &&
                     <Drawer.Group>
-                        <Drawer.Screen 
-                            name={CONTENT_DRAWER_SCREENS.Delegate}
-                            component={Delegate}
-                            options={{
-                                drawerIcon: () => 
-                                    <Ionicons 
-                                        {...ICONS_STYLE}
-                                        name="people-outline" 
-                                    />
-                            }}
-                        />
-
                         <Drawer.Screen 
                             name={CONTENT_DRAWER_SCREENS.UserRoles}
                             component={UserRoles}
