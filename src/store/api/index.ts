@@ -5,6 +5,7 @@ import {
     useGetUserInfoQuery,
 
     // User Roles
+    useGetAllUsersQuery,
 	useUpdateUserRoleMutation,
 
     // Authentication
@@ -87,6 +88,7 @@ export {
 
     // User Roles
     UserRoleForm,
+    useGetAllUsersQuery,
 	useUpdateUserRoleMutation,
 
     // Authentication
