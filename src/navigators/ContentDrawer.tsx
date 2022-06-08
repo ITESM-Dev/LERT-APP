@@ -13,7 +13,6 @@ import Delegate from "~screens/ContentDrawer/Delegate";
 import Employee from "~screens/ContentDrawer/Employee";
 import ExtraHours from "~screens/ContentDrawer/ExtraHours";
 import ManageManagerFunctions from "~screens/ContentDrawer/ManageManagerFunctions";
-import EditManagerInformation from "~screens/ContentDrawer/EditManagerInformation";
 import Expenses from "~screens/ContentDrawer/Expenses";
 import Recovery from "~screens/ContentDrawer/Recovery";
 import ExpensesTypes from "~screens/ContentDrawer/ExpensesTypes";
@@ -22,12 +21,10 @@ import CurrentPeriod from "~screens/ContentDrawer/CurrentPeriod";
 import containerStyles from "~styles/containers";
 import FixedHeadingStyles from "~styles/fixedHeadings";
 import theme from "~theme/theme";
-import { useEffect } from "react";
-import LegalMenu from "~components/molecules/LegalMenu";
 import { CONTENT_DRAWER_SCREENS } from "~utils/screenNames";
 import { Box } from "native-base";
 import { USER_ROLES } from "~utils/constants";
-import UserRoles from "~screens/ContentDrawer/userRoles";
+//import UserRoles from "~screens/ContentDrawer/userRoles";
 
 
 const LABELS_STYLE = {
@@ -242,7 +239,7 @@ const ContentDrawer = () => {
                     </Drawer.Group>
                 }
 
-                {role === USER_ROLES.ADMIN &&
+                {/*role === USER_ROLES.ADMIN &&
                     <Drawer.Group>
                         <Drawer.Screen 
                             name={CONTENT_DRAWER_SCREENS.UserRoles}
@@ -256,7 +253,7 @@ const ContentDrawer = () => {
                             }}
                         />
                     </Drawer.Group>
-                }
+                        */}
 
             </Drawer.Navigator>
         </Box>

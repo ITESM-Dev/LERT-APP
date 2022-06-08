@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+    import { useEffect, useRef, useState } from "react";
 import { View, Animated } from "react-native";
 import { HStack, ScrollView, VStack } from "native-base";
 
