@@ -39,7 +39,7 @@ import {
 
     // ICA Admin
     useGetManagersIcaAdminQuery,
-    useAssignTokenAuthQuery,
+    useAssignTokenAuthMutation,
 	useLoginICAAdminMutation,
 
     // Expense,
@@ -151,7 +151,7 @@ export {
     ManagerIcaAdmin,
     LoginICAAdminForm,
     useGetManagersIcaAdminQuery,
-    useAssignTokenAuthQuery,
+    useAssignTokenAuthMutation,
 	useLoginICAAdminMutation,
 
     // Expense,

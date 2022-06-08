@@ -18,12 +18,13 @@ export const getManagersIcaAdmin = (builder: BuilderType) => (
 )
 
 export const assignTokenAuth = (builder: BuilderType) => (
-    builder.query<any, string>({
+    builder.mutation<any, string>({
         query: (managerMail) => ({
             url: 'assignTokenAuthenticator',
             method: 'POST',
             body: { managerMail },
-            validateStatus: validatePostStatus,
+            responseHandler: 'text',
+            validateStatus: validateGetStatus,
         }),
     })
 )
@@ -33,6 +34,9 @@ export const loginICAAdmin = (builder: BuilderType) => (
         query: (loginICAAdminForm) => ({
             url: 'loginICAAdmin',
             method: 'POST',
+            params: {
+                headers: loginICAAdminForm
+            },
             headers: loginICAAdminForm,
             validateStatus: validatePostStatus,
         }),

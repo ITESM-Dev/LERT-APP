@@ -273,7 +273,7 @@ export const {
 
 	// ICA Admin
 	useGetManagersIcaAdminQuery,
-	useAssignTokenAuthQuery,
+	useAssignTokenAuthMutation,
 	useLoginICAAdminMutation,
 
 	// Expenses
