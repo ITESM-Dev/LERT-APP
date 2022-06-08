@@ -37,8 +37,10 @@ import {
     useUpdateICAMutation,
     useDeleteICAMutation,
 
-    // Ica Admin
+    // ICA Admin
     useGetManagersIcaAdminQuery,
+    useAssignTokenAuthQuery,
+	useLoginICAAdminMutation,
 
     // Expense,
     useGetExpensesQuery,
@@ -79,6 +81,7 @@ import {
 import {
     UserRoleForm,
     LoginForm,
+    LoginICAAdminForm,
     SignUpForm,
     LogoutForm,
     BandTypeForm,
@@ -144,9 +147,12 @@ export {
     useDeleteICAMutation,
     useUpdateICAMutation,
 
-    // Ica Admin
+    // ICA Admin
     ManagerIcaAdmin,
+    LoginICAAdminForm,
     useGetManagersIcaAdminQuery,
+    useAssignTokenAuthQuery,
+	useLoginICAAdminMutation,
 
     // Expense,
     ExpenseForm,

@@ -13,6 +13,11 @@ export type LoginForm = {
     password: string;
 }
 
+export type LoginICAAdminForm = {
+    mailManager: string;
+    token: string;
+}
+
 export type SignUpForm = {
     name: string;
     mail: string;

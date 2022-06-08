@@ -2,7 +2,6 @@ import 'isomorphic-fetch'
 
 import { UserType } from "~store/user";
 import { BuilderType } from "./slice";
-import { GetUserInfoForm } from './types';
 
 export const getUserInfo = (builder: BuilderType) => (
     builder.query<UserType, void>({
@@ -10,6 +9,7 @@ export const getUserInfo = (builder: BuilderType) => (
             url: `getUserInfo`,
             validateStatus: (response) => 
                 response.status === 200
-        })
+        }),
+        providesTags: ["User"]
     })
 )

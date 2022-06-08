@@ -45,6 +45,8 @@ import {
 
 import {
 	getManagersIcaAdmin,
+	assignTokenAuth,
+	loginICAAdmin,
 } from './icaadmin'
 
 import { 
@@ -101,6 +103,7 @@ import {
 
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
+	"User" |
 	"BandTypes" | 
 	"Delegate"| 
 	"Employees" | 
@@ -137,6 +140,7 @@ export const api = createApi({
 		}
 	}),
 	tagTypes: [
+		"User",
 		"BandTypes",
 		"Delegate",
 		"Employees",
@@ -189,6 +193,8 @@ export const api = createApi({
 
 		// ICA Admin
 		getManagersIcaAdmin: getManagersIcaAdmin(builder),
+		assignTokenAuth: assignTokenAuth(builder),
+		loginICAAdmin: loginICAAdmin(builder),
 
 		// Expenses
 		getExpenses: getExpenses(builder),
@@ -265,8 +271,10 @@ export const {
 	useUpdateICAMutation,
 	useDeleteICAMutation,
 
-	// Ica Admin
+	// ICA Admin
 	useGetManagersIcaAdminQuery,
+	useAssignTokenAuthQuery,
+	useLoginICAAdminMutation,
 
 	// Expenses
 	useGetExpensesQuery,
