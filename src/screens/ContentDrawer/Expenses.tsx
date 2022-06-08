@@ -118,164 +118,168 @@ const Expenses = () => {
             
             <LertText text="Expenses" type={textTypes.display04} color={Theme.colors.text.primary}/>
 
-            <Overlay 
-                minWidth={"60%"}
-                minHeight={"60%"}
-                buttonTitle="Create Expense" 
-                handleSubmit={handleSubmit}
-                buttonType={"primary"}    
-                error={error}
-                setError={setError}        
-            > 
-                <>
-                    <HStack space={2} justifyContent="space-evenly">
-                        <VStack alignItems={"flex-start"}>
-                            <LertText 
-                                text="Type" 
-                                type={textTypes.heading} 
-                                color={Theme.colors.text.primary} 
-                                style={{paddingTop:"10%"}}
-                            />
-                            <SearchInput
-                                placeholder="Search Type"
-                                value={type}
-                                setValue={setType}
-                                items={
-                                    expenseTypesAPI.data 
-                                    ? expenseTypesAPI.data!.map(item => item.type)
-                                    : []
-                                }
-                            />
-                            <LertText 
-                                text="Employee Mail" 
-                                type={textTypes.heading} 
-                                color={Theme.colors.text.primary} 
-                                style={{paddingTop:"10%"}}
-                            />
-                            <SearchInput  
-                                placeholder={"Search Employee"}
-                                value={employeeMail}
-                                setValue={setEmployeeMail}
-                                items={
-                                    resources.data 
-                                    ? resources.data?.map(item => item.mail)
-                                    : []
-                                }
-                            />
-                            <LertText 
-                                text="Cost" 
-                                type={textTypes.heading} 
-                                color={Theme.colors.text.primary} 
-                                style={{paddingTop:"10%"}}
-                            />
-                            <LertInput 
-                                text={cost} 
-                                setText={setCost} 
-                                placeholder={"USD Cost"}
-                            />
-                            <LertText 
-                                text="Comment" 
-                                type={textTypes.heading} 
-                                color={Theme.colors.text.primary} 
-                                style={{paddingTop:"10%"}}
-                            />
-                            <LertInput 
-                                text={comment} 
-                                setText={setComment} 
-                                placeholder={"Comment"}
-                            />
-                        </VStack>
-                        <VStack alignItems={"flex-start"}>
-                            <LertText 
-                                text="Date" 
-                                type={textTypes.heading} 
-                                color={Theme.colors.text.primary} 
-                                style={{paddingTop:"10%"}}
-                            />
-                            <LertInput 
-                                text={date} 
-                                setText={setDate} 
-                                placeholder={"Date"}
-                            />
-                            <LertText 
-                                text="Current Period" 
-                                type={textTypes.heading} 
-                                color={Theme.colors.text.primary} 
-                                style={{paddingTop:"10%"}}
-                            />
-                            <SearchInput  
-                                placeholder={"Search Key"}
-                                value={key}
-                                setValue={setKey}
-                                items={currentPeriods.map(item => item.key.toString())}
-                            />
-                            <LertText 
-                                text="ICA" 
-                                type={textTypes.heading} 
-                                color={Theme.colors.text.primary} 
-                                style={{paddingTop:"10%"}}
-                            />
-                            <LertInput 
-                                text={ica} 
-                                isDisabled={true}
-                                setText={setIca} 
-                                placeholder={"ICA"}
-                            />
-                            
-                        </VStack>
-                    </HStack>
-                </>
-
-            </Overlay>
-                
-
-            <Overlay
-                minWidth={"40%"}
-                minHeight={"30%"}
-                buttonTitle="Generate Report" 
-                handleSubmit={generateExpenseReport}
-                buttonType={"secondary"}    
-                error={error}
-                setError={setError}  
-                style={{ marginTop: 15 }}
+            <HStack
+                flex={1}
+                justifyContent={'flex-end'}
             >
-                <HStack 
-                    space={2} 
-                    justifyContent="space-evenly"
+                <Overlay
+                    minWidth={"40%"}
+                    minHeight={"30%"}
+                    buttonTitle="Generate Report" 
+                    handleSubmit={generateExpenseReport}
+                    buttonType={"secondary"}    
+                    error={error}
+                    setError={setError} 
+                    style={{ marginRight: 5 }} 
                 >
-                    <VStack alignItems={"flex-start"}>
-                        <LertText 
-                        text="Start Date" 
-                        type={textTypes.heading} 
-                        color={Theme.colors.text.primary} 
-                        style={{paddingTop:"10%"}}
-                        />
-                        <LertInput 
-                            text={startDate} 
-                            setText={setStartDate} 
-                            placeholder={"YYYY-MM-DD"}
-                        />
-                    </VStack>
+                    <HStack 
+                        space={2} 
+                        justifyContent="space-evenly"
+                    >
+                        <VStack alignItems={"flex-start"}>
+                            <LertText 
+                            text="Start Date" 
+                            type={textTypes.heading} 
+                            color={Theme.colors.text.primary} 
+                            style={{paddingTop:"10%"}}
+                            />
+                            <LertInput 
+                                text={startDate} 
+                                setText={setStartDate} 
+                                placeholder={"YYYY-MM-DD"}
+                            />
+                        </VStack>
 
-                    <VStack alignItems={"flex-start"}>
-                        <LertText 
-                        text="End Date" 
-                        type={textTypes.heading} 
-                        color={Theme.colors.text.primary} 
-                        style={{paddingTop:"10%"}}
-                        />
-                        <LertInput 
-                            text={endDate} 
-                            setText={setEndDate} 
-                            placeholder={"YYYY-MM-DD"}
-                        />
-                    </VStack>
+                        <VStack alignItems={"flex-start"}>
+                            <LertText 
+                            text="End Date" 
+                            type={textTypes.heading} 
+                            color={Theme.colors.text.primary} 
+                            style={{paddingTop:"10%"}}
+                            />
+                            <LertInput 
+                                text={endDate} 
+                                setText={setEndDate} 
+                                placeholder={"YYYY-MM-DD"}
+                            />
+                        </VStack>
 
-                </HStack>
-            </Overlay>
+                    </HStack>
+                </Overlay>
+
+                <Overlay 
+                    minWidth={"60%"}
+                    minHeight={"60%"}
+                    buttonTitle="Create Expense" 
+                    handleSubmit={handleSubmit}
+                    buttonType={"primary"}    
+                    error={error}
+                    setError={setError}       
+                > 
+                    <>
+                        <HStack space={2} justifyContent="space-evenly">
+                            <VStack alignItems={"flex-start"}>
+                                <LertText 
+                                    text="Type" 
+                                    type={textTypes.heading} 
+                                    color={Theme.colors.text.primary} 
+                                    style={{paddingTop:"10%"}}
+                                />
+                                <SearchInput
+                                    placeholder="Search Type"
+                                    value={type}
+                                    setValue={setType}
+                                    items={
+                                        expenseTypesAPI.data 
+                                        ? expenseTypesAPI.data!.map(item => item.type)
+                                        : []
+                                    }
+                                />
+                                <LertText 
+                                    text="Employee Mail" 
+                                    type={textTypes.heading} 
+                                    color={Theme.colors.text.primary} 
+                                    style={{paddingTop:"10%"}}
+                                />
+                                <SearchInput  
+                                    placeholder={"Search Employee"}
+                                    value={employeeMail}
+                                    setValue={setEmployeeMail}
+                                    items={
+                                        resources.data 
+                                        ? resources.data?.map(item => item.mail)
+                                        : []
+                                    }
+                                />
+                                <LertText 
+                                    text="Cost" 
+                                    type={textTypes.heading} 
+                                    color={Theme.colors.text.primary} 
+                                    style={{paddingTop:"10%"}}
+                                />
+                                <LertInput 
+                                    text={cost} 
+                                    setText={setCost} 
+                                    placeholder={"USD Cost"}
+                                />
+                                <LertText 
+                                    text="Comment" 
+                                    type={textTypes.heading} 
+                                    color={Theme.colors.text.primary} 
+                                    style={{paddingTop:"10%"}}
+                                />
+                                <LertInput 
+                                    text={comment} 
+                                    setText={setComment} 
+                                    placeholder={"Comment"}
+                                />
+                            </VStack>
+                            <VStack alignItems={"flex-start"}>
+                                <LertText 
+                                    text="Date" 
+                                    type={textTypes.heading} 
+                                    color={Theme.colors.text.primary} 
+                                    style={{paddingTop:"10%"}}
+                                />
+                                <LertInput 
+                                    text={date} 
+                                    setText={setDate} 
+                                    placeholder={"Date"}
+                                />
+                                <LertText 
+                                    text="Current Period" 
+                                    type={textTypes.heading} 
+                                    color={Theme.colors.text.primary} 
+                                    style={{paddingTop:"10%"}}
+                                />
+                                <SearchInput  
+                                    placeholder={"Search Key"}
+                                    value={key}
+                                    setValue={setKey}
+                                    items={currentPeriods.map(item => item.key.toString())}
+                                />
+                                <LertText 
+                                    text="ICA" 
+                                    type={textTypes.heading} 
+                                    color={Theme.colors.text.primary} 
+                                    style={{paddingTop:"10%"}}
+                                />
+                                <LertInput 
+                                    text={ica} 
+                                    isDisabled={true}
+                                    setText={setIca} 
+                                    placeholder={"ICA"}
+                                />
+                                
+                            </VStack>
+                        </HStack>
+                    </>
+
+                </Overlay>
+            </HStack>
 
             <Box
-                marginTop={15}
+                marginTop={30}
             >
                 <Table 
                     headers={TABLE_HEADERS} 

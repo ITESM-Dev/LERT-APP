@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { HStack, VStack } from "native-base";
+import { Box, HStack, VStack } from "native-base";
 
 import { 
     ExpenseTypeForm,
@@ -78,11 +78,15 @@ const ExpensesTypes = () => {
 
             </Overlay>
 
-            <Table 
-                headers={TABLE_HEADERS} 
-                items={expenseTypes} 
-                flexValues={[1]} 
-            />
+            <Box
+                marginTop={30}
+            >
+                <Table 
+                    headers={TABLE_HEADERS} 
+                    items={expenseTypes} 
+                    flexValues={[1]} 
+                />
+            </Box>
 
         </LertScreen>
     )

@@ -331,7 +331,7 @@ const ICAS = () => {
             </Overlay>
 
             <Box
-                marginTop={10}
+                marginTop={30}
             >
                 <ExpandableTable 
                     headers={headers} 

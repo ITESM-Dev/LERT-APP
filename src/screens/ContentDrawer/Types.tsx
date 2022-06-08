@@ -140,7 +140,7 @@ const Types = () => {
 
             </Overlay>
 
-            <Box marginTop={5} >
+            <Box marginTop={30} >
                 <Table 
                     headers={TABLE_HEADERS} 
                     items={bandTypes} 
