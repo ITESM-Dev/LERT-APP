@@ -10,7 +10,9 @@ import Table from "~components/organisms/Table";
 
 import theme from "~theme/theme";
 import * as textTypes from '~styles/constants/textTypes';
-import { useGetManagersIcaAdminQuery } from "~store/api";
+import { LoginICAAdminForm, useAssignTokenAuthMutation, useGetManagersIcaAdminQuery, useLoginICAAdminMutation } from "~store/api";
+import { useSelector } from "react-redux";
+import { userSelector } from "~store/user";
 
 const TABLE_HEADERS = ["Manager"]
 
@@ -18,11 +20,29 @@ const ManagersForIcaAdmin = () => {
 
     const [manager, setManager] = useState("")
 
+    const user = useSelector(userSelector)
+
     // Managers assigned to ICA Admin
     const { data } = useGetManagersIcaAdminQuery()
 
-    const handleLogin = () => {
+    // Calls for Login In as Manager
+    const [assignTokenAuth] = useAssignTokenAuthMutation();
+    const [loginICAAdmin] =  useLoginICAAdminMutation()
 
+    const handleLogin = async () => {
+        
+        // @ts-ignore
+        const { data } = await assignTokenAuth(manager)
+        
+        const loginIcaAdminForm: LoginICAAdminForm = {
+            mailManager: manager,
+            token: data
+        }
+
+        loginICAAdmin(loginIcaAdminForm)
+            .unwrap()
+            .then(response => console.log(response))
+            .catch(error => console.error(error)) 
     }
 
     return (
