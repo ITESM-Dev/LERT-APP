@@ -64,6 +64,9 @@ import {
     useUpdateManagerFunctionsMutation,
     useSetOPManagerMutation,
     useGetManagersNoOpManagerQuery,
+
+    // Delegate
+    useGetManagersIcaAdminQuery,
 } from "./slice";
 
 import {
@@ -165,4 +168,7 @@ export {
     useUpdateManagerFunctionsMutation,
     useSetOPManagerMutation,
     useGetManagersNoOpManagerQuery,
+    // Delegate
+    useGetManagersIcaAdminQuery,
+
 }

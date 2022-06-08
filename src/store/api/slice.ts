@@ -86,11 +86,13 @@ import {
 	setOPManager,
 	getManagersNoOpManager,
 } from "./managerFunctions";
+	getManagersIcaAdmin,
+} from "./delegate"
 
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
 	"BandTypes" | 
-	"Delegates"| 
+	"Delegate"| 
 	"Employees" | 
 	"Expenses" | 
 	"ExpenseTypes" | 
@@ -126,7 +128,7 @@ export const api = createApi({
 	}),
 	tagTypes: [
 		"BandTypes",
-		"Delegates",
+		"Delegate",
 		"Employees",
 		"Expenses",
 		"ExpenseTypes",
@@ -202,6 +204,9 @@ export const api = createApi({
 		updateManagerFunctions: updateManagerFunctions(builder),
 		setOPManager: setOPManager(builder),
 		getManagersNoOpManager: getManagersNoOpManager(builder),
+
+		// Delegate
+		getManagersIcaAdmin: getManagersIcaAdmin(builder),
 	}),
 })
 
@@ -270,4 +275,7 @@ export const {
 	useUpdateManagerFunctionsMutation,
 	useSetOPManagerMutation,
 	useGetManagersNoOpManagerQuery,
+
+	// Delegate
+	useGetManagersIcaAdminQuery,
 } = api

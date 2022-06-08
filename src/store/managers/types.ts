@@ -1,7 +1,7 @@
 export type ManagerType = {
-    id: string;
+    id?: string;
     mail: string;
-    recoveryStatus: string;
-    status: string;
-    lastUpdated: string;
+    recoveryStatus?: string;
+    status?: string;
+    lastUpdate?: string;
 }

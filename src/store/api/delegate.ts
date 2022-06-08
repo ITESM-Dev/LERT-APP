@@ -8,14 +8,16 @@ export const getManagersIcaAdmin = (builder: BuilderType) => (
             url: "getManagersIcaAdmin",
             validateStatus: validateGetStatus,
         }),
-        provideTags: ["ManagersIcaAdmin"],
+        provideTags: ["Delegate"],
         transformResponse: (response) => {
             const managersIcaAdminAPI = response as ManagerType[]
 
             const managersIcaAdmin = managersIcaAdminAPI.map(item => ({
-                adminMail: item.mail,
-                managerMail: item.mail, //yeap something is wrong
-                status: item.status
+                mail: item.mail,
+                recoveryStatus: item.recoveryStatus,
+                status: item.status,
+                lastUpdate: item.lastUpdate,
+                id: item.id, //yeap something is wrong
             }))
 
             return managersIcaAdmin;
@@ -23,6 +25,7 @@ export const getManagersIcaAdmin = (builder: BuilderType) => (
     })
 )
 
+/*
 export const updateManagersIcaAdmin = (builder: BuilderType) => (
     builder.mutation<string, ManagerTypeForm>({
         query: (managerTypeForm) => ({
@@ -34,3 +37,4 @@ export const updateManagersIcaAdmin = (builder: BuilderType) => (
         invalidatesTags: ["Managers"]
     })
 )
+*/
