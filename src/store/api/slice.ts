@@ -82,6 +82,7 @@ import {
 	updateManagerFunctions,
 	getManagerFunctions,
 	setOPManager,
+	getManagersNoOpManager,
 } from "./managerFunctions";
 
 export type BuilderType = EndpointBuilder<
@@ -196,6 +197,7 @@ export const api = createApi({
 		getManagerFunctions: getManagerFunctions(builder),
 		updateManagerFunctions: updateManagerFunctions(builder),
 		setOPManager: setOPManager(builder),
+		getManagersNoOpManager: getManagersNoOpManager(builder),
 	}),
 })
 
@@ -261,4 +263,5 @@ export const {
 	useGetManagerFunctionsQuery,
 	useUpdateManagerFunctionsMutation,
 	useSetOPManagerMutation,
+	useGetManagersNoOpManagerQuery,
 } = api

@@ -24,6 +24,16 @@ export const getManagerFunctions = (builder: BuilderType) => (
     })
 )
 
+export const getManagersNoOpManager = (builder: BuilderType) => (
+    builder.query<any[], void>({
+        query: () => ({
+            url: 'getManagersNoOpManager',
+            validateStatus: validateGetStatus,
+        }),
+        providesTags: ["Managers"]
+    })
+)
+
 export const updateManagerFunctions = (builder: BuilderType) => (
     builder.mutation<string, ManagerFunctionsForm>({
         query: (managerFunctionsForm) => ({
@@ -42,6 +52,7 @@ export const setOPManager = (builder: BuilderType) => (
             url: "setOpManager",
             method: "POST",
             body: { managerMail },
+            responseHandler: 'text',
             validateStatus: validateUpdateStatus,
         }),
         invalidatesTags: ["Managers"],

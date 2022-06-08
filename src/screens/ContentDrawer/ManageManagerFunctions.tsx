@@ -16,7 +16,7 @@ import { AppDispatch } from "~store/store";
 import { allManagers } from "~store/managers/selectors";
 import LertScreen from "~components/organisms/LertScreen";
 import SearchInput from "~components/molecules/SearchInput";
-import { useGetManagerFunctionsQuery, useSetOPManagerMutation } from "~store/api";
+import { useGetManagerFunctionsQuery, useGetManagersNoOpManagerQuery, useSetOPManagerMutation } from "~store/api";
 
 const dropdownItems = [
     { label: 'Active', value: 'active' },
@@ -38,6 +38,9 @@ const ManageManagerFunctions = () => {
 
     // Set OPManager
     const [setOPManager, response] = useSetOPManagerMutation();
+
+    // Get Managers No Op Manager
+    const managersNoOpManager = useGetManagersNoOpManagerQuery();
 
     /**
      * @todo getAvailableManagers for SearchInput
@@ -91,7 +94,10 @@ const ManageManagerFunctions = () => {
                             placeholder={"Search Manager"}
                             value={manager} 
                             setValue={setManager} 
-                            items={[]}
+                            items={managersNoOpManager.data 
+                                ? managersNoOpManager.data.map(item => item.mail)
+                                : []
+                            }
                         />
                     </VStack>
                 </HStack>
