@@ -1,4 +1,4 @@
-import { BuilderType, validateGetStatus, validatePostStatus } from "./slice";
+import { BuilderType, validateDeleteStatus, validateGetStatus, validatePostStatus, validateUpdateStatus } from "./slice";
 import { CurrentPeriodForm } from "./types";
 import { CurrentPeriodType } from "~store/currentPeriod";
 
@@ -13,6 +13,30 @@ export const createCurrentPeriod = (builder: BuilderType) => (
             validateStatus: validatePostStatus
         }),
         invalidatesTags: ["CurrentPeriod"],
+    })
+)
+
+export const updateCurrentPeriod = (builder: BuilderType) => (
+    builder.mutation<string, CurrentPeriodForm>({
+        query: (currentPeriodForm) => ({
+            url: "updateCurrentPeriod",
+            method: "POST",
+            body: currentPeriodForm,
+            validateStatus: validateUpdateStatus
+        }),
+        invalidatesTags: ["CurrentPeriod"]
+    })
+)
+
+export const deleteCurrentPeriod = (builder: BuilderType) => (
+    builder.mutation<void, string>({
+        query: (id) => ({
+            url: "deleteCurrentPeriod",
+            method: "POST",
+            body: { id },
+            validateStatus: validateDeleteStatus
+        }),
+        invalidatesTags: ["CurrentPeriod"]
     })
 )
 

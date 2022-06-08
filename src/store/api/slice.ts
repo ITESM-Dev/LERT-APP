@@ -63,7 +63,9 @@ import {
 
 import { 
 	getCurrentPeriods, 
-	createCurrentPeriod, 
+	createCurrentPeriod,
+	updateCurrentPeriod,
+	deleteCurrentPeriod,
 } from "./currentPeriod"
 
 import {
@@ -192,6 +194,8 @@ export const api = createApi({
 		// CurrentPeriod
 		getCurrentPeriods: getCurrentPeriods(builder),
 		createCurrentPeriod: createCurrentPeriod(builder),
+		updateCurrentPeriod: updateCurrentPeriod(builder),
+		deleteCurrentPeriod: deleteCurrentPeriod(builder),
 
 		//ManagerFunctions
 		getManagerFunctions: getManagerFunctions(builder),
@@ -258,6 +262,8 @@ export const {
 	// Current Period
 	useGetCurrentPeriodsQuery,
 	useCreateCurrentPeriodMutation,
+	useUpdateCurrentPeriodMutation,
+	useDeleteCurrentPeriodMutation,
 
 	//Manager Funtcions
 	useGetManagerFunctionsQuery,

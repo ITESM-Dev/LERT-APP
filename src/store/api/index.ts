@@ -56,6 +56,8 @@ import {
     // Current Periods
     useGetCurrentPeriodsQuery,
     useCreateCurrentPeriodMutation,
+    useDeleteCurrentPeriodMutation,
+    useUpdateCurrentPeriodMutation,
 
     // Manager Functions
     useGetManagerFunctionsQuery,
@@ -155,6 +157,8 @@ export {
     CurrentPeriodForm,
     useGetCurrentPeriodsQuery,
     useCreateCurrentPeriodMutation,
+    useDeleteCurrentPeriodMutation,
+    useUpdateCurrentPeriodMutation,
 
     // Manager functions
     useGetManagerFunctionsQuery,
