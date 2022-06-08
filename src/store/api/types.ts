@@ -127,3 +127,11 @@ export type ManagerFunctionsForm = {
     recoveryStatus: string;
     lastUpdated: string;
 }
+export type ManagerIcaAdminType = {
+    managerMail: string;
+    icaAdminMail: string;
+}
+
+export type IcaAdminType = {
+    mail: string;
+}
