@@ -24,7 +24,7 @@ import theme from "~theme/theme";
 import { CONTENT_DRAWER_SCREENS } from "~utils/screenNames";
 import { Box } from "native-base";
 import { USER_ROLES } from "~utils/constants";
-import UserRoles from "~screens/ContentDrawer/userRoles";
+import UserRoles from "~screens/ContentDrawer/UserRoles";
 
 
 const LABELS_STYLE = {
