@@ -43,6 +43,10 @@ import {
 	deleteICA,
 } from "./ICAs"
 
+import {
+	getManagersIcaAdmin,
+} from './icaadmin'
+
 import { 
 	getExpenseTypes,
 	createExpenseType, 
@@ -183,6 +187,9 @@ export const api = createApi({
 		updateICA: updateICA(builder),
 		deleteICA: deleteICA(builder),
 
+		// ICA Admin
+		getManagersIcaAdmin: getManagersIcaAdmin(builder),
+
 		// Expenses
 		getExpenses: getExpenses(builder),
 		createExpense: createExpense(builder),
@@ -257,6 +264,9 @@ export const {
 	useCreateICAMutation,
 	useUpdateICAMutation,
 	useDeleteICAMutation,
+
+	// Ica Admin
+	useGetManagersIcaAdminQuery,
 
 	// Expenses
 	useGetExpensesQuery,

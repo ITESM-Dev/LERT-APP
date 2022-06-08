@@ -37,6 +37,9 @@ import {
     useUpdateICAMutation,
     useDeleteICAMutation,
 
+    // Ica Admin
+    useGetManagersIcaAdminQuery,
+
     // Expense,
     useGetExpensesQuery,
     useCreateExpenseMutation,
@@ -89,6 +92,7 @@ import {
     ManagerICA,
     EmployeeForm,
     ExpenseReportForm,
+    ManagerIcaAdmin,
 } from './types'
 
 export {
@@ -139,6 +143,10 @@ export {
     useCreateICAMutation,
     useDeleteICAMutation,
     useUpdateICAMutation,
+
+    // Ica Admin
+    ManagerIcaAdmin,
+    useGetManagersIcaAdminQuery,
 
     // Expense,
     ExpenseForm,

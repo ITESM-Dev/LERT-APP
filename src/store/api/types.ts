@@ -120,6 +120,7 @@ export type ExpenseReportForm = {
     startDate: string;
     endDate: string;
 }
+
 export type ManagerFunctionsForm = {
     id?: string;
     mail: string;
@@ -134,4 +135,7 @@ export type ManagerIcaAdminType = {
 
 export type IcaAdminType = {
     icaAdminMail: string;
+
+export type ManagerIcaAdmin = {
+    mail: string;
 }
