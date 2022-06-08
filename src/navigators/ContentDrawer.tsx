@@ -24,7 +24,7 @@ import theme from "~theme/theme";
 import { CONTENT_DRAWER_SCREENS } from "~utils/screenNames";
 import { Box } from "native-base";
 import { USER_ROLES } from "~utils/constants";
-//import UserRoles from "~screens/ContentDrawer/userRoles";
+import UserRoles from "~screens/ContentDrawer/userRoles";
 
 
 const LABELS_STYLE = {
@@ -239,7 +239,7 @@ const ContentDrawer = () => {
                     </Drawer.Group>
                 }
 
-                {/*role === USER_ROLES.ADMIN &&
+                {role === USER_ROLES.ADMIN &&
                     <Drawer.Group>
                         <Drawer.Screen 
                             name={CONTENT_DRAWER_SCREENS.UserRoles}
@@ -253,7 +253,7 @@ const ContentDrawer = () => {
                             }}
                         />
                     </Drawer.Group>
-                        */}
+                }
 
             </Drawer.Navigator>
         </Box>
