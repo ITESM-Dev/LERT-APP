@@ -17,6 +17,7 @@ export enum CONTENT_DRAWER_SCREENS {
     Home = "Home",
     ICAS = "ICAS",
     ManageManagerFunctions = "Manage Manager Functions",
+    ManagersForIcaAdmin = "Managers",
     Recovery = "Recovery",
     Types = "Types",
     UserRoles = "User Roles"
