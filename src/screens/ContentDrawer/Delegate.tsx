@@ -15,7 +15,7 @@ import LertScreen from "~components/organisms/LertScreen";
 import { userSelector, UserType } from "~store/user";
 import { USER_ROLES } from "~utils/constants";
 import Overlay from "~components/organisms/Overlay";
-import { useGetAvailableDelegatesQuery, useGetIcaAdminsQuery, useGetManagersAndIcaAdminsQuery, useSetIcaAdminMutation, useSetOPManagerMutation } from "~store/api";
+import { useGetAvailableDelegatesQuery, useGetIcaAdminManagerQuery, useGetIcaAdminsQuery, useGetManagersAndIcaAdminsQuery, useGetManagersNoIcaAdminsQuery, useOpAssignIcaAdminManagerMutation, useSetIcaAdminMutation, useSetOPManagerMutation } from "~store/api";
 import { ManagerIcaAdminType } from "~store/api/types";
 
 const TABLE_HEADERS = ["Manager", "ICA Admin"]
@@ -41,27 +41,17 @@ const Delegate = () => {
     // User - State
     const user = useSelector(userSelector) as UserType; //UserType?
 
+    // This is used on the button when confirming the input
     const [assignDelegate, responseOp] = useSetIcaAdminMutation();
-    const [assignBoth, responseIca] = useSetOPManagerMutation();
+    const [assignBoth, responseIca] = useOpAssignIcaAdminManagerMutation();
 
     //const [assignDelegate, response] = useState(null);
-
-    
-
-    /*  If user.role === manager
-            - Get All their delegates
-            - Disable Manager Mail Input
-        
-        If user.role !== manager
-            - Get All managers with their delegate
-    */
+    const availableManagers = useGetManagersNoIcaAdminsQuery();
 
     //This is for the Table 
-    var tableItems = useGetIcaAdminManager(); //currently does not exist
+    var tableItems = useGetIcaAdminManagerQuery(); //currently does not exist
     if(user.role === USER_ROLES.OP_MANAGER){
         tableItems = useGetManagersAndIcaAdminsQuery();
-    } else{
-        //
     }
 
     var availableDelegates = useGetAvailableDelegatesQuery()
@@ -129,7 +119,9 @@ const Delegate = () => {
                             value={manager}
                             setValue={setManager}
                             items={
-                                []
+                                availableManagers.data
+                                ? availableManagers.data?.map(item => item.mail)
+                                : []
                             }
                         />
                     </VStack>
@@ -163,11 +155,8 @@ const Delegate = () => {
                     flexValues={[1, 1]}
                     items={
                         tableItems.data
-                                ? tableItems.data?.map(item => ({
-                                    item.managerMail,
-                                    item.icaAdminMail,
-                                }))
-                                : []
+                        ? tableItems.data
+                        : []
                     }
                 />
             </View> 
