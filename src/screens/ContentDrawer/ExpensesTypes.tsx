@@ -75,7 +75,7 @@ const ExpensesTypes = () => {
         createExpenseType(expenseTypeForm)
             .unwrap()
             .then(() => resetForm())
-            .catch(error => setError(
+            .catch(_ => setError(
                 "Something went wrong, please try again"
             ))
     }
@@ -115,7 +115,7 @@ const ExpensesTypes = () => {
             <Overlay 
                 minWidth={"30%"} 
                 minHeight={"30%"} 
-                buttonTitle={isUpdate ? "Update Expense" : "Create expense"}
+                buttonTitle={isUpdate ? "Update Expense Type" : "Addxpense Type"}
                 handleSubmit={handleSubmit}
                 error={error}
                 setError={setError}
