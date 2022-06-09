@@ -66,6 +66,7 @@ export const updateICA = (builder: BuilderType) => (
             url: "updateIca",
             method: "POST",
             body: icaForm,
+            responseHandler: 'text',
             validateStatus: validateUpdateStatus
         }),
         invalidatesTags: ["ICAs"]
