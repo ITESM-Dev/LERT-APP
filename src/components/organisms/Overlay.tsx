@@ -67,7 +67,9 @@ const Overlay = (props: OverlayPropTypes) => {
                 initialFocusRef={initialFocusRef} 
                 isOpen={props.isOpen} 
                 onClose={() => {
-                    props.handleOnClose()
+                    props.handleOnClose !== undefined 
+                        ? props.handleOnClose()
+                        : undefined
                     props.setIsOpen(!props.isOpen)
                 }}
             >
