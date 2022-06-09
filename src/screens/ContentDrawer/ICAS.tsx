@@ -2,149 +2,31 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Box, HStack, VStack } from "native-base";
 
-import { ICAForm, useCreateICAMutation, useGetICAsQuery, useGetManagerFunctionsQuery } from "~store/api";
-import { allICAs } from "~store/ICAs";
+import { ICAForm, useCreateICAMutation, useGetICAsQuery, useGetManagerFunctionsQuery, useUpdateICAMutation } from "~store/api";
+import { allManagers } from "~store/managers";
+import { allICAs, ICAType } from "~store/ICAs";
 
 import LertText from '~components/atoms/LertText';
 import LertInput from '~components/molecules/LertInput';
 import ExpandableTable from "~components/molecules/ExpandableTable";
+import Dropdown from "~components/molecules/Dropdown";
+import SearchInput from "~components/molecules/SearchInput";
 import Overlay from '~components/organisms/Overlay';
 import LertScreen from "~components/organisms/LertScreen";
 
 import theme from "~theme/theme";
 import * as textTypes from '~styles/constants/textTypes';
-import Dropdown from "~components/molecules/Dropdown";
+
 import { dropdownCountries } from "~utils/constants";
-import SearchInput from "~components/molecules/SearchInput";
-import { allManagers } from "~store/managers";
 
-let data = [
-    {
-        status: "Active",
-        code: "A0jp65dd",
-        type: "type example", 
-        owner: "persona1@ibm.com",
-        startDate: "2019-04-06",
-        endDate: "2022-09-11",
-        budget: "$42,003",
-        totalBilling: "832022",
-        
-        year: "2022",
-        idPlanning: "523",
-        country: "Mexico",
-        depto: "CIO",
-        frequencyBill: "QUARTERLY",
-        cc: "M552",
-        ctyNamePerf: "781JLS",
-        ctyNameReq: "Ireland",
-        rCtyPerf: "781",
-        rCtyReq: "7831",
-        division: "1B",
-        major: "638",
-        minor: "234",
-        leru: "1d32",
-        description: "Brand new",
-        nec: "12345",
-        totalPlusTaxes: "231264",
-        icaCore: "omgomg",
-        id: "1",
-    },
-    {
-        status: "Active",
-        code: "A0jp65dd",
-        type: "type example", 
-        owner: "persona1@ibm.com",
-        startDate: "2019-04-06",
-        endDate: "2022-09-11",
-        budget: "$42,003",
-        totalBilling: "832022",
-        
-        year: "2022",
-        idPlanning: "523",
-        country: "Mexico",
-        depto: "CIO",
-        frequencyBill: "QUARTERLY",
-        cc: "M552",
-        ctyNamePerf: "781JLS",
-        ctyNameReq: "Ireland",
-        rCtyPerf: "781",
-        rCtyReq: "7831",
-        division: "1B",
-        major: "638",
-        minor: "234",
-        leru: "1d32",
-        description: "Brand new",
-        nec: "12345",
-        totalPlusTaxes: "231264",
-        icaCore: "omgomg",
-        id: "2",
-    },
-    {
-        status: "Active",
-        code: "A0jp65dd",
-        type: "type example", 
-        owner: "persona1@ibm.com",
-        startDate: "2019-04-06",
-        endDate: "2022-09-11",
-        budget: "$42,003",
-        totalBilling: "832022",
-
-        year: "2022",
-        idPlanning: "523",
-        country: "Mexico",
-        depto: "CIO",
-        frequencyBill: "QUARTERLY",
-        cc: "M552",
-        ctyNamePerf: "781JLS",
-        ctyNameReq: "Ireland",
-        rCtyPerf: "781",
-        rCtyReq: "7831",
-        division: "1B",
-        major: "638",
-        minor: "234",
-        leru: "1d32",
-        description: "Brand new",
-        nec: "12345",
-        totalPlusTaxes: "231264",
-        icaCore: "omgomg",
-        id: "3",
-    },
-    {
-        status: "Active",
-        code: "A0jp65dd",
-        type: "type example", 
-        owner: "persona1@ibm.com",
-        startDate: "2019-04-06",
-        endDate: "2022-09-11",
-        budget: "$42,003",
-        totalBilling: "832022",
-        
-        year: "2022",
-        idPlanning: "523",
-        country: "Mexico",
-        depto: "CIO",
-        frequencyBill: "QUARTERLY",
-        cc: "M552",
-        ctyNamePerf: "781JLS",
-        ctyNameReq: "Ireland",
-        rCtyPerf: "781",
-        rCtyReq: "7831",
-        division: "1B",
-        major: "638",
-        minor: "234",
-        leru: "1d32",
-        description: "Brand new",
-        nec: "12345",
-        totalPlusTaxes: "231264",
-        icaCore: "omgomg",
-        id: "4",
-    },
-]
 
 let headers=["Status", "Code", "Type", "Owner", "Start Date", "End Date", "Budget", "Total Billing"]
 
 const ICAS = () => {
 
+    const [id, setId] = useState("")
+    const [totalBilling, setTotalBilling] = useState("")
+    const [status, setStatus] = useState("")
     const [ICACode, setICACode] = useState("");
     const [ICACore, setICACore] = useState("");
     const [year, setYear] = useState("");
@@ -170,6 +52,11 @@ const ICAS = () => {
     const [startDate, setStartDate] = useState("");
     const [finishDate, setFinishDate] = useState("");
 
+    const [isUpdate, setIsUpdate] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+
+    const [error, setError] = useState<string | null>(null)
+
     // ICAs - State
     const ICAs = useSelector(allICAs);
     
@@ -181,10 +68,13 @@ const ICAS = () => {
 
     useGetManagerFunctionsQuery()
 
-    const [createICA, response] = useCreateICAMutation();
-    const [error, setError] = useState<string | null>(null)
+    const [createICA] = useCreateICAMutation();
+    const [updateICA] = useUpdateICAMutation();
 
     const resetForm = () => {
+        setId("")
+        setTotalBilling("")
+        setStatus("")
         setICACode("")
         setICACore("")
         setYear("")
@@ -214,6 +104,7 @@ const ICAS = () => {
 
     const handleSubmit = () => {
         const icaForm: ICAForm = {
+            id: id,
             icaCode: ICACode,
             icaCore: ICACore,
             year: year,
@@ -238,14 +129,70 @@ const ICAS = () => {
             totalPlusTaxes: totalPlusTaxes,
             startDate: startDate,
             endDate: finishDate,
+            totalBilling: totalBilling,
+            status: status
         }
 
+        if (isUpdate) {
+            updateICA(icaForm)
+                .unwrap()
+                .then(() => {
+                    resetForm()
+                    setIsUpdate(false)
+                })
+                .catch(_ =>  {
+                    resetForm()
+                    setIsUpdate(false)
+                    setError(
+                        "Something went wrong, please try again"
+                    )
+                })  
+            return
+        }
         createICA(icaForm)
             .unwrap()
             .then(() => resetForm())
-            .catch(error => setError(
+            .catch(_ => setError(
                 "Something went wrong, please try again"
             ))
+    }
+
+    const handleUpdate = (item: ICAType) => {
+        setId(item.id)
+        setTotalBilling(item.totalBilling)
+        setStatus(item.status)
+        setICACode(item.icaCode)
+        setICACore(item.icaCore)
+        setYear(item.year)
+        setIDPlanning(item.idPlanning)
+        setICAOwner(item.icaOwner)
+        setBudget(item.budget)
+        setCountry(item.country)
+        setDept(item.depto)
+        setFreqBill(item.frequencyBill)
+        setCC(item.cc)
+        setCityNamePerf(item.ctyNamePerf)
+        setCityNameReq(item.ctyNameReq)
+        setRCityPerf(item.rCtyPerf)
+        setRCityReq(item.rCtyReq)
+        setDivision(item.division)
+        setMajor(item.major)
+        setMinor(item.minor)
+        setLeru(item.leru)
+        setDescription(item.description)
+        setType(item.type)
+        setNec(item.nec)
+        setTotalPlusTaxes(item.totalPlusTaxes)
+        setStartDate(item.startDate)
+        setFinishDate(item.endDate)
+        
+        setIsUpdate(true)
+        setIsOpen(true)
+    }
+
+    const handleOnClose = () => {
+        setIsUpdate(false)
+        resetForm()
     }
 
     return (
@@ -260,10 +207,13 @@ const ICAS = () => {
                 minWidth={"65%"}
                 minHeight={"80%"}
                 buttonType={"primary"}
-                buttonTitle="Add ICA"
+                buttonTitle={isUpdate ? "Update ICA" : "Add ICA"}
                 handleSubmit={handleSubmit} 
+                handleOnClose={handleOnClose}
                 error={error} 
                 setError={setError}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
             > 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
@@ -354,6 +304,7 @@ const ICAS = () => {
                     headers={headers} 
                     items={ICAs} 
                     flexValues={[1, 1, 1, 1, 1, 1, 1, 1]}
+                    handleUpdate={handleUpdate}
                 />
             </Box>
 
