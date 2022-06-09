@@ -15,6 +15,7 @@ import LertScreen from "~components/organisms/LertScreen";
 import { userSelector, UserType } from "~store/user";
 import { USER_ROLES } from "~utils/constants";
 import Overlay from "~components/organisms/Overlay";
+import { useGetAvailableDelegatesQuery, useGetIcaAdminsQuery, useGetManagersAndIcaAdminsQuery } from "~store/api";
 
 const TABLE_HEADERS = ["Manager", "ICA Admin"]
 
@@ -27,10 +28,19 @@ const Delegate = () => {
     
     const [manager, setManager] = useState("")
     const [delegate, setDelegate] = useState("")
+
     const [error, setError] = useState<string | null>(null)
 
+    const resetForm = () => {
+        setManager("");
+        setDelegate("");
+        setError(null);
+    }
+
     // User - State
-    const user = useSelector(userSelector) as UserType;
+    const user = useSelector(userSelector) as UserType; //UserType?
+
+    //
 
     /*  If user.role === manager
             - Get All their delegates
@@ -39,6 +49,18 @@ const Delegate = () => {
         If user.role !== manager
             - Get All managers with their delegate
     */
+
+    //This is for the Table 
+    if(user.role === USER_ROLES.OP_MANAGER){
+        useGetManagersAndIcaAdminsQuery();
+    } else{
+        //
+    }
+
+    var availableDelegates = useGetAvailableDelegatesQuery()
+    if(user.role === USER_ROLES.OP_MANAGER){
+        availableDelegates = useGetIcaAdminsQuery();
+    }
 
     useEffect(() => {
         if (user.role === USER_ROLES.MANAGER) {
@@ -77,11 +99,13 @@ const Delegate = () => {
                         marginX={10}
                     >
                         <SearchInput 
-                            items={example.map(item => item.ManagerMail)}
                             isDisabled={user.role === USER_ROLES.MANAGER}
                             placeholder={"Search Manager"}
                             value={manager}
                             setValue={setManager}
+                            items={
+                                []
+                            }
                         />
                     </VStack>
 
@@ -90,10 +114,14 @@ const Delegate = () => {
                         marginX={10}
                     >
                         <SearchInput 
-                            items={example.map(item => item.AdminMail)}
                             placeholder={"Search ICA Admin"}
                             value={delegate}
                             setValue={setDelegate}
+                            items={
+                                availableDelegates.data
+                                ? availableDelegates.data?.map(item => item.icaAdminMail)
+                                : []
+                            }
                         />
                     </VStack>
                 </HStack>
