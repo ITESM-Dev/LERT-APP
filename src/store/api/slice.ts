@@ -86,7 +86,13 @@ import {
 	setOPManager,
 	getManagersNoOpManager,
 } from "./managerFunctions";
-	getManagersIcaAdmin,
+
+import {
+	getManagersAndIcaAdmins,
+	getIcaAdmins,
+	opAssignIcaAdminManager,
+	setIcaAdmin,
+	getAvailableDelegates,
 } from "./delegate"
 
 export type BuilderType = EndpointBuilder<
@@ -206,7 +212,11 @@ export const api = createApi({
 		getManagersNoOpManager: getManagersNoOpManager(builder),
 
 		// Delegate
-		getManagersIcaAdmin: getManagersIcaAdmin(builder),
+		getManagersAndIcaAdmins: getManagersAndIcaAdmins(builder),
+		getIcaAdmins: getIcaAdmins(builder),
+		opAssignIcaAdminManager: opAssignIcaAdminManager(builder),
+		setIcaAdmin: setIcaAdmin(builder),
+		getAvailableDelegates: getAvailableDelegates(builder),
 	}),
 })
 
@@ -277,5 +287,9 @@ export const {
 	useGetManagersNoOpManagerQuery,
 
 	// Delegate
-	useGetManagersIcaAdminQuery,
+	useGetManagersAndIcaAdminsQuery,
+	useGetIcaAdminsQuery,
+	useOpAssignIcaAdminManagerMutation,
+	useSetIcaAdminMutation,
+	useGetAvailableDelegatesQuery,
 } = api
