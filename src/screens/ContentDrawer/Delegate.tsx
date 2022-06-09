@@ -21,15 +21,11 @@ import { ManagerIcaAdminType } from "~store/api/types";
 const TABLE_HEADERS = ["Manager", "ICA Admin"]
 
 const Delegate = () => {
-
-    let example = [
-        { ManagerMail: "manager1@ibm.com", AdminMail: "admin1@ibm.com" },
-        { ManagerMail: "manager2@ibm.com", AdminMail: "admin2@ibm.com" },
-    ]
     
     const [manager, setManager] = useState("")
     const [delegate, setDelegate] = useState("")
 
+    const [isOpen, setIsOpen] = useState(false)
     const [error, setError] = useState<string | null>(null)
 
     const resetForm = () => {
@@ -49,15 +45,13 @@ const Delegate = () => {
     const availableManagers = useGetManagersNoIcaAdminsQuery();
 
     //This is for the Table 
-    var tableItems = useGetIcaAdminManagerQuery(); //currently does not exist
-    if(user.role === USER_ROLES.OP_MANAGER){
-        tableItems = useGetManagersAndIcaAdminsQuery();
-    }
+    const tableItems = user.role === USER_ROLES.OP_MANAGER
+        ? useGetManagersAndIcaAdminsQuery()
+        : useGetIcaAdminManagerQuery();
 
-    var availableDelegates = useGetAvailableDelegatesQuery()
-    if(user.role === USER_ROLES.OP_MANAGER){
-        availableDelegates = useGetIcaAdminsQuery();
-    }
+    const availableDelegates = user.role === USER_ROLES.OP_MANAGER
+        ? useGetAvailableDelegatesQuery()
+        : useGetIcaAdminsQuery();
 
     useEffect(() => {
         if (user.role === USER_ROLES.MANAGER) {
@@ -70,7 +64,7 @@ const Delegate = () => {
             managerMail: manager,
             icaAdminMail: delegate,
         }
-        if (user.role === USER_ROLES.MANAGER){
+        if (user.role === USER_ROLES.OP_MANAGER){
             assignBoth(delegateForm)
                 .unwrap()
                 .then(() => resetForm())
@@ -103,6 +97,8 @@ const Delegate = () => {
                 buttonType={"primary"}    
                 error={error}
                 setError={setError}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
             >
                 <HStack
                     space={2}
