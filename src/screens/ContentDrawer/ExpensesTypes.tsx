@@ -30,7 +30,9 @@ const ExpensesTypes = () => {
 
     const [isUpdate, setIsUpdate] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
-
+    
+    const [error, setError] = useState<string | null>(null)
+    
     // Expenses - State
     const expenseTypes = useSelector(allExpenseTypes);
 
@@ -41,9 +43,9 @@ const ExpensesTypes = () => {
     const [updateExpenseType] = useUpdateExpenseTypeMutation()
     const [deleteExpenseType] = useDeleteExpenseTypeMutation()
 
-    const [error, setError] = useState<string | null>(null)
 
     const resetForm = () => {
+        setId("")
         setName("")
     }
 
@@ -95,6 +97,11 @@ const ExpensesTypes = () => {
             ))
     }
 
+    const handleOnClose = () => {
+        setIsUpdate(false)
+        resetForm()
+    }
+
     return (
         <LertScreen>
             
@@ -114,11 +121,14 @@ const ExpensesTypes = () => {
                 setError={setError}
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
+                handleOnClose={handleOnClose}
             > 
-                <VStack alignItems={"center"}>
+            <HStack flex={1} justifyContent={'center'}>
+                <VStack alignItems={"flex-start"}>
                     <LertText text="Name" type={textTypes.heading} color={Theme.colors.text.primary}/>
                     <LertInput text={name} setText={setName} placeholder={"Name"}/>
                 </VStack>
+            </HStack>
 
             </Overlay>
     
