@@ -13,6 +13,11 @@ export type LoginForm = {
     password: string;
 }
 
+export type LoginICAAdminForm = {
+    mailManager: string;
+    token: string;
+}
+
 export type SignUpForm = {
     name: string;
     mail: string;
@@ -120,6 +125,7 @@ export type ExpenseReportForm = {
     startDate: string;
     endDate: string;
 }
+
 export type ManagerFunctionsForm = {
     id?: string;
     mail: string;
@@ -134,4 +140,8 @@ export type ManagerIcaAdminType = {
 
 export type IcaAdminType = {
     icaAdminMail: string;
+}
+
+export type ManagerIcaAdmin = {
+    mail: string;
 }

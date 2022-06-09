@@ -25,6 +25,7 @@ import { CONTENT_DRAWER_SCREENS } from "~utils/screenNames";
 import { Box } from "native-base";
 import { USER_ROLES } from "~utils/constants";
 import UserRoles from "~screens/ContentDrawer/UserRoles";
+import ManagersForIcaAdmin from "~screens/ContentDrawer/ManagersForIcaAdmin";
 
 
 const LABELS_STYLE = {
@@ -226,8 +227,8 @@ const ContentDrawer = () => {
                 {role === USER_ROLES.ICA_ADMIN &&
                     <Drawer.Group>
                         <Drawer.Screen 
-                            name={CONTENT_DRAWER_SCREENS.Employee}
-                            component={Employee}
+                            name={CONTENT_DRAWER_SCREENS.ManagersForIcaAdmin}
+                            component={ManagersForIcaAdmin}
                             options={{
                                 drawerIcon: () => 
                                     <Ionicons 
