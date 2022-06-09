@@ -1,6 +1,6 @@
 import { ManagerType } from "~store/managers";
 import { BuilderType, validateGetStatus, validatePostStatus, validateUpdateStatus } from "./slice";
-import { IcaAdminType, ManagerIcaAdminType } from "./types";
+import { IcaAdminManager, IcaAdminType, ManagerIcaAdminType } from "./types";
 
 export const getManagersAndIcaAdmins = (builder: BuilderType) => (
     builder.query<ManagerIcaAdminType[], void>({
@@ -83,19 +83,17 @@ export const getAvailableDelegates = (builder: BuilderType) => (
 )
 
 export const getIcaAdminManager = (builder: BuilderType) => (
-    builder.query<ManagerIcaAdminType[], void>({
+    builder.query<IcaAdminManager[], void>({
         query: () => ({
             url: "getICAAdminManager",
             validateStatus: validateGetStatus,
         }),
         providesTags: ["Delegate"],
-        transformResponse: (response) => {
-            const icaAdminManagersAPI = response as ManagerIcaAdminType[]
- 
-            const icaAdminManagers = icaAdminManagersAPI.map(item => ({
-                managerMail: item.managerMail,
-                icaAdminMail: item.icaAdminMail,
-            }))
+        transformResponse: (response: any[]) => { 
+            const icaAdminManagers = response.map(item => ({
+                icaMail: item.icaMail,
+                idICA_Admin: item.idICA_Admin,
+            }) as IcaAdminManager)
  
             return icaAdminManagers;
         }

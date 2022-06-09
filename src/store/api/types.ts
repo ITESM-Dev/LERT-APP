@@ -142,8 +142,7 @@ export type IcaAdminType = {
     icaAdminMail: string;
 }
 
-/*
-export type ManagerType = {
-    managerMail: string;
+export type IcaAdminManager = {
+    icaMail: string;
+    idICA_Admin: string;
 }
-*/
