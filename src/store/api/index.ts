@@ -97,7 +97,7 @@ import {
     ManagerICA,
     EmployeeForm,
     ExpenseReportForm,
-    ManagerIcaAdmin,
+    ManagerIcaAdminType,
 } from './types'
 
 export {
@@ -150,7 +150,7 @@ export {
     useUpdateICAMutation,
 
     // ICA Admin
-    ManagerIcaAdmin,
+    ManagerIcaAdminType,
     LoginICAAdminForm,
     useGetManagersIcaAdminQuery,
     useAssignTokenAuthMutation,
