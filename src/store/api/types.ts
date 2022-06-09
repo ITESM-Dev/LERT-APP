@@ -53,6 +53,7 @@ export type ExtraHourForm = {
 }
 
 export type ICAForm = {
+    id: string;
     icaCode: string,
     icaCore: string,
     year: string,
@@ -77,6 +78,8 @@ export type ICAForm = {
     totalPlusTaxes: string,
     startDate: string,
     endDate: string,
+    totalBilling?: string;
+    status?: string;
 }
 
 export type ExpensesForQuarterForm = {

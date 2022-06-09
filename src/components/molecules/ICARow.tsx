@@ -15,7 +15,8 @@ type ICARowPropTypes = {
     icaInfo: Array<any>;
     flexValues: Array<number>;
     amount: number;
-    overlay: Array<any>;
+    originalObj: any;
+    handleUpdate: (item: any) => void;
 }
 
 const headers = [
@@ -38,15 +39,6 @@ const headers = [
     "TotalPlusTaxes",
     "ICA Core"
 ]
-
-const extractValues = (myData: any) => {
-    let values: any = [];
-    const objectArray = Object.entries(myData);
-    objectArray.forEach(([key, value]) => {
-        values.push(value);
-    })
-    return values;
-}
 
 const ICARow = (props: ICARowPropTypes) => {
 
@@ -75,6 +67,8 @@ const ICARow = (props: ICARowPropTypes) => {
                     items={firstRow(props.items)}
                     flexValues={props.flexValues}
                     amount={props.amount}
+                    originalObj={props.originalObj}
+                    handleUpdate={props.handleUpdate}
                 />
                 
             </TouchableOpacity>
@@ -113,28 +107,7 @@ const ICARow = (props: ICARowPropTypes) => {
                                 </View> 
                             }
                             numColumns={6}
-                        />
-
-                        <Box 
-                            style={{
-                                flexDirection:'column', 
-                                alignContent: 'space-between', 
-                                backgroundColor: theme.colors.components.offWhite
-                            }}
-                        >
-                            { props.overlay.map( rowOverlay => 
-                                <View 
-                                    style={{
-                                        marginHorizontal: '10%', 
-                                        marginRight: '5%'
-                                    }}
-                                >
-                                    {rowOverlay}
-                                </View>
-                            )}                  
-                            
-                                                
-                        </Box>     
+                        />   
 
                     </View>
                 </>
