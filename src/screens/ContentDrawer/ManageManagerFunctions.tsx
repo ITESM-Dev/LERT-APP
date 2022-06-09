@@ -29,6 +29,7 @@ const ManageManagerFunctions = () => {
 
     const [manager, setManager] = useState("");
 
+    const [isOpen, setIsOpen] = useState(false)
     const [error, setError] = useState<string | null>(null)
 
     useGetManagerFunctionsQuery()
@@ -41,11 +42,6 @@ const ManageManagerFunctions = () => {
 
     // Get Managers No Op Manager
     const managersNoOpManager = useGetManagersNoOpManagerQuery();
-
-    /**
-     * @todo getAvailableManagers for SearchInput
-     * @todo assignManagerToOP
-     */
 
     const resetForm = () => {
         setManager("")
@@ -78,7 +74,9 @@ const ManageManagerFunctions = () => {
                 handleSubmit={handleSubmit}
                 buttonType={"primary"}    
                 error={error}
-                setError={setError}        
+                setError={setError}   
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}      
             > 
                 <HStack 
                     flex={1}
