@@ -14,14 +14,16 @@ import { AppDispatch } from "~store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { allBandTypes } from "~store/bandTypes/selectors";
 import LertScreen from "~components/organisms/LertScreen";
-import { BandTypeForm, useCreateBandTypeMutation, useGetBandTypesQuery } from "~store/api";
+import { BandTypeForm, useCreateBandTypeMutation, useDeleteBandTypeMutation, useGetBandTypesQuery, useUpdateBandTypeMutation } from "~store/api";
 import { useEffect } from "react";
 import { dropdownCountries } from "~utils/constants";
+import { BandTypesType } from "~store/bandTypes";
 
 const TABLE_HEADERS = ["Type", "Country", "Band", "Rate", "Date of Start", "Date of Finish"]
 
 const Types = () => {
 
+    const [id, setId] = useState("")
     const [type, setType] = useState("");
     const [country, setCountry] = useState("");
     const [band, setBand] = useState("");
@@ -29,18 +31,39 @@ const Types = () => {
     const [startDate, setStartDate] = useState("");
     const [finishDate, setFinishDate] = useState("");
 
-    // Band Types - State
-    const bandTypes = useSelector(allBandTypes);
+    const [isUpdate, setIsUpdate] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
 
-    // API Calls
-    const [createBandType, response] = useCreateBandTypeMutation()
+    const [error, setError] = useState<string | null>(null)
 
     // Subscribe to Get BandTypes API Call
     useGetBandTypesQuery()
 
+    // Band Types - State
+    const bandTypes = useSelector(allBandTypes);
+
+    // API Calls
+    const [createBandType] = useCreateBandTypeMutation()
+    const [updateBandType] = useUpdateBandTypeMutation()
+    const [deleteBandType] = useDeleteBandTypeMutation()
+
+
+    // Function for clearing out inputs and error state
+    const resetForm = () => {
+        setId("")
+        setType("")
+        setBand("")
+        setCountry("")
+        setRate("")
+        setStartDate("")
+        setFinishDate("")
+        setError(null)
+    }
+
     const handleSubmit = () => {
 
         const bandTypeForm: BandTypeForm = {
+            id: id,
             type: type,
             band: band,
             country: country,
@@ -49,9 +72,54 @@ const Types = () => {
             yearlyRate: rate
         }
 
+        if (isUpdate) {
+            updateBandType(bandTypeForm)
+                .unwrap()
+                .then(() => {
+                    resetForm()
+                    setIsUpdate(false)
+                })
+                .catch(_ =>  {
+                    resetForm()
+                    setIsUpdate(false)
+                    setError(
+                        "Something went wrong, please try again"
+                    )
+                })  
+            return
+        }
         createBandType(bandTypeForm)
             .unwrap()
-            .catch(error => alert(error))
+            .catch(error => setError(
+                "Something went wrong, please try again"
+            ))
+    }
+
+    const handleUpdate = (item: BandTypesType) => {
+        setId(item.id)
+        setType(item.type)
+        setBand(item.band)
+        setCountry(item.country)
+        setRate(item.yearlyRate.toString())
+        setStartDate(item.dateToStart)
+        setFinishDate(item.dateToFinish)
+        
+        setIsUpdate(true)
+        setIsOpen(true)
+    }
+
+    const handleDelete = (item: BandTypesType) => {
+        deleteBandType(item.id)
+            .unwrap()
+            .then(() => alert("Deleted"))
+            .catch(_ => setError(
+                "Something went wrong, please try again"
+            ))
+    }
+
+    const handleOnClose = () => {
+        setIsUpdate(false)
+        resetForm()
     }
 
     return (
@@ -62,9 +130,14 @@ const Types = () => {
             <Overlay    
                 minWidth={"50%"} 
                 minHeight={"50%"} 
-                buttonTitle="Create Band Type"
+                buttonTitle={isUpdate ? "Update Band Type" : "Add Band Type"}
                 handleSubmit={handleSubmit}
                 buttonType={"primary"}
+                error={error}
+                setError={setError}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                handleOnClose={handleOnClose}
             > 
                 <>
                     <HStack space={2} justifyContent="space-evenly">
@@ -145,6 +218,8 @@ const Types = () => {
                     headers={TABLE_HEADERS} 
                     items={bandTypes} 
                     flexValues={[1, 1, 1, 1, 2, 2]}
+                    handleUpdate={handleUpdate}
+                    handleDelete={handleDelete}
                 />
             </Box>
 
