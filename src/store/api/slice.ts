@@ -87,10 +87,18 @@ import {
 	getManagersNoOpManager,
 } from "./managerFunctions";
 
+import {
+	getManagersAndIcaAdmins,
+	getIcaAdmins,
+	opAssignIcaAdminManager,
+	setIcaAdmin,
+	getAvailableDelegates,
+} from "./delegate"
+
 export type BuilderType = EndpointBuilder<
 	BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, 
 	"BandTypes" | 
-	"Delegates"| 
+	"Delegate"| 
 	"Employees" | 
 	"Expenses" | 
 	"ExpenseTypes" | 
@@ -126,7 +134,7 @@ export const api = createApi({
 	}),
 	tagTypes: [
 		"BandTypes",
-		"Delegates",
+		"Delegate",
 		"Employees",
 		"Expenses",
 		"ExpenseTypes",
@@ -202,6 +210,13 @@ export const api = createApi({
 		updateManagerFunctions: updateManagerFunctions(builder),
 		setOPManager: setOPManager(builder),
 		getManagersNoOpManager: getManagersNoOpManager(builder),
+
+		// Delegate
+		getManagersAndIcaAdmins: getManagersAndIcaAdmins(builder),
+		getIcaAdmins: getIcaAdmins(builder),
+		opAssignIcaAdminManager: opAssignIcaAdminManager(builder),
+		setIcaAdmin: setIcaAdmin(builder),
+		getAvailableDelegates: getAvailableDelegates(builder),
 	}),
 })
 
@@ -270,4 +285,11 @@ export const {
 	useUpdateManagerFunctionsMutation,
 	useSetOPManagerMutation,
 	useGetManagersNoOpManagerQuery,
+
+	// Delegate
+	useGetManagersAndIcaAdminsQuery,
+	useGetIcaAdminsQuery,
+	useOpAssignIcaAdminManagerMutation,
+	useSetIcaAdminMutation,
+	useGetAvailableDelegatesQuery,
 } = api
