@@ -14,6 +14,7 @@ import * as textTypes from '~styles/constants/textTypes';
 
 type OverlayPropTypes = {
     children: JSX.Element;
+    title?: string;
     error?: string | null;
     setError?: Dispatch<SetStateAction<string | null>>;
     minWidth: string | number;
@@ -22,6 +23,8 @@ type OverlayPropTypes = {
     buttonTitle: string | any;
     buttonType?: "primary" | "secondary" | "terciary" | "danger" | "ghost" | "icon";
 
+    isOpen: boolean;
+    setIsOpen: Dispatch<SetStateAction<boolean>>;
     style?: ViewStyle; 
 }
 
@@ -31,7 +34,6 @@ type OverlayPropTypes = {
  */
 const Overlay = (props: OverlayPropTypes) => {
 
-    const [isOpen, setIsOpen] = useState(false);
     const initialFocusRef = React.useRef(null);
 
     return (
@@ -45,7 +47,7 @@ const Overlay = (props: OverlayPropTypes) => {
             >
                 <LertButton 
                     title={props.buttonTitle} 
-                    onPress={() => setIsOpen(true)}
+                    onPress={() => props.setIsOpen(true)}
                     type={props.buttonType ? props.buttonType : "primary"}  
                 />    
             
@@ -60,14 +62,18 @@ const Overlay = (props: OverlayPropTypes) => {
                 }
             </Box>
 
-            <Modal initialFocusRef={initialFocusRef} isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
+            <Modal 
+                initialFocusRef={initialFocusRef} 
+                isOpen={props.isOpen} 
+                onClose={() => props.setIsOpen(!props.isOpen)}
+            >
                 <Modal.Content 
                     minWidth={props.minWidth} 
                     minHeight={props.minHeight} 
                     style={{backgroundColor:theme.colors.text.white}}
                 >
-                    <Modal.Header>{props.buttonTitle}</Modal.Header>
-                    <Modal.CloseButton onPress={() => setIsOpen(false)} />
+                    <Modal.Header>{props.buttonTitle ? props.title : props.buttonTitle}</Modal.Header>
+                    <Modal.CloseButton onPress={() => props.setIsOpen(false)} />
 
                     <Modal.Body style={{ marginTop:"5%" }}>
                         {props.children}
@@ -85,7 +91,7 @@ const Overlay = (props: OverlayPropTypes) => {
                             type="primary" 
                             onPress={() => {
                                 props.handleSubmit()
-                                setIsOpen(false)
+                                props.setIsOpen(false)
                             }}
                         />
                     </Modal.Footer>

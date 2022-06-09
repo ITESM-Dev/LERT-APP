@@ -11,6 +11,8 @@ type TablePropTypes = {
     headers: Array<string>;
     items: Array<any>;
     flexValues: Array<number>;
+    handleUpdate?: (item: any) => void;
+    handleDelete?: (item: any) => void;
 }
 
 const extractValues = (myData: any) => {
@@ -36,10 +38,15 @@ const Table = (props: TablePropTypes) => {
                 data={props.items}
                 renderItem={({ item }) => (
                     <TableItem 
+                        originalObj={item}
+
                         items={extractValues(item)} 
+                        
                         flexValues={props.flexValues} 
                         styles={{ backgroundColor: Theme.colors.components.offWhite }} 
                         amount={props.headers.length}
+                        handleUpdate={props.handleUpdate}
+                        handleDelete={props.handleDelete}
                     />
                 )}
                 keyExtractor={( item, index ) => index.toString()}

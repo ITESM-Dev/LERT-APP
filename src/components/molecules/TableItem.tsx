@@ -1,15 +1,23 @@
-import { Box, Tooltip } from "native-base";
+import { Box, HStack, Tooltip, VStack } from "native-base";
 import { ViewStyle } from "react-native";
+import Ionicons from '@expo/vector-icons/Ionicons';
+
+import LertButton from "~components/atoms/LertButton";
 import LertText from "~components/atoms/LertText";
 
 import * as textTypes from '~styles/constants/textTypes';
 import Theme from '~theme/theme';
+import Overlay from "~components/organisms/Overlay";
+import { useState } from "react";
 
 type TableItemPropTypes = {
     items: Array<any>;
     flexValues: Array<number>;
     styles?: ViewStyle;
     amount: number;
+    originalObj?: any;
+    handleUpdate?: (item: any) => void;
+    handleDelete?: (item: any) => void;
 }
 
 /**
@@ -24,7 +32,9 @@ type TableItemPropTypes = {
  * ['Item 1'  'Item 2'       'Item 3'           ]
  * 
  */
-const TableItem = ({ items, flexValues, styles, amount }: TableItemPropTypes) => {
+const TableItem = ({ originalObj, items, flexValues, styles, amount, handleUpdate, handleDelete }: TableItemPropTypes) => {
+
+    const [overlayOpen, setOverlayOpen] = useState(false);
 
     return (
         <Box
@@ -56,6 +66,59 @@ const TableItem = ({ items, flexValues, styles, amount }: TableItemPropTypes) =>
                     )
                 }
             } )}
+
+            
+            <HStack>
+                { handleUpdate !== undefined && 
+                    <LertButton 
+                        type={"icon"}
+                        title={
+                            <Ionicons
+                                style={{
+                                    marginHorizontal: '10%',
+                                    height: '15%',
+                                }}
+                                name="create-outline"
+                                onPress={() => handleUpdate!(originalObj) }
+                            />
+                        }
+                        onPress={() => { handleUpdate!(originalObj)} }
+                    />
+                }
+                { handleDelete !== undefined && 
+
+                    <Overlay 
+                        title="Confirm Delete"
+                        buttonTitle={
+                            <Ionicons
+                                style={{
+                                    marginHorizontal: '10%',
+                                    height: '15%',
+                                }}
+                                name="trash-outline"
+                            />
+                        }
+                        buttonType={"icon"} 
+                        minWidth={'30%'} 
+                        minHeight={'20%'} 
+                        isOpen={overlayOpen}
+                        setIsOpen={setOverlayOpen}
+                        handleSubmit={() => { handleDelete!(originalObj) }}        
+                    > 
+                        <VStack 
+                            alignItems={"center"}
+                            alignContent={'center'}
+                        >
+                            <LertText 
+                                text="Do you want to delete this?" 
+                                type={textTypes.heading3}   
+                                color={Theme.colors.text.primary} 
+                            />
+                            
+                        </VStack>
+                    </Overlay>
+                }
+            </HStack>
             
         </Box>
     )
