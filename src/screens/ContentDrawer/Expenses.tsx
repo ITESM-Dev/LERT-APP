@@ -12,8 +12,10 @@ import {
     useGetExpenseTypesQuery,
     useGetManagerICAQuery,
     useGetResourcesQuery,
+    useUpdateExpenseMutation,
 } from "~store/api";
-import { allExpenses } from "~store/expenses";
+import { allExpenses, ExpenseType } from "~store/expenses";
+import { allCurrentPeriods } from "~store/currentPeriod";
 
 import LertText from '~components/atoms/LertText';
 import SearchInput from "~components/molecules/SearchInput";
@@ -24,17 +26,12 @@ import LertScreen from "~components/organisms/LertScreen";
 
 import Theme from '../../theme/theme';
 import * as textTypes from '~styles/constants/textTypes';
-import { allCurrentPeriods } from "~store/currentPeriod";
-
-const dropdownTypes = [
-    { label: 'First', value: 'first' },
-    { label: 'Secondary', value: 'secondary' },
-]
 
 const TABLE_HEADERS = ["Employee Mail", "Type", "Cost", "Date", "ICA", "ICA Manager", "Administrator", "Comment"]
 
 const Expenses = () => {
 
+    const [id, setId] = useState("")
     const [employeeMail, setEmployeeMail] = useState("");
     const [date, setDate] = useState("");
     const [cost, setCost] = useState(""); 
@@ -43,17 +40,11 @@ const Expenses = () => {
     const [type, setType] = useState("");
     const [key, setKey] = useState("")
 
-    const [error, setError] = useState<string | null>(null)
+    const [isUpdate, setIsUpdate] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+    const [isOpenReport, setIsOpenReport] = useState(false)
 
-    const resetForm = () => {
-        setEmployeeMail("")
-        setDate("")
-        setCost("")
-        setComment("")
-        setType("")
-        setKey("")
-        setError(null)
-    }
+    const [error, setError] = useState<string | null>(null)
 
     // Expenses - State
     const expenses = useSelector(allExpenses)
@@ -74,32 +65,14 @@ const Expenses = () => {
     const resources = useGetResourcesQuery()
 
     // API Calls
-    const [createExpense, response] = useCreateExpenseMutation()
+    const [createExpense] = useCreateExpenseMutation()
+    const [updateExpense] = useUpdateExpenseMutation()
 
     useEffect(() => {
         if (managerICA.data !== undefined) {
             setIca(managerICA.data!.icaCode)
         }
     }, [managerICA.data])
-
-    const handleSubmit = () => {
-        const expenseForm: ExpenseForm = {
-            icaCode: ica,
-            mail: employeeMail,
-            cost: cost,
-            date: date,
-            comment: comment,
-            nameExpense: type,
-            keyCurrentPeriod: key
-        }
-
-        createExpense(expenseForm)
-            .unwrap()
-            .then(() => resetForm())
-            .catch(error => setError(
-                "Something went wrong, please try again"
-            ))
-    }
 
     const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState("")
@@ -111,6 +84,70 @@ const Expenses = () => {
         }
         const { data } = useGetExpenseReportQuery(expenseReportForm)
         console.log(data)
+    }
+
+    const resetForm = () => {
+        setId("")
+        setEmployeeMail("")
+        setDate("")
+        setCost("")
+        setComment("")
+        setType("")
+        setKey("")
+        setError(null)
+    }
+
+    const handleSubmit = () => {
+        const expenseForm: ExpenseForm = {
+            id: id,
+            icaCode: ica,
+            mail: employeeMail,
+            cost: cost,
+            date: date,
+            comment: comment,
+            nameExpense: type,
+            keyCurrentPeriod: key
+        }
+
+        if (isUpdate) {
+            updateExpense(expenseForm)
+                .unwrap()
+                .then(() => {
+                    resetForm()
+                    setIsUpdate(false)
+                })
+                .catch(_ => {
+                    resetForm()
+                    setIsUpdate(false)
+                    setError(
+                        "Something went wrong, please try again"
+                    )
+                })
+            return
+        }
+        createExpense(expenseForm)
+            .unwrap()
+            .then(() => resetForm())
+            .catch(_ => setError(
+                "Something went wrong, please try again"
+            ))
+    }
+
+    const handleUpdate = (item: ExpenseType) => {
+        setId(item.id)
+        setEmployeeMail(item.employeeMail)
+        setDate(item.date)
+        setCost(item.cost.toString())
+        setComment(item.comment)
+        setType(item.type)
+        
+        setIsUpdate(true)
+        setIsOpen(true)
+    }
+
+    const handleOnClose = () => {
+        setIsUpdate(false)
+        resetForm()
     }
 
     return (
@@ -130,6 +167,8 @@ const Expenses = () => {
                     buttonType={"secondary"}    
                     error={error}
                     setError={setError} 
+                    isOpen={isOpenReport}
+                    setIsOpen={setIsOpenReport}
                     style={{ marginRight: 5 }} 
                 >
                     <HStack 
@@ -170,11 +209,14 @@ const Expenses = () => {
                 <Overlay 
                     minWidth={"60%"}
                     minHeight={"60%"}
-                    buttonTitle="Create Expense" 
+                    buttonTitle={isUpdate ? "Update Expense" : "Add Expense"}
                     handleSubmit={handleSubmit}
                     buttonType={"primary"}    
                     error={error}
-                    setError={setError}       
+                    setError={setError}
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    handleOnClose={handleOnClose}   
                 > 
                     <>
                         <HStack space={2} justifyContent="space-evenly">
@@ -285,6 +327,7 @@ const Expenses = () => {
                     headers={TABLE_HEADERS} 
                     items={expenses} 
                     flexValues={[3, 1, 1, 1, 1, 2, 2, 2]}
+                    handleUpdate={handleUpdate}
                 />
             </Box>
 

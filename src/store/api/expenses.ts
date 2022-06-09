@@ -44,11 +44,12 @@ export const createExpense = (builder: BuilderType) => (
 )
 
 export const updateExpense = (builder: BuilderType) => (
-    builder.mutation<void, ExpenseForm>({
+    builder.mutation<string, ExpenseForm>({
         query: (expenseForm) => ({
             url: "updateExpense",
             method: "POST",
             body: expenseForm,
+            responseHandler: 'text',
             validateStatus: validateUpdateStatus,
         }),
         invalidatesTags: ["Expenses", "CurrentPeriod", "ICAs"]
