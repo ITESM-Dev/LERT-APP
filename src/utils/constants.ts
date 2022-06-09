@@ -9,7 +9,7 @@ export const dropdownCountries = [
 ]
 
 export enum USER_ROLES {
-    OP_MANAGER = "OPManager",
+    OP_MANAGER = "OpManager",
     MANAGER = "Manager",
     ICA_ADMIN = "IcaAdmin",
     ADMIN = "Admin",
