@@ -45,6 +45,7 @@ export const updateExtraHourType = (builder: BuilderType) => (
             url: 'updateHourType',
             method: 'POST',
             body: extraHourForm,
+            responseHandler: 'text',
             validateStatus: validateUpdateStatus,
         }),
         invalidatesTags: ["ExtraHours"]
@@ -57,8 +58,12 @@ export const deleteExtraHourType = (builder: BuilderType) => (
             url: 'deleteHourType',
             method: 'POST',
             body: { id },
+            responseHandler: 'text',
             validateStatus: validateDeleteStatus,
         }),
-        invalidatesTags: ["ExtraHours"]
+        invalidatesTags: ["ExtraHours"],
+        transformResponse: (response, meta, arg) => {
+            return arg;
+        }
     })
 )
