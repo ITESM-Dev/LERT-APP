@@ -1,11 +1,9 @@
-import { DrawerItemList } from '@react-navigation/drawer';
 import { Box, FlatList } from 'native-base';
-import { color } from 'react-native-reanimated';
-import LertText from "~components/atoms/LertText";
+
 import TableItem from '~components/molecules/TableItem';
+
 import Theme from '~theme/theme';
 
-import * as textTypes from '~styles/constants/textTypes';
 
 type TablePropTypes = {
     headers: Array<string>;
