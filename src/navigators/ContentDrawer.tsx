@@ -160,6 +160,17 @@ const ContentDrawer = () => {
                                     />
                             }}
                         />
+                        <Drawer.Screen 
+                            name={CONTENT_DRAWER_SCREENS.CurrentPeriod}
+                            component={CurrentPeriod}
+                            options={{
+                                drawerIcon: () => 
+                                    <Ionicons
+                                        {...ICONS_STYLE} 
+                                        name="calendar-outline"
+                                    />
+                            }}
+                        />
                     </Drawer.Group>
                 }
 
@@ -207,17 +218,6 @@ const ContentDrawer = () => {
                                     <Ionicons
                                         {...ICONS_STYLE} 
                                         name="sync-outline"
-                                    />
-                            }}
-                        />
-                        <Drawer.Screen 
-                            name={CONTENT_DRAWER_SCREENS.CurrentPeriod}
-                            component={CurrentPeriod}
-                            options={{
-                                drawerIcon: () => 
-                                    <Ionicons
-                                        {...ICONS_STYLE} 
-                                        name="calendar-outline"
                                     />
                             }}
                         />

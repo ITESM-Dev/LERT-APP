@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Box, HStack, VStack } from "native-base";
 
-import { ICAForm, useCreateICAMutation, useGetICAsQuery } from "~store/api";
+import { ICAForm, useCreateICAMutation, useGetICAsQuery, useGetManagerFunctionsQuery } from "~store/api";
 import { allICAs } from "~store/ICAs";
 
 import LertText from '~components/atoms/LertText';
@@ -15,6 +15,8 @@ import theme from "~theme/theme";
 import * as textTypes from '~styles/constants/textTypes';
 import Dropdown from "~components/molecules/Dropdown";
 import { dropdownCountries } from "~utils/constants";
+import SearchInput from "~components/molecules/SearchInput";
+import { allManagers } from "~store/managers";
 
 let data = [
     {
@@ -170,9 +172,14 @@ const ICAS = () => {
 
     // ICAs - State
     const ICAs = useSelector(allICAs);
+    
+    // Managers - State
+    const managers = useSelector(allManagers);
 
     // Auto fetching for ICAS
     useGetICAsQuery()
+
+    useGetManagerFunctionsQuery()
 
     const [createICA, response] = useCreateICAMutation();
     const [error, setError] = useState<string | null>(null)
@@ -266,11 +273,21 @@ const ICAS = () => {
                             <LertText text="ICA Requesting" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={ICACore} setText={setICACore} placeholder={"ICA Requesting"}/>
                             <LertText text="Year" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                            <LertInput text={year} setText={setYear} placeholder={"Year"}/>
+                            <LertInput text={year} setText={setYear} placeholder={"YYYY"}/>
                             <LertText text="ID Planning" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={IDPlanning} setText={setIDPlanning} placeholder={"ID Planning"}/>
-                            <LertText text="ICA Owner" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                            <LertInput text={ICAOwner} setText={setICAOwner} placeholder={"ICA Owner"}/>
+                            <LertText 
+                                text="ICA Owner" 
+                                type={textTypes.heading} 
+                                color={theme.colors.text.primary} 
+                                style={{paddingTop:"10%"}}
+                            />
+                            <SearchInput 
+                                placeholder={"ICA Owner"}
+                                value={ICAOwner} 
+                                setValue={setICAOwner} 
+                                items={ managers.map(item => item.mail) }
+                            />
                             <LertText text="Budget" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={budget} setText={setBudget} placeholder={"Budget"}/>
                         </VStack>
@@ -317,13 +334,13 @@ const ICAS = () => {
                             <LertText text="Type" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={type} setText={setType} placeholder={"Type"}/>
                             <LertText text="Nec" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                            <LertInput text={nec} setText={setNec} placeholder={"Nec"}/>
+                            <LertInput text={nec} setText={setNec} placeholder={"Nec Number"}/>
                             <LertText text="Total Plus Taxes" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
                             <LertInput text={totalPlusTaxes} setText={setTotalPlusTaxes} placeholder={"Total Plus Taxes"}/>
                             <LertText text="Start Date" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                            <LertInput text={startDate} setText={setStartDate} placeholder={"Start Date"}/>
+                            <LertInput text={startDate} setText={setStartDate} placeholder={"YYYY-MM-DD"}/>
                             <LertText text="Finish Date" type={textTypes.heading} color={theme.colors.text.primary} style={{paddingTop:"10%"}}/>
-                            <LertInput text={finishDate} setText={setFinishDate} placeholder={"Finish Date"}/>
+                            <LertInput text={finishDate} setText={setFinishDate} placeholder={"YYYY-MM-DD"}/>
                         </VStack>
                     </HStack>
                 </>

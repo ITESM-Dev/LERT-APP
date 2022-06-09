@@ -109,7 +109,7 @@ const Types = () => {
                             <LertInput 
                                 text={startDate} 
                                 setText={setStartDate} 
-                                placeholder={"Date of Start"}
+                                placeholder={"YYYY-MM-DD"}
                             />
                             <LertText 
                                 text="Finish Date" 
@@ -120,7 +120,7 @@ const Types = () => {
                             <LertInput 
                                 text={finishDate} 
                                 setText={setFinishDate} 
-                                placeholder={"Date of Finish"}
+                                placeholder={"YYYY-MM-DD"}
                             />
                             <LertText 
                                 text="Country" 

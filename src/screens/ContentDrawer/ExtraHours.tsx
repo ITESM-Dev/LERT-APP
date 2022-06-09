@@ -153,7 +153,7 @@ const ExtraHours = () => {
                             <LertInput 
                                 text={dateStart} 
                                 setText={setDateStart} 
-                                placeholder={"Date of Start"}
+                                placeholder={"YYYY-MM-DD"}
                             />
                             <LertText 
                                 text="Finish Date" 
@@ -164,7 +164,7 @@ const ExtraHours = () => {
                             <LertInput 
                                 text={dateFinish} 
                                 setText={setDateFinish} 
-                                placeholder={"Date of Finish"}
+                                placeholder={"YYYY-MM-DD"}
                             />
                         </VStack>
                     </HStack>
