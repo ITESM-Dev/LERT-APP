@@ -34,12 +34,11 @@ export const loginICAAdmin = (builder: BuilderType) => (
         query: (loginICAAdminForm) => ({
             url: 'loginICAAdmin',
             method: 'POST',
-            params: {
-                headers: loginICAAdminForm
-            },
-            headers: loginICAAdminForm,
-            validateStatus: validatePostStatus,
+            body: loginICAAdminForm,
+            validateStatus: validateGetStatus,
         }),
-        invalidatesTags: ["User"]
+        transformResponse: (response: any) => {
+            return response as UserType
+        }
     })
 )
