@@ -8,7 +8,9 @@ import { allExtraHours } from "~store/extraHours/selectors";
 import { 
     ExtraHourForm, 
     useCreateExtraHourTypeMutation, 
-    useGetExtraHourTypesQuery 
+    useGetExtraHourTypesQuery, 
+    useUpdateExtraHourTypeMutation,
+    useDeleteExtraHourTypeMutation
 } from "~store/api";
 
 import LertText from '~components/atoms/LertText';
@@ -21,6 +23,7 @@ import LertScreen from "~components/organisms/LertScreen";
 import Theme from '../../theme/theme';
 import * as textTypes from '~styles/constants/textTypes';
 import { dropdownCountries } from "~utils/constants";
+import { ExtraHourType } from "~store/extraHours";
 
 const TABLE_HEADERS = ["Type", "Band", "Country", "Rate", "Date of Start", "Date of Finish"]
 
@@ -28,6 +31,7 @@ const TABLE_HEADERS = ["Type", "Band", "Country", "Rate", "Date of Start", "Date
 
 const ExtraHours = () => {
 
+    const [id, setId] = useState("")
     const [type, setType] = useState("");
     const [band, setBand] = useState("");
     const [country, setCountry] = useState("");
@@ -35,18 +39,25 @@ const ExtraHours = () => {
     const [dateStart, setDateStart] = useState("");
     const [dateFinish, setDateFinish] = useState("");
 
+    const [isUpdate, setIsUpdate] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+
     // Extra Hours - State
     const extraHours = useSelector(allExtraHours);
 
-    // API Calls
-    const [createExtraHourType, response] = useCreateExtraHourTypeMutation()
-
     // Auto-fetch data
     useGetExtraHourTypesQuery()
+    
+    // API Calls
+    const [createExtraHourType] = useCreateExtraHourTypeMutation()
+    const [updateExtraHourType] = useUpdateExtraHourTypeMutation()
+    const [deleteExtraHourType] = useDeleteExtraHourTypeMutation()
+
     const [error, setError] = useState<string | null>(null)
 
     // Function for clearing out inputs and error state
     const resetForm = () => {
+        setId("")
         setType("")
         setBand("")
         setCountry("")
@@ -59,6 +70,7 @@ const ExtraHours = () => {
     const handleSubmit = () => {
 
         const extraHourForm: ExtraHourForm = {
+            id: id,
             type: type,
             band: band,
             country: country,
@@ -67,12 +79,55 @@ const ExtraHours = () => {
             dateToFinish: dateFinish,
         }
 
+        if (isUpdate) {
+            updateExtraHourType(extraHourForm)
+                .unwrap()
+                .then(() => {
+                    resetForm()
+                    setIsUpdate(false)
+                })
+                .catch(error =>  {
+                    resetForm()
+                    setIsUpdate(false)
+                    setError(
+                        "Something went wrong, please try again"
+                    )
+                })  
+            return
+        }
         createExtraHourType(extraHourForm)
             .unwrap()
             .then(() => resetForm())
             .catch(error => setError(
                 "Something went wrong, please try again"
             ))
+    }
+
+    const handleUpdate = (item: ExtraHourType) => {
+        setId(item.id)
+        setType(item.type)
+        setBand(item.band)
+        setCountry(item.country)
+        setRate(item.rate.toString())
+        setDateStart(item.dateToStart)
+        setDateFinish(item.dateToFinish)
+        
+        setIsUpdate(true)
+        setIsOpen(true)
+    }
+
+    const handleDelete = (item: ExtraHourType) => {
+        deleteExtraHourType(item.id)
+            .unwrap()
+            .then(() => alert("Deleted"))
+            .catch(_ => setError(
+                "Something went wrong, please try again"
+            ))
+    }
+
+    const handleOnClose = () => {
+        setIsUpdate(false)
+        resetForm()
     }
 
     return (
@@ -85,13 +140,16 @@ const ExtraHours = () => {
             />
 
             <Overlay 
+                buttonTitle={isUpdate ? "Update Hour Type" : "Add Hour Type"}
+                buttonType={"primary"}
                 minWidth={"60%"}
                 minHeight={"60%"} 
-                buttonType={"primary"}
                 error={error}
                 setError={setError}
-                buttonTitle="Add Extra Hour"
                 handleSubmit={handleSubmit}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                handleOnClose={handleOnClose}
             > 
                 <>
                     <HStack 
@@ -177,6 +235,8 @@ const ExtraHours = () => {
                     headers={TABLE_HEADERS} 
                     items={extraHours} 
                     flexValues={[1, 1, 2, 1, 2, 2]}
+                    handleUpdate={handleUpdate}
+                    handleDelete={handleDelete}
                 />
             </Box>
         </LertScreen>
