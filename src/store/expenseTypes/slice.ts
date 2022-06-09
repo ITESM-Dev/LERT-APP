@@ -35,6 +35,12 @@ const expenseTypesSlice = createSlice({
                     expenseTypesAdapter.setMany(state, payload)
                 }
             )
+            .addMatcher(
+                api.endpoints.deleteExpenseType.matchFulfilled,
+                (state, { payload }) => {
+                    expenseTypesAdapter.removeOne(state, payload)
+                }
+            )
     }
 });
 

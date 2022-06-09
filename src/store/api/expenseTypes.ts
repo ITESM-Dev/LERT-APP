@@ -1,6 +1,6 @@
 import { validatePathConfig } from "@react-navigation/native";
 import { ExpenseTypesType } from "~store/expenseTypes";
-import { BuilderType, validateGetStatus, validatePostStatus } from "./slice";
+import { BuilderType, validateDeleteStatus, validateGetStatus, validatePostStatus, validateUpdateStatus } from "./slice";
 import { ExpenseTypeForm } from "./types";
 
 export const getExpenseTypes = (builder: BuilderType) => (
@@ -40,6 +40,7 @@ export const updateExpenseType = (builder: BuilderType) => (
             url: 'updateExpenseType',
             method: 'POST',
             body: expenseTypeForm,
+            responseHandler: 'text',
             validateStatus: validateUpdateStatus
         }),
         invalidatesTags: ["ExpenseTypes", "Expenses"]
@@ -47,13 +48,17 @@ export const updateExpenseType = (builder: BuilderType) => (
 )
 
 export const deleteExpenseType = (builder: BuilderType) => (
-    builder.mutation<void, string>({
+    builder.mutation<string, string>({
         query: (id) => ({
             url: 'deleteExpenseType',
             method: 'POST',
             body: { id },
+            responseHandler: 'text',
             validateStatus: validateDeleteStatus
         }),
-        invalidatesTags: ["ExpenseTypes"]
+        invalidatesTags: ["ExpenseTypes", "Expenses"],
+        transformResponse: (response, meta, arg) => {
+            return arg
+        }
     })
 )
