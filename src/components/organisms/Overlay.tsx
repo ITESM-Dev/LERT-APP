@@ -25,6 +25,7 @@ type OverlayPropTypes = {
 
     isOpen: boolean;
     setIsOpen: Dispatch<SetStateAction<boolean>>;
+    handleOnClose?: () => void;
     style?: ViewStyle; 
 }
 
@@ -65,14 +66,17 @@ const Overlay = (props: OverlayPropTypes) => {
             <Modal 
                 initialFocusRef={initialFocusRef} 
                 isOpen={props.isOpen} 
-                onClose={() => props.setIsOpen(!props.isOpen)}
+                onClose={() => {
+                    props.handleOnClose()
+                    props.setIsOpen(!props.isOpen)
+                }}
             >
                 <Modal.Content 
                     minWidth={props.minWidth} 
                     minHeight={props.minHeight} 
                     style={{backgroundColor:theme.colors.text.white}}
                 >
-                    <Modal.Header>{props.buttonTitle ? props.title : props.buttonTitle}</Modal.Header>
+                    <Modal.Header>{props.title !== undefined ? props.title : props.buttonTitle}</Modal.Header>
                     <Modal.CloseButton onPress={() => props.setIsOpen(false)} />
 
                     <Modal.Body style={{ marginTop:"5%" }}>

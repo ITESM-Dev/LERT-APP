@@ -68,7 +68,7 @@ const TableItem = ({ originalObj, items, flexValues, styles, amount, handleUpdat
             } )}
 
             
-            <HStack>
+            <HStack flex={1} justifyContent={'flex-end'}>
                 { handleUpdate !== undefined && 
                     <LertButton 
                         type={"icon"}

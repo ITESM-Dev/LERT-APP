@@ -100,7 +100,7 @@ export const dropdownStyles = StyleSheet.create({
     },
     container: {
         borderColor: BORDER_COLOR,
-        borderBottomWidth: 1,
+        borderBottomWidth: 0.1,
         flex: 1,
         justifyContent: 'space-between',
     },
@@ -109,7 +109,7 @@ export const dropdownStyles = StyleSheet.create({
         alignSelf: "flex-end"
     },
     arrowIcon: {
-        tintColor: COLORS.icons.secondary,
+        tintColor: BORDER_COLOR,
     },
     text: {
         ...BodyStyles.paragraphComponents,
