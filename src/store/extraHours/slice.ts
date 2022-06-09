@@ -36,6 +36,12 @@ const extraHourSlice = createSlice({
                     extraHoursAdapter.setMany(state, payload)
                 }
             )
+            .addMatcher(
+                api.endpoints.deleteExtraHourType.matchFulfilled,
+                (state, { payload }) => {
+                    extraHoursAdapter.removeOne(state, payload)
+                }
+            )
     }
 });
 
