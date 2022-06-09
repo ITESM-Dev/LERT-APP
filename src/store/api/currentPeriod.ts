@@ -22,6 +22,7 @@ export const updateCurrentPeriod = (builder: BuilderType) => (
             url: "updateCurrentPeriod",
             method: "POST",
             body: currentPeriodForm,
+            responseHandler: 'text',
             validateStatus: validateUpdateStatus
         }),
         invalidatesTags: ["CurrentPeriod"]

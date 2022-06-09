@@ -99,6 +99,7 @@ export type ExpenseTypeForm = {
 }
 
 export type CurrentPeriodForm = {
+    id?: string;
     quarter: string,
     year: string,
     key: string,
