@@ -115,7 +115,7 @@ const ExpensesTypes = () => {
             <Overlay 
                 minWidth={"30%"} 
                 minHeight={"30%"} 
-                buttonTitle={isUpdate ? "Update Expense Type" : "Addxpense Type"}
+                buttonTitle={isUpdate ? "Update Expense Type" : "Add Expense Type"}
                 handleSubmit={handleSubmit}
                 error={error}
                 setError={setError}
