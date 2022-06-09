@@ -1,6 +1,6 @@
 import { ManagerType } from "~store/managers";
 import { BuilderType, validateGetStatus, validatePostStatus, validateUpdateStatus } from "./slice";
-import { IcaAdminType, ManagerIcaAdminType } from "./types";
+import { IcaAdminManager, IcaAdminType, ManagerIcaAdminType } from "./types";
 
 export const getManagersAndIcaAdmins = (builder: BuilderType) => (
     builder.query<ManagerIcaAdminType[], void>({
@@ -76,6 +76,41 @@ export const getAvailableDelegates = (builder: BuilderType) => (
             const icaAdmins = response.map(item => ({
                 icaAdminMail: item.icaAdminMail,
             }) as IcaAdminType)
+ 
+            return icaAdmins;
+        }
+    })
+)
+
+export const getIcaAdminManager = (builder: BuilderType) => (
+    builder.query<IcaAdminManager[], void>({
+        query: () => ({
+            url: "getICAAdminManager",
+            validateStatus: validateGetStatus,
+        }),
+        providesTags: ["Delegate"],
+        transformResponse: (response: any[]) => { 
+            const icaAdminManagers = response.map(item => ({
+                icaMail: item.icaMail,
+                idICA_Admin: item.idICA_Admin,
+            }) as IcaAdminManager)
+ 
+            return icaAdminManagers;
+        }
+     })
+ )
+
+ export const getManagersNoIcaAdmins = (builder: BuilderType) => (
+    builder.query<ManagerType[], void>({
+        query: () => ({
+            url: "getManagersNoIcaAdmins",
+            validateStatus: validateGetStatus,
+        }),
+        providesTags: ["Delegate"],
+        transformResponse: (response: any[]) => { 
+            const icaAdmins = response.map(item => ({
+                mail: item.mail
+            }) as ManagerType) 
  
             return icaAdmins;
         }

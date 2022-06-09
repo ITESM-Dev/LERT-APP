@@ -76,6 +76,8 @@ import {
 	useOpAssignIcaAdminManagerMutation,
 	useSetIcaAdminMutation,
 	useGetAvailableDelegatesQuery,
+    useGetIcaAdminManagerQuery,
+    useGetManagersNoIcaAdminsQuery,
 } from "./slice";
 
 import {
@@ -95,7 +97,7 @@ import {
     ManagerICA,
     EmployeeForm,
     ExpenseReportForm,
-    ManagerIcaAdmin,
+    ManagerIcaAdminType,
 } from './types'
 
 export {
@@ -148,7 +150,7 @@ export {
     useUpdateICAMutation,
 
     // ICA Admin
-    ManagerIcaAdmin,
+    ManagerIcaAdminType,
     LoginICAAdminForm,
     useGetManagersIcaAdminQuery,
     useAssignTokenAuthMutation,
@@ -186,10 +188,13 @@ export {
     useUpdateManagerFunctionsMutation,
     useSetOPManagerMutation,
     useGetManagersNoOpManagerQuery,
+
     // Delegate
     useGetManagersAndIcaAdminsQuery,
 	useGetIcaAdminsQuery,
 	useOpAssignIcaAdminManagerMutation,
 	useSetIcaAdminMutation,
 	useGetAvailableDelegatesQuery,
+    useGetIcaAdminManagerQuery,
+    useGetManagersNoIcaAdminsQuery,
 }
