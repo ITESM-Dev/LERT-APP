@@ -81,3 +81,40 @@ export const getAvailableDelegates = (builder: BuilderType) => (
         }
     })
 )
+
+export const getIcaAdminManager = (builder: BuilderType) => (
+    builder.query<ManagerIcaAdminType[], void>({
+        query: () => ({
+            url: "getICAAdminManager",
+            validateStatus: validateGetStatus,
+        }),
+        providesTags: ["Delegate"],
+        transformResponse: (response) => {
+            const icaAdminManagersAPI = response as ManagerIcaAdminType[]
+ 
+            const icaAdminManagers = icaAdminManagersAPI.map(item => ({
+                managerMail: item.managerMail,
+                icaAdminMail: item.icaAdminMail,
+            }))
+ 
+            return icaAdminManagers;
+        }
+     })
+ )
+
+ export const getManagersNoIcaAdmins = (builder: BuilderType) => (
+    builder.query<ManagerType[], void>({
+        query: () => ({
+            url: "getManagersNoIcaAdmins",
+            validateStatus: validateGetStatus,
+        }),
+        providesTags: ["Delegate"],
+        transformResponse: (response: any[]) => { 
+            const icaAdmins = response.map(item => ({
+                mail: item.mail
+            }) as ManagerType) 
+ 
+            return icaAdmins;
+        }
+    })
+)

@@ -99,6 +99,8 @@ import {
 	opAssignIcaAdminManager,
 	setIcaAdmin,
 	getAvailableDelegates,
+	getIcaAdminManager,
+	getManagersNoIcaAdmins,
 } from "./delegate"
 
 export type BuilderType = EndpointBuilder<
@@ -230,6 +232,8 @@ export const api = createApi({
 		opAssignIcaAdminManager: opAssignIcaAdminManager(builder),
 		setIcaAdmin: setIcaAdmin(builder),
 		getAvailableDelegates: getAvailableDelegates(builder),
+		getIcaAdminManager: getIcaAdminManager(builder),
+		getManagersNoIcaAdmins: getManagersNoIcaAdmins(builder),
 	}),
 })
 
@@ -310,4 +314,6 @@ export const {
 	useOpAssignIcaAdminManagerMutation,
 	useSetIcaAdminMutation,
 	useGetAvailableDelegatesQuery,
+	useGetIcaAdminManagerQuery,
+	useGetManagersNoIcaAdminsQuery,
 } = api

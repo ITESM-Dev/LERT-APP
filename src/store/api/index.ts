@@ -76,6 +76,8 @@ import {
 	useOpAssignIcaAdminManagerMutation,
 	useSetIcaAdminMutation,
 	useGetAvailableDelegatesQuery,
+    useGetIcaAdminManagerQuery,
+    useGetManagersNoIcaAdminsQuery,
 } from "./slice";
 
 import {
@@ -186,10 +188,13 @@ export {
     useUpdateManagerFunctionsMutation,
     useSetOPManagerMutation,
     useGetManagersNoOpManagerQuery,
+
     // Delegate
     useGetManagersAndIcaAdminsQuery,
 	useGetIcaAdminsQuery,
 	useOpAssignIcaAdminManagerMutation,
 	useSetIcaAdminMutation,
 	useGetAvailableDelegatesQuery,
+    useGetIcaAdminManagerQuery,
+    useGetManagersNoIcaAdminsQuery,
 }
