@@ -34,6 +34,12 @@ const bandTypesSlice = createSlice({
                     bandTypesAdapter.setMany(state, payload)
                 }
             )
+            .addMatcher(
+                api.endpoints.deleteBandType.matchFulfilled,
+                (state, { payload }) => {
+                    bandTypesAdapter.removeOne(state, payload)
+                }
+            )
     }
 });
 

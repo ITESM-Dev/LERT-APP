@@ -21,6 +21,7 @@ export const updateBandType = (builder: BuilderType) => (
             url: "updateBandType",
             method: "POST",
             body: bandTypeForm,
+            responseHandler: 'text',
             validateStatus: validateUpdateStatus
         }),
         invalidatesTags: ["BandTypes"]
@@ -28,14 +29,16 @@ export const updateBandType = (builder: BuilderType) => (
 )
 
 export const deleteBandType = (builder: BuilderType) => (
-    builder.mutation<void, string>({
+    builder.mutation<string, string>({
         query: (id) => ({
             url: "deleteBandType",
             method: "POST",
             body: { id },
+            responseHandler: 'text',
             validateStatus: validateDeleteStatus
         }),
-        invalidatesTags: ["BandTypes"]
+        invalidatesTags: ["BandTypes"],
+        transformResponse: (response, meta, arg) => arg
     })
 )
 

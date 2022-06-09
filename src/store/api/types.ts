@@ -33,6 +33,7 @@ export type LogoutForm = {
 }
 
 export type BandTypeForm = {
+    id?: string;
     type: string;
     band: string;
     country: string;
