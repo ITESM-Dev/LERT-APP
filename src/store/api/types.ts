@@ -84,6 +84,7 @@ export type ExpensesForQuarterForm = {
 }
 
 export type ExpenseForm = {
+    id?: string;
     icaCode: string;
     mail: string;
     cost: string;
