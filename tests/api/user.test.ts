@@ -1,12 +1,5 @@
 import axios from "axios"
-import { api } from "~store/api"
-import { store } from "~store/store"
-
 import { API_URL } from "~utils/constants"
-
-test("Test", () => {
-    
-})
 
 test("Get User Info call", async () => {
 
