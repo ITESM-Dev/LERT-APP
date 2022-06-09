@@ -5,7 +5,7 @@ import { IcaAdminManager, IcaAdminType, ManagerIcaAdminType } from "./types";
 export const getManagersAndIcaAdmins = (builder: BuilderType) => (
     builder.query<ManagerIcaAdminType[], void>({
        query: () => ({
-           url: "getManagersAndIcaAdmins",
+           url: "getManagerAndIcaAdmins",
            validateStatus: validateGetStatus,
        }),
        providesTags: ["Delegate"],
@@ -40,26 +40,26 @@ export const getIcaAdmins = (builder: BuilderType) => (
 )
 
 export const opAssignIcaAdminManager = (builder: BuilderType) => (
-    builder.mutation<void, ManagerIcaAdminType>({
+    builder.mutation<string, ManagerIcaAdminType>({
         query: (ManagerIcaAdminType) => ({
             url: "OpAssignIcaAdminManager",
             method: "POST",
             body: ManagerIcaAdminType,
-            responseHandler: "json",
-            validateStatus: validatePostStatus
+            responseHandler: "text",
+            validateStatus: validateGetStatus
         }),
         invalidatesTags: ["Delegate"],
     })
 )
 
 export const setIcaAdmin = (builder: BuilderType) => (
-    builder.mutation<void, IcaAdminType>({
+    builder.mutation<string, IcaAdminType>({
         query: (IcaAdminType) => ({
             url: "setIcaAdmin",
             method: "POST",
             body: IcaAdminType,
-            responseHandler: "json",
-            validateStatus: validatePostStatus
+            responseHandler: "text",
+            validateStatus: validateGetStatus
         }),
         invalidatesTags: ["Delegate"],
     })
@@ -106,7 +106,7 @@ export const getIcaAdminManager = (builder: BuilderType) => (
  export const getManagersNoIcaAdmins = (builder: BuilderType) => (
     builder.query<ManagerType[], void>({
         query: () => ({
-            url: "getManagersNoIcaAdmins",
+            url: "getAvailableManagersICA",
             validateStatus: validateGetStatus,
         }),
         providesTags: ["Delegate"],
