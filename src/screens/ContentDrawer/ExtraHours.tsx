@@ -85,7 +85,7 @@ const ExtraHours = () => {
                     resetForm()
                     setIsUpdate(false)
                 })
-                .catch(error =>  {
+                .catch(_ =>  {
                     resetForm()
                     setIsUpdate(false)
                     setError(
@@ -97,7 +97,7 @@ const ExtraHours = () => {
         createExtraHourType(extraHourForm)
             .unwrap()
             .then(() => resetForm())
-            .catch(error => setError(
+            .catch(_ => setError(
                 "Something went wrong, please try again"
             ))
     }
@@ -146,9 +146,9 @@ const ExtraHours = () => {
                 error={error}
                 setError={setError}
                 handleSubmit={handleSubmit}
+                handleOnClose={handleOnClose}
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
-                handleOnClose={handleOnClose}
             > 
                 <>
                     <HStack 
