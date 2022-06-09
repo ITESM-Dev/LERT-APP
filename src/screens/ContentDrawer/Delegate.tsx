@@ -15,7 +15,8 @@ import LertScreen from "~components/organisms/LertScreen";
 import { userSelector, UserType } from "~store/user";
 import { USER_ROLES } from "~utils/constants";
 import Overlay from "~components/organisms/Overlay";
-import { useGetAvailableDelegatesQuery, useGetIcaAdminsQuery, useGetManagersAndIcaAdminsQuery } from "~store/api";
+import { useGetAvailableDelegatesQuery, useGetIcaAdminsQuery, useGetManagersAndIcaAdminsQuery, useSetIcaAdminMutation, useSetOPManagerMutation } from "~store/api";
+import { ManagerIcaAdminType } from "~store/api/types";
 
 const TABLE_HEADERS = ["Manager", "ICA Admin"]
 
@@ -40,7 +41,12 @@ const Delegate = () => {
     // User - State
     const user = useSelector(userSelector) as UserType; //UserType?
 
-    //
+    const [assignDelegate, responseOp] = useSetIcaAdminMutation();
+    const [assignBoth, responseIca] = useSetOPManagerMutation();
+
+    //const [assignDelegate, response] = useState(null);
+
+    
 
     /*  If user.role === manager
             - Get All their delegates
@@ -51,8 +57,9 @@ const Delegate = () => {
     */
 
     //This is for the Table 
+    var tableItems = useGetIcaAdminManager(); //currently does not exist
     if(user.role === USER_ROLES.OP_MANAGER){
-        useGetManagersAndIcaAdminsQuery();
+        tableItems = useGetManagersAndIcaAdminsQuery();
     } else{
         //
     }
@@ -69,7 +76,25 @@ const Delegate = () => {
     }, [user, manager])
 
     const handleSubmit = () => {
-
+        const delegateForm: ManagerIcaAdminType = {
+            managerMail: manager,
+            icaAdminMail: delegate,
+        }
+        if (user.role === USER_ROLES.MANAGER){
+            assignBoth(delegateForm)
+                .unwrap()
+                .then(() => resetForm())
+                .catch(error => setError(
+                    "Something went wrong, try again"
+                ))
+        } else {
+            assignDelegate(delegateForm)
+                .unwrap()
+                .then(() => resetForm())
+                .catch(error => setError(
+                    "Something went wrong, try again"
+                ))
+        }
     }
 
     return (
@@ -135,8 +160,15 @@ const Delegate = () => {
             >
                 <Table 
                     headers={TABLE_HEADERS} 
-                    items={example} 
                     flexValues={[1, 1]}
+                    items={
+                        tableItems.data
+                                ? tableItems.data?.map(item => ({
+                                    item.managerMail,
+                                    item.icaAdminMail,
+                                }))
+                                : []
+                    }
                 />
             </View> 
 
