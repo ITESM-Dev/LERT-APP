@@ -15,6 +15,8 @@ import LertScreen from "~components/organisms/LertScreen";
 import { userSelector, UserType } from "~store/user";
 import { USER_ROLES } from "~utils/constants";
 import Overlay from "~components/organisms/Overlay";
+import { useGetAvailableDelegatesQuery, useGetIcaAdminManagerQuery, useGetIcaAdminsQuery, useGetManagersAndIcaAdminsQuery, useGetManagersNoIcaAdminsQuery, useOpAssignIcaAdminManagerMutation, useSetIcaAdminMutation, useSetOPManagerMutation } from "~store/api";
+import { ManagerIcaAdminType } from "~store/api/types";
 
 const TABLE_HEADERS = ["Manager", "ICA Admin"]
 
@@ -27,18 +29,35 @@ const Delegate = () => {
     
     const [manager, setManager] = useState("")
     const [delegate, setDelegate] = useState("")
+
     const [error, setError] = useState<string | null>(null)
 
-    // User - State
-    const user = useSelector(userSelector) as UserType;
+    const resetForm = () => {
+        setManager("");
+        setDelegate("");
+        setError(null);
+    }
 
-    /*  If user.role === manager
-            - Get All their delegates
-            - Disable Manager Mail Input
-        
-        If user.role !== manager
-            - Get All managers with their delegate
-    */
+    // User - State
+    const user = useSelector(userSelector) as UserType; //UserType?
+
+    // This is used on the button when confirming the input
+    const [assignDelegate, responseOp] = useSetIcaAdminMutation();
+    const [assignBoth, responseIca] = useOpAssignIcaAdminManagerMutation();
+
+    //const [assignDelegate, response] = useState(null);
+    const availableManagers = useGetManagersNoIcaAdminsQuery();
+
+    //This is for the Table 
+    var tableItems = useGetIcaAdminManagerQuery(); //currently does not exist
+    if(user.role === USER_ROLES.OP_MANAGER){
+        tableItems = useGetManagersAndIcaAdminsQuery();
+    }
+
+    var availableDelegates = useGetAvailableDelegatesQuery()
+    if(user.role === USER_ROLES.OP_MANAGER){
+        availableDelegates = useGetIcaAdminsQuery();
+    }
 
     useEffect(() => {
         if (user.role === USER_ROLES.MANAGER) {
@@ -47,7 +66,25 @@ const Delegate = () => {
     }, [user, manager])
 
     const handleSubmit = () => {
-
+        const delegateForm: ManagerIcaAdminType = {
+            managerMail: manager,
+            icaAdminMail: delegate,
+        }
+        if (user.role === USER_ROLES.MANAGER){
+            assignBoth(delegateForm)
+                .unwrap()
+                .then(() => resetForm())
+                .catch(error => setError(
+                    "Something went wrong, try again"
+                ))
+        } else {
+            assignDelegate(delegateForm)
+                .unwrap()
+                .then(() => resetForm())
+                .catch(error => setError(
+                    "Something went wrong, try again"
+                ))
+        }
     }
 
     return (
@@ -77,11 +114,15 @@ const Delegate = () => {
                         marginX={10}
                     >
                         <SearchInput 
-                            items={example.map(item => item.ManagerMail)}
                             isDisabled={user.role === USER_ROLES.MANAGER}
                             placeholder={"Search Manager"}
                             value={manager}
                             setValue={setManager}
+                            items={
+                                availableManagers.data
+                                ? availableManagers.data?.map(item => item.mail)
+                                : []
+                            }
                         />
                     </VStack>
 
@@ -90,10 +131,14 @@ const Delegate = () => {
                         marginX={10}
                     >
                         <SearchInput 
-                            items={example.map(item => item.AdminMail)}
                             placeholder={"Search ICA Admin"}
                             value={delegate}
                             setValue={setDelegate}
+                            items={
+                                availableDelegates.data
+                                ? availableDelegates.data?.map(item => item.icaAdminMail)
+                                : []
+                            }
                         />
                     </VStack>
                 </HStack>
@@ -107,8 +152,12 @@ const Delegate = () => {
             >
                 <Table 
                     headers={TABLE_HEADERS} 
-                    items={example} 
                     flexValues={[1, 1]}
+                    items={
+                        tableItems.data
+                        ? tableItems.data
+                        : []
+                    }
                 />
             </View> 
 
