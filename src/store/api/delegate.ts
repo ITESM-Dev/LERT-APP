@@ -2,30 +2,6 @@ import { ManagerType } from "~store/managers";
 import { BuilderType, validateGetStatus, validatePostStatus, validateUpdateStatus } from "./slice";
 import { IcaAdminType, ManagerIcaAdminType } from "./types";
 
-
-export const getManagersIcaAdmin = (builder: BuilderType) => (
-    builder.query<ManagerType[], void>({ //not sure in here tbh
-        query: () => ({
-            url: "getManagersIcaAdmin",
-            validateStatus: validateGetStatus,
-        }),
-        provideTags: ["Delegate"],
-        transformResponse: (response) => {
-            const managersIcaAdminAPI = response as ManagerType[]
-
-            const managersIcaAdmin = managersIcaAdminAPI.map(item => ({
-                mail: item.mail,
-                recoveryStatus: item.recoveryStatus,
-                status: item.status,
-                lastUpdate: item.lastUpdate,
-                id: item.id, //yeap something is wrong
-            }))
-
-            return managersIcaAdmin;
-        }
-    })
-)
-
 export const getManagersAndIcaAdmins = (builder: BuilderType) => (
     builder.query<ManagerIcaAdminType[], void>({
        query: () => ({
@@ -53,12 +29,10 @@ export const getIcaAdmins = (builder: BuilderType) => (
             validateStatus: validateGetStatus,
         }),
         providesTags: ["Delegate"],
-        transformResponse: (response) => {
-            const icaAdminsAPI = response as IcaAdminType[]
- 
-            const icaAdmins = icaAdminsAPI.map(item => ({
-                mail: item.mail,
-            }))
+        transformResponse: (response: any[]) => { 
+            const icaAdmins = response.map(item => ({
+                icaAdminMail: item.mail
+            }) as IcaAdminType) 
  
             return icaAdmins;
         }
@@ -68,7 +42,7 @@ export const getIcaAdmins = (builder: BuilderType) => (
 export const opAssignIcaAdminManager = (builder: BuilderType) => (
     builder.mutation<void, ManagerIcaAdminType>({
         query: (ManagerIcaAdminType) => ({
-            url: "opAssignIcaAdminManager",
+            url: "OpAssignIcaAdminManager",
             method: "POST",
             body: ManagerIcaAdminType,
             responseHandler: "json",
@@ -91,17 +65,19 @@ export const setIcaAdmin = (builder: BuilderType) => (
     })
 )
 
-
-/*
-export const updateManagersIcaAdmin = (builder: BuilderType) => (
-    builder.mutation<string, ManagerTypeForm>({
-        query: (managerTypeForm) => ({
-            url: "updateManagersIcaAdmin",
-            method: "POST",
-            body: managerTypeForm,
-            validateStatus: validateUpdateStatus
+export const getAvailableDelegates = (builder: BuilderType) => (
+    builder.query<IcaAdminType[], void>({
+        query: () => ({
+            url: "getAvailableDelegates",
+            validateStatus: validateGetStatus,
         }),
-        invalidatesTags: ["Managers"]
+        providesTags: ["Delegate"],
+        transformResponse: (response: any[]) => { 
+            const icaAdmins = response.map(item => ({
+                icaAdminMail: item.icaAdminMail,
+            }) as IcaAdminType)
+ 
+            return icaAdmins;
+        }
     })
 )
-*/
