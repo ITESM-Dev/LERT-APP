@@ -115,7 +115,7 @@ const CurrentPeriod = () =>{
                                 <LertInput 
                                     text={year} 
                                     setText={setYear} 
-                                    placeholder={"Year"}
+                                    placeholder={"YYYY"}
                                 />
                             </VStack>
                         </HStack>
