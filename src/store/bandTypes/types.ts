@@ -3,7 +3,7 @@ export type BandTypesType = {
     type: string;
     band: string; 
     country: string;
-    rate: number;
-    startDate: string;
-    finishDate: string;
+    yearlyRate: number;
+    dateToStart: string;
+    dateToFinish: string;
 };

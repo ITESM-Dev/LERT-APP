@@ -40,10 +40,9 @@ export const signUp = (builder: BuilderType) => (
 )
 
 export const logout = (builder: BuilderType) => (
-    builder.query<void, LogoutForm>({
-        query: (logoutForm: LogoutForm) => ({
+    builder.query<void, void>({
+        query: () => ({
             url: 'logout',
-            headers: logoutForm,
             responseHandler: async (response) => await JSON.stringify(response),
             validateStatus: (response) => 
                response.status === 200

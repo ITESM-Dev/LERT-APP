@@ -20,9 +20,6 @@ import {
     logUserThunk,
     signUpUserThunk,
     logoutUserThunk,
-    saveTokenInStorageThunk,
-    getTokenFromStorageThunk,
-    clearTokenInStorageThunk,
 } from './thunks'
 
 export {
@@ -38,7 +35,4 @@ export {
     logUserThunk,
     signUpUserThunk,
     logoutUserThunk,
-    saveTokenInStorageThunk,
-    getTokenFromStorageThunk,
-    clearTokenInStorageThunk,
 };

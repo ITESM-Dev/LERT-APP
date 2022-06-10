@@ -1,19 +1,17 @@
-import { View } from "native-base";
+import { Box, View } from "native-base";
 import AppTitle from "~components/molecules/AppTitle";
 import ContentDrawer from "~navigators/ContentDrawer";
 import theme from "~theme/theme";
 
 const Content = () => {
     return (
-        <>
-            <View style ={{
-                backgroundColor: theme.colors.text.primary,
-                padding: 0
-            }}>
-                <AppTitle />
-            </View>
+        <Box 
+            flex={1}
+            backgroundColor={theme.colors.text.primary}
+        >
+            
             <ContentDrawer/>
-        </>
+        </Box>
     )
 };
 

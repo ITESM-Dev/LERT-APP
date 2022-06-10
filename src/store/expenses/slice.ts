@@ -1,5 +1,5 @@
-import { createAction, createEntityAdapter, createSlice, EntityId, PayloadAction } from "@reduxjs/toolkit";
-import produce from "immer";
+import { createEntityAdapter, createSlice, EntityId, PayloadAction } from "@reduxjs/toolkit";
+import { api } from "~store/api";
 
 import { ExpenseType } from "./types";
 
@@ -37,6 +37,21 @@ const expensesSlice = createSlice({
             expensesAdapter.removeAll(state);
         }
     },
+    extraReducers: (builder) => {
+        builder
+            .addMatcher(
+                api.endpoints.getExpenses.matchFulfilled,
+                (state, { payload }) => {
+                    expensesAdapter.setMany(state, payload)
+                }
+            )
+            .addMatcher(
+                api.endpoints.deleteExpense.matchFulfilled,
+                (state, { payload }) => {
+                    expensesAdapter.removeOne(state, payload)
+                }
+            )
+    }
 });
 
 export const {

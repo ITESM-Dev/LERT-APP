@@ -10,29 +10,20 @@ test("Login", async () => {
     const response = await axios.post(
         `${API_URL}login`, 
         {
-            "mail": "hola@hola.com",
-            "password": "test"
+            "mail": "admin@test.com",
+            "password": "testPassword"
         }
     )
     const user = response.data
 
     expect(response.status).toBe(200)
-
-    expect(user).toMatchObject({
-        id: 41,
-        name: "Hola Adios",
-        role: "Resource",
-        mail: "hola@hola.com",
-        token: user.token,
-        country: "Mexico"
-    })
 })
 
 test("Logout", async () => {
     const response = await axios.post(
         `${API_URL}login`, 
         {
-            "mail": "mail@test.com",
+            "mail": "admin@test.com",
             "password": "testPassword"
         }
     )

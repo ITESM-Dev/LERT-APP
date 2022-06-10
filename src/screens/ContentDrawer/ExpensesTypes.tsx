@@ -1,59 +1,136 @@
-import { View } from "react-native";
-
-import Table from "~components/organisms/Table";
-import LertText from '~components/atoms/LertText';
-import Overlay from '~components/organisms/Overlay';
-import LertInput from '~components/molecules/LertInput';
-import * as textTypes from '~styles/constants/textTypes';
-
-import Theme from '../../theme/theme';
 import { useState } from "react";
-import { HStack, VStack } from "native-base";
-import { AppDispatch } from "~store/store";
-import { useDispatch, useSelector } from "react-redux";
-import { allExpenseTypes } from "~store/expenseTypes/selectors";
+import { useSelector } from "react-redux";
+import { Box, HStack, SectionList, VStack } from "native-base";
+
+import { 
+    ExpenseTypeForm,
+    useCreateExpenseTypeMutation, 
+    useDeleteExpenseTypeMutation, 
+    useGetExpenseTypesQuery, 
+    useUpdateExpenseTypeMutation
+} from "~store/api";
+import { allExpenseTypes, ExpenseTypesType } from "~store/expenseTypes";
+
+import LertText from '~components/atoms/LertText';
+import LertInput from '~components/molecules/LertInput';
+import Table from "~components/organisms/Table";
+import Overlay from '~components/organisms/Overlay';
 import LertScreen from "~components/organisms/LertScreen";
+
+import Theme from '~theme/theme';
+import * as textTypes from '~styles/constants/textTypes';
+import { ExpenseType } from "~store/expenses";
 
 const TABLE_HEADERS = ["Name"]
 
 const ExpensesTypes = () => {
 
-    let example = [
-        {Name: "Main"},
-        {Name: "Secondary"}
-    ]
+    const [id, setId] = useState("")
+    const [name, setName] = useState("")
 
-    const [name, setName] = useState("");
-
-    // Store Dispatcher
-    const dispatch: AppDispatch = useDispatch();
+    const [isUpdate, setIsUpdate] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+    
+    const [error, setError] = useState<string | null>(null)
+    
     // Expenses - State
     const expenseTypes = useSelector(allExpenseTypes);
 
-    return (
-        <LertScreen>
-            
-            <LertText text="New Type of Expense" type={textTypes.display04} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"6%"}}/>
+    // Auto refetch
+    const { isLoading } = useGetExpenseTypesQuery()
 
-            <Overlay maxWidth={"50%"} maxHeight={"50%"} buttonTitle="Create expense"> 
-                <>
-                    <HStack space={2} justifyContent="space-evenly">
-                        <VStack alignItems={"flex-start"}>
-                            <LertText text="Name" type={textTypes.heading} color={Theme.colors.text.primary}/>
-                            <LertInput text={name} setText={setName} placeholder={"Name"}/>
-                        </VStack>
-                    </HStack>
-                </>
+    const [createExpenseType, response] = useCreateExpenseTypeMutation()
+    const [updateExpenseType] = useUpdateExpenseTypeMutation()
+
+    const resetForm = () => {
+        setId("")
+        setName("")
+    }
+
+    const handleSubmit = () => {
+        const expenseTypeForm: ExpenseTypeForm = {
+            id: id,
+            type: name
+        }
+
+        if (isUpdate) {
+            updateExpenseType(expenseTypeForm)
+                .unwrap()
+                .then(() => {
+                    resetForm()
+                    setIsUpdate(false)
+                })
+                .catch(error =>  {
+                    resetForm()
+                    setIsUpdate(false)
+                    setError(
+                        "Something went wrong, please try again"
+                    )
+                })  
+            return
+        }
+
+        createExpenseType(expenseTypeForm)
+            .unwrap()
+            .then(() => resetForm())
+            .catch(_ => setError(
+                "Something went wrong, please try again"
+            ))
+    }
+
+    const handleUpdate = (item: ExpenseTypesType) => {
+        setId(item.id)
+        setName(item.type)
+        
+        setIsUpdate(true)
+        setIsOpen(true)
+    }
+
+    const handleOnClose = () => {
+        setIsUpdate(false)
+        resetForm()
+    }
+
+    return (
+        <LertScreen isLoading={isLoading}>
+            
+            <LertText 
+                text="Expense Types" 
+                type={textTypes.display04} 
+                color={Theme.colors.text.primary} 
+            />
+
+            {/** CREATE & UPDATE */}
+            <Overlay 
+                minWidth={"30%"} 
+                minHeight={"30%"} 
+                buttonTitle={isUpdate ? "Update Expense Type" : "Add Expense Type"}
+                handleSubmit={handleSubmit}
+                error={error}
+                setError={setError}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                handleOnClose={handleOnClose}
+            > 
+            <HStack flex={1} justifyContent={'center'}>
+                <VStack alignItems={"flex-start"}>
+                    <LertText text="Name" type={textTypes.heading} color={Theme.colors.text.primary}/>
+                    <LertInput text={name} setText={setName} placeholder={"Name"}/>
+                </VStack>
+            </HStack>
 
             </Overlay>
-
-            <LertText text="All Expenses Types" type={textTypes.display01} color={Theme.colors.text.primary} style={{paddingLeft:"10%", paddingTop:"4%"}}/>
-
-            <Table 
-                headers={TABLE_HEADERS} 
-                items={example} 
-                flexValues={[1]} 
-            />
+    
+            <Box
+                marginTop={30}
+            >
+                <Table 
+                    headers={TABLE_HEADERS} 
+                    items={expenseTypes} 
+                    flexValues={[1]} 
+                    handleUpdate={handleUpdate}
+                />
+            </Box>
 
         </LertScreen>
     )

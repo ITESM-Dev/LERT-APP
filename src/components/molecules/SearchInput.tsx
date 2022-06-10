@@ -1,69 +1,80 @@
-import { useEffect } from 'react';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { View } from 'react-native';
+// @ts-ignore
 import Autocomplete from 'react-native-autocomplete-input'
-import LertText from '~components/atoms/LertText';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import * as TextTypes from '~styles/constants/textTypes';
-import { dropdownStyles } from './Dropdown';
-import { LertInputStyle } from './LertInput';
+import LertText from '~components/atoms/LertText';
+import LertInput from '~components/molecules/LertInput';
+import { dropdownStyles } from '~components/molecules/Dropdown';
 
 import Theme from '~theme/theme'
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { setDelegates } from '~store/delegates';
+import * as TextTypes from '~styles/constants/textTypes';
+import { useEffect } from 'react';
+import { useIsFocused } from '@react-navigation/native';
+import { TouchableWithoutFeedback } from 'react-native';
 
 const COLORS = Theme.colors
 const BG_COLOR = COLORS.components.offWhite
 
 type SearchInputPropTypes = {
-    items: any[];
+    items: string[];
     placeholder: string;
+    isDisabled?: boolean;
     value: string;
     setValue: Dispatch<SetStateAction<string>>;
 }
 
 const SearchInput = (props: SearchInputPropTypes) => {
 
-    const [query, setQuery] = useState("")
     const [selected, setSelected] = useState(false)
+    const [isFocused, setIsFocused] = useState(false)
 
     const itemClickHandler = (item: any) => {
-        setQuery(item)
-        setSelected(true)
         props.setValue(item)
+        setSelected(true)
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <View
+            style={{ flex: 1 }} 
+        >
             <Autocomplete 
                 placeholder={props.placeholder}
-                value={query}
+                value={props.value}
                 data={
                     props.items.filter( 
-                        (item: string) => query !== "" && !selected && item.includes(query) 
+                        (item: string) => isFocused && !selected && item.includes(props.value) 
                     )
                 }
                 
                 containerStyle={{
                     flex: 1,
+                    borderWidth: 0
                 }}
-                inputStyle={{
-                    ...LertInputStyle,
+                inputContainerStyle={{
+                    borderWidth: 0
                 }}
+                renderTextInput={() => 
+                    <LertInput
+                        isDisabled={props.isDisabled}
+                        placeholder={props.placeholder} 
+                        onFocus={() => { setIsFocused(true) }}  
+                        text={props.value} 
+                        setText={(text) => {
+                            setSelected(false)
+                            props.setValue(text)
+                        }} 
+                    />  
+                }
                 listContainerStyle={{
                     flex: 1,
                     position: 'absolute',
-                    zIndex: 1,
-                    ...dropdownStyles.itemContainer,
-                    marginTop: 45,
+                    marginTop: 35,
+                    borderColor: COLORS.icons.primary,
+                    borderWidth: 0.1,
                     backgroundColor: BG_COLOR,
                     width: '100%',
-                }}
-                
-                onChangeText={(text: string) => {
-                    if (selected) setSelected(false)
-                    props.setValue("")
-                    setQuery(text)
                 }}
 
                 flatListProps={{
