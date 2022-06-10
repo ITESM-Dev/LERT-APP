@@ -1,7 +1,7 @@
 import axios from "axios"
 import { API_URL } from "~utils/constants"
 
-const MAIL = "op@test.com"
+const MAIL = "opmanager@test.com"
 const PASSWORD = "test"
 
 test("Types", async() => {

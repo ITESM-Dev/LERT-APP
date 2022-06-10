@@ -50,8 +50,8 @@ const Delegate = () => {
         : useGetIcaAdminManagerQuery();
 
     const availableDelegates = user.role === USER_ROLES.OP_MANAGER
-        ? useGetAvailableDelegatesQuery()
-        : useGetIcaAdminsQuery();
+        ? useGetIcaAdminsQuery()
+        : useGetAvailableDelegatesQuery()
 
     useEffect(() => {
         if (user.role === USER_ROLES.MANAGER) {

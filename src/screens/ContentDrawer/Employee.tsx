@@ -39,6 +39,7 @@ const Employee = () => {
     const [ICANum, setICANum] = useState("");
     const [band, setBand] = useState("");
 
+    const [isOpen, setIsOpen] = useState(false)
     const [error, setError] = useState<string | null>(null)
 
     const resetForm = () => {
@@ -107,6 +108,8 @@ const Employee = () => {
                 handleSubmit={handleSubmit}
                 error={error}
                 setError={setError} 
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
             > 
                 <>
                     <HStack space={2} justifyContent="space-evenly">

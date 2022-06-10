@@ -176,7 +176,7 @@ const SignUp = () => {
                 <Box style={{flexDirection:'row', width: '100%'}}>
                     <LertInput
                         placeholder="First name"
-                        style={{width: "100%" }}
+                        style={{width: "100%", marginTop:"5%" }}
                         text={firstName}
                         setText={setFirstName}
                         />
