@@ -39,7 +39,7 @@ const CurrentPeriod = () =>{
     const currentPeriods = useSelector(allCurrentPeriods);
     
     // Auto-refetch
-    useGetCurrentPeriodsQuery();
+    const { isLoading } = useGetCurrentPeriodsQuery();
 
     // API Calls
     const [createCurrentPeriod] = useCreateCurrentPeriodMutation();
@@ -102,7 +102,7 @@ const CurrentPeriod = () =>{
     }
 
     return (
-        <LertScreen>
+        <LertScreen isLoading={isLoading}>
             
             <LertText
                 text="Current Period"

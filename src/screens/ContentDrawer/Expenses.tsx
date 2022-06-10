@@ -191,13 +191,7 @@ const Expenses = () => {
     }, [isDownload])
 
     return (
-        <LertScreen 
-            isLoading={isLoading}
-            error={error}
-            setError={setError}
-            success={success}
-            setSuccess={setSuccess}
-        >
+        <LertScreen isLoading={isLoading}>
             
             <LertText text="Expenses" type={textTypes.display04} color={Theme.colors.text.primary}/>
 

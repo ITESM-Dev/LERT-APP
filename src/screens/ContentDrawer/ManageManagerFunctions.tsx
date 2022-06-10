@@ -32,7 +32,7 @@ const ManageManagerFunctions = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [error, setError] = useState<string | null>(null)
 
-    useGetManagerFunctionsQuery()
+    const { isLoading } = useGetManagerFunctionsQuery()
 
     // Managers - State
     const managers = useSelector(allManagers);
@@ -58,7 +58,7 @@ const ManageManagerFunctions = () => {
     }
 
     return (
-        <LertScreen>
+        <LertScreen isLoading={isLoading}>
             
             <LertText 
                 text="Manager Functions" 
