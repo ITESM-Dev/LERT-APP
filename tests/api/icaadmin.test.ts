@@ -1,10 +1,10 @@
 import axios from "axios"
 import { API_URL } from "~utils/constants"
 
-const MAIL = "ica@test.com"
+const MAIL = "icaAdmin@test.com"
 const PASSWORD = "test"
 
-const MANAGER_MAIL = "m@test.com"
+const MANAGER_MAIL = "manager@test.com"
 
 test("Managers", async() => {
     const userResponse = await axios.post(
@@ -69,7 +69,7 @@ test("Log in as Manager", async() => {
         }
     )
 
-    expect(response.status).toBe(201)
+    expect(response.status).toBe(200)
     expect(response.data).toBeDefined()
     expect(Object.keys(response.data).length).toBe(7)
 })

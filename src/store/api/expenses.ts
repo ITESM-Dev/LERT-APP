@@ -25,6 +25,7 @@ export const getExpenses = (builder: BuilderType) => (
                 ICAManager: item.ICAManager,
                 administrator: item.administrator,
                 comment: item.comment,
+                id: item.id_expense,
             } as ExpenseType))
             return expensesAPI;
         }
@@ -57,21 +58,24 @@ export const updateExpense = (builder: BuilderType) => (
 )
 
 export const deleteExpense = (builder: BuilderType) => (
-    builder.mutation<void, string>({
+    builder.mutation<string, string>({
         query: (id) => ({
             url: "deleteExpense",
             method: "POST",
             body: { id },
+            responseHandler: 'text',
             validateStatus: validateDeleteStatus,
         }),
-        invalidatesTags: ["Expenses", "CurrentPeriod", "ICAs"]
+        invalidatesTags: ["Expenses", "CurrentPeriod", "ICAs"],
+        transformResponse: (response, meta, arg) => arg
     })
 )
 
 export const getExpenseReport = (builder: BuilderType) => (
-    builder.query<any, ExpenseReportForm>({
+    builder.mutation<any, ExpenseReportForm>({
         query: (expenseReportForm) => ({
             url: 'reportExpense',
+            method: 'POST',
             body: expenseReportForm,
             validateStatus: validateGetStatus,
         })

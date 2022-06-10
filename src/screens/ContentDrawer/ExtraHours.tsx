@@ -50,7 +50,6 @@ const ExtraHours = () => {
     // API Calls
     const [createExtraHourType] = useCreateExtraHourTypeMutation()
     const [updateExtraHourType] = useUpdateExtraHourTypeMutation()
-    const [deleteExtraHourType] = useDeleteExtraHourTypeMutation()
 
     const [error, setError] = useState<string | null>(null)
 
@@ -115,15 +114,6 @@ const ExtraHours = () => {
         setIsOpen(true)
     }
 
-    const handleDelete = (item: ExtraHourType) => {
-        deleteExtraHourType(item.id)
-            .unwrap()
-            .then(() => alert("Deleted"))
-            .catch(_ => setError(
-                "Something went wrong, please try again"
-            ))
-    }
-
     const handleOnClose = () => {
         setIsUpdate(false)
         resetForm()
@@ -179,7 +169,7 @@ const ExtraHours = () => {
                                 placeholder={"Rate"}
                             />
                             <LertText 
-                                text="Type" 
+                                text="Expense Type" 
                                 type={textTypes.heading} 
                                 color={Theme.colors.text.primary} 
                                 style={{ paddingTop:"10%" }}
@@ -235,7 +225,6 @@ const ExtraHours = () => {
                     items={extraHours} 
                     flexValues={[1, 1, 2, 1, 2, 2]}
                     handleUpdate={handleUpdate}
-                    handleDelete={handleDelete}
                 />
             </Box>
         </LertScreen>

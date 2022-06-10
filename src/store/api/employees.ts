@@ -47,6 +47,7 @@ export const assignResourceToManager = (builder: BuilderType) => (
             url: "assignResourceToManager",
             method: "POST",
             body: employeeForm,
+            responseHandler: 'text',
             validateStatus: validateUpdateStatus,
         })
     })

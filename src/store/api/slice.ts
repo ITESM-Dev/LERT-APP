@@ -285,7 +285,7 @@ export const {
 	useCreateExpenseMutation,
 	useUpdateExpenseMutation,
 	useDeleteExpenseMutation,
-	useGetExpenseReportQuery,
+	useGetExpenseReportMutation,
 
 	// Expenses For Quarter (Recovery)
 	useExpensesForQuarterQuery,
