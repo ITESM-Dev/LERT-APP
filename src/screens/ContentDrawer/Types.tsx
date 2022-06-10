@@ -37,7 +37,7 @@ const Types = () => {
     const [error, setError] = useState<string | null>(null)
 
     // Subscribe to Get BandTypes API Call
-    useGetBandTypesQuery()
+    const { isLoading } = useGetBandTypesQuery()
 
     // Band Types - State
     const bandTypes = useSelector(allBandTypes);
@@ -123,7 +123,7 @@ const Types = () => {
     }
 
     return (
-        <LertScreen>
+        <LertScreen isLoading={isLoading}>
             
             <LertText text="Types" type={textTypes.display04} color={Theme.colors.text.primary}/>
 

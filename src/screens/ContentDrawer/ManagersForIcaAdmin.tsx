@@ -24,7 +24,7 @@ const ManagersForIcaAdmin = () => {
     const user = useSelector(userSelector)
 
     // Managers assigned to ICA Admin
-    const { data } = useGetManagersIcaAdminQuery()
+    const { data, isLoading } = useGetManagersIcaAdminQuery()
 
     // Calls for Login In as Manager
     const [assignTokenAuth] = useAssignTokenAuthMutation();
@@ -50,7 +50,7 @@ const ManagersForIcaAdmin = () => {
     }
 
     return (
-        <LertScreen>
+        <LertScreen isLoading={isLoading}>
             <LertText 
                 text="Assigned to Managers" 
                 type={textTypes.display04} 

@@ -49,6 +49,8 @@ const Delegate = () => {
         ? useGetManagersAndIcaAdminsQuery()
         : useGetIcaAdminManagerQuery();
 
+    const isLoading = tableItems.isLoading;
+
     const availableDelegates = user.role === USER_ROLES.OP_MANAGER
         ? useGetIcaAdminsQuery()
         : useGetAvailableDelegatesQuery()
@@ -82,7 +84,7 @@ const Delegate = () => {
     }
 
     return (
-        <LertScreen>
+        <LertScreen isLoading={isLoading}>
             <LertText 
                 text="Delegate Section" 
                 type={textTypes.display04} 

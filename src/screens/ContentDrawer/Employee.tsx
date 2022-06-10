@@ -55,7 +55,7 @@ const Employee = () => {
     const user = useSelector(userSelector);
 
     // Auto-fetch Employees
-    useGetResourcesQuery()
+    const { isLoading } = useGetResourcesQuery()
     
     // API Call
     const [assignResource, response] = useAssignResourceToManagerMutation()
@@ -93,7 +93,7 @@ const Employee = () => {
     }
 
     return (
-        <LertScreen>
+        <LertScreen isLoading={isLoading}>
             <LertText 
                 text="Employees" 
                 type={textTypes.display04} 

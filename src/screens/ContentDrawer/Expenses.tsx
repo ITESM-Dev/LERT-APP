@@ -59,7 +59,7 @@ const Expenses = () => {
     const currentPeriods = useSelector(allCurrentPeriods)
 
     // Auto-fetch
-    useGetExpensesQuery()
+    const { isLoading } = useGetExpensesQuery()
     // Current Periods
     useGetCurrentPeriodsQuery()
 
@@ -179,7 +179,7 @@ const Expenses = () => {
     }, [isDownload])
 
     return (
-        <LertScreen>
+        <LertScreen isLoading={isLoading}>
             
             <LertText text="Expenses" type={textTypes.display04} color={Theme.colors.text.primary}/>
 
