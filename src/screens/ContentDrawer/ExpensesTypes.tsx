@@ -41,8 +41,6 @@ const ExpensesTypes = () => {
 
     const [createExpenseType, response] = useCreateExpenseTypeMutation()
     const [updateExpenseType] = useUpdateExpenseTypeMutation()
-    const [deleteExpenseType] = useDeleteExpenseTypeMutation()
-
 
     const resetForm = () => {
         setId("")
@@ -88,15 +86,6 @@ const ExpensesTypes = () => {
         setIsOpen(true)
     }
 
-    const handleDelete = (item: ExpenseTypesType) => {
-        deleteExpenseType(item.id)
-            .unwrap()
-            .then(() => alert("Deleted"))
-            .catch(_ => setError(
-                "Something went wrong, please try again"
-            ))
-    }
-
     const handleOnClose = () => {
         setIsUpdate(false)
         resetForm()
@@ -140,7 +129,6 @@ const ExpensesTypes = () => {
                     items={expenseTypes} 
                     flexValues={[1]} 
                     handleUpdate={handleUpdate}
-                    handleDelete={handleDelete}
                 />
             </Box>
 

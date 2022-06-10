@@ -25,7 +25,7 @@ export const getManagersAndIcaAdmins = (builder: BuilderType) => (
 export const getIcaAdmins = (builder: BuilderType) => (
     builder.query<IcaAdminType[], void>({
         query: () => ({
-            url: "getIcaAdmins",
+            url: "getICAAdmins",
             validateStatus: validateGetStatus,
         }),
         providesTags: ["Delegate"],
@@ -106,7 +106,7 @@ export const getIcaAdminManager = (builder: BuilderType) => (
  export const getManagersNoIcaAdmins = (builder: BuilderType) => (
     builder.query<ManagerType[], void>({
         query: () => ({
-            url: "getAvailableManagersICA",
+            url: "getManagersNoIcaAdmins",
             validateStatus: validateGetStatus,
         }),
         providesTags: ["Delegate"],

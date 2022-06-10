@@ -45,6 +45,12 @@ const expensesSlice = createSlice({
                     expensesAdapter.setMany(state, payload)
                 }
             )
+            .addMatcher(
+                api.endpoints.deleteExpense.matchFulfilled,
+                (state, { payload }) => {
+                    expensesAdapter.removeOne(state, payload)
+                }
+            )
     }
 });
 
