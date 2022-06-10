@@ -11,7 +11,7 @@ test("Login", async () => {
         `${API_URL}login`, 
         {
             "mail": "admin@test.com",
-            "password": "test"
+            "password": "testPassword"
         }
     )
     const user = response.data
@@ -24,7 +24,7 @@ test("Logout", async () => {
         `${API_URL}login`, 
         {
             "mail": "admin@test.com",
-            "password": "test"
+            "password": "testPassword"
         }
     )
     const user = response.data

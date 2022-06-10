@@ -7,7 +7,7 @@ test("Get User Info call", async () => {
         `${API_URL}login`, 
         {
             "mail": "admin@test.com",
-            "password": "test"
+            "password": "testPassword"
         }
     )
     const user = loginResponse.data

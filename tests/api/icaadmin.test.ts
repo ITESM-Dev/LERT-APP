@@ -2,7 +2,7 @@ import axios from "axios"
 import { API_URL } from "~utils/constants"
 
 const MAIL = "icaAdmin@test.com"
-const PASSWORD = "test"
+const PASSWORD = "testPassword"
 
 const MANAGER_MAIL = "manager@test.com"
 
