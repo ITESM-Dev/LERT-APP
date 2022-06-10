@@ -58,7 +58,7 @@ const Recovery = () => {
 	};
 
     return (
-        <LertScreen>
+        <LertScreen isLoading={data}>
             <LertText 
 				text="Recovery and Adjustments" 
 				type={textTypes.display04} 

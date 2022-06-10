@@ -37,7 +37,7 @@ const ExpensesTypes = () => {
     const expenseTypes = useSelector(allExpenseTypes);
 
     // Auto refetch
-    useGetExpenseTypesQuery()
+    const { isLoading } = useGetExpenseTypesQuery()
 
     const [createExpenseType, response] = useCreateExpenseTypeMutation()
     const [updateExpenseType] = useUpdateExpenseTypeMutation()
@@ -92,7 +92,7 @@ const ExpensesTypes = () => {
     }
 
     return (
-        <LertScreen>
+        <LertScreen isLoading={isLoading}>
             
             <LertText 
                 text="Expense Types" 

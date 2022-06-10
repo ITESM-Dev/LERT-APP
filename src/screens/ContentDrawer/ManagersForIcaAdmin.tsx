@@ -50,7 +50,7 @@ const ManagersForIcaAdmin = () => {
     }
 
     return (
-        <LertScreen>
+        <LertScreen isLoading={data}>
             <LertText 
                 text="Assigned to Managers" 
                 type={textTypes.display04} 

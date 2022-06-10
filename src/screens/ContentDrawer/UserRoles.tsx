@@ -44,7 +44,7 @@ const UserRoles = () => {
     }
 
     return (
-        <LertScreen>
+        <LertScreen isLoading={data}>
             <LertText 
                 text="Users" 
                 type={textTypes.display04} 

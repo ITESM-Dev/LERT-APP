@@ -64,7 +64,7 @@ const ICAS = () => {
     const managers = useSelector(allManagers);
 
     // Auto fetching for ICAS
-    useGetICAsQuery()
+    const { isLoading } = useGetICAsQuery()
 
     useGetManagerFunctionsQuery()
 
@@ -196,7 +196,7 @@ const ICAS = () => {
     }
 
     return (
-        <LertScreen>
+        <LertScreen isLoading={isLoading}>
             <LertText 
                 text="ICA" 
                 type={textTypes.display04} 

@@ -45,7 +45,7 @@ const ExtraHours = () => {
     const extraHours = useSelector(allExtraHours);
 
     // Auto-fetch data
-    useGetExtraHourTypesQuery()
+    const { isLoading } = useGetExtraHourTypesQuery()
     
     // API Calls
     const [createExtraHourType] = useCreateExtraHourTypeMutation()
@@ -120,7 +120,7 @@ const ExtraHours = () => {
     }
 
     return (
-        <LertScreen>
+        <LertScreen isLoading={isLoading}>
 
             <LertText 
                 text="Extra Hours" 
