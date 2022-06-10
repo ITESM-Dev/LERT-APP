@@ -29,12 +29,7 @@ const AppStack = () => {
                 name={APP_STACK_SCREENS.SignUp}
                 component={SignUp}
             />
-
-            <Stack.Screen 
-                name={APP_STACK_SCREENS.ForgotPassword}
-                component={ForgotPassword}
-            />
-
+            
             <Stack.Screen 
                 name={APP_STACK_SCREENS.NotFound}
                 component={NotFound}
