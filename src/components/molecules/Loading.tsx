@@ -1,13 +1,6 @@
-import { ActivityIndicator, StyleSheet } from 'react-native';
+import { Box, Skeleton, View } from 'native-base';
 
-import { Box, Center, Flex, HStack, Image, Modal, Skeleton, Spinner, View, VStack } from 'native-base';
-
-import LertText from '~components/atoms/LertText';
 import theme from '~theme/theme';
-
-import * as textTypes from '~styles/constants/textTypes';
-import { useState } from 'react';
-import LoadingMenu from './LoadingMenu';
 type LoadingProps = {
   isLoaded: boolean;
   setIsLoaded?: () => void;
