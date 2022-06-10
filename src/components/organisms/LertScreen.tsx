@@ -1,33 +1,71 @@
-import Content from "Content";
-import { isLoaded, isLoading } from "expo-font";
-import { ScrollView, View, Skeleton, Spinner } from "native-base"
-import { Children, useContext, useState } from "react";
-import { render } from "react-dom";
-import AppTitle from "~components/molecules/AppTitle";
+import { Box, ScrollView, Slide, View } from "native-base"
+import { useEffect } from "react";
 
+import AppTitle from "~components/molecules/AppTitle";
 import LegalMenu from "~components/molecules/LegalMenu"
 import Loading from "~components/molecules/Loading";
-import LoadingMenu from "~components/molecules/LoadingMenu";
+import Notification from "~components/molecules/Notification";
+
 import containerStyles from "~styles/containers"
-import theme from "~theme/theme";
 
+const LertScreen = ({ 
+    children, 
+    isLoading, 
+    success, 
+    setSuccess,
+    error,
+    setError, 
+    }: any) => {
 
-
-const LertScreen = ({ children, isLoading }: any) => {
-
-
-    if (isLoading){
+    if (isLoading) {
         return(<Loading />)
     }
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (success) setSuccess(null)
+            if (error) setError(null)
+        }, 5000)
+    }, [success, error])
         
     return(
         <View 
+            // @ts-ignore
             style={{
                 height: '100%',
                 justifyContent: 'space-betwen',
             }}
         >
             <AppTitle />
+
+            { success &&
+                <Slide 
+                    flex={1}
+                    position={'absolute'} 
+                    in={success !== null} 
+                    placement={"right"}
+                >
+                    <Notification 
+                        title={"Success"} 
+                        body={success} 
+                        type={"success"}                 
+                    />
+                </Slide>
+            }
+            { error && 
+                <Slide 
+                    in={error !== null}
+                    position={'absolute'}
+                    placement={"right"}
+                    flex={1}
+                >
+                    <Notification 
+                        title={"Error"} 
+                        body={error} 
+                        type={"error"}                 
+                    />
+                </Slide>
+            }
 
             <ScrollView>
                 <View style={containerStyles.insideScreen}>

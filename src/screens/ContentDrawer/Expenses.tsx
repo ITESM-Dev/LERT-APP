@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Box, HStack, VStack } from "native-base";
 
+// @ts-ignore
 import { CSVDownload } from "react-csv";
 
 import { 
@@ -47,6 +48,7 @@ const Expenses = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [isOpenReport, setIsOpenReport] = useState(false)
 
+    const [success, setSuccess] = useState<string | null>(null)
     const [error, setError] = useState<string | null>(null)
 
     const [csv, setCsv] = useState([])
@@ -59,7 +61,7 @@ const Expenses = () => {
     const currentPeriods = useSelector(allCurrentPeriods)
 
     // Auto-fetch
-    useGetExpensesQuery()
+    const { isLoading } = useGetExpensesQuery()
     // Current Periods
     useGetCurrentPeriodsQuery()
 
@@ -97,7 +99,9 @@ const Expenses = () => {
                 setCsv(response)
                 setDownload(true)
             })
-            .catch(error => console.error(error))
+            .catch(error => setError(
+                "Error generating reports"
+            ))
 
     }
 
@@ -130,6 +134,9 @@ const Expenses = () => {
                 .then(() => {
                     resetForm()
                     setIsUpdate(false)
+                    setSuccess(
+                        "Expense Updated!"
+                    )
                 })
                 .catch(_ => {
                     resetForm()
@@ -142,7 +149,12 @@ const Expenses = () => {
         }
         createExpense(expenseForm)
             .unwrap()
-            .then(() => resetForm())
+            .then(() => {
+                resetForm()
+                setSuccess(
+                    "Expense created!"
+                )
+            })
             .catch(_ => setError(
                 "Something went wrong, please try again"
             ))
@@ -179,7 +191,13 @@ const Expenses = () => {
     }, [isDownload])
 
     return (
-        <LertScreen>
+        <LertScreen 
+            isLoading={isLoading}
+            error={error}
+            setError={setError}
+            success={success}
+            setSuccess={setSuccess}
+        >
             
             <LertText text="Expenses" type={textTypes.display04} color={Theme.colors.text.primary}/>
 

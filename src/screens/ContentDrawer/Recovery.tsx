@@ -35,7 +35,7 @@ const Recovery = () => {
 	const screenWidth = useWindowDimensions().width;
 	const screenHeight = useWindowDimensions().height;
 
-	const [year, setYear] = useState("2022")
+	const [year, setYear] = useState("2021")
 
 	const { data } = useExpensesForQuarterQuery({ year } as ExpensesForQuarterForm)
 	

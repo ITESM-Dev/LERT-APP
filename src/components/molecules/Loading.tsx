@@ -16,67 +16,74 @@ type LoadingProps = {
 const Loading = () => {
   
     return (
-      <Box flexDirection={'row'} height='100%'>
-        
-        <View 
-          flexDirection={'column'} 
-          width={'100%'}
-          height={'100%'}
-        >
-          <Skeleton 
-            startColor={theme.colors.components.placeholderActive}
-            endColor={theme.colors.components.selectedState}
-            h={'57'} 
-          />
-            <Box style={{marginHorizontal:'5%', marginTop:'5%', height:'40%', flex: 1}}>
-              <View flexDir={'row'} alignItems={'center'}>
+        <Box flexDirection={'row'} height='100%'>
+            <View 
+                flexDirection={'column'} 
+                width={'100%'}
+                height={'100%'}
+            >
                 <Skeleton 
-                  height={'25%'} width={'25%'} 
-                  mt={'8%'} mb={'15%'} rounded={'3xl'} mr={'45%'}
+                    startColor={theme.colors.components.placeholderActive}
+                    endColor={theme.colors.components.selectedState}
+                    h={"8%"} 
+                />
+              <Box style={{marginHorizontal:'5%', marginTop:'5%', height:'40%', flex: 1}}>
+                <View flexDir={'row'} alignItems={'flex-end'}>
+                    <Skeleton 
+                        height={'25%'} 
+                        width={'25%'} 
+                        mt={'10%'} 
+                        mb={'15%'} 
+                        rounded={'3xl'}
+                        mr={'60%'}
+                        endColor={theme.colors.components.offWhite}
+                        startColor={theme.colors.components.selectedState}
+                    />
+                    <Skeleton 
+                        height={'15%'} 
+                        width={'16%'} 
+                        mt={'10%'} 
+                        mb={'15%'} 
+                        rounded={'sm'} 
+                        startColor={theme.colors.actions.actionShade2}
+                        endColor={theme.colors.actions.actionShade0}
+                        alignSelf={'flex-start'}
+                    />
+                </View>
+                <Skeleton width={'container'}
+                  endColor={theme.colors.components.selectedState}
+                  startColor={theme.colors.components.placeholderActive} />
+                <Skeleton 
+                  width={'container'} 
                   endColor={theme.colors.components.offWhite}
                   startColor={theme.colors.components.selectedState}
+                  borderColor = {theme.colors.components.selectedState}
+                  borderWidth={1}
+    
                 />
-                <Skeleton height={'15%'} width={'16%'} mt={'8%'} mb={'15%'} rounded={'sm'} 
-                  startColor={theme.colors.actions.actionShade2}
-                  endColor={theme.colors.actions.actionShade0}
-                  alignSelf={'flex-start'}
-                  marginRight={'10%'}
+                <Skeleton width={'container'} 
+                  endColor={theme.colors.components.offWhite}
+                  startColor={theme.colors.components.selectedState}
+                  borderColor = {theme.colors.components.selectedState}
+                  borderWidth={1}
+
                 />
-              </View>
-              <Skeleton width={'container'}
-                endColor={theme.colors.components.selectedState}
-                startColor={theme.colors.components.placeholderActive} />
-              <Skeleton 
-                width={'container'} 
+                <Skeleton width={'container'} 
                 endColor={theme.colors.components.offWhite}
                 startColor={theme.colors.components.selectedState}
                 borderColor = {theme.colors.components.selectedState}
                 borderWidth={1}
-  
-              />
-              <Skeleton width={'container'} 
-                endColor={theme.colors.components.offWhite}
-                startColor={theme.colors.components.selectedState}
-                borderColor = {theme.colors.components.selectedState}
-                borderWidth={1}
+                />
+                <Skeleton width={'container'} 
+                  endColor={theme.colors.components.offWhite}
+                  startColor={theme.colors.components.selectedState}
+                  borderColor = {theme.colors.components.selectedState}
+                  borderWidth={1}
+                />
 
-              />
-              <Skeleton width={'container'} 
-              endColor={theme.colors.components.offWhite}
-              startColor={theme.colors.components.selectedState}
-              borderColor = {theme.colors.components.selectedState}
-              borderWidth={1}
-              />
-              <Skeleton width={'container'} 
-                endColor={theme.colors.components.offWhite}
-                startColor={theme.colors.components.selectedState}
-                borderColor = {theme.colors.components.selectedState}
-                borderWidth={1}
-              />
-
-            </Box>          
-        </View>                
-      </Box>
+              </Box>          
+          </View>                
+        </Box>
 )};
 
 export default Loading;

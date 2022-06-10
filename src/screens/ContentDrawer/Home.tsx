@@ -52,7 +52,7 @@ const Row = ({ children }: any) =>
 
 const Home = () => {
     return (
-        <LertScreen isLoading = {true} >
+        <LertScreen>
 
             <LertText
                 text="Hi user, welcome to LERT"
