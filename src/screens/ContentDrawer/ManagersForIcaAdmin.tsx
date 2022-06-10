@@ -13,7 +13,6 @@ import * as textTypes from '~styles/constants/textTypes';
 import { LoginICAAdminForm, useAssignTokenAuthMutation, useGetManagersIcaAdminQuery, useLoginICAAdminMutation } from "~store/api";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser, userSelector } from "~store/user";
-import { isLoading } from "expo-font";
 
 const TABLE_HEADERS = ["Manager"]
 
@@ -25,7 +24,7 @@ const ManagersForIcaAdmin = () => {
     const user = useSelector(userSelector)
 
     // Managers assigned to ICA Admin
-    const { data } = useGetManagersIcaAdminQuery()
+    const { data, isLoading } = useGetManagersIcaAdminQuery()
 
     // Calls for Login In as Manager
     const [assignTokenAuth] = useAssignTokenAuthMutation();
@@ -34,7 +33,7 @@ const ManagersForIcaAdmin = () => {
     const handleLogin = async () => {
         
         // @ts-ignore
-        const { data, isLoading } = await assignTokenAuth(manager)
+        const { data } = await assignTokenAuth(manager)
         
         const loginIcaAdminForm: LoginICAAdminForm = {
             mailManager: manager,
