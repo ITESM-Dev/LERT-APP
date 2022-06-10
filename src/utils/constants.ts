@@ -1,8 +1,8 @@
 const LOCAL_URL = "http://localhost:8000/" 
-const DEV_URL = ""
+const DEV_URL = "https://lert-flask-responsible-antelope-do.mybluemix.net/"
 const PROD_URL = ""
 
-export const API_URL =  LOCAL_URL
+export const API_URL =  DEV_URL
 
 export const dropdownCountries = [
     { label: 'México', value: 'Mexico' },
