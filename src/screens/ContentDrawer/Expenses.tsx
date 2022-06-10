@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Box, HStack, VStack } from "native-base";
 
+import { CSVDownload } from "react-csv";
+
 import { 
     ExpenseForm, 
     ExpenseReportForm, 
     useCreateExpenseMutation,
+    useDeleteExpenseMutation,
     useGetCurrentPeriodsQuery, 
-    useGetExpenseReportQuery, 
+    useGetExpenseReportMutation, 
     useGetExpensesQuery, 
     useGetExpenseTypesQuery,
     useGetManagerICAQuery,
@@ -46,6 +49,9 @@ const Expenses = () => {
 
     const [error, setError] = useState<string | null>(null)
 
+    const [csv, setCsv] = useState([])
+    const [isDownload, setDownload] = useState(false)
+
     // Expenses - State
     const expenses = useSelector(allExpenses)
 
@@ -67,6 +73,7 @@ const Expenses = () => {
     // API Calls
     const [createExpense] = useCreateExpenseMutation()
     const [updateExpense] = useUpdateExpenseMutation()
+    const [deleteExpense] = useDeleteExpenseMutation()
 
     useEffect(() => {
         if (managerICA.data !== undefined) {
@@ -77,13 +84,21 @@ const Expenses = () => {
     const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState("")
 
+    const [getExpenseReport] = useGetExpenseReportMutation()
+
     const generateExpenseReport = () => {
         const expenseReportForm: ExpenseReportForm = {
             startDate: startDate,
             endDate: endDate,
         }
-        const { data } = useGetExpenseReportQuery(expenseReportForm)
-        console.log(data)
+        getExpenseReport(expenseReportForm)
+            .unwrap()
+            .then((response) => {
+                setCsv(response)
+                setDownload(true)
+            })
+            .catch(error => console.error(error))
+
     }
 
     const resetForm = () => {
@@ -101,7 +116,7 @@ const Expenses = () => {
         const expenseForm: ExpenseForm = {
             id: id,
             icaCode: ica,
-            mail: employeeMail,
+            mailResource    : employeeMail,
             cost: cost,
             date: date,
             comment: comment,
@@ -145,10 +160,23 @@ const Expenses = () => {
         setIsOpen(true)
     }
 
+    const handleDelete = (item: ExpenseType) => {
+        deleteExpense(item.id)
+            .unwrap()
+            .then(() => alert("Deleted"))
+            .catch(_ => setError(
+                "Something went wrong, please try again"
+            ))
+    }
+
     const handleOnClose = () => {
         setIsUpdate(false)
         resetForm()
     }
+
+    useEffect(() => {
+        if (isDownload) setDownload(false)
+    }, [isDownload])
 
     return (
         <LertScreen>
@@ -159,6 +187,7 @@ const Expenses = () => {
                 flex={1}
                 justifyContent={'flex-end'}
             >
+                
                 <Overlay
                     minWidth={"40%"}
                     minHeight={"30%"}
@@ -177,10 +206,10 @@ const Expenses = () => {
                     >
                         <VStack alignItems={"flex-start"}>
                             <LertText 
-                            text="Start Date" 
-                            type={textTypes.heading} 
-                            color={Theme.colors.text.primary} 
-                            style={{paddingTop:"10%"}}
+                                text="Start Date" 
+                                type={textTypes.heading} 
+                                color={Theme.colors.text.primary} 
+                                style={{paddingTop:"10%"}}
                             />
                             <LertInput 
                                 text={startDate} 
@@ -188,13 +217,12 @@ const Expenses = () => {
                                 placeholder={"YYYY-MM-DD"}
                             />
                         </VStack>
-
                         <VStack alignItems={"flex-start"}>
                             <LertText 
-                            text="End Date" 
-                            type={textTypes.heading} 
-                            color={Theme.colors.text.primary} 
-                            style={{paddingTop:"10%"}}
+                                text="End Date" 
+                                type={textTypes.heading} 
+                                color={Theme.colors.text.primary} 
+                                style={{paddingTop:"10%"}}
                             />
                             <LertInput 
                                 text={endDate} 
@@ -202,9 +230,16 @@ const Expenses = () => {
                                 placeholder={"YYYY-MM-DD"}
                             />
                         </VStack>
-
                     </HStack>
                 </Overlay>
+                
+                {isDownload && 
+                    <CSVDownload
+                        filename={`expenses_${startDate}_${endDate}`} 
+                        data={csv}
+                    />
+                }
+
 
                 <Overlay 
                     minWidth={"60%"}
@@ -328,6 +363,7 @@ const Expenses = () => {
                     items={expenses} 
                     flexValues={[3, 1, 1, 1, 1, 2, 2, 2]}
                     handleUpdate={handleUpdate}
+                    handleDelete={handleDelete}
                 />
             </Box>
 
