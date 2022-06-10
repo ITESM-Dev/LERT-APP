@@ -28,7 +28,7 @@ const UserRoles = () => {
     const [role, setRole] = useState("")
 
     // All Users
-    const { data } = useGetAllUsersQuery()
+    const { data, isLoading } = useGetAllUsersQuery()
 
     // Assign Role
     const [updateUserRole, response] = useUpdateUserRoleMutation()
@@ -44,7 +44,7 @@ const UserRoles = () => {
     }
 
     return (
-        <LertScreen isLoading={data}>
+        <LertScreen isLoading={isLoading}>
             <LertText 
                 text="Users" 
                 type={textTypes.display04} 

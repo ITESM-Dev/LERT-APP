@@ -37,7 +37,7 @@ const Recovery = () => {
 
 	const [year, setYear] = useState("2022")
 
-	const { data } = useExpensesForQuarterQuery({ year } as ExpensesForQuarterForm)
+	const { data, isLoading } = useExpensesForQuarterQuery({ year } as ExpensesForQuarterForm)
 	
 	const charData = {
 		labels: ["Q1", "Q2", "Q3", "Q4"],
@@ -58,7 +58,7 @@ const Recovery = () => {
 	};
 
     return (
-        <LertScreen isLoading={data}>
+        <LertScreen isLoading={isLoading}>
             <LertText 
 				text="Recovery and Adjustments" 
 				type={textTypes.display04} 
