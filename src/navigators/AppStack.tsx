@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import ForgotPassword from '~screens/AppStack/ForgotPassword';
 import LoginScreen from '~screens/AppStack/LoginScreen';
 import SignUp from '~screens/AppStack/SignUp';
 import { APP_STACK_SCREENS } from '~utils/screenNames';
