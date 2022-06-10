@@ -2,12 +2,12 @@
 import { Button } from 'native-base'
 import { ViewStyle } from 'react-native';
 
-import BodyStyles from '~styles/body';
 import theme from '~theme/theme';
+import BodyStyles from '~styles/body';
 
 type LertButtonPropTypes = {
-    title: string;
-    type: "primary" | "secondary" | "terciary" | "danger" | "ghost";
+    type: "primary" | "secondary" | "terciary" | "danger" | "ghost" | "icon";
+    title: any;
     disabled?: boolean;
     onPress: () => void;
     style?: ViewStyle; 
@@ -16,7 +16,7 @@ type LertButtonPropTypes = {
 
 /**
  * @param title Text for Button
- * @param type "primary" | "secondary" | "terciary" | "danger" | "ghost"
+ * @param type "primary" | "secondary" | "terciary" | "danger" | "ghost" | "icon"
  * @param style (optional) component style
  */
 const LertButton = (props: LertButtonPropTypes) => {
@@ -56,13 +56,16 @@ const LertButton = (props: LertButtonPropTypes) => {
 
             _focus={{
                 ...style,
-                borderColor: LertButtonStyles[`${type}Hover`].borderColor
+                borderColor: LertButtonStyles[`${type}Pressed`].borderColor
             }}
 
             disabled={disabled}
             onPress={onPress}
         >
+            
             {title}
+    
+            
         </Button>
     );
 };
@@ -142,6 +145,15 @@ const LertButtonStyles: { [name: string]: StyleType} = {
     ghostPressed: {
         borderColor: 'actions.actionPrimary',
         borderWidth: 2
+    },
+    icon: {
+        backgroundColor: 'transparent',        
+    },
+    iconHover: {
+        backgroundColor: 'transparent',        
+    },
+    iconPressed: {
+        backgroundColor: 'transparent',        
     }
 }
 

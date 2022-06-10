@@ -11,7 +11,7 @@ import { SetStateAction } from 'react';
 
 const COLORS = Theme.colors
 const BG_COLOR = COLORS.components.offWhite
-const BORDER_COLOR = COLORS.components.highContrast
+const BORDER_COLOR = COLORS.text.primary
 
 type DropdownPropTypes = {
     placeholder: string;
@@ -51,17 +51,19 @@ const Dropdown = (props: DropdownPropTypes) => {
 
                 listItemLabelStyle={ dropdownStyles.listItem }
 
+                // @ts-ignore
                 textStyle={{ 
                     ...dropdownStyles.text, 
                     color: COLORS.text.bg,
                 }}
                 
+                // @ts-ignore
                 arrowIconStyle={ dropdownStyles.arrowIcon }
                 arrowIconContainerStyle={ dropdownStyles.arrowContainer }
+                showTickIcon={false}
                 
                 listMode='FLATLIST'
-                dropDownDirection='AUTO'
-                bottomOffset={200}
+                dropDownDirection={"BOTTOM"}
 
                 dropDownContainerStyle={ dropdownStyles.dropdownContainer }
 
@@ -89,37 +91,34 @@ const Dropdown = (props: DropdownPropTypes) => {
 export const dropdownStyles = StyleSheet.create({
     generalStyle: {
         flexDirection: 'row', 
-        padding: 10,
+        padding: 7,
     },
     dropdownContainer: { 
         borderColor: BORDER_COLOR,
+        position: 'absolute',
         borderRadius: 0,
     },
     container: {
-        backgroundColor: BG_COLOR,
         borderColor: BORDER_COLOR,
-        borderBottomWidth: 1,
-        flexDirection: 'row',
+        borderBottomWidth: 0.1,
+        flex: 1,
         justifyContent: 'space-between',
-        alignItems: 'center',
     },
     arrowContainer: {
         marginStart: 20,
         alignSelf: "flex-end"
     },
     arrowIcon: {
-        tintColor: COLORS.icons.secondary,
+        tintColor: BORDER_COLOR,
     },
     text: {
-        ...BodyStyles.paragraphComponents ,
+        ...BodyStyles.paragraphComponents,
         fontFamily: 'body',
         tintColor: COLORS.text.bg,
     },
     itemContainer: {
         backgroundColor: BG_COLOR,
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 10
+        padding: 10,
     },
     listItem: {
         color: COLORS.text.bg

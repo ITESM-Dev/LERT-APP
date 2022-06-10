@@ -1,22 +1,25 @@
 export enum APP_STACK_SCREENS {
-    LoginScreen = "LoginScreen",
-    SignUp = "SignUp",
-    ForgotPassword = "ForgotPassword",
-    Content = "Content"
+    LoginScreen = "Login Screen",
+    SignUp = "Sign Up",
+    ForgotPassword = "Forgot Password",
+    Content = "Content",
+    NotFound = "Not Found",
 }
 
 export enum CONTENT_DRAWER_SCREENS {
-    CurrentPeriod = "CurrentPeriod",
+    CurrentPeriod = "Current Period",
     Delegate = "Delegate",
-    EditManagerInformation = "EditManagerInformation",
+    EditManagerInformation = "Edit Manager Information",
     Employee = "Employee",
     Expenses = "Expenses",
-    ExpensesTypes = "ExpensesTypes",
-    ExtraHours = "ExtraHours",
+    ExpensesTypes = "Expenses Types",
+    ExtraHours = "Extra Hours",
     Home = "Home",
     ICAS = "ICAS",
-    ManageManagerFunctions = "ManageManagerFunctions",
+    ManageManagerFunctions = "Manage Manager Functions",
+    ManagersForIcaAdmin = "Managers",
     Recovery = "Recovery",
-    Types = "Types"
+    Types = "Types",
+    UserRoles = "User Roles"
 }
 

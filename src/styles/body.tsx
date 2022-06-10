@@ -26,10 +26,10 @@ const BodyStyles: { [key: string]: TextType } = {
         letterSpacing: 0.16 
     },
     body02: {
-        fontWeight: "regular",
+        fontWeight: "semibold",
         fontStyle: "normal",
         fontFamily: "body",
-        fontSize: 14,
+        fontSize: 12,
         lineHeight: 18,
         letterSpacing: 0.16 
     },

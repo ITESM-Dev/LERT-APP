@@ -5,7 +5,7 @@ import { Image, Box, Pressable } from 'native-base';
 import Ionicons  from '@expo/vector-icons/Ionicons';
 
 import { AppDispatch } from '~store/store';
-import { clearTokenInStorageThunk, logoutUserThunk, userSelector } from '~store/user';
+import { logoutUserThunk, userSelector } from '~store/user';
 import { LogoutForm } from '~store/api';
 
 import LertText from '~components/atoms/LertText';
@@ -32,13 +32,7 @@ const ProfileInfo = (props: ProfielInfoPropTypes) => {
     const dispatch: AppDispatch = useDispatch()
 
     const handleLogout = () => {
-        const logoutForm: LogoutForm = {
-            token: user.token,
-            mail: user.mail
-        }
-        dispatch(logoutUserThunk(logoutForm)).then(response => {
-            dispatch(clearTokenInStorageThunk())
-        })
+        dispatch(logoutUserThunk())
     }
 
     return (

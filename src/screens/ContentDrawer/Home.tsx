@@ -1,13 +1,11 @@
-import { Text, View } from "react-native";
+import { ViewStyle, View } from "react-native";
+import { Image, Box, Flex, Spacer } from "native-base";
+
 import LertText from "~components/atoms/LertText";
+import LertScreen from "~components/organisms/LertScreen";
+
 import Theme from '~theme/theme';
 import * as textTypes from '~styles/constants/textTypes';
-import { Box, Center, Flex, ScrollView, SimpleGrid, Spacer } from "native-base";
-import { AspectRatio, Image } from "native-base";
-import { ViewStyle } from 'react'
-import LegalMenu from "~components/molecules/LegalMenu";
-import containerStyles from "~styles/containers";
-import LertScreen from "~components/organisms/LertScreen";
 
 type BgBoxPropTypes = {
     text: string;
@@ -16,8 +14,9 @@ type BgBoxPropTypes = {
 
 const BgBox = (props: BgBoxPropTypes) => {
     return (
+        // @ts-ignore
         <Box
-            flex={1}    
+            flex={1}  
             bgColor={Theme.colors.components.offWhite} 
             alignItems="center"
             justifyContent={'center'}
@@ -55,12 +54,10 @@ const Home = () => {
     return (
         <LertScreen>
 
-            <ViewForText>
-                <LertText
-                    text="Hi user, welcome to LERT"
-                    type={textTypes.display04}
-                />
-            </ViewForText>
+            <LertText
+                text="Hi user, welcome to LERT"
+                type={textTypes.display04}
+            />
 
             <ViewForText>
                 <LertText

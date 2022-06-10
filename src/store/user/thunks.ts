@@ -1,20 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { QueryStatus } from "@reduxjs/toolkit/dist/query";
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import { api, LogoutForm, LoginForm, SignUpForm } from "~store/api";
 import { clearUser, setUser } from "./slice";
 import { GetUserInfoForm } from "~store/api/types";
 
 export const getUserInfoThunk = createAsyncThunk(
     "user/getUserInfo",
-    async (getUserInfoForm: GetUserInfoForm, thunkApi) => {
+    async (_, thunkApi) => {
         const response = 
-            await thunkApi.dispatch(api.endpoints.getUserInfo.initiate(getUserInfoForm))
+            await thunkApi.dispatch(api.endpoints.getUserInfo.initiate())
 
         if (response.status === QueryStatus.fulfilled) 
             thunkApi.dispatch(setUser(response.data))
+        else {
+            throw thunkApi.rejectWithValue("Invalid Token")
+        }
 
         return response
     },
@@ -29,10 +30,10 @@ export const logUserThunk = createAsyncThunk(
         
         if (response.status === QueryStatus.fulfilled)
             thunkApi.dispatch(setUser(response.data))
-        else 
-            return thunkApi.rejectWithValue(response)
+        else {
+            throw thunkApi.rejectWithValue(response.error)
+        }
     },
-    
 )
 
 export const signUpUserThunk = createAsyncThunk(
@@ -44,57 +45,17 @@ export const signUpUserThunk = createAsyncThunk(
 
 export const logoutUserThunk = createAsyncThunk(
     "user/logoutUser",
-    async (logoutForm: LogoutForm, thunkApi) => {
+    async (_, thunkApi) => {
 
         const response = 
-            await thunkApi.dispatch(api.endpoints.logout.initiate(logoutForm))
+            await thunkApi.dispatch(api.endpoints.logout.initiate())
         
+        console.log(response)
         if (response.status === QueryStatus.fulfilled)
             thunkApi.dispatch(clearUser())
         else
-            return thunkApi.rejectWithValue(response)
+            throw thunkApi.rejectWithValue(response)
 
         return response;
     }
 )
-
-export const saveTokenInStorageThunk = createAsyncThunk(
-    "user/saveTokenInStorage",
-    async (token: string) => {
-        try {
-            await AsyncStorage.setItem("token", token)
-            return true;
-        }
-        catch (e) {
-            return false
-        }
-    }
-)
-
-export const getTokenFromStorageThunk = createAsyncThunk(
-    "user/getTokenFromStorage",
-    async (_, thunkApi) => {
-        try {
-            const token = await AsyncStorage.getItem("token")
-            if (token !== null)
-                return token;
-        }
-        catch (e) {
-            return null
-        }
-        return null
-    }
-);
-
-export const clearTokenInStorageThunk = createAsyncThunk(
-    "user/clearTokenInStorage",
-    async () => {
-        try {
-            await AsyncStorage.removeItem("token")
-            true
-        }
-        catch (e) {
-            return false
-        }
-    }
-);

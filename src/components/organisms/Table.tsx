@@ -1,16 +1,16 @@
-import { DrawerItemList } from '@react-navigation/drawer';
 import { Box, FlatList } from 'native-base';
-import { color } from 'react-native-reanimated';
-import LertText from "~components/atoms/LertText";
+
 import TableItem from '~components/molecules/TableItem';
+
 import Theme from '~theme/theme';
 
-import * as textTypes from '~styles/constants/textTypes';
 
 type TablePropTypes = {
     headers: Array<string>;
     items: Array<any>;
     flexValues: Array<number>;
+    handleUpdate?: (item: any) => void;
+    handleDelete?: (item: any) => void;
 }
 
 const extractValues = (myData: any) => {
@@ -36,10 +36,15 @@ const Table = (props: TablePropTypes) => {
                 data={props.items}
                 renderItem={({ item }) => (
                     <TableItem 
+                        originalObj={item}
+
                         items={extractValues(item)} 
+                        
                         flexValues={props.flexValues} 
                         styles={{ backgroundColor: Theme.colors.components.offWhite }} 
                         amount={props.headers.length}
+                        handleUpdate={props.handleUpdate}
+                        handleDelete={props.handleDelete}
                     />
                 )}
                 keyExtractor={( item, index ) => index.toString()}

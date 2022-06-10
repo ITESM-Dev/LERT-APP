@@ -17,6 +17,7 @@ import theme from '~theme/theme';
 import * as textTypes from '~styles/constants/textTypes';
 
 import { APP_STACK_SCREENS } from '~utils/screenNames';
+import { USER_ROLES } from '~utils/constants';
 
 const SignUp = () => {
 
@@ -41,13 +42,13 @@ const SignUp = () => {
             name: `${firstName} ${lastName}`,
             mail: email,
             password: password,
-            role: 'Resource',
+            role: USER_ROLES.RESOURCE,
+            band: '0',
             country: country
         }
 
         dispatch(signUpUserThunk(signUpForm))
             .then((response: any) => {
-                console.log(response)
                 if(response.meta.requestStatus === 'fulfilled') 
                     navigation.navigate(APP_STACK_SCREENS.LoginScreen)
             })
@@ -124,6 +125,7 @@ const SignUp = () => {
                     <LertText
                         style={{marginTop:"1%"}}
                         text="Already have an IBM account? "
+                        isTruncated={false}
                         type={textTypes.label}
                         />
 
@@ -161,27 +163,27 @@ const SignUp = () => {
                 <LertInput
                     placeholder="Password"
                     password={true}
-                    style={{width: "100%", marginTop:"5%", marginBottom:'7%'}}
+                    style={{ width: "100%", marginTop:"5%" }}
                     text={password}
                     setText={setPassword}
-                    /> 
+                /> 
 
                 <LertText
                     style={{marginTop:"5%"}}
                     text="Personal information"
                     type={textTypes.display01}
-                    />
+                />
                 <Box style={{flexDirection:'row', width: '100%'}}>
                     <LertInput
                         placeholder="First name"
-                        style={{width: "100%", marginTop:"1%"}}
+                        style={{width: "100%", marginTop:"5%" }}
                         text={firstName}
                         setText={setFirstName}
                         />
                     
                     <LertInput
                         placeholder="Last name"
-                        style={{width: "100%", marginTop:"5%", marginLeft:"5%"}}
+                        style={{ width: "100%", marginTop:"5%", marginLeft:"5%"}}
                         text={lastName}
                         setText={setLastName}
                         />

@@ -6,7 +6,7 @@ import * as textTypes from '~styles/constants/textTypes';
 type NotificationPropTypes = {
     title:string;
     body:string;
-    type:string;
+    type: "success" | "error" | "warning";
 }
 
 /**
@@ -16,29 +16,41 @@ type NotificationPropTypes = {
  */
 const Notification = (props:NotificationPropTypes) =>{
     return (
-        <Alert 
-            width={'20%'}
-            {...NotificationColors[props.type]}
-            variant={'top-accent'} 
-            borderRadius={8}
+        <Box
+            flex={1}
+            width={'100%'}
         >
-            <VStack space={2} width="100%">
-                <HStack space={2} alignItems="center" justifyContent="space-between">
-                    <HStack space={2} alignItems="center">
-                        <Alert.Icon/>
-                        <LertText text={props.title} type={textTypes.body02} color='light.backdrop1'/>
+            <Alert   
+                marginTop={30}
+                position={'absolute'}
+                alignSelf={'flex-end'}
+                {...NotificationColors[props.type]}
+                variant={'top-accent'} 
+                borderRadius={8}
+            >
+                <VStack space={2} width="100%">
+                    <HStack space={2} alignItems="center" justifyContent="space-between">
+                        <HStack space={2} alignItems="center">
+                            <Alert.Icon/>
+                            <LertText 
+                                text={props.title} 
+                                type={textTypes.body02} 
+                                color='light.backdrop1'
+                                numberOfLines={2}
+                            />
+                        </HStack>
+                        <IconButton 
+                            icon={<CloseIcon size="3" color="icons.primaryLDark" />} 
+                        />
                     </HStack>
-                    <IconButton 
-                        icon={<CloseIcon size="3" color="icons.primaryLDark" />} 
-                    />
-                </HStack>
-                <Box 
-                    paddingLeft={'8%'}
-                >
-                    <LertText text={props.body} type={textTypes.shortParagraph} color= 'light.backdrop1'/>
-                </Box>
-            </VStack>
-        </Alert>
+                    <Box 
+                        paddingLeft={'8%'}
+                    >
+                        <LertText text={props.body} type={textTypes.shortParagraph} color= 'light.backdrop1'/>
+                    </Box>
+                </VStack>
+            </Alert>
+        </Box>
     )
 }
 

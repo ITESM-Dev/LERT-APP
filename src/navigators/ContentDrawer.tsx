@@ -13,7 +13,6 @@ import Delegate from "~screens/ContentDrawer/Delegate";
 import Employee from "~screens/ContentDrawer/Employee";
 import ExtraHours from "~screens/ContentDrawer/ExtraHours";
 import ManageManagerFunctions from "~screens/ContentDrawer/ManageManagerFunctions";
-import EditManagerInformation from "~screens/ContentDrawer/EditManagerInformation";
 import Expenses from "~screens/ContentDrawer/Expenses";
 import Recovery from "~screens/ContentDrawer/Recovery";
 import ExpensesTypes from "~screens/ContentDrawer/ExpensesTypes";
@@ -22,9 +21,11 @@ import CurrentPeriod from "~screens/ContentDrawer/CurrentPeriod";
 import containerStyles from "~styles/containers";
 import FixedHeadingStyles from "~styles/fixedHeadings";
 import theme from "~theme/theme";
-import { useEffect } from "react";
-import LegalMenu from "~components/molecules/LegalMenu";
 import { CONTENT_DRAWER_SCREENS } from "~utils/screenNames";
+import { Box } from "native-base";
+import { USER_ROLES } from "~utils/constants";
+import UserRoles from "~screens/ContentDrawer/UserRoles";
+import ManagersForIcaAdmin from "~screens/ContentDrawer/ManagersForIcaAdmin";
 
 
 const LABELS_STYLE = {
@@ -47,13 +48,15 @@ const ContentDrawer = () => {
     const role = user.role;
 
     return (
-        <>
+        <Box flex={1}>
             <Drawer.Navigator
                 screenOptions={{
                     drawerType: 'permanent',
                     headerShown: false,
+                    
                     sceneContainerStyle: containerStyles.contentScreen,
 
+                    drawerContentStyle: { width: "10%"},
                     // @ts-ignore
                     drawerLabelStyle: { 
                         fontFamily: LABELS_STYLE.fontFamily,
@@ -73,9 +76,7 @@ const ContentDrawer = () => {
                 initialRouteName='Home'
 
                 drawerContent={ (props) => 
-                    <>
-                        <CustomDrawer {...props} />
-                    </> 
+                    <CustomDrawer {...props} />
                 }
             >
 
@@ -91,7 +92,7 @@ const ContentDrawer = () => {
                     }}
                 />
 
-                {role === 'OPManager' &&
+                {role === USER_ROLES.OP_MANAGER &&
                     <Drawer.Group>
                         <Drawer.Screen 
                             name={CONTENT_DRAWER_SCREENS.Types}
@@ -149,20 +150,31 @@ const ContentDrawer = () => {
                             }}
                         />
                         <Drawer.Screen 
-                            name={CONTENT_DRAWER_SCREENS.EditManagerInformation}
-                            component={EditManagerInformation}
+                            name={CONTENT_DRAWER_SCREENS.Delegate}
+                            component={Delegate}
                             options={{
                                 drawerIcon: () => 
                                     <Ionicons 
                                         {...ICONS_STYLE}
-                                        name="pencil-outline" 
+                                        name="people-outline" 
+                                    />
+                            }}
+                        />
+                        <Drawer.Screen 
+                            name={CONTENT_DRAWER_SCREENS.CurrentPeriod}
+                            component={CurrentPeriod}
+                            options={{
+                                drawerIcon: () => 
+                                    <Ionicons
+                                        {...ICONS_STYLE} 
+                                        name="calendar-outline"
                                     />
                             }}
                         />
                     </Drawer.Group>
                 }
 
-                {role === 'Manager' &&
+                {role === USER_ROLES.MANAGER &&
                     <Drawer.Group>
                         <Drawer.Screen 
                             name={CONTENT_DRAWER_SCREENS.Delegate}
@@ -209,30 +221,35 @@ const ContentDrawer = () => {
                                     />
                             }}
                         />
+                    </Drawer.Group>
+                }
+
+                {role === USER_ROLES.ICA_ADMIN &&
+                    <Drawer.Group>
                         <Drawer.Screen 
-                            name={CONTENT_DRAWER_SCREENS.CurrentPeriod}
-                            component={CurrentPeriod}
+                            name={CONTENT_DRAWER_SCREENS.ManagersForIcaAdmin}
+                            component={ManagersForIcaAdmin}
                             options={{
                                 drawerIcon: () => 
-                                    <Ionicons
-                                        {...ICONS_STYLE} 
-                                        name="sync-outline"
+                                    <Ionicons 
+                                        {...ICONS_STYLE}
+                                        name="person-outline" 
                                     />
                             }}
                         />
                     </Drawer.Group>
                 }
 
-                {role === 'Admin' &&
+                {role === USER_ROLES.ADMIN &&
                     <Drawer.Group>
                         <Drawer.Screen 
-                            name={CONTENT_DRAWER_SCREENS.Delegate}
-                            component={Delegate}
+                            name={CONTENT_DRAWER_SCREENS.UserRoles}
+                            component={UserRoles}
                             options={{
                                 drawerIcon: () => 
                                     <Ionicons 
                                         {...ICONS_STYLE}
-                                        name="people-outline" 
+                                        name="glasses-outline" 
                                     />
                             }}
                         />
@@ -240,10 +257,7 @@ const ContentDrawer = () => {
                 }
 
             </Drawer.Navigator>
-        </>
-
-        
-
+        </Box>
     )
 }
 
