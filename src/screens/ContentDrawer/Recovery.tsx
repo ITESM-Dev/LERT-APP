@@ -40,22 +40,22 @@ const Recovery = () => {
 	const { data, isLoading } = useExpensesForQuarterQuery({ year } as ExpensesForQuarterForm)
 	
 	const charData = {
-		labels: ["Q1", "Q2", "Q3", "Q4"],
-		datasets: [
-			{
-				data: 
-					data !== undefined 
-						? [data["1"], data["2"], data["3"], data["4"]] 
-						: [40, 30, 20, 10],
-				colors: [
-					() => theme.colors.actions.actionShade2,
-					() => theme.colors.actions.actionPrimary,
-					() => theme.colors.actions.actionShade1,
-					() => theme.colors.actions.actionShade0,
-				]
-			}
-		]
-	};
+        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+        datasets: [
+            {
+                data:
+                    data !== undefined
+                        ? [data['1'], data['2'], data['3'], data['4']]
+                        : [40, 30, 20, 10],
+                colors: [
+                    () => theme.colors.actions.actionShade2,
+                    () => theme.colors.actions.actionPrimary,
+                    () => theme.colors.actions.actionShade1,
+                    () => theme.colors.actions.actionShade0
+                ]
+            }
+        ]
+    };
 
     return (
         <LertScreen isLoading={isLoading}>

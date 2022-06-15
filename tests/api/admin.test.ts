@@ -2,13 +2,10 @@ import axios from "axios"
 import { API_URL } from "~utils/constants"
 
 test("User Roles", async() => {
-    const userResponse = await axios.post(
-        `${API_URL}login`, 
-        {
-            "mail": "admin@test.com",
-            "password": "testPassword"
-        }
-    )
+    const userResponse = await axios.post(`${API_URL}login`, {
+        mail: 'admin@lert.com',
+        password: 'password'
+    });
     const user = userResponse.data
 
     const response = await axios.get(

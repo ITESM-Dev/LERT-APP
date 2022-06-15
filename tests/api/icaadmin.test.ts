@@ -1,10 +1,10 @@
 import axios from "axios"
 import { API_URL } from "~utils/constants"
 
-const MAIL = "icaAdmin@test.com"
-const PASSWORD = "testPassword"
+const MAIL = 'icaAdmin@lert.com';
+const PASSWORD = 'password';
 
-const MANAGER_MAIL = "manager@test.com"
+const MANAGER_MAIL = 'manager@lert.com';
 
 test("Managers", async() => {
     const userResponse = await axios.post(
